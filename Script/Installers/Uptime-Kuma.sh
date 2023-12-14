@@ -18,8 +18,15 @@ PORT=${PORT:-3001}
 read -p "Enter the path for Uptime-Kuma data (e.g., /kuma-data/): " DATA_PATH
 DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/kuma-data}
 
-# Create a Docker compose file with the user input
-cat > docker-compose.yml <<EOF
+# Define the subfolder for the Docker compose files
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/compose-files"
+COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
+
+# Create the subfolder if it does not exist
+mkdir -p $COMPOSE_SUBFOLDER
+
+# Create a Docker compose file with the user input inside the subfolder
+cat > $COMPOSE_FILE <<EOF
 version: '3'
 services:
   $CONTAINER_NAME:
@@ -29,6 +36,9 @@ services:
     volumes:
       - $DATA_PATH:/app/data
 EOF
+
+# Inform the user where the Docker compose file has been created
+echo "Docker compose file created at: $COMPOSE_FILE"
 
 # Start the Docker container using docker-compose
 docker compose up -d
