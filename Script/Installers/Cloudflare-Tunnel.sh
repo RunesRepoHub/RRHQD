@@ -25,8 +25,10 @@ touch "$CONFIG_FILE"
 # Prompt user for tunnel UUID
 read -p "Enter the Tunnel UUID: " UUID
 
+read -p "Enter if you want to use http or https: " PROTOCOL
+
 # Prompt user for reverse proxy IP
-read -p "Enter the reverse proxy IP (https://): " REVERSEPROXYIP
+read -p "Enter the reverse proxy IP ($PROTOCOL://): " REVERSEPROXYIP
 
 # Prompt user for the domain
 read -p "Enter your domain (yourdomain.com): " YOURDOMAIN
@@ -37,10 +39,10 @@ read -p "Enter your domain (yourdomain.com): " YOURDOMAIN
   echo "credentials-file: /home/nonroot/.cloudflared/$UUID.json"
   echo " "
   echo "# forward all traffic to Reverse Proxy w/ SSL"
-  echo "    ingress:"
-  echo "      - service: https://$REVERSEPROXYIP"
-  echo "        originRequest:"
-  echo "          originServerName: $YOURDOMAIN"
+  echo "ingress:"
+  echo "  - service: https://$REVERSEPROXYIP"
+  echo "    originRequest:"
+  echo "      originServerName: $YOURDOMAIN"
 } >> "$CONFIG_FILE"
 
 # Start the Cloudflare tunnel
