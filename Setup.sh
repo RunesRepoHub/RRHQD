@@ -31,5 +31,7 @@ GITHUB_REPO_URL="https://github.com/username/repository.git"
 # Clone the GitHub repository
 git clone $GITHUB_REPO_URL
 
+sleep 3 
 
+bash ~/RRHQD/Script/Menu/Main-Menu.sh
 
