@@ -26,6 +26,7 @@ function run_script() {
         4)
             echo -e "${Red}Exiting...${NC}"
             exit 0
+            clear
             ;;
         *)
             echo -e "${Red}Invalid option. Please try again.${NC}"

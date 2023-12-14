@@ -32,10 +32,12 @@ function run_script() {
             echo -e "${Green}Updating...${NC}"
             cd ~/RRHQD
             git pull
+            clear
             ;;
         6)
             echo -e "${Red}Exiting...${NC}"
             exit 0
+            clear
             ;;
         *)
             echo -e "${Red}Invalid option. Please try again.${NC}"
