@@ -33,6 +33,9 @@ read -p "Enter the branch you want to clone: " branch
 # Clone the specified branch from the GitHub repository
 git clone --branch "$branch" $GITHUB_REPO_URL
 
+# Create a folder named RRHQD-Dockers in the root directory
+mkdir /RRHQD-Dockers
+
 sleep 3 
 
 bash ~/RRHQD/Script/Menu/Main-Menu.sh

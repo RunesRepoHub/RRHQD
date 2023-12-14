@@ -16,7 +16,7 @@ read -p "Enter the port to expose Uptime-Kuma on (e.g., 3001): " PORT
 PORT=${PORT:-3001}
 
 read -p "Enter the path for Uptime-Kuma data (e.g., /kuma-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./kuma-data}
+DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/kuma-data}
 
 # Create a Docker compose file with the user input
 cat > docker-compose.yml <<EOF
