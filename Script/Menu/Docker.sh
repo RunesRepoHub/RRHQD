@@ -21,7 +21,7 @@ function run_script() {
             bash ~/RRHQD/Script/Installers/Vaultwarden.sh
             ;;
         3)
-            ~/CnC/files/Installers/install-cloudflare-tunnel.sh
+            bash ~/RRHQD/Script/Installers/Cloudflare-Tunnel.sh
             ;;
         4)
             echo -e "${Red}Exiting...${NC}"
