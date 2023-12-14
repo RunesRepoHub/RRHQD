@@ -23,4 +23,4 @@ services:
 EOF
 
 # Start the Docker container using docker-compose
-docker-compose up -d
+docker compose up -d
