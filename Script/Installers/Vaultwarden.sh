@@ -33,7 +33,7 @@ SIGNUPS_ALLOWED=$( [[ "$SIGNUPS_ALLOWED" == "y" ]] && echo "true" || echo "false
 WEBSOCKET_ENABLED=$( [[ "$WEBSOCKET_ENABLED" == "y" ]] && echo "true" || echo "false" )
 
 # Create a Docker compose file with the user input
-cat > ~/RRHQD/Core/Vaultwarden/docker-compose.yml <<EOF
+cat > ~/RRHQD/Core/Docker/Vaultwarden/docker-compose.yml <<EOF
 version: '3'
 services:
   $CONTAINER_NAME:
