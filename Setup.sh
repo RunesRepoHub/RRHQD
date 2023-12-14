@@ -37,3 +37,5 @@ sleep 3
 
 bash ~/RRHQD/Script/Menu/Main-Menu.sh
 
+# Add alias for the Main Menu
+echo 'alias main-menu="bash ~/RRHQD/Script/Menu/Main-Menu.sh"' >> ~/.bashrc

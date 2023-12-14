@@ -1,5 +1,5 @@
 #!/bin/bash
-
+clear 
 source ~/RRHQD/Core/Core.sh
 
 # Display the menu options
@@ -10,6 +10,7 @@ function show_menu() {
     echo "3) Coming Soon"
     echo "4) Coming Soon"
     echo "5) Exit"
+    echo "6) Update"
 }
 
 # Run the selected script
@@ -30,6 +31,11 @@ function run_script() {
         5)
             echo "Exiting..."
             exit 0
+            ;;
+        6)
+            echo -e "Updating..."
+            cd ~/RRHQD
+            git pull 
             ;;
         *)
             echo "Invalid option. Please try again."
