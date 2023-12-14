@@ -5,7 +5,7 @@ source ~/RRHQD/Core/Core.sh
 # Display the menu options
 function show_menu() {
     echo "Please select an option:"
-    echo "1) Find a Installer"
+    echo "1) Find a Docker"
     echo "2) Coming Soon"
     echo "3) Coming Soon"
     echo "4) Coming Soon"
@@ -17,7 +17,7 @@ function show_menu() {
 function run_script() {
     case $1 in
         1)
-            bash ~/RRHQD/Script/Menu/Installers.sh
+            bash ~/RRHQD/Script/Menu/Docker.sh
             ;;
         2)
             echo -e "Coming Soon"
