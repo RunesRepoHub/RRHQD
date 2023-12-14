@@ -26,10 +26,12 @@ fi
 
 
 # Define the GitHub repository URL
-GITHUB_REPO_URL="https://github.com/username/repository.git"
+GITHUB_REPO_URL="https://github.com/RunesRepoHub/RRHQD.git"
 
-# Clone the GitHub repository
-git clone $GITHUB_REPO_URL
+# Ask the user for the branch they want to download
+read -p "Enter the branch you want to clone: " branch
+# Clone the specified branch from the GitHub repository
+git clone --branch "$branch" $GITHUB_REPO_URL
 
 sleep 3 
 
