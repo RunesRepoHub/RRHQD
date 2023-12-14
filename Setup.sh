@@ -35,6 +35,10 @@ git clone --branch "$branch" $GITHUB_REPO_URL
 
 # Create a folder named RRHQD-Dockers in the root directory
 mkdir /RRHQD-Dockers
+mkdir /RRHQD-Composes
+
+touch ~/RRHQD-Composes/Vaultwarden/docker-compose.yml
+touch ~/RRHQD-Composes/Uptime-Kuma/docker-compose.yml
 
 sleep 3 
 
