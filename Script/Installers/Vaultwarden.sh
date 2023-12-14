@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./RRHQD/Core/Core.sh
+source ~/RRHQD/Core/Core.sh
 
 echo -e "${Green}Setup a Docker container for Vaultwarden${NC}"
 
