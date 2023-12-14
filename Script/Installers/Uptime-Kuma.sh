@@ -19,7 +19,7 @@ read -p "Enter the path for Uptime-Kuma data (e.g., /kuma-data/): " DATA_PATH
 DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/kuma-data}
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./RRHQD-Dockers/compose-files"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

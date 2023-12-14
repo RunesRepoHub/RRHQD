@@ -32,21 +32,38 @@ WEBSOCKET_ENABLED=${WEBSOCKET_ENABLED:-y}
 SIGNUPS_ALLOWED=$( [[ "$SIGNUPS_ALLOWED" == "y" ]] && echo "true" || echo "false" )
 WEBSOCKET_ENABLED=$( [[ "$WEBSOCKET_ENABLED" == "y" ]] && echo "true" || echo "false" )
 
-# Create a Docker compose file with the user input
-cat > docker-compose.yml <<EOF
-version: '3'
-services:
-  $CONTAINER_NAME:
-    image: $IMAGE
-    ports:
-      - "$PORT:80"
-    volumes:
-      - $DATA_PATH:/data
-    environment:
-      - ADMIN_TOKEN=${ADMIN_TOKEN}
-      - WEBSOCKET_ENABLED=${WEBSOCKET_ENABLED}
-      - SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED}
-EOF
+# Define the subfolder for the Docker compose files
+COMPOSE_SUBFOLDER="./RRHQD-Dockers"
+COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
+
+# Create the subfolder if it does not exist
+mkdir -p "$COMPOSE_SUBFOLDER"
+
+# Create a Docker compose file with the user input inside the subfolder
+{
+  echo "version: '3'"
+  echo "services:"
+  echo "  $CONTAINER_NAME:"
+  echo "    image: $IMAGE"
+  echo "    ports:"
+  echo "      - \"$PORT:80\""
+  echo "    volumes:"
+  echo "      - \"$DATA_PATH:/data\""
+  echo "    environment:"
+  echo "      - ADMIN_TOKEN=${ADMIN_TOKEN}"
+  echo "      - WEBSOCKET_ENABLED=${WEBSOCKET_ENABLED}"
+  echo "      - SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED}"
+} > "$COMPOSE_FILE"
+
+# Inform the user where the Docker compose file has been created
+echo "Docker compose file created at: $COMPOSE_FILE"
+
+# Check if Docker is running
+if ! docker info >/dev/null 2>&1; then
+    echo "Docker does not seem to be running, start it first and then re-run this script."
+    exit 1
+fi
 
 # Start the Docker container using docker-compose
-docker compose up -d
+docker compose -f "$COMPOSE_FILE" up -d
+
