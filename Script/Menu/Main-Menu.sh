@@ -32,9 +32,8 @@ function run_script() {
             echo -e "${Green}Updating...${NC}"
             cd ~/RRHQD
             git pull
+            echo -e "${Green}You can now run the script fully updated${NC}"
             exit 0
-            clear
-            bash ~/RRHQD/Script/Menu/Main-Menu.sh
             ;;
         6)
             echo -e "${Red}Exiting...${NC}"
