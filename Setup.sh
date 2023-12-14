@@ -37,9 +37,6 @@ git clone --branch "$branch" $GITHUB_REPO_URL
 mkdir /RRHQD-Dockers
 mkdir /RRHQD-Composes
 
-touch ~/RRHQD-Composes/Vaultwarden/docker-compose.yml
-touch ~/RRHQD-Composes/Uptime-Kuma/docker-compose.yml
-
 sleep 3 
 
 bash ~/RRHQD/Script/Menu/Main-Menu.sh
