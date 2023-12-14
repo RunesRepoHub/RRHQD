@@ -16,7 +16,7 @@ function show_menu() {
 function run_script() {
     case $1 in
         1)
-            ~/RRHQD/Script/Menu/Main-Menu.sh
+            ~/RRHQD/Script/Menu/Installers.sh
             ;;
         2)
             echo -e "Coming Soon"
