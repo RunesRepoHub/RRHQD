@@ -15,10 +15,10 @@ function show_menu() {
 function run_script() {
     case $1 in
         1)
-            ~/RRHQD/Script/Installers/Uptime-Kuma.sh
+            bash ~/RRHQD/Script/Installers/Uptime-Kuma.sh
             ;;
         2)
-            ~/RRHQD/Script/Installers/Vaultwarden.sh
+            bash ~/RRHQD/Script/Installers/Vaultwarden.sh
             ;;
         3)
             ~/CnC/files/Installers/install-cloudflare-tunnel.sh
