@@ -1,11 +1,24 @@
 # RRHQD
 RunesRepoHub Quick Deploy this script has been made to make it easy to deploy the most used docker, software and other installers that we use.
 
+### Current Versions:
+
+1. Dev = Development branch (Very unstable)
+2. PoC = Proof of concept (Nightly Updates)
+3. Prod = Production (Stable branch)
+
 ### Docker support:
 
 * Uptime-Kuma
 * Vaultwarden
 * Cloudflare Tunnel
+
+### Dependencies folders:
+
+* RRHQD
+* RRHQD-Dockers
+
+> Note: The Docker compose files and the docker volumes are stored in the "RRHQD-Dockers" folder (SO DONT DELETE IT, unless you know what you are doing). The "RRHQD" folder is the main folder for the script.
 
 ## How to use
 
