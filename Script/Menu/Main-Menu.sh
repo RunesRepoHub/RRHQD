@@ -17,16 +17,16 @@ function show_menu() {
 function run_script() {
     case $1 in
         1)
-            bash ~/RRHQD/Script/Menu/Docker.sh
+            bash ~/RRHQD/Script/Menu/Docker.sh ## Dockers
             ;;
         2)
-            echo -e "Coming Soon"
+            echo -e "Coming Soon" ## RunesRepoHub 
             ;;
         3)
-            echo -e "Coming Soon"
+            echo -e "Coming Soon" ## Quick Installers
             ;;
         4)
-            echo -e "Coming Soon"
+            echo -e "Coming Soon" ## Open Spot
             ;;
         5)
             echo -e "${Green}Updating...${NC}"
@@ -48,7 +48,7 @@ function run_script() {
 # Main loop
 while true; do
     show_menu
-    read -p "Enter your choice [1-5]: " choice
+    read -p "Enter your choice [1-6]: " choice
     run_script $choice
 done
 
