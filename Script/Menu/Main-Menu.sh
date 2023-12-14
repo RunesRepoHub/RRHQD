@@ -9,8 +9,8 @@ function show_menu() {
     echo "2) Coming Soon"
     echo "3) Coming Soon"
     echo "4) Coming Soon"
-    echo "5) Exit"
-    echo "6) Update"
+    echo "5) Update"
+    echo "6) Exit"
 }
 
 # Run the selected script
@@ -29,16 +29,16 @@ function run_script() {
             echo -e "Coming Soon"
             ;;
         5)
-            echo "Exiting..."
-            exit 0
+            echo -e "${Green}Updating...${NC}"
+            cd ~/RRHQD
+            git pull
             ;;
         6)
-            echo -e "Updating..."
-            cd ~/RRHQD
-            git pull 
+            echo -e "${Red}Exiting...${NC}"
+            exit 0
             ;;
         *)
-            echo "Invalid option. Please try again."
+            echo -e "${Red}Invalid option. Please try again.${NC}"
             ;;
     esac
 }

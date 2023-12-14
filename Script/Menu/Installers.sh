@@ -24,11 +24,11 @@ function run_script() {
             ~/CnC/files/Installers/install-cloudflare-tunnel.sh
             ;;
         4)
-            echo "Exiting..."
+            echo -e "${Red}Exiting...${NC}"
             exit 0
             ;;
         *)
-            echo "Invalid option. Please try again."
+            echo -e "${Red}Invalid option. Please try again.${NC}"
             ;;
     esac
 }
