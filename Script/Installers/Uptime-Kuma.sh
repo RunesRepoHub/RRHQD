@@ -19,7 +19,7 @@ read -p "Enter the path for Uptime-Kuma data (e.g., /kuma-data/): " DATA_PATH
 DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/kuma-data}
 
 # Create a Docker compose file with the user input
-cat > ~/RRHQD/Core/Docker/Uptime-Kuma/docker-compose.yml <<EOF
+cat > docker-compose.yml <<EOF
 version: '3'
 services:
   $CONTAINER_NAME:
@@ -29,6 +29,8 @@ services:
     volumes:
       - $DATA_PATH:/app/data
 EOF
+
+mv ~/docker-compose-yml ~/RRHQD-Dockers/Uptime-Kuma/docker-compose.yml
 
 # Start the Docker container using docker-compose
 docker compose up -d
