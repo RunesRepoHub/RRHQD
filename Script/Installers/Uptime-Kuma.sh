@@ -30,7 +30,7 @@ services:
       - $DATA_PATH:/app/data
 EOF
 
-mv ~/docker-compose-yml ~/RRHQD-Dockers/Uptime-Kuma/docker-compose.yml
+mv ~/docker-compose.yml ~/RRHQD-Dockers/Uptime-Kuma/docker-compose.yml
 
 # Start the Docker container using docker-compose
 docker compose up -d

@@ -48,7 +48,7 @@ services:
       - SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED}
 EOF
 
-mv ~/docker-compose-yml ~/RRHQD-Dockers/Vaultwarden/docker-compose.yml
+mv ~/docker-compose.yml ~/RRHQD-Dockers/Vaultwarden/docker-compose.yml
 
 # Start the Docker container using docker-compose
 docker compose up -d
