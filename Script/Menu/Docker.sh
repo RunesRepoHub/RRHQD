@@ -25,7 +25,7 @@ function run_script() {
             ;;
         4)
             echo -e "${Red}Exiting...${NC}"
-            exit 0
+            break 2
             clear
             ;;
         *)
