@@ -1,5 +1,5 @@
 #!/bin/bash
-
+clear 
 source ~/RRHQD/Core/Core.sh
 
 # Display the menu options
