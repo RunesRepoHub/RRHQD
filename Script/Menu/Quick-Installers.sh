@@ -4,17 +4,20 @@ source ~/RRHQD/Core/Core.sh
 
 script_name=$(basename "$0" .sh)
 
-echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
-echo -e "${Blue}Current Script: $script_name${NC}"
-echo
+# Display the initial messages and menu options
+function render_welcome_and_menu() {
+    echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
+    echo -e "${Blue}Current Script: $script_name${NC}"
+    echo
 
-echo -e "${Yellow}Run the Tailscale Installer${NC}"
-echo -e "${Green}This will easily and quickly install Tailscale.${NC}"
-echo
+    echo -e "${Yellow}Run the Tailscale Installer${NC}"
+    echo -e "${Green}This will easily and quickly install Tailscale.${NC}"
+    echo
 
-echo -e "${Yellow}Run the Starship Installer${NC}"
-echo -e "${Green}This will easily and quickly install Starship.${NC}"
-echo
+    echo -e "${Yellow}Run the Starship Installer${NC}"
+    echo -e "${Green}This will easily and quickly install Starship.${NC}"
+    echo
+}
 
 # Display the menu options
 function show_menu() {
@@ -52,6 +55,7 @@ function run_script() {
 
 # Main loop
 while true; do
+    render_welcome_and_menu
     show_menu
     read -p "Enter your choice [1-4]: " choice
     run_script $choice
