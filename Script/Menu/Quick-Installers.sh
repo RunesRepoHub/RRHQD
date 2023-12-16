@@ -7,7 +7,7 @@ function show_menu() {
     echo "Please select an option:"
     echo "1) Run the Tailscale Installer"
     echo "2) Run the Starship Installer"
-    echo "3) Run the Fail2Ban Installer"
+    echo "3) Coming Soon"
     echo "4) Exit"
 }
 
@@ -23,7 +23,7 @@ function run_script() {
             source ~/.bashrc
             ;;
         3)
-            bash ~/RRHQD/Script/Quick-Installers/Fail2ban-Installer.sh
+            bash ~/RRHQD/Script/Quick-Installers/
             ;;
         4)
             echo -e "${Red}Exiting...${NC}"
