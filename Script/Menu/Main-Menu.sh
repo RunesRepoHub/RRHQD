@@ -74,5 +74,3 @@ while true; do
     read -p "Enter your choice [1-6]: " choice
     run_script $choice
 done
-
-clear
