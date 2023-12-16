@@ -46,7 +46,7 @@ read -p "Enter your domain (yourdomain.com): " YOURDOMAIN
 } >> "$CONFIG_FILE"
 
 # Start the Cloudflare tunnel
-docker run -it -d -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel run -- "$UUID"
+docker run -it -d --name "Cloudflare Tunnel" -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel run -- "$UUID"
 
 # Check if Docker is running
 if ! docker info >/dev/null 2>&1; then
