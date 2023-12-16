@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install sudo -y > /dev/null 2>&1
+apt-get install sudo -y > /dev/null 2>&1
 
 # Function to check and install missing packages
 check_and_install() {
