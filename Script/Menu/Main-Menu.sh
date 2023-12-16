@@ -4,25 +4,24 @@ source ~/RRHQD/Core/Core.sh
 
 script_name=$(basename "$0" .sh)
 
-echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
-echo -e "${Blue}Current Script: $script_name${NC}"
-echo
-
-echo -e "${Yellow}Find and install a Docker${NC}"
-echo -e "${Green}This will easy and quickly install Docker made by other companies and users${NC}"
-echo
-
-echo -e "${Yellow}Find and install RunesRepoHub Software${NC}"
-echo -e "${Green}This will easy and quickly install RunesRepoHub Software made by RunesRepoHub${NC}"
-echo
-
-echo -e "${Yellow}Find and use a Quick Installer for other software${NC}"
-echo -e "${Green}This will easy and quickly install software made by other compaines and users${NC}"
-echo
-
-echo -e "${Yellow}Update${NC}"
-echo -e "${Green}This will update the all scripts used in RRHQD${NC}"
-echo
+# Display the initial messages and menu options
+function render_welcome_and_menu() {
+    echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
+    echo -e "${Blue}Current Script: $script_name${NC}"
+    echo
+    echo -e "${Yellow}Find and install a Docker${NC}"
+    echo -e "${Green}This will easy and quickly install Docker made by other companies and users${NC}"
+    echo
+    echo -e "${Yellow}Find and install RunesRepoHub Software${NC}"
+    echo -e "${Green}This will easy and quickly install RunesRepoHub Software made by RunesRepoHub${NC}"
+    echo
+    echo -e "${Yellow}Find and use a Quick Installer for other software${NC}"
+    echo -e "${Green}This will easy and quickly install software made by other compaines and users${NC}"
+    echo
+    echo -e "${Yellow}Update${NC}"
+    echo -e "${Green}This will update the all scripts used in RRHQD${NC}"
+    echo
+}
 
 # Display the menu options
 function show_menu() {
@@ -70,6 +69,7 @@ function run_script() {
 
 # Main loop
 while true; do
+    render_welcome_and_menu
     show_menu
     read -p "Enter your choice [1-6]: " choice
     run_script $choice
