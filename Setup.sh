@@ -1,17 +1,5 @@
 #!/bin/bash
 
-# Check if Docker is installed and install it if not
-if ! command -v docker &> /dev/null; then
-    echo "Docker is not installed. Attempting to install Docker..."
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sh get-docker.sh
-    if ! command -v docker &> /dev/null; then
-        echo "Failed to install Docker. Aborting script."
-        exit 1
-    fi
-    echo "Docker has been successfully installed."
-fi
-
 check_and_install() {
     local pkg=$1
     local install_script=$2
