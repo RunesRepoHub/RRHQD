@@ -37,6 +37,8 @@ mkdir -p "$COMPOSE_SUBFOLDER"
   echo "      - NTFY_SHARDS=1"
   echo "      - NTFY_HTTP_PORT=8080"
   echo "      - NTFY_TITLE=NTFY"
+  echo "    command:"
+  echo "      - serve"
 } > "$COMPOSE_FILE"
 
 # Inform the user where the Docker compose file has been created
