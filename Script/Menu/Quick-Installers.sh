@@ -19,6 +19,8 @@ function run_script() {
             ;;
         2)
             bash ~/RRHQD/Script/Quick-Installers/Starship-Installer.sh
+            sleep 1
+            source ~/.bashrc
             ;;
         3)
             bash ~/RRHQD/Script/Quick-Installers/Fail2ban-Installer.sh

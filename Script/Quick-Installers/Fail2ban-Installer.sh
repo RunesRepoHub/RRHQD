@@ -1,6 +1,24 @@
 #!/bin/bash
 # Basic Fail2Ban installation and setup script with user input for configuration
 
+# Check if Fail2Ban service is running
+FAIL2BAN_ACTIVE=$(sudo systemctl is-active fail2ban)
+if [ "$FAIL2BAN_ACTIVE" = "active" ]; then
+    echo "Fail2Ban installation and customized setup completed. Current status:"
+    sudo fail2ban-client status
+else
+    echo "Fail2Ban service is not running. Attempting to start Fail2Ban service..."
+    sudo systemctl start fail2ban
+    # Check again if Fail2Ban has started successfully
+    FAIL2BAN_ACTIVE=$(sudo systemctl is-active fail2ban)
+    if [ "$FAIL2BAN_ACTIVE" = "active" ]; then
+        echo "Fail2Ban service started successfully. Current status:"
+        sudo fail2ban-client status
+    else
+        echo "Failed to start Fail2Ban service. Please check the system logs for more information."
+    fi
+fi
+
 # Update package lists
 echo "Updating package lists..."
 sudo apt-get update -y

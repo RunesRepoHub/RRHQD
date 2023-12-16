@@ -45,9 +45,12 @@ read -p "Enter the branch you want to clone: " branch
 # Clone the specified branch from the GitHub repository
 git clone --branch "$branch" $GITHUB_REPO_URL
 
+
+# Add alias for the Main Menu
+echo 'alias main-menu="bash ~/RRHQD/Script/Menu/Main-Menu.sh"' >> ~/.bashrc
+
 sleep 3 
 
 bash ~/RRHQD/Script/Menu/Main-Menu.sh
 
-# Add alias for the Main Menu
-echo 'alias main-menu="bash ~/RRHQD/Script/Menu/Main-Menu.sh"' >> ~/.bashrc
+

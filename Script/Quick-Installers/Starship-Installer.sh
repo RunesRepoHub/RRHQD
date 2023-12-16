@@ -13,7 +13,7 @@ function main_menu() {
         echo "$backtitle"
         echo "$menu_title"
         echo "1) Install Starship"
-        echo "2) Don't Install Starship"
+        echo "2) Exit"
         echo "Please enter your choice (1 or 2): "
         read -r choice
         
@@ -104,8 +104,3 @@ ssh_only = false
 format = '[$localipv4](red)'
 disabled = false
 EOF
-
-
-sleep 1
-
-source ~/.bashrc
