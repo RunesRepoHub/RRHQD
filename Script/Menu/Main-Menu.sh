@@ -38,20 +38,20 @@ function show_menu() {
 function run_script() {
     case $1 in
         1)
-            bash ~/RRHQD/Script/Menu/Docker.sh ## Dockers
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER ## Dockers
             ;;
         2)
-            bash ~/RRHQD/Script/Menu/RRH-Software.sh ## RunesRepoHub 
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$RRH_SOFTWARE ## RunesRepoHub 
             ;;
         3)
-            bash ~/RRHQD/Script/Menu/Quick-Installers.sh ## Quick Installers
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_INSTALLERS ## Quick Installers
             ;;
         4)
             echo -e "Coming Soon" ## Open Spot
             ;;
         5)
             echo -e "${Green}Updating...${NC}"
-            cd ~/RRHQD
+            cd $ROOT_FOLDER
             git pull
             echo -e "${Green}You can now run the script fully updated${NC}"
             exit 0
