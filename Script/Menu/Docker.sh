@@ -29,7 +29,8 @@ function show_menu() {
     echo "2) Run Vaultwarden Installer"
     echo "3) Run Cloudflare Tunnel Installer"
     echo "4) Run MediaCMS Installer"
-    echo "5) Exit"
+    echo "5) Run NTFY Installer"
+    echo "6) Exit"
 }
 
 # Run the selected script
