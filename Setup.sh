@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Check if curl is installed and install it if not
+check_and_install "curl" "https://my-curl-install-script.com"
+
+# Refactored code block
 check_and_install() {
     local pkg=$1
     local install_script=$2
@@ -25,9 +29,6 @@ check_and_install "git"
 
 # Check if sudo is installed
 check_and_install "sudo"
-
-# Check if curl is installed
-check_and_install "curl"
 
 # Check if Docker is installed and install it if not
 check_and_install "docker" "https://get.docker.com"
