@@ -50,4 +50,4 @@ fi
 
 # Starting the NTFY container using Docker Compose
 echo "Starting NTFY container named $CONTAINER_NAME."
-docker-compose -f "$COMPOSE_FILE" up -d
+docker compose -f "$COMPOSE_FILE" up -d
