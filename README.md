@@ -7,11 +7,23 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 2. PoC = Proof of concept (Nightly Updates)
 3. Prod = Production (Stable branch)
 
+### RunesRepoHub Software Support:
+
+* ACS (Automated Content System)
+* CnC-WebGUI (Command And Control)
+* CnC-Agent (Command And Control)
+
+### Quick Installer Support:
+
+* Starship
+* Tailscale VPN
+
 ### Docker support:
 
 * Uptime-Kuma
 * Vaultwarden
 * Cloudflare Tunnel
+* MediaCMS
 
 ### Dependencies folders:
 
