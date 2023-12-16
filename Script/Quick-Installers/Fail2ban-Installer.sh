@@ -46,7 +46,14 @@ sudo sed -i "s/^bantime  = .*/bantime  = $ban_time/" /etc/fail2ban/jail.local
 sudo sed -i "s/^findtime  = .*/findtime  = $find_time/" /etc/fail2ban/jail.local
 sudo sed -i "s/^maxretry  = .*/maxretry  = $max_retry/" /etc/fail2ban/jail.local
 
-# Restart Fail2Ban service with new configuration
+# Set 'allowipv6' option in the '[DEFAULT]' section
+sudo sed -i "/^\[DEFAULT\]/a allowipv6 = auto" /etc/fail2ban/jail.local
+
+# Configure the log path for the 'sshd' jail
+SSHD_LOG_PATH="/var/log/auth.log" # The log path may vary based on your system
+sudo sed -i "/^\[sshd\]/a logpath = ${SSHD_LOG_PATH}" /etc/fail2ban/jail.local
+
+# Restart Fail2Ban service to apply new configuration
 echo "Restarting Fail2Ban service to apply new settings..."
 sudo systemctl restart fail2ban
 
