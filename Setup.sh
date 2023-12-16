@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt-get install sudo -y > /dev/null 2>&1
+
 # Function to check and install missing packages
 check_and_install() {
     local package=$1
@@ -18,9 +20,6 @@ check_and_install() {
 
 # Check and install git if necessary
 check_and_install git
-
-# Check and install sudo if necessary
-check_and_install sudo
 
 # Check and install curl if necessary
 check_and_install curl
