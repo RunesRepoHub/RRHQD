@@ -2,7 +2,7 @@
 clear 
 source ~/RRHQD/Core/Core.sh
 
-script_name=$(basename "$0" .sh)
+function info_menu() {script_name=$(basename "$0" .sh)
 
 echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
 echo -e "${Blue}Current Script: $script_name${NC}"
@@ -18,7 +18,7 @@ echo
 
 echo -e "${Yellow}Run the CnC-Agent Installer${NC}"
 echo -e "${Green}This will easy and quickly install CnC-Agent made by RunesRepoHub${NC}"
-echo
+echo}
 
 # Display the menu options
 function show_menu() {
@@ -54,6 +54,7 @@ function run_script() {
 
 # Main loop
 while true; do
+    info_menu
     show_menu
     read -p "Enter your choice [1-4]: " choice
     run_script $choice
