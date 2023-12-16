@@ -2,6 +2,24 @@
 clear 
 source ~/RRHQD/Core/Core.sh
 
+script_name=$(basename "$0" .sh)
+
+echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
+echo -e "${Blue}Current Script: $script_name${NC}"
+echo
+
+echo -e "${Yellow}Run the ACS Installer${NC}"
+echo -e "${Green}This will easy and quickly install ACS made by RunesRepoHub${NC}"
+echo
+
+echo -e "${Yellow}Run the CnC-WebGUI Installer${NC}"
+echo -e "${Green}This will easy and quickly install CnC-WebGUI made by RunesRepoHub${NC}"
+echo
+
+echo -e "${Yellow}Run the CnC-Agent Installer${NC}"
+echo -e "${Green}This will easy and quickly install CnC-Agent made by RunesRepoHub${NC}"
+echo
+
 # Display the menu options
 function show_menu() {
     echo "Please select an option:"

@@ -2,8 +2,10 @@
 clear 
 source ~/RRHQD/Core/Core.sh
 
-echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
+script_name=$(basename "$0" .sh)
 
+echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
+echo -e "${Blue}Current Script: $script_name${NC}"
 echo
 
 echo -e "${Yellow}Find and install a Docker${NC}"
