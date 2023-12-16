@@ -28,7 +28,8 @@ function show_menu() {
     echo "1) Run Uptime-Kuma Installer"
     echo "2) Run Vaultwarden Installer"
     echo "3) Run Cloudflare Tunnel Installer"
-    echo "4) Exit"
+    echo "4) Run MediaCMS Installer"
+    echo "5) Exit"
 }
 
 # Run the selected script
@@ -44,6 +45,9 @@ function run_script() {
             bash ~/RRHQD/Script/Installers/Cloudflare-Tunnel.sh
             ;;
         4)
+            bash ~/RRHQD/Script/Installers/MediaCMS.sh
+            ;;
+        5)
             echo -e "${Red}Exiting...${NC}"
             clear
             exit 0
@@ -58,6 +62,6 @@ function run_script() {
 while true; do
     render_welcome_and_menu
     show_menu
-    read -p "Enter your choice [1-4]: " choice
+    read -p "Enter your choice [1-5]: " choice
     run_script $choice
 done
