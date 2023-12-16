@@ -48,6 +48,9 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$MEDIACMS
             ;;
         5)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$NTFY
+            ;;
+        6)
             echo -e "${Red}Exiting...${NC}"
             clear
             exit 0
@@ -62,6 +65,6 @@ function run_script() {
 while true; do
     render_welcome_and_menu
     show_menu
-    read -p "Enter your choice [1-5]: " choice
+    read -p "Enter your choice [1-6]: " choice
     run_script $choice
 done

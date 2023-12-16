@@ -40,6 +40,7 @@ DOCKER="Docker.sh"
 MAIN_MENU="Main-Menu.sh"
 QUICK_INSTALLERS="Quick-Installers.sh"
 RRH_SOFTWARE="RRH-Software.sh"
+NTFY="NTFY.sh"
 
 ## Quick Installers Scripts
 
