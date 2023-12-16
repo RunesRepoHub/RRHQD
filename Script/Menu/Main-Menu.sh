@@ -5,9 +5,9 @@ source ~/RRHQD/Core/Core.sh
 # Display the menu options
 function show_menu() {
     echo "Please select an option:"
-    echo "1) Find a Docker"
-    echo "2) Coming Soon"
-    echo "3) Coming Soon"
+    echo "1) Find and install a Docker"
+    echo "2) Find and install RunesRepoHub Software"
+    echo "3) Find and use a Quick Installer for other software"
     echo "4) Coming Soon"
     echo "5) Update"
     echo "6) Exit"
@@ -20,10 +20,10 @@ function run_script() {
             bash ~/RRHQD/Script/Menu/Docker.sh ## Dockers
             ;;
         2)
-            echo -e "Coming Soon" ## RunesRepoHub 
+            bash ~/RRHQD/Script/Menu/RRH-Software.sh ## RunesRepoHub 
             ;;
         3)
-            echo -e "Coming Soon" ## Quick Installers
+            bash ~/RRHQD/Script/Menu/Quick-Installers.sh ## Quick Installers
             ;;
         4)
             echo -e "Coming Soon" ## Open Spot
