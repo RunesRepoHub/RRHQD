@@ -2,6 +2,26 @@
 clear 
 source ~/RRHQD/Core/Core.sh
 
+echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
+
+echo
+
+echo -e "${Yellow}Find and install a Docker${NC}"
+echo -e "${Green}This will easy and quickly install Docker made by other companies and users${NC}"
+echo
+
+echo -e "${Yellow}Find and install RunesRepoHub Software${NC}"
+echo -e "${Green}This will easy and quickly install RunesRepoHub Software made by RunesRepoHub${NC}"
+echo
+
+echo -e "${Yellow}Find and use a Quick Installer for other software${NC}"
+echo -e "${Green}This will easy and quickly install software made by other compaines and users${NC}"
+echo
+
+echo -e "${Yellow}Update${NC}"
+echo -e "${Green}This will update the all scripts used in RRHQD${NC}"
+echo
+
 # Display the menu options
 function show_menu() {
     echo "Please select an option:"
