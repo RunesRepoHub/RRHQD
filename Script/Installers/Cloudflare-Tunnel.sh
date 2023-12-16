@@ -40,7 +40,7 @@ read -p "Enter your domain (yourdomain.com): " YOURDOMAIN
   echo " "
   echo "# forward all traffic to Reverse Proxy w/ SSL"
   echo "ingress:"
-  echo "  - service: https://$REVERSEPROXYIP"
+  echo "  - service: $PROTOCOL://$REVERSEPROXYIP"
   echo "    originRequest:"
   echo "      originServerName: $YOURDOMAIN"
 } >> "$CONFIG_FILE"
