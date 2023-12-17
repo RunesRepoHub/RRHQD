@@ -33,6 +33,10 @@ CLOUDFLARE_TUNNEL="Cloudflare-Tunnel.sh"
 MEDIACMS="MediaCMS.sh"
 UPTIME_KUMA="Uptime-Kuma.sh"
 VAULTWARDEN="Vaultwarden.sh"
+NTFY="NTFY.sh"
+N8N="N8N.sh"
+POSTGRES="Postgres.sh"
+MYSQL="MySQL.sh"
 
 ## Menu Scripts
 
@@ -40,7 +44,6 @@ DOCKER="Docker.sh"
 MAIN_MENU="Main-Menu.sh"
 QUICK_INSTALLERS="Quick-Installers.sh"
 RRH_SOFTWARE="RRH-Software.sh"
-NTFY="NTFY.sh"
 
 ## Quick Installers Scripts
 

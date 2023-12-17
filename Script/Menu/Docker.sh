@@ -30,7 +30,10 @@ function show_menu() {
     echo "3) Run Cloudflare Tunnel Installer"
     echo "4) Run MediaCMS Installer"
     echo "5) Run NTFY Installer"
-    echo "6) Exit"
+    echo "6) Run MySQL Installer"
+    echo "7) Run N8N Installer"
+    echo "8) Run Postgres Installer"
+    echo "9) Exit"
 }
 
 # Run the selected script
@@ -52,6 +55,15 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$NTFY
             ;;
         6)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$MYSQL
+            ;;
+        7)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$N8N
+            ;;
+        8)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$MYSQL
+            ;;
+        9)
             echo -e "${Red}Exiting...${NC}"
             clear
             exit 0
@@ -66,6 +78,6 @@ function run_script() {
 while true; do
     render_welcome_and_menu
     show_menu
-    read -p "Enter your choice [1-6]: " choice
+    read -p "Enter your choice [1-9]: " choice
     run_script $choice
 done
