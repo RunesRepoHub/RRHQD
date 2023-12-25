@@ -30,13 +30,13 @@ function show_menu() {
 function run_script() {
     case $1 in
         1)
-            bash $ROOT_FOLDER/$CRONJOB_FOLDER/$REBOOT_EVERY_NIGHT
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$REBOOT_EVERY_NIGHT
             ;;
         2)
-            bash $ROOT_FOLDER/$CRONJOB_FOLDER/
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/
             ;;
         3)
-            bash $ROOT_FOLDER/$CRONJOB_FOLDER/
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/
             ;;
         4)
             echo -e "${Red}Exiting...${NC}"
