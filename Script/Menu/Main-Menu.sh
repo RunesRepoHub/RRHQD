@@ -47,7 +47,7 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_INSTALLERS ## Quick Installers
             ;;
         4)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/ ## Open Spot
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$CRONJOB ## Open Spot
             ;;
         5)
             echo -e "${Green}Updating...${NC}"
