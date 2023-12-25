@@ -29,7 +29,7 @@ function show_menu() {
     echo "1) Find and install a Docker"
     echo "2) Find and install RunesRepoHub Software"
     echo "3) Find and use a Quick Installer for other software"
-    echo "4) Coming Soon"
+    echo "4) Add Cronjobs Quickly"
     echo "5) Update"
     echo "6) Exit"
 }
@@ -47,7 +47,7 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_INSTALLERS ## Quick Installers
             ;;
         4)
-            echo -e "Coming Soon" ## Open Spot
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/ ## Open Spot
             ;;
         5)
             echo -e "${Green}Updating...${NC}"

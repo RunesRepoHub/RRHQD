@@ -26,6 +26,7 @@ ROOT_FOLDER=~/RRHQD
 SCRIPT_FOLDER=Script
 INSTALLER_FOLDER=Installers
 MENU_FOLDER=Menu
+CRONJOB_FOLDER=Cronjob
 
 ## Installers Scripts
 
@@ -44,8 +45,13 @@ DOCKER="Docker.sh"
 MAIN_MENU="Main-Menu.sh"
 QUICK_INSTALLERS="Quick-Installers.sh"
 RRH_SOFTWARE="RRH-Software.sh"
+CRONJOB="Cronjob.sh"
 
 ## Quick Installers Scripts
 
 STARSHIP="Starship-Installer.sh"
 TAILSCALE="Tailscale-Installer.sh"
+
+## Cronjob Scripts
+
+REBOOT_EVERY_NIGHT="Reboot-every-night.sh"
