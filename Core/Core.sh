@@ -38,6 +38,7 @@ NTFY="NTFY.sh"
 N8N="N8N.sh"
 POSTGRES="Postgres.sh"
 MYSQL="MySQL.sh"
+CHECKMK="CheckMK.sh"
 
 ## Menu Scripts
 

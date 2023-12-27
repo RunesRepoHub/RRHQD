@@ -9,14 +9,8 @@ function render_welcome_and_menu() {
     echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
     echo -e "${Blue}Current Script: $script_name${NC}"
     echo
-    echo -e "${Yellow}Run Uptime-Kuma Installer${NC}"
-    echo -e "${Green}This will easy and quickly install Uptime-Kuma Docker made by other companies and users${NC}"
-    echo
-    echo -e "${Yellow}Run Vaultwarden Installer${NC}"
-    echo -e "${Green}This will easy and quickly install Vaultwarden Docker made by other companies and users${NC}"
-    echo
-    echo -e "${Yellow}Run Cloudflare Tunnel Installer${NC}"
-    echo -e "${Green}This will easy and quickly install Cloudflare Tunnel Docker made by other companies and users${NC}"
+    echo -e "${Yellow}Run Installers${NC}"
+    echo -e "${Green}This will easy and quickly install Dockers made by other companies and users${NC}"
     echo
 }
 
@@ -33,7 +27,8 @@ function show_menu() {
     echo "6) Run MySQL Installer"
     echo "7) Run N8N Installer"
     echo "8) Run Postgres Installer"
-    echo "9) Exit"
+    echo "9) Run CheckMK Installer"
+    echo "10) Exit"
 }
 
 # Run the selected script
@@ -64,6 +59,9 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$MYSQL
             ;;
         9)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$CHECKMK
+            ;;
+        10)
             echo -e "${Red}Exiting...${NC}"
             clear
             exit 0
