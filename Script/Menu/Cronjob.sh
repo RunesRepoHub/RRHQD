@@ -11,7 +11,11 @@ function render_welcome_and_menu() {
     echo
 
     echo -e "${Yellow}Add a Nightly reboot at 4:45 am${NC}"
-    echo -e "${Green}This will easily and quickly Add a Nightly reboot at 4:45 am cronjob.${NC}"
+    echo -e "${Green}This will easily and quickly add a nightly reboot at 4:45 am cronjob.${NC}"
+    echo
+
+    echo -e "${Yellow}Add a update cron job at midnight${NC}"
+    echo -e "${Green}This will easily and quickly add a nightly update cronjob.${NC}"
     echo
 
     echo
@@ -21,7 +25,7 @@ function render_welcome_and_menu() {
 function show_menu() {
     echo "Please select an option:"
     echo "1) Add a Nightly reboot at 4:45 am"
-    echo "2) Coming Soon"
+    echo "2) Daily Midnight Update"
     echo "3) Coming Soon"
     echo "4) Exit"
 }
@@ -33,7 +37,7 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$REBOOT_EVERY_NIGHT
             ;;
         2)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$UPDATE_DAILY_MIDNIGHT
             ;;
         3)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/

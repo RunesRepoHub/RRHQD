@@ -56,3 +56,4 @@ TAILSCALE="Tailscale-Installer.sh"
 ## Cronjob Scripts
 
 REBOOT_EVERY_NIGHT="Reboot-every-night.sh"
+UPDATE_DAILY_MIDNIGHT="Update-daily-midnight.sh"
