@@ -24,7 +24,7 @@ function show_menu() {
     echo "Please select an option:"
     echo "1) Run the Tailscale Installer"
     echo "2) Run the Starship Installer"
-    echo "3) Coming Soon"
+    echo "3) Run the Filezilla Installer"
     echo "4) Exit"
 }
 
@@ -40,7 +40,7 @@ function run_script() {
             source ~/.bashrc
             ;;
         3)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS/
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS/$FILEZILLA
             ;;
         4)
             echo -e "${Red}Exiting...${NC}"

@@ -52,6 +52,7 @@ CRONJOB="Cronjob.sh"
 
 STARSHIP="Starship-Installer.sh"
 TAILSCALE="Tailscale-Installer.sh"
+FILEZILLA="Filezilla-Installer.sh"
 
 ## Cronjob Scripts
 
