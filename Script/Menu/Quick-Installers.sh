@@ -32,15 +32,15 @@ function show_menu() {
 function run_script() {
     case $1 in
         1)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS/$TAILSCALE
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$TAILSCALE
             ;;
         2)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS/$STARSHIP
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$STARSHIP
             sleep 1
             source ~/.bashrc
             ;;
         3)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS/$FILEZILLA
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$FILEZILLA
             ;;
         4)
             echo -e "${Red}Exiting...${NC}"

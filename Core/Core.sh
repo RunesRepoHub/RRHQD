@@ -44,6 +44,7 @@ CHECKMK="CheckMK.sh"
 
 DOCKER="Docker.sh"
 MAIN_MENU="Main-Menu.sh"
+QUICK_INSTALLERS_DIR="Quick-Installers"
 QUICK_INSTALLERS="Quick-Installers.sh"
 RRH_SOFTWARE="RRH-Software.sh"
 CRONJOB="Cronjob.sh"
