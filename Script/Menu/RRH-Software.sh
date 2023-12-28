@@ -26,7 +26,8 @@ function show_menu() {
     echo "1) Run the ACS Installer"
     echo "2) Run the CnC-WebGUI Installer"
     echo "3) Run the CnC-Agent Installer"
-    echo "4) Exit"
+    echo "4) Run the EWD Installer"
+    echo "5) Exit"
 }
 
 # Run the selected script
@@ -41,7 +42,10 @@ function run_script() {
         3)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-Agent/Production/Install-Agent-Only.sh)
             ;;
-        4)
+        3)
+            bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/EWD/Production/Setup.sh)
+            ;;
+        5)
             echo -e "${Red}Exiting...${NC}"
             clear
             exit 0
