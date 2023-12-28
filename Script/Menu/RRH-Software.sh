@@ -42,7 +42,7 @@ function run_script() {
         3)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-Agent/Production/Install-Agent-Only.sh)
             ;;
-        3)
+        4)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/EWD/Production/Setup.sh)
             ;;
         5)
