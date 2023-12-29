@@ -26,7 +26,7 @@ function show_menu() {
     echo "Please select an option:"
     echo "1) Add a Nightly reboot at 4:45 am"
     echo "2) Daily Midnight Update"
-    echo "3) Coming Soon"
+    echo "3) Add a Reboot cron job for every Sunday at 00:00 am"
     echo "4) Exit"
 }
 
@@ -40,7 +40,7 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$UPDATE_DAILY_MIDNIGHT
             ;;
         3)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$REBOOT_EVERY_SUNDAY
             ;;
         4)
             echo -e "${Red}Exiting...${NC}"

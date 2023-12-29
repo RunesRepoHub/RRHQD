@@ -58,4 +58,5 @@ FILEZILLA="Filezilla-Installer.sh"
 ## Cronjob Scripts
 
 REBOOT_EVERY_NIGHT="Reboot-every-night.sh"
+REBOOT_EVERY_SUNDAY="Reboot-every-sunday.sh"
 UPDATE_DAILY_MIDNIGHT="Update-daily-midnight.sh"
