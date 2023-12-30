@@ -25,7 +25,8 @@ function show_menu() {
     echo "1) Run the Tailscale Installer"
     echo "2) Run the Starship Installer"
     echo "3) Run the Filezilla Installer"
-    echo "4) Exit"
+    echo "4) Run the Fail2Ban Installer"
+    echo "5) Exit"
 }
 
 # Run the selected script
@@ -42,7 +43,10 @@ function run_script() {
         3)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$FILEZILLA
             ;;
-        4)
+        3)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$FAIL2BAN
+            ;;
+        5)
             echo -e "${Red}Exiting...${NC}"
             clear
             exit 0
@@ -57,6 +61,6 @@ function run_script() {
 while true; do
     render_welcome_and_menu
     show_menu
-    read -p "Enter your choice [1-4]: " choice
+    read -p "Enter your choice [1-5]: " choice
     run_script $choice
 done
