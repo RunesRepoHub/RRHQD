@@ -43,7 +43,7 @@ function run_script() {
         3)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$FILEZILLA
             ;;
-        3)
+        4)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$FAIL2BAN
             ;;
         5)
