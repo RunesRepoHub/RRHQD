@@ -12,18 +12,28 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 * ACS (Automated Content System)
 * CnC-WebGUI (Command And Control)
 * CnC-Agent (Command And Control)
+* EWD (Easy Web Development)
 
 ### Quick Installer Support:
 
-* Starship
-* Tailscale VPN
+* Starship - A minimalistic, powerful, and extremely customizable prompt for any shell
+* Tailscale VPN - A private network that makes securing your online activity and managing your devices easy
+* Filezilla - A free software, cross-platform FTP application that supports FTP, SFTP, and FTPS
+* Fail2Ban - An intrusion prevention software framework that protects computer servers from brute-force attacks
 
-### Docker support:
+* Docker (is auto installed) - A set of platform as a service products that use OS-level virtualization to deliver software in packages called containers
 
-* Uptime-Kuma
-* Vaultwarden
-* Cloudflare Tunnel
-* MediaCMS
+### Docker Support:
+
+- Uptime-Kuma - A fancy self-hosted monitoring tool
+- Vaultwarden - An unofficial Bitwarden compatible server
+- Cloudflare Tunnel - Securely connect your network to the Internet
+- MediaCMS - A modern, fully featured open source video and media CMS
+- CheckMK - A unified monitoring and alerting system
+- MySQL - The world's most popular open source database
+- NTFY - A simple and powerful notification service
+- Postgres - The world's most popular open source database
+- N8N - A workflow automation platform
 
 ### Dependencies folders:
 
@@ -43,7 +53,7 @@ When asked what branch do you want to use, select the branch you want to use. Th
 If you want to the nightly updated code base, then use the "PoC" branch.
 
 ```
-bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Dev/Setup.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Prod/Setup.sh)
 ```
 
 ### Custom Commands 
