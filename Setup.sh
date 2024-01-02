@@ -43,8 +43,6 @@ sudo apt-get install dialog > /dev/null 2>&1
 sudo dialog --create-rc ~/.dialogrc 
 sudo cat $ROOT_FOLDER/dialog.txt > ~/.dialogrc
 
-
-
 # Define the GitHub repository URL
 GITHUB_REPO_URL="https://github.com/RunesRepoHub/RRHQD.git"
 
@@ -64,6 +62,12 @@ else
     git clone --branch "$branch" "$GITHUB_REPO_URL"
 fi
 
+cd ~/RRHQD
+
+# Configure git to only allow fast-forward pulls
+git config --global pull.ff only
+
+cd ..
 
 # Check if the alias 'qd' already exists in .bashrc
 if grep -q "alias qd=" ~/.bashrc; then
