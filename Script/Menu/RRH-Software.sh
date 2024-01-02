@@ -7,14 +7,6 @@ script_name=$(basename "$0" .sh)
 # Define the input file for dialog selections
 INPUT=/tmp/menu.sh.$$
 
-# Display the initial messages and menu options using dialog
-function render_welcome_and_menu() {
-    dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
-           --title "Welcome To RRHQD" \
-           --msgbox "Pick a script made by RunesRepoHub.\n\nCurrent Script: $script_name" 10 60
-}
-
 # Display the menu options using dialog
 function show_menu() {
     dialog --clear \
