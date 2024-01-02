@@ -36,6 +36,8 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Postgres - The world's most popular open source database
 - N8N - A workflow automation platform
 - llama-GPT - A modern, open source chat bot.
+- Portainer - A web management interface for Docker
+
 
 ### Dependencies folders:
 
