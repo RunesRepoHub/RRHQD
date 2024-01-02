@@ -67,11 +67,14 @@ fi
 
 # Check if the alias 'qd' already exists in .bashrc
 if grep -q "alias qd=" ~/.bashrc; then
-    # Ask the user for a new alias name
-    echo "The alias 'qd' already exists. Please enter a new alias name:"
-    read -p "New alias name: " new_alias
-    # Add the new alias to .bashrc
-    echo "alias $new_alias=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
+    echo "The alias 'qd' already exists. Would you like to pick a new alias name? (yes/no)"
+    read -p "Enter yes or no: " user_choice
+    if [[ $user_choice == "yes" ]]; then
+        echo "Please enter a new alias name:"
+        read -p "New alias name: " new_alias
+        # Add the new alias to .bashrc
+        echo "alias $new_alias=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
+    fi
 else
     # Add the alias 'qd' to .bashrc
     echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
