@@ -46,8 +46,7 @@ function run_script() {
 
 # Main loop
 while true; do
-    choice=$(show_dialog_menu)
-    run_script $choice
+    show_dialog_menu
 done
 
 # Remove the temporary file created for dialog selections
