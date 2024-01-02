@@ -1,31 +1,24 @@
 #!/bin/bash
-clear
+clear 
 source ~/RRHQD/Core/Core.sh
 
 script_name=$(basename "$0" .sh)
 
-# Define the input file for dialog selections
-INPUT=/tmp/menu.sh.$$
-
-# Display the menu options using dialog
+# Use dialog to create a more user-friendly menu
 function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD Software Menu" \
-           --title "Software Installation Menu - $script_name" \
-           --menu "Please select an option:" 15 60 5 \
-           1 "Run the ACS Installer" \
-           2 "Run the CnC-WebGUI Installer" \
-           3 "Run the CnC-Agent Installer" \
-           4 "Run the EWD Installer" \
-           5 "Back To Main Menu" 2>"${INPUT}"
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
+           --title "Main Menu - $script_name" \
+           --menu "Please select an option:" 15 60 6 \
+           1 "Run the Tailscale Installer" \
+           2 "Run the Starship Installer" \
+           3 "Run the Filezilla Installer" \
+           4 "Run the Fail2Ban Installer" \
+           5 "Run the Ansible Installer" \
+           6 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
-    echo "$menu_choice"
-}
-
-# Run the selected script
-function run_script() {
-    case $1 in
+    case $menu_choice in
         1)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/ACS/Production/setup.sh)
             ;;
@@ -44,11 +37,14 @@ function run_script() {
     esac
 }
 
+# Define the input file for dialog selections
+INPUT=/tmp/menu.sh.$$
+
+# Ensure the temp file is removed upon script termination
+trap "rm -f $INPUT" 0 1 2 5 15
+
 # Main loop
 while true; do
     show_dialog_menu
 done
-
-# Remove the temporary file created for dialog selections
-trap "rm -f $INPUT" EXIT
 
