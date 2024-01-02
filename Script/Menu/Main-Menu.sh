@@ -41,7 +41,7 @@ function show_dialog_menu() {
             echo -e "${Green}You can now run the script fully updated${NC}"
             ;;
         *)
-            dialog --title "Exiting" --msgbox "Thank you for using RRHQD. Support me via github https://github.com/RunesRepoHub/" 6 44
+            dialog --title "Exiting" --msgbox "Thank you for using RRHQD. Support me via github https://github.com/RunesRepoHub/" 6 64
             exit 0
             ;;
     esac
