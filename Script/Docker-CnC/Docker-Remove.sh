@@ -1,52 +1,35 @@
 #!/bin/bash
-# Script to scan all Docker containers and ask the user which ones to delete using checkboxes.
 
-# Define a temporary file to store the user's selections
-SELECTIONS_FILE=$(mktemp)
+# Define the input file for dialog selections
+INPUT=/tmp/menu.sh.$$
+OUTPUT=/tmp/output.sh.$$
 
-# Function to display a checklist with Docker containers
-choose_containers_to_delete() {
-    # Get a list of all Docker containers (ID and Names)
-    mapfile -t containers < <(docker ps -a --format '{{.ID}} {{.Names}}')
+# Function to list and select Docker containers for deletion
+function show_docker_delete_menu() {
+    local containers=($(docker ps -a --format "{{.Names}}"))
+    local options=()
 
-    # Create the checklist options
-    local checklist_options=()
     for container in "${containers[@]}"; do
-        checklist_options+=("$container" " " off)
+        options+=("$container" "" OFF)
     done
 
-    # Display the checklist dialog
-    dialog --checklist "Select Docker containers to delete:" 0 0 0 "${checklist_options[@]}" 2>"$SELECTIONS_FILE"
+    dialog --clear \
+           --backtitle "Docker Management" \
+           --title "Select Docker Containers to Delete" \
+           --checklist "Use SPACE to select containers to delete:" 15 60 6 \
+           "${options[@]}" 2>"${OUTPUT}"
+
+    if [ $? -eq 0 ]; then
+        # When user presses 'OK', containers to delete are stored in $OUTPUT
+        local selected_containers=($(<"${OUTPUT}"))
+        for container in "${selected_containers[@]}"; do
+            docker rm -f "$container"
+        done
+    fi
 }
 
-# Check if 'dialog' is installed
-if ! command -v dialog &>/dev/null; then
-    echo "The 'dialog' utility is not installed. Please install it to use this script."
-    exit 1
-fi
+# Ensure the temp files are removed upon script termination
+trap "rm -f $INPUT $OUTPUT" 0 1 2 5 15
 
-# Check if Docker is running
-if ! docker info >/dev/null 2>&1; then
-    echo "Docker does not seem to be running, start it first and then re-run this script."
-    exit 1
-fi
-
-# Call the function to choose containers
-choose_containers_to_delete
-
-# Read the selections from the file
-if [ -s "$SELECTIONS_FILE" ]; then
-    # Read the selected container IDs into an array
-    mapfile -t selected_containers < "$SELECTIONS_FILE"
-
-    # Stop and remove the selected containers
-    for container_id in "${selected_containers[@]}"; do
-        echo "Deleting Docker container: $container_id"
-        docker rm -f "$container_id"
-    done
-else
-    echo "No containers were selected for deletion."
-fi
-
-# Clean up the temporary file
-rm -f "$SELECTIONS_FILE"
+# Show the menu
+show_docker_delete_menu
