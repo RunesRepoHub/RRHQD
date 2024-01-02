@@ -24,25 +24,38 @@ update_container() {
   docker run -d --name "$container_name" "$container_image"
 }
 
-# Main menu
-echo "Select Docker containers to update:"
-list_containers
-read -p "Enter the numbers of the containers to update (separated by spaces): " input
+# Define the input file for dialog selections
+INPUT="/tmp/containers.sh.$$"
 
-# Split the input into an array
-IFS=' ' read -r -a selections <<< "$input"
+# Ensure the temp file is removed upon script termination
+trap 'rm -f "$INPUT"' EXIT INT TERM HUP
 
-# Loop over the selections and update the corresponding containers
-for selection in "${selections[@]}"; do
-  # Fetch the container name by its number
-  container_name=$(list_containers | sed "${selection}q;d" | awk '{print $2}')
-
-  # Update the container
-  if [ -n "$container_name" ]; then
-    update_container "$container_name"
-  else
-    echo "Invalid selection: $selection"
-  fi
+# Get the list of running containers and create an array for dialog options
+mapfile -t running_containers < <(docker ps --format '{{.Names}}')
+options=()
+for container in "${running_containers[@]}"; do
+    options+=("$container" "" OFF)
 done
 
+# Use dialog to create a menu with running containers
+dialog --clear \
+       --backtitle "RRHQD Docker Control" \
+       --title "Update Docker Containers" \
+       --checklist "Select containers to update:" 15 60 6 \
+       "${options[@]}" 2>"$INPUT"
+
+# Check if the dialog was cancelled
+if [ $? -eq 0 ]; then
+    # Update selected containers
+    while IFS= read -r container; do
+        update_container "$container"
+    done < "$INPUT"
+else
+    echo "Container update cancelled."
+fi
+
+# Remove the temp file
+rm -f "$INPUT"
+
 echo "Update process completed."
+
