@@ -41,6 +41,7 @@ POSTGRES="Postgres.sh"
 MYSQL="MySQL.sh"
 CHECKMK="CheckMK.sh"
 LLAMA_GPT="Llama-GPT.sh"
+PORTAINER="Portainer.sh"
 
 ## Menu Scripts
 
