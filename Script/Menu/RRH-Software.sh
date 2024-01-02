@@ -8,10 +8,10 @@ script_name=$(basename "$0" .sh)
 INPUT=/tmp/menu.sh.$$
 
 # Display the menu options using dialog
-function show_menu() {
+function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
-           --title "Main Menu - $script_name" \
+           --backtitle "RRHQD Software Menu" \
+           --title "Software Installation Menu - $script_name" \
            --menu "Please select an option:" 15 60 5 \
            1 "Run the ACS Installer" \
            2 "Run the CnC-WebGUI Installer" \
@@ -46,10 +46,11 @@ function run_script() {
 
 # Main loop
 while true; do
-    choice=$(show_menu)
-    run_script "$choice"
+    render_welcome_and_menu
+    choice=$(show_dialog_menu)
+    run_script $choice
 done
 
-# Cleanup temp file
-[ -f $INPUT ] && rm $INPUT
+# Remove the temporary file created for dialog selections
+trap "rm -f $INPUT" EXIT
 
