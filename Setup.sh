@@ -36,6 +36,14 @@ if ! command -v docker &> /dev/null; then
     echo "Docker has been successfully installed."
 fi
 
+# Download dialog.txt from the GitHub repository into the current directory
+curl -fsSL -o $ROOT_FOLDER/dialog.txt https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Dev/dialog.txt
+
+sudo apt-get install dialog > /dev/null 2>&1
+sudo dialog --create-rc ~/.dialogrc 
+sudo cat $ROOT_FOLDER/dialog.txt > ~/.dialogrc
+
+
 
 # Define the GitHub repository URL
 GITHUB_REPO_URL="https://github.com/RunesRepoHub/RRHQD.git"
