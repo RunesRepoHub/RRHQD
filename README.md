@@ -20,6 +20,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 * Tailscale VPN - A private network that makes securing your online activity and managing your devices easy
 * Filezilla - A free software, cross-platform FTP application that supports FTP, SFTP, and FTPS
 * Fail2Ban - An intrusion prevention software framework that protects computer servers from brute-force attacks
+* Ansible - A radically simple IT automation tool
 
 * Docker (is auto installed) - A set of platform as a service products that use OS-level virtualization to deliver software in packages called containers
 
@@ -34,6 +35,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - NTFY - A simple and powerful notification service
 - Postgres - The world's most popular open source database
 - N8N - A workflow automation platform
+- llama-GPT - A modern, open source chat bot.
 
 ### Dependencies folders:
 
