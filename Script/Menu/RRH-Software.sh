@@ -47,9 +47,7 @@ function run_script() {
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/EWD/Production/Setup.sh)
             ;;
         *)
-            dialog --title "Exit" --msgbox "Exiting..." 6 44
             exit 0
-            clear
             ;;
     esac
 }

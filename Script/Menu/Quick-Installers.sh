@@ -37,9 +37,7 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$ANSIBLE
             ;;
         *)
-            dialog --title "Exit" --msgbox "Exiting..." 6 44
             exit 0
-            clear
             ;;
     esac
 }

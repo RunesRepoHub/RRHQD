@@ -31,9 +31,7 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$DOCKER_CNC_FOLDER/$DOCKER_UPDATE
             ;;
         *)
-            dialog --title "Exit" --msgbox "Exiting..." 6 44
             exit 0
-            clear
             ;;
     esac
 }

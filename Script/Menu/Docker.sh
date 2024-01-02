@@ -59,8 +59,6 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$PORTAINER
             ;;
         *)
-            dialog --title "Exit" --msgbox "Exiting..." 6 44
-            clear
             exit 0
             ;;
     esac
