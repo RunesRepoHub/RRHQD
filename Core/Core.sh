@@ -28,6 +28,7 @@ INSTALLER_FOLDER=Installers
 MENU_FOLDER=Menu
 CRONJOB_FOLDER=Cronjob
 LLAMA_GPT_FOLDER=llama-gpt
+DOCKER_CNC_FOLDER=Docker-CnC
 
 ## Installers Scripts
 
@@ -51,6 +52,8 @@ QUICK_INSTALLERS_DIR="Quick-Installers"
 QUICK_INSTALLERS="Quick-Installers.sh"
 RRH_SOFTWARE="RRH-Software.sh"
 CRONJOB="Cronjob.sh"
+DOCKER_CNC="Docker-CnC.sh"
+
 
 ## Quick Installers Scripts
 
@@ -65,3 +68,7 @@ ANSIBLE="Ansible-Installer.sh"
 REBOOT_EVERY_NIGHT="Reboot-every-night.sh"
 REBOOT_EVERY_SUNDAY="Reboot-every-sunday.sh"
 UPDATE_DAILY_MIDNIGHT="Update-daily-midnight.sh"
+
+## Docker CnC Scripts
+
+DOCKER_CLEANUP="Docker-Cleanup.sh"
