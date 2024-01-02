@@ -40,6 +40,15 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - llama-GPT - A modern, open source chat bot.
 - Portainer - A web management interface for Docker
 
+### Docker Command and Control
+
+- Docker - Cleanup (Clean all unused images, volumes and networks)
+- Docker - Remove (Stop and Delete a Docker)
+- Docker - Reset (Reset Docker - Delete everything)
+- Docker - Start (Start all Docker)
+- Docker - Stop (Stop all Docker)
+- Docker - Update (Update a Docker)
+
 
 ### Dependencies folders:
 
