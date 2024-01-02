@@ -46,7 +46,6 @@ function run_script() {
 
 # Main loop
 while true; do
-    render_welcome_and_menu
     choice=$(show_dialog_menu)
     run_script $choice
 done
