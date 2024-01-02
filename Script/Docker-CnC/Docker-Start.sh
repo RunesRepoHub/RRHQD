@@ -1,45 +1,36 @@
 #!/bin/bash
-# Script to start Docker containers selected by the user via a checkbox interface
+# Script to list all stopped Docker containers and allow the user to select which to start using dialog
 
-echo "Fetching all stopped Docker containers..."
-containers=$(docker ps -a --filter status=exited --format "{{.ID}} {{.Names}}")
+clear
+source ~/RRHQD/Core/Core.sh
 
-# Define a function to use dialog to present a checklist for starting containers
-select_containers_to_start() {
-    local cmd=(dialog --separate-output --checklist "Select containers to start:" 22 76 16)
-    local options=()
-    local container
-    IFS=$'\n'
-    for container in $containers; do
-        options+=($container " " off)
-    done
-    "${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty
-}
+# Define the input file for dialog selections
+INPUT=/tmp/containers.sh.$$
 
-# Check if dialog is installed, if not, offer to install it
-if ! command -v dialog &>/dev/null; then
-    echo "The 'dialog' utility is not installed."
-    read -p "Do you want to install 'dialog' to proceed with the container selection? [y/N]: " answer
-    if [[ $answer =~ ^[Yy]$ ]]; then
-        if command -v apt-get &>/dev/null; then
-            sudo apt-get install dialog
-        elif command -v yum &>/dev/null; then
-            sudo yum install dialog
-        else
-            echo "Could not determine package manager. Please install 'dialog' manually."
-            exit 1
-        fi
-    else
-        echo "Cannot proceed without 'dialog'. Exiting."
-        exit 1
-    fi
-fi
+# Ensure the temp file is removed upon script termination
+trap "rm -f $INPUT" 0 1 2 5 15
 
-# Call the function and store the selected containers
-selected_containers=$(select_containers_to_start)
+# Get the list of stopped containers
+stopped_containers=$(docker ps -a --filter "status=exited" --format '{{.Names}}')
 
-# Start the selected containers
-IFS=$'\n'
-for id in $selected_containers; do
-    docker start $id
+# Create an array for dialog options
+options=()
+for container in $stopped_containers; do
+    options+=("$container" "")
 done
+
+# Use dialog to create a menu with stopped containers
+dialog --clear \
+       --backtitle "RRHQD Docker Control" \
+       --title "Start Docker Containers" \
+       --checklist "Select containers to start:" 15 60 6 \
+       "${options[@]}" 2>"${INPUT}"
+
+# Start selected containers
+while IFS= read -r container; do
+    echo "Starting $container..."
+    docker start "$container"
+done < "${INPUT}"
+
+# Remove the temp file
+rm -f "${INPUT}"
