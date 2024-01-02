@@ -35,7 +35,7 @@ function show_dialog_menu() {
         5)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$DOCKER_CNC_FOLDER/$DOCKER_RESET
             ;;
-        5)
+        6)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$DOCKER_CNC_FOLDER/$DOCKER_REMOVE
             ;;
         *)
