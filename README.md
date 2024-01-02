@@ -18,6 +18,8 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 * CnC-Agent (Command And Control)
 * EWD (Easy Web Development)
 
+---------------------------------------------------------------------------------------------
+
 ### Quick Installer Support:
 
 ![Alt text](Docs/Quick-Installers.png)
@@ -29,6 +31,8 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 * Ansible - A radically simple IT automation tool
 
 * Docker (is auto installed) - A set of platform as a service products that use OS-level virtualization to deliver software in packages called containers
+
+---------------------------------------------------------------------------------------------
 
 ### Docker Support:
 
@@ -46,6 +50,8 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - llama-GPT - A modern, open source chat bot.
 - Portainer - A web management interface for Docker
 
+---------------------------------------------------------------------------------------------
+
 ### Docker Command and Control
 
 ![Alt text](Docs/Docker-CnC.png)
@@ -57,10 +63,13 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Docker - Stop (Stop all Docker)
 - Docker - Update (Update a Docker)
 
+---------------------------------------------------------------------------------------------
 
 ### Cronjobs
 
 ![Alt text](Docs/Cronjobs.png)
+
+---------------------------------------------------------------------------------------------
 
 ### Dependencies folders:
 
