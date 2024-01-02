@@ -66,7 +66,7 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$LLAMA_GPT
             ;;
         11)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$LLAMA_GPT
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$PORTAINER
             ;;
         12)
             echo -e "${Red}Exiting...${NC}"
