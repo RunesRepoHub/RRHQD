@@ -1,12 +1,12 @@
 #!/bin/bash
-# Script to allow user to pick which Docker containers to stop using a simple checkbox selection
+# Script to stop all running Docker containers and allow user to pick which ones to remove using a simple checkbox selection
 
 echo "Fetching all Docker containers..."
-containers=$(docker ps --format "{{.ID}} {{.Names}}")
+containers=$(docker ps -a --format "{{.ID}} {{.Names}}")
 
-# Define a function to use dialog to present a checklist for stopping containers
-select_containers_to_stop() {
-    local cmd=(dialog --separate-output --checklist "Select containers to stop:" 22 76 16)
+# Define a function to use dialog to present a checklist
+select_containers_to_remove() {
+    local cmd=(dialog --separate-output --checklist "Select containers to remove:" 22 76 16)
     local options=()
     local container
     IFS=$'\n'
@@ -36,16 +36,16 @@ if ! command -v dialog &>/dev/null; then
 fi
 
 # Call the function and store the selected containers
-selected_containers=$(select_containers_to_stop)
+selected_containers=$(select_containers_to_remove)
 
-# Stop the selected containers
+# Remove the selected containers
 if [[ -n $selected_containers ]]; then
     while IFS= read -r container_id; do
-        echo "Stopping container: $container_id"
+        echo "Removing container: $container_id"
         docker stop "$container_id"
     done <<< "$selected_containers"
 else
-    echo "No containers selected for stopping."
+    echo "No containers selected for removal."
 fi
 
 # Clear up the dialog remnants
