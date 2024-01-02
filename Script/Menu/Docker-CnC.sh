@@ -14,7 +14,8 @@ function show_dialog_menu() {
            2 "Docker - Start" \
            3 "Docker - Stop" \
            4 "Docker - Update" \
-           5 "Back To Main Menu" 2>"${INPUT}"
+           5 "Docker - Reset" \
+           6 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -29,6 +30,9 @@ function show_dialog_menu() {
             ;;
         4)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$DOCKER_CNC_FOLDER/$DOCKER_UPDATE
+            ;;
+        5)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$DOCKER_CNC_FOLDER/$DOCKER_RESET
             ;;
         *)
             exit 0
