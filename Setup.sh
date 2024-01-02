@@ -65,8 +65,17 @@ else
 fi
 
 
-# Add alias for the Main Menu
-echo 'alias main-menu="bash ~/RRHQD/Script/Menu/Main-Menu.sh"' >> ~/.bashrc
+# Check if the alias 'qd' already exists in .bashrc
+if grep -q "alias qd=" ~/.bashrc; then
+    # Ask the user for a new alias name
+    echo "The alias 'qd' already exists. Please enter a new alias name:"
+    read -p "New alias name: " new_alias
+    # Add the new alias to .bashrc
+    echo "alias $new_alias=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
+else
+    # Add the alias 'qd' to .bashrc
+    echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
+fi
 
 sleep 3 
 
