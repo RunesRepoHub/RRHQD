@@ -1,34 +1,23 @@
 #!/bin/bash
-# RRHQD/Script/Menu/Docker-CnC.sh
-
 clear 
 source ~/RRHQD/Core/Core.sh
 
-# Define the script name
 script_name=$(basename "$0" .sh)
 
-# Display the initial messages and menu options
-function render_welcome_and_menu() {
-    echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy) - Docker-CnC${NC}"
-    echo -e "${Blue}Current Script: $script_name${NC}"
-    echo
-    echo -e "${Green}Select a Docker-CnC script to run${NC}"
-    echo
-}
+# Use dialog to create a more user-friendly menu
+function show_dialog_menu() {
+    dialog --clear \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Docker-CnC" \
+           --title "Docker-CnC - $script_name" \
+           --menu "Please select a Docker-CnC script to run:" 15 60 5 \
+           1 "Docker - Cleanup" \
+           2 "Docker - Start" \
+           3 "Docker - Stop" \
+           4 "Docker - Update" \
+           5 "Exit" 2>"${INPUT}"
 
-# Display the menu options
-function show_menu() {
-    echo "Please select an option:"
-    echo "1) Docker - Cleanup"
-    echo "2) Docker - Start"
-    echo "3) Docker - Stop"
-    echo "4) Docker - Update"
-    echo "5) Exit"
-}
-
-# Run the selected script
-function run_script() {
-    case $1 in
+    menu_choice=$(<"${INPUT}")
+    case $menu_choice in
         1)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$DOCKER_CNC_FOLDER/$DOCKER_CLEANUP
             ;;
@@ -41,21 +30,22 @@ function run_script() {
         4)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$DOCKER_CNC_FOLDER/$DOCKER_UPDATE
             ;;
-        5)
-            echo -e "${Red}Exiting...${NC}"
-            clear
-            exit 0
-            ;;
         *)
-            echo -e "${Red}Invalid option. Please try again.${NC}"
+            dialog --title "Exit" --msgbox "Exiting..." 6 44
+            exit 0
+            clear
             ;;
     esac
 }
 
+# Define the input file for dialog selections
+INPUT=/tmp/menu.sh.$$
+
+# Ensure the temp file is removed upon script termination
+trap "rm -f $INPUT" 0 1 2 5 15
+
 # Main loop
 while true; do
-    render_welcome_and_menu
-    show_menu
-    read -p "Enter your choice [1-5]: " choice
-    run_script $choice
+    show_dialog_menu
 done
+

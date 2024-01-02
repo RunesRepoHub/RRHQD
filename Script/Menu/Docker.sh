@@ -4,37 +4,27 @@ source ~/RRHQD/Core/Core.sh
 
 script_name=$(basename "$0" .sh)
 
-# Display the initial messages and menu options
-function render_welcome_and_menu() {
-    echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
-    echo -e "${Blue}Current Script: $script_name${NC}"
-    echo
-    echo -e "${Green}This will easy and quickly install Dockers made by other companies and users${NC}"
-    echo
-}
+# Use dialog to create a more user-friendly menu
+function show_dialog_menu() {
+    dialog --clear \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
+           --title "Main Menu - $script_name" \
+           --menu "Please select an option:" 15 60 12 \
+           1 "Run Uptime-Kuma Installer" \
+           2 "Run Vaultwarden Installer" \
+           3 "Run Cloudflare Tunnel Installer" \
+           4 "Run MediaCMS Installer" \
+           5 "Run NTFY Installer" \
+           6 "Run MySQL Installer" \
+           7 "Run N8N Installer" \
+           8 "Run Postgres Installer" \
+           9 "Run CheckMK Installer" \
+           10 "Run the llama-gpt Installer" \
+           11 "Run Portainer Installer" \
+           12 "Exit" 2>"${INPUT}"
 
-
-
-# Display the menu options
-function show_menu() {
-    echo "Please select an option:"
-    echo "1) Run Uptime-Kuma Installer"
-    echo "2) Run Vaultwarden Installer"
-    echo "3) Run Cloudflare Tunnel Installer"
-    echo "4) Run MediaCMS Installer"
-    echo "5) Run NTFY Installer"
-    echo "6) Run MySQL Installer"
-    echo "7) Run N8N Installer"
-    echo "8) Run Postgres Installer"
-    echo "9) Run CheckMK Installer"
-    echo "10) Run the llama-gpt Installer"
-    echo "11) Run Portainer Installer"
-    echo "12) Exit"
-}
-
-# Run the selected script
-function run_script() {
-    case $1 in
+    menu_choice=$(<"${INPUT}")
+    case $menu_choice in
         1)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$UPTIME_KUMA
             ;;
@@ -57,7 +47,7 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$N8N
             ;;
         8)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$MYSQL
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$POSTGRES
             ;;
         9)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$CHECKMK
@@ -68,21 +58,21 @@ function run_script() {
         11)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$PORTAINER
             ;;
-        12)
-            echo -e "${Red}Exiting...${NC}"
+        *)
+            dialog --title "Exit" --msgbox "Exiting..." 6 44
             clear
             exit 0
-            ;;
-        *)
-            echo -e "${Red}Invalid option. Please try again.${NC}"
             ;;
     esac
 }
 
+# Define the input file for dialog selections
+INPUT=/tmp/menu.sh.$$
+
+# Ensure the temp file is removed upon script termination
+trap "rm -f $INPUT" 0 1 2 5 15
+
 # Main loop
 while true; do
-    render_welcome_and_menu
-    show_menu
-    read -p "Enter your choice [1-12]: " choice
-    run_script $choice
+    show_dialog_menu
 done

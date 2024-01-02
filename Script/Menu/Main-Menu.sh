@@ -43,6 +43,7 @@ function show_dialog_menu() {
         *)
             dialog --title "Exit" --msgbox "Exiting..." 6 44
             exit 0
+            clear
             ;;
     esac
 }

@@ -4,30 +4,21 @@ source ~/RRHQD/Core/Core.sh
 
 script_name=$(basename "$0" .sh)
 
-# Display the initial messages and menu options
-function render_welcome_and_menu() {
-    echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
-    echo -e "${Blue}Current Script: $script_name${NC}"
-    echo
+# Use dialog to create a more user-friendly menu
+function show_dialog_menu() {
+    dialog --clear \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
+           --title "Main Menu - $script_name" \
+           --menu "Please select an option:" 15 60 6 \
+           1 "Run the Tailscale Installer" \
+           2 "Run the Starship Installer" \
+           3 "Run the Filezilla Installer" \
+           4 "Run the Fail2Ban Installer" \
+           5 "Run the Ansible Installer" \
+           6 "Exit" 2>"${INPUT}"
 
-    echo -e "${Green}Pick a Quick Installer${NC}"
-    echo
-}
-
-# Display the menu options
-function show_menu() {
-    echo "Please select an option:"
-    echo "1) Run the Tailscale Installer"
-    echo "2) Run the Starship Installer"
-    echo "3) Run the Filezilla Installer"
-    echo "4) Run the Fail2Ban Installer"
-    echo "5) Run the Ansible Installer"
-    echo "6) Exit"
-}
-
-# Run the selected script
-function run_script() {
-    case $1 in
+    menu_choice=$(<"${INPUT}")
+    case $menu_choice in
         1)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$TAILSCALE
             ;;
@@ -45,21 +36,22 @@ function run_script() {
         5)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$ANSIBLE
             ;;
-        6)
-            echo -e "${Red}Exiting...${NC}"
-            clear
-            exit 0
-            ;;
         *)
-            echo -e "${Red}Invalid option. Please try again.${NC}"
+            dialog --title "Exit" --msgbox "Exiting..." 6 44
+            exit 0
+            clear
             ;;
     esac
 }
 
+# Define the input file for dialog selections
+INPUT=/tmp/menu.sh.$$
+
+# Ensure the temp file is removed upon script termination
+trap "rm -f $INPUT" 0 1 2 5 15
+
 # Main loop
 while true; do
-    render_welcome_and_menu
-    show_menu
-    read -p "Enter your choice [1-6]: " choice
-    run_script $choice
+    show_dialog_menu
 done
+

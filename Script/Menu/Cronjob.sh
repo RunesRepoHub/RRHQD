@@ -4,28 +4,19 @@ source ~/RRHQD/Core/Core.sh
 
 script_name=$(basename "$0" .sh)
 
-# Display the initial messages and menu options
-function render_welcome_and_menu() {
-    echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
-    echo -e "${Blue}Current Script: $script_name${NC}"
-    echo
+# Use dialog to create a more user-friendly menu
+function show_dialog_menu() {
+    dialog --clear \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
+           --title "Cronjob Menu - $script_name" \
+           --menu "Pick what cronjob you want to add:" 15 60 4 \
+           1 "Add a Nightly reboot at 4:45 am" \
+           2 "Daily Midnight Update" \
+           3 "Add a Reboot cron job for every Sunday at 00:00 am" \
+           4 "Exit" 2>"${INPUT}"
 
-    echo -e "${Green}Pick what cronjob you want to add.${NC}"
-    echo
-}
-
-# Display the menu options
-function show_menu() {
-    echo "Please select an option:"
-    echo "1) Add a Nightly reboot at 4:45 am"
-    echo "2) Daily Midnight Update"
-    echo "3) Add a Reboot cron job for every Sunday at 00:00 am"
-    echo "4) Exit"
-}
-
-# Run the selected script
-function run_script() {
-    case $1 in
+    menu_choice=$(<"${INPUT}")
+    case $menu_choice in
         1)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$REBOOT_EVERY_NIGHT
             ;;
@@ -35,22 +26,22 @@ function run_script() {
         3)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$REBOOT_EVERY_SUNDAY
             ;;
-        4)
-            echo -e "${Red}Exiting...${NC}"
+        *)
+            dialog --title "Exit" --msgbox "Exiting..." 6 44
             clear
             exit 0
-            ;;
-        *)
-            echo -e "${Red}Invalid option. Please try again.${NC}"
             ;;
     esac
 }
 
+# Define the input file for dialog selections
+INPUT=/tmp/menu.sh.$$
+
+# Ensure the temp file is removed upon script termination
+trap "rm -f $INPUT" 0 1 2 5 15
+
 # Main loop
 while true; do
-    render_welcome_and_menu
-    show_menu
-    read -p "Enter your choice [1-4]: " choice
-    run_script $choice
+    show_dialog_menu
 done
 

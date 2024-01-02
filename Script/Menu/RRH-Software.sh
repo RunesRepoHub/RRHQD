@@ -1,25 +1,34 @@
 #!/bin/bash
-clear 
+clear
 source ~/RRHQD/Core/Core.sh
 
 script_name=$(basename "$0" .sh)
 
-# Display the initial messages and menu options
+# Define the input file for dialog selections
+INPUT=/tmp/menu.sh.$$
+
+# Display the initial messages and menu options using dialog
 function render_welcome_and_menu() {
-    echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
-    echo -e "${Blue}Current Script: $script_name${NC}"
-    echo
-    echo -e "${Green}Pick a script made by RunesRepoHub${NC}"
+    dialog --clear \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
+           --title "Welcome To RRHQD" \
+           --msgbox "Pick a script made by RunesRepoHub.\n\nCurrent Script: $script_name" 10 60
 }
 
-# Display the menu options
+# Display the menu options using dialog
 function show_menu() {
-    echo "Please select an option:"
-    echo "1) Run the ACS Installer"
-    echo "2) Run the CnC-WebGUI Installer"
-    echo "3) Run the CnC-Agent Installer"
-    echo "4) Run the EWD Installer"
-    echo "5) Exit"
+    dialog --clear \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
+           --title "Main Menu - $script_name" \
+           --menu "Please select an option:" 15 60 5 \
+           1 "Run the ACS Installer" \
+           2 "Run the CnC-WebGUI Installer" \
+           3 "Run the CnC-Agent Installer" \
+           4 "Run the EWD Installer" \
+           5 "Exit" 2>"${INPUT}"
+
+    menu_choice=$(<"${INPUT}")
+    echo "$menu_choice"
 }
 
 # Run the selected script
@@ -37,13 +46,10 @@ function run_script() {
         4)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/EWD/Production/Setup.sh)
             ;;
-        5)
-            echo -e "${Red}Exiting...${NC}"
-            clear
-            exit 0
-            ;;
         *)
-            echo -e "${Red}Invalid option. Please try again.${NC}"
+            dialog --title "Exit" --msgbox "Exiting..." 6 44
+            exit 0
+            clear
             ;;
     esac
 }
@@ -51,7 +57,10 @@ function run_script() {
 # Main loop
 while true; do
     render_welcome_and_menu
-    show_menu
-    read -p "Enter your choice [1-4]: " choice
-    run_script $choice
+    choice=$(show_menu)
+    run_script "$choice"
 done
+
+# Cleanup temp file
+[ -f $INPUT ] && rm $INPUT
+
