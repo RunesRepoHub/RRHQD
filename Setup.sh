@@ -41,9 +41,20 @@ fi
 GITHUB_REPO_URL="https://github.com/RunesRepoHub/RRHQD.git"
 
 # Ask the user for the branch they want to download
-read -p "Enter the branch you want to clone: " branch
-# Clone the specified branch from the GitHub repository
-git clone --branch "$branch" $GITHUB_REPO_URL
+read -p "Enter the branch you want to clone or pull: " branch
+
+# Check if the repository directory already exists
+REPO_DIR=$(basename "$GITHUB_REPO_URL" .git)
+if [ -d "$REPO_DIR" ]; then
+    echo "Directory $REPO_DIR already exists. Attempting to pull the specified branch."
+    cd "$REPO_DIR"
+    git fetch
+    git checkout "$branch"
+    git pull origin "$branch"
+else
+    echo "Cloning the specified branch from the GitHub repository."
+    git clone --branch "$branch" "$GITHUB_REPO_URL"
+fi
 
 
 # Add alias for the Main Menu
