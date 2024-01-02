@@ -67,5 +67,5 @@ bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Prod/Setup
 If you want to access the script again after exiting it use the command below.
 
 ```
-main-menu
+qd
 ```
