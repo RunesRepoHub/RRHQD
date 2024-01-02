@@ -33,8 +33,9 @@ function show_menu() {
     echo "2) Find and install RunesRepoHub Software"
     echo "3) Find and use a Quick Installer for other software"
     echo "4) Add Cronjobs Quickly"
-    echo "5) Update"
-    echo "6) Exit"
+    echo "5) Docker-CnC Scripts"
+    echo "6) Update"
+    echo "7) Exit"
 }
 
 # Run the selected script
@@ -53,13 +54,16 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$CRONJOB ## Cronjob
             ;;
         5)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER_CNC ## Docker-CnC
+            ;;
+        6)
             echo -e "${Green}Updating...${NC}"
             cd $ROOT_FOLDER
             git pull
             echo -e "${Green}You can now run the script fully updated${NC}"
             exit 0
             ;;
-        6)
+        7)
             echo -e "${Red}Exiting...${NC}"
             exit 0
             clear
@@ -74,6 +78,6 @@ function run_script() {
 while true; do
     render_welcome_and_menu
     show_menu
-    read -p "Enter your choice [1-6]: " choice
+    read -p "Enter your choice [1-7]: " choice
     run_script $choice
 done

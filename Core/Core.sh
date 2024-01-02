@@ -72,3 +72,6 @@ UPDATE_DAILY_MIDNIGHT="Update-daily-midnight.sh"
 ## Docker CnC Scripts
 
 DOCKER_CLEANUP="Docker-Cleanup.sh"
+DOCKER_STOP="Docker-Stop.sh"
+DOCKER_START="Docker-Start.sh"
+DOCKER_UPDATE="Docker-Update.sh"
