@@ -4,80 +4,61 @@ source ~/RRHQD/Core/Core.sh
 
 script_name=$(basename "$0" .sh)
 
-# Display the initial messages and menu options
-function render_welcome_and_menu() {
-    echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
-    echo -e "${Blue}Current Script: $script_name${NC}"
-    echo
-    echo -e "${Yellow}Find and install a Docker${NC}"
-    echo -e "${Green}This will easy and quickly install Docker made by other companies and users${NC}"
-    echo
-    echo -e "${Yellow}Find and install RunesRepoHub Software${NC}"
-    echo -e "${Green}This will easy and quickly install RunesRepoHub Software made by RunesRepoHub${NC}"
-    echo
-    echo -e "${Yellow}Find and use a Quick Installer for other software${NC}"
-    echo -e "${Green}This will easy and quickly install software made by other compaines and users${NC}"
-    echo
-    echo -e "${Yellow}Add Cronjobs Quickly${NC}"
-    echo -e "${Green}This will easy and quickly add cronjobs${NC}"
-    echo
-    echo -e "${Yellow}Update${NC}"
-    echo -e "${Green}This will update the all scripts used in RRHQD${NC}"
-    echo
-}
+# Use dialog to create a more user-friendly menu
+function show_dialog_menu() {
+    dialog --clear \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
+           --title "Main Menu - $script_name" \
+           --menu "Please select an option:" 15 60 7 \
+           1 "Find and install a Docker" \
+           2 "Find and install RunesRepoHub Software" \
+           3 "Find and use a Quick Installer for other software" \
+           4 "Add Cronjobs Quickly" \
+           5 "Docker-CnC Scripts" \
+           6 "Update" \
+           7 "Exit" 2>"${INPUT}"
 
-# Display the menu options
-function show_menu() {
-    echo "Please select an option:"
-    echo "1) Find and install a Docker"
-    echo "2) Find and install RunesRepoHub Software"
-    echo "3) Find and use a Quick Installer for other software"
-    echo "4) Add Cronjobs Quickly"
-    echo "5) Docker-CnC Scripts"
-    echo "6) Update"
-    echo "7) Exit"
-}
-
-# Run the selected script
-function run_script() {
-    case $1 in
+    menu_choice=$(<"${INPUT}")
+    case $menu_choice in
         1)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER ## Dockers
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER
             ;;
         2)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$RRH_SOFTWARE ## RunesRepoHub 
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$RRH_SOFTWARE
             ;;
         3)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_INSTALLERS ## Quick Installers
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_INSTALLERS
             ;;
         4)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$CRONJOB ## Cronjob
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$CRONJOB
             ;;
         5)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER_CNC ## Docker-CnC
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER_CNC
             ;;
         6)
             echo -e "${Green}Updating...${NC}"
             cd $ROOT_FOLDER
             git pull
             echo -e "${Green}You can now run the script fully updated${NC}"
-            exit 0
             ;;
         7)
+            clear
             echo -e "${Red}Exiting...${NC}"
             exit 0
-            clear
             ;;
         *)
-            echo -e "${Red}Invalid option. Please try again.${NC}"
+            dialog --title "Invalid Option" --msgbox "Invalid option. Please try again." 6 44
             ;;
     esac
 }
 
+# Define the input file for dialog selections
+INPUT=/tmp/menu.sh.$$
+
+# Ensure the temp file is removed upon script termination
+trap "rm -f $INPUT" 0 1 2 5 15
+
 # Main loop
 while true; do
-    render_welcome_and_menu
-    show_menu
-    read -p "Enter your choice [1-7]: " choice
-    run_script $choice
+    show_dialog_menu
 done
