@@ -27,6 +27,7 @@ SCRIPT_FOLDER=Script
 INSTALLER_FOLDER=Installers
 MENU_FOLDER=Menu
 CRONJOB_FOLDER=Cronjob
+LLAMA_GPT_FOLDER=llama-gpt
 
 ## Installers Scripts
 
@@ -39,6 +40,7 @@ N8N="N8N.sh"
 POSTGRES="Postgres.sh"
 MYSQL="MySQL.sh"
 CHECKMK="CheckMK.sh"
+LLAMA_GPT="Llama-GPT.sh"
 
 ## Menu Scripts
 
@@ -55,6 +57,7 @@ STARSHIP="Starship-Installer.sh"
 TAILSCALE="Tailscale-Installer.sh"
 FILEZILLA="Filezilla-Installer.sh"
 FAIL2BAN="Fail2ban-Installer.sh"
+ANSIBLE="Ansible-Installer.sh"
 
 ## Cronjob Scripts
 

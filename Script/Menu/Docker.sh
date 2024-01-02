@@ -9,7 +9,6 @@ function render_welcome_and_menu() {
     echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
     echo -e "${Blue}Current Script: $script_name${NC}"
     echo
-    echo -e "${Yellow}Run Installers${NC}"
     echo -e "${Green}This will easy and quickly install Dockers made by other companies and users${NC}"
     echo
 }
@@ -28,7 +27,8 @@ function show_menu() {
     echo "7) Run N8N Installer"
     echo "8) Run Postgres Installer"
     echo "9) Run CheckMK Installer"
-    echo "10) Exit"
+    echo "10) Run the llama-gpt Installer"
+    echo "11) Exit"
 }
 
 # Run the selected script
@@ -62,6 +62,9 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$CHECKMK
             ;;
         10)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$LLAMA_GPT
+            ;;
+        11)
             echo -e "${Red}Exiting...${NC}"
             clear
             exit 0
@@ -76,6 +79,6 @@ function run_script() {
 while true; do
     render_welcome_and_menu
     show_menu
-    read -p "Enter your choice [1-9]: " choice
+    read -p "Enter your choice [1-11]: " choice
     run_script $choice
 done

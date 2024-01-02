@@ -9,15 +9,7 @@ function render_welcome_and_menu() {
     echo -e "${Green}Welcome To RRHQD (RunesRepoHub Quick Deploy)${NC}"
     echo -e "${Blue}Current Script: $script_name${NC}"
     echo
-    echo -e "${Yellow}Run the ACS Installer${NC}"
-    echo -e "${Green}This will easy and quickly install ACS made by RunesRepoHub${NC}"
-    echo
-    echo -e "${Yellow}Run the CnC-WebGUI Installer${NC}"
-    echo -e "${Green}This will easy and quickly install CnC-WebGUI made by RunesRepoHub${NC}"
-    echo
-    echo -e "${Yellow}Run the CnC-Agent Installer${NC}"
-    echo -e "${Green}This will easy and quickly install CnC-Agent made by RunesRepoHub${NC}"
-    echo
+    echo -e "${Green}Pick a script made by RunesRepoHub${NC}"
 }
 
 # Display the menu options

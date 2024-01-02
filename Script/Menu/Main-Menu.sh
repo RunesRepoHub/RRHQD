@@ -18,6 +18,9 @@ function render_welcome_and_menu() {
     echo -e "${Yellow}Find and use a Quick Installer for other software${NC}"
     echo -e "${Green}This will easy and quickly install software made by other compaines and users${NC}"
     echo
+    echo -e "${Yellow}Add Cronjobs Quickly${NC}"
+    echo -e "${Green}This will easy and quickly add cronjobs${NC}"
+    echo
     echo -e "${Yellow}Update${NC}"
     echo -e "${Green}This will update the all scripts used in RRHQD${NC}"
     echo
@@ -47,7 +50,7 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_INSTALLERS ## Quick Installers
             ;;
         4)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$CRONJOB ## Open Spot
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$CRONJOB ## Cronjob
             ;;
         5)
             echo -e "${Green}Updating...${NC}"

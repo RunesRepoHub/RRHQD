@@ -10,12 +10,7 @@ function render_welcome_and_menu() {
     echo -e "${Blue}Current Script: $script_name${NC}"
     echo
 
-    echo -e "${Yellow}Run the Tailscale Installer${NC}"
-    echo -e "${Green}This will easily and quickly install Tailscale.${NC}"
-    echo
-
-    echo -e "${Yellow}Run the Starship Installer${NC}"
-    echo -e "${Green}This will easily and quickly install Starship.${NC}"
+    echo -e "${Green}Pick a Quick Installer${NC}"
     echo
 }
 
@@ -26,7 +21,8 @@ function show_menu() {
     echo "2) Run the Starship Installer"
     echo "3) Run the Filezilla Installer"
     echo "4) Run the Fail2Ban Installer"
-    echo "5) Exit"
+    echo "5) Run the Ansible Installer"
+    echo "6) Exit"
 }
 
 # Run the selected script
@@ -47,6 +43,9 @@ function run_script() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$FAIL2BAN
             ;;
         5)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$ANSIBLE
+            ;;
+        6)
             echo -e "${Red}Exiting...${NC}"
             clear
             exit 0
@@ -61,6 +60,6 @@ function run_script() {
 while true; do
     render_welcome_and_menu
     show_menu
-    read -p "Enter your choice [1-5]: " choice
+    read -p "Enter your choice [1-6]: " choice
     run_script $choice
 done

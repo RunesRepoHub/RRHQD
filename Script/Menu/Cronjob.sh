@@ -10,14 +10,7 @@ function render_welcome_and_menu() {
     echo -e "${Blue}Current Script: $script_name${NC}"
     echo
 
-    echo -e "${Yellow}Add a Nightly reboot at 4:45 am${NC}"
-    echo -e "${Green}This will easily and quickly add a nightly reboot at 4:45 am cronjob.${NC}"
-    echo
-
-    echo -e "${Yellow}Add a update cron job at midnight${NC}"
-    echo -e "${Green}This will easily and quickly add a nightly update cronjob.${NC}"
-    echo
-
+    echo -e "${Green}Pick what cronjob you want to add.${NC}"
     echo
 }
 
