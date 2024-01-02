@@ -13,7 +13,7 @@ function show_dialog_menu() {
            1 "Add a Nightly reboot at 4:45 am" \
            2 "Daily Midnight Update" \
            3 "Add a Reboot cron job for every Sunday at 00:00 am" \
-           4 "Exit" 2>"${INPUT}"
+           4 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in

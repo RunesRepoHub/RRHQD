@@ -17,7 +17,7 @@ function show_menu() {
            2 "Run the CnC-WebGUI Installer" \
            3 "Run the CnC-Agent Installer" \
            4 "Run the EWD Installer" \
-           5 "Exit" 2>"${INPUT}"
+           5 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     echo "$menu_choice"

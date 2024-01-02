@@ -15,7 +15,7 @@ function show_dialog_menu() {
            3 "Run the Filezilla Installer" \
            4 "Run the Fail2Ban Installer" \
            5 "Run the Ansible Installer" \
-           6 "Exit" 2>"${INPUT}"
+           6 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in

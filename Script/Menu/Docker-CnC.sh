@@ -14,7 +14,7 @@ function show_dialog_menu() {
            2 "Docker - Start" \
            3 "Docker - Stop" \
            4 "Docker - Update" \
-           5 "Exit" 2>"${INPUT}"
+           5 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in

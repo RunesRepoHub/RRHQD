@@ -21,7 +21,7 @@ function show_dialog_menu() {
            9 "Run CheckMK Installer" \
            10 "Run the llama-gpt Installer" \
            11 "Run Portainer Installer" \
-           12 "Exit" 2>"${INPUT}"
+           12 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
