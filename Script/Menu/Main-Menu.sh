@@ -15,8 +15,7 @@ function show_dialog_menu() {
            3 "Find and use a Quick Installer for other software" \
            4 "Add Cronjobs Quickly" \
            5 "Docker-CnC Scripts" \
-           6 "Update" \
-           7 "Exit" 2>"${INPUT}"
+           6 "Update" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -41,13 +40,9 @@ function show_dialog_menu() {
             git pull
             echo -e "${Green}You can now run the script fully updated${NC}"
             ;;
-        7)
-            clear
-            echo -e "${Red}Exiting...${NC}"
-            exit 0
-            ;;
         *)
-            dialog --title "Invalid Option" --msgbox "Invalid option. Please try again." 6 44
+            dialog --title "Exit" --msgbox "Exiting..." 6 44
+            exit 0
             ;;
     esac
 }
