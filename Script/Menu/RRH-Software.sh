@@ -10,12 +10,11 @@ function show_dialog_menu() {
            --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
            --title "Main Menu - $script_name" \
            --menu "Please select an option:" 15 60 6 \
-           1 "Run the Tailscale Installer" \
-           2 "Run the Starship Installer" \
-           3 "Run the Filezilla Installer" \
-           4 "Run the Fail2Ban Installer" \
-           5 "Run the Ansible Installer" \
-           6 "Back To Main Menu" 2>"${INPUT}"
+           1 "Run the ACS Installer" \
+           2 "Run the CnC-WebGUI Installer" \
+           3 "Run the CnC-Agent Installer" \
+           4 "Run the EWD Installer" \
+           5 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
