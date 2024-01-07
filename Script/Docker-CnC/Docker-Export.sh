@@ -111,7 +111,7 @@ echo "scp $BACKUP_ARCHIVE $REMOTE_USER@$REMOTE_IP:~/"
 sleep 5 
 
 # Decompress the backup archive on the remote machine via ssh
-ssh $REMOTE_USER@$REMOTE_IP "tar -xzvf ~/$BACKUP_ARCHIVE -C ~/"
+ssh $REMOTE_USER@$REMOTE_IP "tar -xzvf ~/$BACKUP_ARCHIVE -C ~/ ."
 
 sleep 3
 
