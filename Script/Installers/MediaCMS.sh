@@ -43,7 +43,7 @@ read -p "Enter the port to expose MediaCMS on (e.g., 8000): " PORT
 PORT=${PORT:-8000}
 
 read -p "Enter the path for MediaCMS data (e.g., /mediacms-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./mediacms-data}
+DATA_PATH=${DATA_PATH:-./Data/mediacms-data}
 
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./mediacms-docker"

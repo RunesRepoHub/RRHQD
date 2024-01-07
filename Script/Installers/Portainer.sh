@@ -43,7 +43,7 @@ read -p "Enter the port to expose Portainer on (e.g., 9000): " PORT
 PORT=${PORT:-9000}
 
 read -p "Enter the volume path for Portainer data (e.g., /portainer-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-"./portainer-data"}
+DATA_PATH=${DATA_PATH:-"./Data/portainer-data"}
 
 read -p "Is this setup for Docker standalone or Docker Swarm? [standalone/swarm]: " DEPLOYMENT_TYPE
 DEPLOYMENT_TYPE=${DEPLOYMENT_TYPE:-"standalone"}

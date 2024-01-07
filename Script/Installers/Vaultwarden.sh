@@ -46,7 +46,7 @@ read -p "Enter the port to expose Vaultwarden on (e.g., 80): " PORT
 PORT=${PORT:-80}
 
 read -p "Enter the path for Vaultwarden data (e.g., /vw-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/vw-data}
+DATA_PATH=${DATA_PATH:-./Data/vw-data}
 
 read -p "Enter the admin token for Vaultwarden: " ADMIN_TOKEN
 ADMIN_TOKEN=${ADMIN_TOKEN:-$(openssl rand -base64 32)}

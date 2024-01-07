@@ -43,7 +43,7 @@ read -p "Enter the port to expose NTFY on (e.g., 8080): " PORT
 PORT=${PORT:-8080}
 
 read -p "Enter the path for NTFY data (e.g., /ntfy-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./ntfy-data}
+DATA_PATH=${DATA_PATH:-./Data/ntfy-data}
 
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./ntfy-docker"

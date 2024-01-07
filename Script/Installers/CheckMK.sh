@@ -47,7 +47,7 @@ read -p "Enter the port to expose CheckMK on (e.g., 8080): " PORT
 PORT=${PORT:-8080}
 
 read -p "Enter the path for CheckMK data (e.g., /checkmk-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./checkmk-data}
+DATA_PATH=${DATA_PATH:-./Data/checkmk-data}
 
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./checkmk-docker"

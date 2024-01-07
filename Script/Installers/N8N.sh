@@ -44,7 +44,7 @@ read -p "Enter the timezone (e.g., Europe/Berlin): " TZ
 TZ=${TZ:-"Europe/Berlin"}
 
 read -p "Enter the path for n8n data (e.g., /n8n-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./n8n-data}
+DATA_PATH=${DATA_PATH:-./Data/n8n-data}
 
 read -p "Enter the subdomain for n8n (e.g., n8n): " SUBDOMAIN
 read -p "Enter the domain name (e.g., example.com): " DOMAIN_NAME
