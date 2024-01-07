@@ -1,4 +1,7 @@
 #!/bin/bash
+
+source ~/RRHQD/Core/Core.sh
+
 # RRHQD/Script/Docker-CnC/Docker-Export.sh
 # Script to export a Docker container and its data to another machine
 
@@ -108,14 +111,9 @@ ssh "$REMOTE_USER@$REMOTE_IP" 'command -v docker >/dev/null 2>&1 || { echo "Dock
 # Transfer the backup archive to the remote machine
 scp "$BACKUP_ARCHIVE" "$REMOTE_USER@$REMOTE_IP:~/"
 
-# Decompress the backup archive on the remote machine
-ssh "$REMOTE_USER@$REMOTE_IP" "tar -xzvf ~/$BACKUP_ARCHIVE -C ~/"
+# Export all needed variables for the script
+export VOLUMES CONTAINER_NAME CONTAINER_NUMBER CONTAINER_EXPORT_PATH IMAGE_NAME BACKUP_DIR BACKUP_ARCHIVE REMOTE_USER REMOTE_IP
 
-# Correct the path to the container export file after decompression
-CONTAINER_EXPORT_PATH="~/backup_${SESSION_ID}/${CONTAINER_NAME}_container.tar"
+sleep 5
 
-# Load the Docker image on the remote machine using the corrected path
-ssh "$REMOTE_USER@$REMOTE_IP" "docker load -i $CONTAINER_EXPORT_PATH"
-
-# Start the Docker container using the loaded image
-ssh "$REMOTE_USER@$REMOTE_IP" "docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
+bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$UNPACK_AND_RUN_EXPORT
