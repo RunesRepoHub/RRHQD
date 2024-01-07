@@ -15,8 +15,8 @@ read -p "Enter the remote host IP or address: " REMOTE_HOST
 read -p "Enter the remote user name: " REMOTE_USER
 
 # Configuration
-LOCAL_PATH=~/Docker              # Replace with the local directory path where Docker images are stored
-REMOTE_PATH=~/Docker             # Replace with the remote directory path where Docker images will be stored
+LOCAL_PATH=/root/Docker          # Replace with the local directory path where Docker images are stored
+REMOTE_PATH=/root/Docker         # Replace with the remote directory path where Docker images will be stored
 LOG_FILE="$LOG_DIR/docker_migration.log"  # Log file location
 
 # Function to save Docker containers as images and transfer them to a remote host
