@@ -1,4 +1,3 @@
-`
 #!/bin/bash
 
 # Script to import and start a Docker container from an image transferred by the Docker-Export.sh script
