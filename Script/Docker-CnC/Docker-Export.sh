@@ -2,6 +2,12 @@
 # RRHQD/Script/Docker-CnC/Docker-Export.sh
 # Script to export a Docker container and its data to another machine
 
+LOG_FILE="./docker_export_$(date +%F_%T).log"
+
+exec > >(tee -a "$LOG_FILE") 2>&1
+
+echo "Starting Docker container export process..."
+
 # Check if an SSH key already exists
 if [[ ! -f ~/.ssh/id_rsa ]]; then
     # No SSH key found, create a new one
@@ -94,26 +100,24 @@ done
 BACKUP_ARCHIVE="backup_${SESSION_ID}.tar.gz"
 tar -czvf "$BACKUP_ARCHIVE" -C "$BACKUP_DIR" .
 
-username=$REMOTE_USER
-ip_address=$REMOTE_IP
-
 # Check if scp is installed on the other machine and install it if not
-ssh $username@$ip_address 'command -v scp >/dev/null 2>&1 || { echo "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
+ssh $REMOTE_USER@$REMOTE_IP 'command -v scp >/dev/null 2>&1 || { echo "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
 
 # Provide the command to copy the backup archive to the other machine
 # Place the backup file into the user's home directory on the remote machine
 REMOTE_BACKUP_PATH="~/"
 echo "Use the following command to copy the backup to the other machine:"
-echo "scp $BACKUP_ARCHIVE $username@$ip_address:$REMOTE_BACKUP_PATH"
+echo "scp $BACKUP_ARCHIVE $REMOTE_USER@$REMOTE_IP:$REMOTE_BACKUP_PATH"
 
 
 sleep 5 
 
 # Decompress the backup archive on the remote machine via ssh
-ssh $username@$ip_address "tar -xzvf $REMOTE_BACKUP_PATH/$BACKUP_ARCHIVE -C $REMOTE_BACKUP_PATH"
+ssh $REMOTE_USER@$REMOTE_IP "tar -xzvf $REMOTE_BACKUP_PATH/$BACKUP_ARCHIVE -C $REMOTE_BACKUP_PATH"
 
 sleep 3
 
 # Start the Docker container from the backup on the other machine via ssh
 # Assuming the backup file is now in the user's home directory
-ssh $username@$ip_address "docker load -i $REMOTE_BACKUP_PATH/$BACKUP_ARCHIVE && docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
+ssh $REMOTE_USER@$REMOTE_IP "docker load -i $REMOTE_BACKUP_PATH/$BACKUP_ARCHIVE && docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
+
