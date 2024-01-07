@@ -1,16 +1,15 @@
 #!/bin/bash
 # Simple Bash script to spin up Docker containers from saved images
 
-
-
+DOCKER_MIGRATION_PATH=/opt/docker_migration
+LOG_DIR="$HOME/RRHQD/log"
 # Configuration
-DOCKER_REMOTE_PATH=/var/lib/docker_migration/remote      # Remote directory path for Docker images
+DOCKER_REMOTE_PATH="$DOCKER_MIGRATION_PATH/var/lib/docker_migration/remote"      # Remote directory path for Docker images
 LOG_FILE="$LOG_DIR/docker_import.log"  # Log file location
 
 # Create log directory if it doesn't exist
-LOG_DIR="$HOME/RRHQD/log"
-mkdir -p "$LOG_DIR"
 
+mkdir -p "$LOG_DIR"
 
 # Redirect all output to log file
 exec > >(tee -a "$LOG_FILE") 2>&1
