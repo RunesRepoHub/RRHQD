@@ -36,15 +36,21 @@ spin_up_docker() {
     local image_name=$(basename "$image_path")
     local container_name="${image_name%_image.tar}"
 
-    read -p "Enter ports (format: 'host_port:container_port', separate multiple with spaces): " PORTS
-    read -p "Enter volumes (format: 'host_volume:container_volume', separate multiple with spaces): " VOLUMES
-    read -p "Enter container name: " container_name
+    # Read user input for ports and volumes, if they are not provided as arguments
+    local ports="${2:-}"
+    if [[ -z "$ports" ]]; then
+        read -p "Enter ports (format: 'host_port:container_port', separate multiple with spaces): " ports
+    fi
+    local volumes="${3:-}"
+    if [[ -z "$volumes" ]]; then
+        read -p "Enter volumes (format: 'host_volume:container_volume', separate multiple with spaces): " volumes
+    fi
 
     echo "Loading image $image_name" | tee -a "$LOG_FILE"
     docker load -i "$image_path" | tee -a "$LOG_FILE"
 
     echo "Starting container from $image_name" | tee -a "$LOG_FILE"
-    docker run -d --name "$container_name" $PORTS $VOLUMES "${container_name}_image" | tee -a "$LOG_FILE"
+    docker run -d --name "$container_name" $ports $volumes "${container_name}_image" | tee -a "$LOG_FILE"
 }
 
 # Main script execution
@@ -71,4 +77,9 @@ spin_up_docker "$image_path"
 
 echo "Docker spin up completed at $(date)" | tee -a "$LOG_FILE"
 
-dialog --title "Import Success" --msgbox "The Docker image has been successfully imported and the container is running." 6 50
+# Check if dialog command is available before attempting to use it
+if command -v dialog &>/dev/null; then
+    dialog --title "Import Success" --msgbox "The Docker image has been successfully imported and the container is running." 6 50
+else
+    echo "The Docker image has been successfully imported and the container is running."
+fi
