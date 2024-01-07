@@ -7,12 +7,6 @@ LOG_DIR="$HOME/RRHQD/logs"
 DOCKER_REMOTE_PATH=$DOCKER_MIGRATION_PATH     # Remote directory path for Docker images
 LOG_FILE="$LOG_DIR/docker_import.log"  # Log file location
 
-# Prompt user for volume mappings
-read -p "Enter the volume mappings (e.g., /local/path:/container/path): " VOLUMES
-
-# Prompt user for port mappings
-read -p "Enter the port mappings (e.g., 8080:80): " PORTS
-
 # Function to increment log file name
 increment_log_file_name() {
   local log_file_base_name="docker_import_run_"
@@ -53,6 +47,19 @@ spin_up_docker() {
     echo "Starting container from $image_name" | tee -a "$LOG_FILE"
     docker run -d --name "$container_name" $PORTS $VOLUMES "${container_name}_image" | tee -a "$LOG_FILE"
 }
+
+# Function to ask user for ports and volumes
+ask_ports_and_volumes() {
+  read -p "Enter ports (format: 'host_port:container_port', separate multiple with spaces): " PORTS
+  read -p "Enter volumes (format: 'host_volume:container_volume', separate multiple with spaces): " VOLUMES
+}
+
+# Main script execution
+echo "Starting Docker spin up at $(date)" | tee -a "$LOG_FILE"
+
+# Ask the user for the ports and volumes
+ask_ports_and_volumes
+
 
 # Main script execution
 echo "Starting Docker spin up at $(date)" | tee -a "$LOG_FILE"
