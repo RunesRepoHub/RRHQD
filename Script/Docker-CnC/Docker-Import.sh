@@ -9,8 +9,6 @@ LOG_FILE="$LOG_DIR/docker_import.log"  # Log file location
 LOG_DIR="$HOME/RRHQD/log"
 mkdir -p "$LOG_DIR"
 
-# Set log file location
-LOG_FILE="$LOG_DIR/docker_import.log"
 
 # Redirect all output to log file
 exec > >(tee -a "$LOG_FILE") 2>&1
