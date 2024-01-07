@@ -2,8 +2,19 @@
 # RRHQD/Script/Docker-CnC/Docker-Export.sh
 # Script to export a Docker container and its data to another machine
 
-# Prompt the user for the SSH public key file path
-read -p "Enter the path to your SSH public key (e.g. ~/.ssh/id_rsa.pub): " SSH_KEY_PATH
+# Check if an SSH key already exists
+if [[ ! -f ~/.ssh/id_rsa ]]; then
+    # No SSH key found, create a new one
+    echo "No SSH key found. Creating a new one..."
+    ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
+    echo "SSH key created."
+else
+    echo "SSH key already exists."
+fi
+
+# Set default SSH public key path
+DEFAULT_SSH_KEY_PATH="$HOME/.ssh/id_rsa.pub"
+SSH_KEY_PATH=${SSH_KEY_PATH:-"$DEFAULT_SSH_KEY_PATH"}
 
 # Check if the SSH public key file exists
 if [[ ! -f "$SSH_KEY_PATH" ]]; then
