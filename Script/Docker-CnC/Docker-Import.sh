@@ -4,7 +4,7 @@
 DOCKER_MIGRATION_PATH=/opt/docker_migration
 LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
-DOCKER_REMOTE_PATH="$DOCKER_MIGRATION_PATH/var/lib/docker_migration/remote"      # Remote directory path for Docker images
+DOCKER_REMOTE_PATH=$DOCKER_MIGRATION_PATH     # Remote directory path for Docker images
 LOG_FILE="$LOG_DIR/docker_import.log"  # Log file location
 
 
