@@ -70,7 +70,10 @@ verify_transfer() {
   fi
 }
 
-# Function to display commands using dialog message box
+LOAD_COMMAND="docker load -i $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar"
+RUN_COMMAND="docker run -d --name $CONTAINER_NAME $PORTS $VOLUMES ${CONTAINER_NAME}_image"
+# Function to load and run the Docker container on the remote host
+
 display_commands_dialog() {
   { echo "To load the Docker image on $REMOTE_HOST, run this command:"; echo "ssh $REMOTE_USER@$REMOTE_HOST \"$LOAD_COMMAND\""; echo ""; echo "To run the Docker container on $REMOTE_HOST, run this command:"; echo "ssh $REMOTE_USER@$REMOTE_HOST \"$RUN_COMMAND\""; } | dialog --title "Docker Commands" --msgbox "$(cat)" 20 70
 }
