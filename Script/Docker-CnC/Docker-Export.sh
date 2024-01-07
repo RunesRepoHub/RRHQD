@@ -11,25 +11,32 @@ LOG_FILE="$LOG_DIR/docker_migration.log"
 # Redirect all output to log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-check_requirements() {
-    # Check if Docker and scp are installed on the remote host
-    ssh "$REMOTE_USER@$REMOTE_HOST" << 'EOF'
-    if ! command -v docker >/dev/null 2>&1; then
-        echo "Docker is not installed on the remote host." | tee -a "$LOG_FILE"
-        return 1
+# Function to check if Docker is installed on the remote host
+check_remote_docker() {
+    if ssh "$REMOTE_USER@$REMOTE_HOST" 'command -v docker >/dev/null 2>&1'; then
+        echo "Docker is installed on the remote host."
+    else
+        echo "Docker is not installed on the remote host. Please install Docker before proceeding."
+        exit 1
     fi
-
-    if ! command -v scp >/dev/null 2>&1; then
-        echo "scp is not installed on the remote host." | tee -a "$LOG_FILE"
-        return 1
-    fi
-
-    echo "Both Docker and scp are installed on the remote host." | tee -a "$LOG_FILE"
-EOF
 }
 
-# Call the function to check for requirements
-check_requirements || exit 1
+# Call the function to check if Docker is installed on the remote host
+check_remote_docker
+
+# Function to check if scp is installed on the remote host
+check_remote_scp() {
+    if ssh "$REMOTE_USER@$REMOTE_HOST" 'command -v scp >/dev/null 2>&1'; then
+        echo "scp is installed on the remote host."
+    else
+        echo "scp is not installed on the remote host. Please install scp before proceeding."
+        exit 1
+    fi
+}
+
+# Call the function to check if scp is installed on the remote host
+check_remote_scp
+
 
 read -p "Enter the remote host IP or address: " REMOTE_HOST
 read -p "Enter the remote user name: " REMOTE_USER
