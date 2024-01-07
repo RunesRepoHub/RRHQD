@@ -1,20 +1,35 @@
 #!/bin/bash
 # Simple Bash script to migrate Docker containers from a local machine to a remote host
 
-# Check if Docker and scp are installed on the remote host
-ssh "$REMOTE_USER@$REMOTE_HOST" << 'EOF'
-if ! command -v docker >/dev/null 2>&1; then
-    echo "Docker is not installed on the remote host." | tee -a "$LOG_FILE"
-    exit 1
-fi
+# Create log directory if it doesn't exist
+LOG_DIR="$HOME/RRHQD/log"
+mkdir -p "$LOG_DIR"
 
-if ! command -v scp >/dev/null 2>&1; then
-    echo "scp is not installed on the remote host." | tee -a "$LOG_FILE"
-    exit 1
-fi
+# Set log file location
+LOG_FILE="$LOG_DIR/docker_migration.log"
 
-echo "Both Docker and scp are installed on the remote host." | tee -a "$LOG_FILE"
+# Redirect all output to log file
+exec > >(tee -a "$LOG_FILE") 2>&1
+
+check_requirements() {
+    # Check if Docker and scp are installed on the remote host
+    ssh "$REMOTE_USER@$REMOTE_HOST" << 'EOF'
+    if ! command -v docker >/dev/null 2>&1; then
+        echo "Docker is not installed on the remote host." | tee -a "$LOG_FILE"
+        return 1
+    fi
+
+    if ! command -v scp >/dev/null 2>&1; then
+        echo "scp is not installed on the remote host." | tee -a "$LOG_FILE"
+        return 1
+    fi
+
+    echo "Both Docker and scp are installed on the remote host." | tee -a "$LOG_FILE"
 EOF
+}
+
+# Call the function to check for requirements
+check_requirements || exit 1
 
 read -p "Enter the remote host IP or address: " REMOTE_HOST
 read -p "Enter the remote user name: " REMOTE_USER
