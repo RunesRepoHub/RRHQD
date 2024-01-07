@@ -84,8 +84,6 @@ for VOLUME in $VOLUMES; do
     echo "Volume $VOLUME exported to $VOLUME_BACKUP_PATH"
 done
 
-# Instructions for moving to other machine
-
 # Generate a unique identifier for the session to avoid file name collision
 SESSION_ID=$(date +%s)
 
@@ -94,10 +92,9 @@ BACKUP_DIR="./backup_${SESSION_ID}"
 mkdir -p "$BACKUP_DIR"
 
 # Move the container export and volume backups to the backup directory
-CONTAINER_EXPORT_PATH="${CONTAINER_NAME}_container.tar"
 mv "$CONTAINER_EXPORT_PATH" "$BACKUP_DIR"
 for VOLUME in $VOLUMES; do
-    mv "${VOLUME}_backup.tar" "$BACKUP_DIR"
+    mv "./${VOLUME}_backup.tar" "$BACKUP_DIR"
 done
 
 # Compress the backup directory into a single archive for easy transfer
@@ -105,15 +102,24 @@ BACKUP_ARCHIVE="backup_${SESSION_ID}.tar.gz"
 tar -czvf "$BACKUP_ARCHIVE" -C "$BACKUP_DIR" .
 
 # Check if scp and docker are installed on the remote machine, install if not
-ssh "$REMOTE_USER@$REMOTE_IP" 'command -v scp >/dev/null 2>&1 || { echo "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
-ssh "$REMOTE_USER@$REMOTE_IP" 'command -v docker >/dev/null 2>&1 || { echo "Docker is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y docker.io; }'
+ssh "$REMOTE_USER@$REMOTE_IP" 'command -v scp >/dev/null 2>&1 || { echo >&2 "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
+ssh "$REMOTE_USER@$REMOTE_IP" 'command -v docker >/dev/null 2>&1 || { echo >&2 "Docker is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y docker.io; }'
 
 # Transfer the backup archive to the remote machine
 scp "$BACKUP_ARCHIVE" "$REMOTE_USER@$REMOTE_IP:~/"
 
-# Export all needed variables for the script
-export VOLUMES CONTAINER_NAME CONTAINER_NUMBER CONTAINER_EXPORT_PATH IMAGE_NAME BACKUP_DIR BACKUP_ARCHIVE REMOTE_USER REMOTE_IP
+# Remote commands to unpack and load the container and volumes on the remote host
+REMOTE_SCRIPT="
+    mkdir -p ~/restore_$SESSION_ID && \
+    tar -xzvf ~/$BACKUP_ARCHIVE -C ~/restore_$SESSION_ID && \
+    docker load -i ~/restore_$SESSION_ID/${CONTAINER_NAME}_container.tar && \
+    for volume_tar in ~/restore_$SESSION_ID/*_backup.tar; do \
+        VOLUME_NAME=\$(basename \$volume_tar _backup.tar) && \
+        docker volume create \$VOLUME_NAME && \
+        docker run --rm -v \$VOLUME_NAME:/\$VOLUME_NAME -v ~/restore_$SESSION_ID:/backup ubuntu bash -c 'tar xvf /backup/'\$(basename \$volume_tar)' -C /' && \
+        echo \"Volume \$VOLUME_NAME restored from \$volume_tar\"; \
+    done && \
+    echo 'All data has been restored.'
+"
 
-sleep 5
-
-bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$UNPACK_AND_RUN_EXPORT
+ssh "$REMOTE_USER@$REMOTE_IP" "$REMOTE_SCRIPT"

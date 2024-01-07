@@ -82,4 +82,3 @@ DOCKER_EXPORT="Docker-Export.sh"
 
 ## Background Jobs
 
-UNPACK_AND_RUN_EXPORT="Unpack-and-running-docker-export.sh"
