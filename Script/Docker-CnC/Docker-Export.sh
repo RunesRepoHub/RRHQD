@@ -72,20 +72,13 @@ verify_transfer() {
 
 # Function to load and run the Docker container on the remote host
 load_and_run_docker() {
-  echo "Loading Docker image on $REMOTE_HOST"
-  ssh "$REMOTE_USER@$REMOTE_HOST" "docker load -i $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar"
-  if [ $? -ne 0 ]; then
-    echo "Failed to load Docker image."
-    exit 1
-  fi
+  LOAD_COMMAND="docker load -i $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar"
+  echo "To load the Docker image on $REMOTE_HOST, run:"
+  echo "ssh $REMOTE_USER@$REMOTE_HOST \"$LOAD_COMMAND\""
   
-  echo "Running Docker container on $REMOTE_HOST"
-  SSH_COMMAND="docker run -d --name $CONTAINER_NAME $PORTS $VOLUMES ${CONTAINER_NAME}_image"
-  ssh "$REMOTE_USER@$REMOTE_HOST" "$SSH_COMMAND"
-  if [ $? -ne 0 ]; then
-    echo "Failed to run Docker container."
-    exit 1
-  fi
+  RUN_COMMAND="docker run -d --name $CONTAINER_NAME $PORTS $VOLUMES ${CONTAINER_NAME}_image"
+  echo "To run the Docker container on $REMOTE_HOST, run:"
+  echo "ssh $REMOTE_USER@$REMOTE_HOST \"$RUN_COMMAND\""
 }
 
 # Prompt user for remote host information
@@ -105,7 +98,6 @@ VOLUMES=$(docker inspect --format='{{range .Mounts}} -v {{.Source}}:{{.Destinati
 export_docker
 transfer_docker
 verify_transfer
-load_and_run_docker
 
 echo "Docker export and migration completed."
 
