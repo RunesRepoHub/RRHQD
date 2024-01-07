@@ -37,12 +37,21 @@ fi
 
 echo "SSH public key successfully copied to the remote machine."
 
-# Prompt for the name of the container to export
-read -p "Enter the name of the Docker container to export: " CONTAINER_NAME
+# List all running Docker containers and allow the user to select one for export
+echo "Select the Docker container to export by entering the corresponding number:"
+mapfile -t CONTAINER_NAMES < <(docker ps --format '{{.Names}}')
+for i in "${!CONTAINER_NAMES[@]}"; do
+    echo "$((i+1))) ${CONTAINER_NAMES[$i]}"
+done
 
-# Check if the Docker container exists
-if ! docker inspect "$CONTAINER_NAME" &>/dev/null; then
-    echo "Error: Container $CONTAINER_NAME does not exist."
+read -p "Enter the number of the Docker container to export: " CONTAINER_NUMBER
+CONTAINER_NAME=${CONTAINER_NAMES[$((CONTAINER_NUMBER-1))]}
+
+# Check if the user input is valid and the Docker container exists
+if [[ "$CONTAINER_NUMBER" -gt 0 && "$CONTAINER_NUMBER" -le "${#CONTAINER_NAMES[@]}" ]] && docker inspect "$CONTAINER_NAME" &>/dev/null; then
+    echo "You have selected the container: $CONTAINER_NAME"
+else
+    echo "Error: Invalid selection or container does not exist."
     exit 1
 fi
 
