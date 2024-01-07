@@ -2,6 +2,30 @@
 # RRHQD/Script/Docker-CnC/Docker-Export.sh
 # Script to export a Docker container and its data to another machine
 
+# Prompt the user for the SSH public key file path
+read -p "Enter the path to your SSH public key (e.g. ~/.ssh/id_rsa.pub): " SSH_KEY_PATH
+
+# Check if the SSH public key file exists
+if [[ ! -f "$SSH_KEY_PATH" ]]; then
+    echo "Error: SSH public key not found at $SSH_KEY_PATH."
+    exit 1
+fi
+
+# Prompt for username and IP address of the other machine
+read -p "Enter the username of the remote user: " REMOTE_USER
+read -p "Enter the IP address of the remote machine: " REMOTE_IP
+
+# Copy the SSH public key to the other machine's authorized_keys
+echo "Copying SSH public key to $REMOTE_USER@$REMOTE_IP..."
+ssh-copy-id -i "$SSH_KEY_PATH" "$REMOTE_USER@$REMOTE_IP"
+
+if [[ $? -ne 0 ]]; then
+    echo "Failed to copy SSH public key to the remote machine."
+    exit 1
+fi
+
+echo "SSH public key successfully copied to the remote machine."
+
 # Prompt for the name of the container to export
 read -p "Enter the name of the Docker container to export: " CONTAINER_NAME
 
