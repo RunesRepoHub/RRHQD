@@ -31,6 +31,15 @@ select CONTAINER_NAME in $DOCKER_CONTAINERS; do
   fi
 done
 
+# Retrieve remote host and user from configuration or prompt for input
+
+REMOTE_HOST_USER=$(grep 'REMOTE_HOST=' ~/RRHQD/config/remote_host_config.sh | cut -d'=' -f2)
+if [ -z "$REMOTE_HOST_USER" ]; then
+  read -p "Enter remote host and user (user@hostname): " REMOTE_HOST_USER
+fi
+
+echo "Using remote host and user: $REMOTE_HOST_USER"
+
 # Export the selected Docker container to a file
 CONTAINER_EXPORT_FILE=~/RRHQD/export/${CONTAINER_NAME}-$(date '+%Y-%m-%d_%H-%M-%S').tar
 
@@ -53,14 +62,13 @@ done
 # Function to push container and volumes to remote host
 push_to_remote_host() {
   # Remote host information
-  REMOTE_HOST="user@remote-server"
   REMOTE_PATH="/remote/path/for/docker_exports"
 
   # Push the container export file to the remote host
-  scp "$CONTAINER_EXPORT_FILE" "${REMOTE_HOST}:${REMOTE_PATH}"
+  scp "$CONTAINER_EXPORT_FILE" "${REMOTE_HOST_USER}:${REMOTE_PATH}"
 
   # Push the volume exports to the remote host
-  scp "${VOLUME_EXPORT_PATH}"/*.tar.gz "${REMOTE_HOST}:${REMOTE_PATH}/${CONTAINER_NAME}_volumes/"
+  scp "${VOLUME_EXPORT_PATH}"/*.tar.gz "${REMOTE_HOST_USER}:${REMOTE_PATH}/${CONTAINER_NAME}_volumes/"
 
   echo "Docker container and volumes have been pushed to the remote host."
 }
