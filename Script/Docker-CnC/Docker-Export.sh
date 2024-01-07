@@ -70,58 +70,12 @@ verify_transfer() {
   fi
 }
 
-# Function to transfer Docker data volumes
-transfer_volumes() {
-  local volume_archive_path="$DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_volumes.tar"
-  echo "Archiving and transferring Docker volumes for $CONTAINER_NAME"
-  
-  # Create an archive of all data volumes
-  docker run --rm --volumes-from "$CONTAINER_NAME" \
-    -v "$DOCKER_MIGRATION_PATH":/backup ubuntu \
-    tar cvf /backup/"${CONTAINER_NAME}_volumes.tar" $(echo $VOLUMES | sed 's/-v //g' | awk '{print $2}')
-  if [ $? -ne 0 ]; then
-    echo "Failed to archive Docker volumes."
-    exit 1
-  fi
-  
-  # Transfer the volumes archive to remote host
-  scp "$volume_archive_path" "$REMOTE_USER@$REMOTE_HOST:$DOCKER_MIGRATION_PATH"
-  if [ $? -ne 0 ]; then
-    echo "Failed to transfer Docker volumes."
-    exit 1
-  fi
-}
+# Refactor the code block to echo commands into a log file with _success appended
+{
+  echo "docker load -i $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar"
+  echo "docker run -d --name $CONTAINER_NAME $PORTS $VOLUMES ${CONTAINER_NAME}_image"
+} >> "${LOG_FILE}_success"
 
-# Function to load Docker image and data volumes on the remote host
-load_docker_on_remote() {
-  echo "Loading Docker image and volumes on $REMOTE_HOST"
-  
-  # Load the Docker image
-  ssh "$REMOTE_USER@$REMOTE_HOST" "docker load -i $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar"
-  if [ $? -ne 0 ]; then
-    echo "Failed to load Docker image on remote host."
-    exit 1
-  fi
-  
-  # Extract and apply data volumes
-  ssh "$REMOTE_USER@$REMOTE_HOST" "\
-    mkdir -p /tmp/${CONTAINER_NAME}_volumes && \
-    tar xvf $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_volumes.tar -C /tmp/${CONTAINER_NAME}_volumes && \
-    docker run -d --name $CONTAINER_NAME $PORTS $VOLUMES ${CONTAINER_NAME}_image && \
-    docker stop $CONTAINER_NAME && \
-    docker run --rm --volumes-from $CONTAINER_NAME \
-    -v /tmp/${CONTAINER_NAME}_volumes:/backup ubuntu \
-    bash -c 'cd /backup && tar cvf - . | tar xvf - -C /' && \
-    docker start $CONTAINER_NAME"
-  if [ $? -ne 0 ]; then
-    echo "Failed to load Docker volumes on remote host."
-    exit 1
-  fi
-
-  # Log the commands executed on the remote host
-  echo "docker load -i $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar" >> "${LOG_FILE}_success"
-  echo "docker run -d --name $CONTAINER_NAME $PORTS $VOLUMES ${CONTAINER_NAME}_image" >> "${LOG_FILE}_success"
-}
 
 
 
@@ -142,8 +96,6 @@ VOLUMES=$(docker inspect --format='{{range .Mounts}} -v {{.Source}}:{{.Destinati
 export_docker
 transfer_docker
 verify_transfer
-transfer_volumes
-load_docker_on_remote
 
 dialog --title "Export and Migration Completed" --msgbox "Docker export and migration completed." 5 50
 
