@@ -21,26 +21,55 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 export_docker() {
   echo "Exporting Docker container $CONTAINER_NAME"
   docker commit "$CONTAINER_NAME" "${CONTAINER_NAME}_image"
+  if [ $? -ne 0 ]; then
+    echo "Failed to commit Docker container."
+    exit 1
+  fi
   docker save -o "$DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar" "${CONTAINER_NAME}_image"
+  if [ $? -ne 0 ]; then
+    echo "Failed to save Docker image."
+    exit 1
+  fi
 }
 
 # Function to transfer Docker image and data to remote host
 transfer_docker() {
   echo "Transferring Docker image and data to $REMOTE_HOST"
   scp "$DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar" "$REMOTE_USER@$REMOTE_HOST:$DOCKER_MIGRATION_PATH"
+  if [ $? -ne 0 ]; then
+    echo "Failed to transfer Docker image."
+    exit 1
+  fi
 }
 
 # Function to verify the transfer
 verify_transfer() {
   echo "Verifying transfer to $REMOTE_HOST"
-  ssh "$REMOTE_USER@$REMOTE_HOST" "test -f $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar && echo 'Transfer verified.' || echo 'Transfer failed.'"
+  ssh "$REMOTE_USER@$REMOTE_HOST" "test -f $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar"
+  if [ $? -ne 0 ]; then
+    echo "Transfer failed."
+    exit 1
+  else
+    echo "Transfer verified."
+  fi
 }
 
 # Function to load and run the Docker container on the remote host
 load_and_run_docker() {
-  echo "Loading and running Docker container on $REMOTE_HOST"
-  ssh "$REMOTE_USER@$REMOTE_HOST" "docker load -i $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar \
-                                    && docker run -d --name $CONTAINER_NAME $PORTS $VOLUMES ${CONTAINER_NAME}_image"
+  echo "Loading Docker image on $REMOTE_HOST"
+  ssh "$REMOTE_USER@$REMOTE_HOST" "docker load -i $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar"
+  if [ $? -ne 0 ]; then
+    echo "Failed to load Docker image."
+    exit 1
+  fi
+  
+  echo "Running Docker container on $REMOTE_HOST"
+  SSH_COMMAND="docker run -d --name $CONTAINER_NAME $PORTS $VOLUMES ${CONTAINER_NAME}_image"
+  ssh "$REMOTE_USER@$REMOTE_HOST" "$SSH_COMMAND"
+  if [ $? -ne 0 ]; then
+    echo "Failed to run Docker container."
+    exit 1
+  fi
 }
 
 # Prompt user for remote host information
@@ -63,3 +92,4 @@ verify_transfer
 load_and_run_docker
 
 echo "Docker export and migration completed."
+
