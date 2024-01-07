@@ -1,60 +1,70 @@
 #!/bin/bash
-# Script to export a Docker container, transfer it to another host, and run it there.
+# Script to export a Docker container with all its data for moving to a remote host
 
-# Setup logging
-LOGFILE="./docker-export.log"
-exec > >(tee -a "$LOGFILE") 2>&1
+# Create the log directory if it doesn't exist
+mkdir -p ~/RRHQD/log
 
-echo "Logging initialized. All output will be saved to $LOGFILE"
+# Log file location
+LOG_FILE=~/RRHQD/log/docker-export-$(date '+%Y-%m-%d_%H-%M-%S').log
 
-# Prompt user for input
+# Redirect stdout and stderr to log file
+exec &> >(tee -a "$LOG_FILE")
+
+echo "Export script started at $(date)"
+
+# Get a list of all running Docker containers
+DOCKER_CONTAINERS=$(docker ps --format '{{.Names}}')
+
+# Check if there are any containers to export
+if [ -z "$DOCKER_CONTAINERS" ]; then
+  echo "No running Docker containers to export."
+  exit 1
+fi
+
+# Display a list of containers and prompt user to select one to export
 echo "Select the Docker container to export:"
-select CONTAINER_NAME in $(docker ps --format '{{.Names}}'); do
+select CONTAINER_NAME in $DOCKER_CONTAINERS; do
   if [ -n "$CONTAINER_NAME" ]; then
-    echo "You have selected the container: $CONTAINER_NAME"
     break
   else
     echo "Invalid selection. Please try again."
   fi
 done
 
-read -p "Enter the SSH username of the destination host: " SSH_USER
-read -p "Enter the destination host address: " DEST_HOST
+# Export the selected Docker container to a file
+CONTAINER_EXPORT_FILE=~/RRHQD/export/${CONTAINER_NAME}-$(date '+%Y-%m-%d_%H-%M-%S').tar
 
-# Define the local user's home directory path for storing Docker exports
-DEST_PATH="$HOME/docker_exports"
+# Export container
+docker export "$CONTAINER_NAME" -o "$CONTAINER_EXPORT_FILE"
+echo "Docker container $CONTAINER_NAME exported to $CONTAINER_EXPORT_FILE"
 
-# Create the directory if it does not exist
-mkdir -p "$DEST_PATH"
+# Export container's volumes
+VOLUME_EXPORT_PATH=~/RRHQD/export/${CONTAINER_NAME}_volumes
+mkdir -p "$VOLUME_EXPORT_PATH"
+CONTAINER_VOLUMES=$(docker inspect "$CONTAINER_NAME" | jq -r '.[0].Mounts[] | select(.Type == "volume") .Name')
 
-# Inform the user about the destination path
-echo "Docker exports will be stored in: $DEST_PATH"
+for VOLUME in $CONTAINER_VOLUMES; do
+    VOLUME_FILE="${VOLUME_EXPORT_PATH}/${VOLUME}.tar.gz"
+    docker run --rm -v "$VOLUME":/volume -v "$VOLUME_EXPORT_PATH":/backup alpine tar czf /backup/"${VOLUME_FILE##*/}" -C /volume .
+    echo "Volume $VOLUME exported to $VOLUME_FILE"
+done
 
-read -p "Enter the name for the Docker container on the new host: " NEW_CONTAINER_NAME
 
-# Set the filename for the exported Docker container
-EXPORT_FILE="${CONTAINER_NAME}.tar"
+# Function to push container and volumes to remote host
+push_to_remote_host() {
+  # Remote host information
+  REMOTE_HOST="user@remote-server"
+  REMOTE_PATH="/remote/path/for/docker_exports"
 
-# Export the Docker container
-echo "Exporting Docker container $CONTAINER_NAME..."
-docker export "$CONTAINER_NAME" > "$EXPORT_FILE"
+  # Push the container export file to the remote host
+  scp "$CONTAINER_EXPORT_FILE" "${REMOTE_HOST}:${REMOTE_PATH}"
 
-# Transfer the export to the new host
-echo "Transferring export to $DEST_HOST..."
-scp "$EXPORT_FILE" "${SSH_USER}@${DEST_HOST}:${DEST_PATH}/"
+  # Push the volume exports to the remote host
+  scp "${VOLUME_EXPORT_PATH}"/*.tar.gz "${REMOTE_HOST}:${REMOTE_PATH}/${CONTAINER_NAME}_volumes/"
 
-# Run commands on the new host to load and run the Docker container
-ssh "${SSH_USER}@${DEST_HOST}" bash -c "' 
-docker load -i ${DEST_PATH}/$(basename ${EXPORT_FILE})
-CMD=$(docker inspect --format='{{.Config.Cmd}}' ${CONTAINER_NAME})
-ENV_VARS=$(docker inspect --format='{{range .Config.Env}}-e {{.}} {{end}}' ${CONTAINER_NAME})
-PORTS=$(docker inspect --format='{{range .Config.ExposedPorts}}-p {{.}} {{end}}' ${CONTAINER_NAME})
-docker run --name ${NEW_CONTAINER_NAME} -d ${CMD} ${ENV_VARS} ${PORTS}
-'"
+  echo "Docker container and volumes have been pushed to the remote host."
+}
 
-# Clean up the exported file on the local machine
-echo "Cleaning up local export file..."
-rm "$EXPORT_FILE"
-
-echo "Docker container $CONTAINER_NAME has been exported, transferred, and should now be running on $DEST_HOST as $NEW_CONTAINER_NAME."
+# Call the function to push to remote host after export
+push_to_remote_host
 
