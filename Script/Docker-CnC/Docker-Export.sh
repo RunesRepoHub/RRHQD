@@ -6,6 +6,9 @@ DOCKER_LOCAL_PATH=/var/lib/docker_migration/local        # Local directory path 
 DOCKER_REMOTE_PATH=/var/lib/docker_migration/remote      # Remote directory path for Docker images
 LOG_FILE="$LOG_DIR/docker_migration.log"  # Log file location
 
+read -p "Enter the remote host IP or address: " REMOTE_HOST
+read -p "Enter the remote user name: " REMOTE_USER
+
 # Ensure local Docker migration path exists
 mkdir -p "$DOCKER_LOCAL_PATH"
 
@@ -21,9 +24,6 @@ LOG_FILE="$LOG_DIR/docker_migration.log"
 
 # Redirect all output to log file
 exec > >(tee -a "$LOG_FILE") 2>&1
-
-read -p "Enter the remote host IP or address: " REMOTE_HOST
-read -p "Enter the remote user name: " REMOTE_USER
 
 
 # Function to save Docker containers as images and transfer them to a remote host
