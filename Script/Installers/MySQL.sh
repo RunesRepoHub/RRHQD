@@ -27,6 +27,7 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
+cd
 # Script to configure and start a Docker container with MySQL
 
 echo "MySQL Docker configuration script."

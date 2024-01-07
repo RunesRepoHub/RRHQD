@@ -27,6 +27,8 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
+cd
+
 source ~/RRHQD/Core/Core.sh
 
 # RRHQD/Script/Installers/CheckMK.sh

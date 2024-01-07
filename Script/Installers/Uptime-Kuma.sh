@@ -31,6 +31,8 @@ clear
 
 source ~/RRHQD/Core/Core.sh
 
+cd
+
 echo -e "${Green}Setup a Docker container for Uptime-Kuma${NC}"
 
 # Prompt user for input with defaults
