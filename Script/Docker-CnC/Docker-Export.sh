@@ -94,8 +94,8 @@ done
 BACKUP_ARCHIVE="backup_${SESSION_ID}.tar.gz"
 tar -czvf "$BACKUP_ARCHIVE" -C "$BACKUP_DIR" .
 
-username="REMOTE_USER"
-ip_address="REMOTE_IP"
+username=$REMOTE_USER
+ip_address=$REMOTE_IP
 
 # Check if scp is installed on the other machine and install it if not
 ssh $username@$ip_address 'command -v scp >/dev/null 2>&1 || { echo "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
