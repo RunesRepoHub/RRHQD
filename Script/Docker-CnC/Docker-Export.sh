@@ -97,5 +97,5 @@ export_docker
 transfer_docker
 verify_transfer
 
-echo "Docker export and migration completed."
+dialog --title "Export and Migration Completed" --msgbox "Docker export and migration completed." 5 50
 
