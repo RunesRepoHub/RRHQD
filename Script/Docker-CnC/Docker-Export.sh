@@ -105,7 +105,7 @@ ssh $REMOTE_USER@$REMOTE_IP 'command -v scp >/dev/null 2>&1 || { echo "scp is no
 
 # Provide the command to copy the backup archive to the other machine
 # Place the backup file into the user's home directory on the remote machine
-REMOTE_BACKUP_PATH="~/"
+REMOTE_BACKUP_PATH="~"
 echo "Use the following command to copy the backup to the other machine:"
 echo "scp $BACKUP_ARCHIVE $REMOTE_USER@$REMOTE_IP:$REMOTE_BACKUP_PATH"
 
