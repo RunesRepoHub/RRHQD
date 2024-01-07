@@ -2,8 +2,9 @@
 # Simple Bash script to migrate Docker containers from a local machine to a remote host
 
 # Configuration
-DOCKER_LOCAL_PATH=/var/lib/docker_migration/local        # Local directory path for Docker images
-DOCKER_REMOTE_PATH=/var/lib/docker_migration/remote      # Remote directory path for Docker images
+DOCKER_MIGRATION_PATH=/opt/docker_migration  # Base directory path for Docker migrations
+DOCKER_LOCAL_PATH="$DOCKER_MIGRATION_PATH/local"        # Local directory path for Docker images
+DOCKER_REMOTE_PATH="$DOCKER_MIGRATION_PATH/remote"      # Remote directory path for Docker images
 LOG_FILE="$LOG_DIR/docker_migration.log"  # Log file location
 
 read -p "Enter the remote host IP or address: " REMOTE_HOST
