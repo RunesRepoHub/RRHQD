@@ -1,6 +1,17 @@
 #!/bin/bash
 # Simple Bash script to migrate Docker containers from a local machine to a remote host
 
+# Configuration
+DOCKER_LOCAL_PATH=/var/lib/docker_migration/local        # Local directory path for Docker images
+DOCKER_REMOTE_PATH=/var/lib/docker_migration/remote      # Remote directory path for Docker images
+LOG_FILE="$LOG_DIR/docker_migration.log"  # Log file location
+
+# Ensure local Docker migration path exists
+mkdir -p "$DOCKER_LOCAL_PATH"
+
+# Ensure remote Docker migration path exists
+ssh "$REMOTE_USER@$REMOTE_HOST" "mkdir -p '$DOCKER_REMOTE_PATH'"
+
 # Create log directory if it doesn't exist
 LOG_DIR="$HOME/RRHQD/log"
 mkdir -p "$LOG_DIR"
@@ -14,10 +25,6 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 read -p "Enter the remote host IP or address: " REMOTE_HOST
 read -p "Enter the remote user name: " REMOTE_USER
 
-# Configuration
-LOCAL_PATH=/root/Docker          # Replace with the local directory path where Docker images are stored
-REMOTE_PATH=/root/Docker         # Replace with the remote directory path where Docker images will be stored
-LOG_FILE="$LOG_DIR/docker_migration.log"  # Log file location
 
 # Function to save Docker containers as images and transfer them to a remote host
 migrate_docker() {
