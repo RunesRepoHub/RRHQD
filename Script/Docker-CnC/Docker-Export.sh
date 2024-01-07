@@ -12,8 +12,14 @@ read -p "Enter the remote user name: " REMOTE_USER
 # Ensure local Docker migration path exists
 mkdir -p "$DOCKER_LOCAL_PATH"
 
-# Ensure remote Docker migration path exists
-ssh "$REMOTE_USER@$REMOTE_HOST" "mkdir -p '$DOCKER_REMOTE_PATH'"
+# Check the connection to the remote host and create the Docker migration path if the connection is successful
+if ssh -q "$REMOTE_USER@$REMOTE_HOST" exit; then
+  echo "Connection to $REMOTE_HOST successful."
+  ssh "$REMOTE_USER@$REMOTE_HOST" "mkdir -p '$DOCKER_REMOTE_PATH'" && echo "Remote Docker migration path created."
+else
+  echo "Failed to connect to $REMOTE_HOST. Please check your settings."
+  exit 1
+fi
 
 # Create log directory if it doesn't exist
 LOG_DIR="$HOME/RRHQD/log"
