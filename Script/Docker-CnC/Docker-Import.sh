@@ -29,12 +29,17 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-# List new Docker images in the migration path
+# Generate an option menu for available Docker images
+available_images=($(ls "$DOCKER_MIGRATION_PATH" | grep '_image.tar$'))
 echo "Available Docker images in $DOCKER_MIGRATION_PATH:"
-ls "$DOCKER_MIGRATION_PATH" | grep '_image.tar$'
-
-# Prompt user for the Docker image to load
-read -p "Enter the Docker image file name to load: " DOCKER_IMAGE_FILE
+select DOCKER_IMAGE_FILE in "${available_images[@]}"; do
+  if [[ -n "$DOCKER_IMAGE_FILE" ]]; then
+    echo "You have selected the Docker image: $DOCKER_IMAGE_FILE"
+    break
+  else
+    echo "Invalid selection. Please try again."
+  fi
+done
 
 # Load the Docker image
 docker load -i "$DOCKER_MIGRATION_PATH/$DOCKER_IMAGE_FILE"
@@ -44,8 +49,8 @@ if [ $? -ne 0 ]; then
 fi
 echo "Docker image loaded successfully."
 
-# Extract the container name from the image file name, excluding the tar extension
-CONTAINER_NAME=$(basename "$DOCKER_IMAGE_FILE" "_image.tar" | sed 's/.tar$//')
+# Extract the container name from the image file name
+CONTAINER_NAME=$(echo "$DOCKER_IMAGE_FILE" | sed 's/.tar//')
 
 # Run the Docker container with optional volume mappings
 read -p "Enter the port mappings (format: 80:80): " PORT_MAPPINGS
