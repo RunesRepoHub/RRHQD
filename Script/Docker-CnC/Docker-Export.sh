@@ -1,125 +1,51 @@
 #!/bin/bash
+# Script to export a Docker container, transfer it to another host, and run it there.
 
-source ~/RRHQD/Core/Core.sh
-
-# RRHQD/Script/Docker-CnC/Docker-Export.sh
-# Script to export a Docker container and its data to another machine
-
-LOG_FILE="./docker_export_$(date +%F_%T).log"
-
-exec > >(tee -a "$LOG_FILE") 2>&1
-
-echo "Starting Docker container export process..."
-
-# Check if an SSH key already exists
-if [[ ! -f ~/.ssh/id_rsa ]]; then
-    # No SSH key found, create a new one
-    echo "No SSH key found. Creating a new one..."
-    ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
-    echo "SSH key created."
-else
-    echo "SSH key already exists."
-fi
-
-# Set default SSH public key path
-DEFAULT_SSH_KEY_PATH="$HOME/.ssh/id_rsa.pub"
-SSH_KEY_PATH=${SSH_KEY_PATH:-"$DEFAULT_SSH_KEY_PATH"}
-
-# Check if the SSH public key file exists
-if [[ ! -f "$SSH_KEY_PATH" ]]; then
-    echo "Error: SSH public key not found at $SSH_KEY_PATH."
-    exit 1
-fi
-
-# Prompt for username and IP address of the other machine
-read -p "Enter the username of the remote user: " REMOTE_USER
-read -p "Enter the IP address of the remote machine: " REMOTE_IP
-
-# Copy the SSH public key to the other machine's authorized_keys
-echo "Copying SSH public key to $REMOTE_USER@$REMOTE_IP..."
-ssh-copy-id -i "$SSH_KEY_PATH" "$REMOTE_USER@$REMOTE_IP"
-
-if [[ $? -ne 0 ]]; then
-    echo "Failed to copy SSH public key to the remote machine."
-    exit 1
-fi
-
-echo "SSH public key successfully copied to the remote machine."
-
-# List all running Docker containers and allow the user to select one for export
-echo "Select the Docker container to export by entering the corresponding number:"
-mapfile -t CONTAINER_NAMES < <(docker ps --format '{{.Names}}')
-for i in "${!CONTAINER_NAMES[@]}"; do
-    echo "$((i+1))) ${CONTAINER_NAMES[$i]}"
-done
-
-read -p "Enter the number of the Docker container to export: " CONTAINER_NUMBER
-CONTAINER_NAME=${CONTAINER_NAMES[$((CONTAINER_NUMBER-1))]}
-
-# Check if the user input is valid and the Docker container exists
-if [[ "$CONTAINER_NUMBER" -gt 0 && "$CONTAINER_NUMBER" -le "${#CONTAINER_NAMES[@]}" ]] && docker inspect "$CONTAINER_NAME" &>/dev/null; then
+# Prompt user for input
+echo "Select the Docker container to export:"
+select CONTAINER_NAME in $(docker ps --format '{{.Names}}'); do
+  if [ -n "$CONTAINER_NAME" ]; then
     echo "You have selected the container: $CONTAINER_NAME"
-else
-    echo "Error: Invalid selection or container does not exist."
-    exit 1
-fi
-
-# Retrieve the Docker image name used by the container
-IMAGE_NAME=$(docker inspect --format='{{.Config.Image}}' "$CONTAINER_NAME")
-echo "Docker image name retrieved: $IMAGE_NAME"
-
-# Stop the container before exporting
-docker stop "$CONTAINER_NAME"
-
-# Export the container to a tar file
-CONTAINER_EXPORT_PATH="./${CONTAINER_NAME}_container.tar"
-docker export "$CONTAINER_NAME" > "$CONTAINER_EXPORT_PATH"
-echo "Docker container exported to $CONTAINER_EXPORT_PATH"
-
-# Find the data volume(s) used by the container and create a backup
-VOLUMES=$(docker inspect --format='{{range .Mounts}}{{println .Name}}{{end}}' "$CONTAINER_NAME")
-for VOLUME in $VOLUMES; do
-    VOLUME_BACKUP_PATH="./${VOLUME}_backup.tar"
-    docker run --rm -v "$VOLUME":/"$VOLUME" -v "$(pwd)":/backup ubuntu tar cvf /backup/"$VOLUME_BACKUP_PATH" -C / "$VOLUME"
-    echo "Volume $VOLUME exported to $VOLUME_BACKUP_PATH"
+    break
+  else
+    echo "Invalid selection. Please try again."
+  fi
 done
 
-# Generate a unique identifier for the session to avoid file name collision
-SESSION_ID=$(date +%s)
 
-# Create a directory to store the backup files
-BACKUP_DIR="./backup_${SESSION_ID}"
-mkdir -p "$BACKUP_DIR"
+read -p "Enter the SSH username of the destination host: " SSH_USER
+read -p "Enter the destination host address: " DEST_HOST
 
-# Move the container export and volume backups to the backup directory
-mv "$CONTAINER_EXPORT_PATH" "$BACKUP_DIR"
-for VOLUME in $VOLUMES; do
-    mv "./${VOLUME}_backup.tar" "$BACKUP_DIR"
-done
+# Define the local user's home directory path for storing Docker exports
+DEST_PATH="$HOME/docker_exports"
 
-# Compress the backup directory into a single archive for easy transfer
-BACKUP_ARCHIVE="backup_${SESSION_ID}.tar.gz"
-tar -czvf "$BACKUP_ARCHIVE" -C "$BACKUP_DIR" .
+# Create the directory if it does not exist
+mkdir -p "$DEST_PATH"
 
-# Check if scp and docker are installed on the remote machine, install if not
-ssh "$REMOTE_USER@$REMOTE_IP" 'command -v scp >/dev/null 2>&1 || { echo >&2 "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
-ssh "$REMOTE_USER@$REMOTE_IP" 'command -v docker >/dev/null 2>&1 || { echo >&2 "Docker is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y docker.io; }'
+# Inform the user about the destination path
+echo "Docker exports will be stored in: $DEST_PATH"
 
-# Transfer the backup archive to the remote machine
-scp "$BACKUP_ARCHIVE" "$REMOTE_USER@$REMOTE_IP:~/"
+read -p "Enter the name for the Docker container on the new host: " NEW_CONTAINER_NAME
 
-# Remote commands to unpack and load the container and volumes on the remote host
-REMOTE_SCRIPT="
-    mkdir -p ~/restore_$SESSION_ID && \
-    tar -xzvf ~/$BACKUP_ARCHIVE -C ~/restore_$SESSION_ID && \
-    docker load -i ~/restore_$SESSION_ID/${CONTAINER_NAME}_container.tar && \
-    for volume_tar in ~/restore_$SESSION_ID/*_backup.tar; do \
-        VOLUME_NAME=\$(basename \$volume_tar _backup.tar) && \
-        docker volume create \$VOLUME_NAME && \
-        docker run --rm -v \$VOLUME_NAME:/\$VOLUME_NAME -v ~/restore_$SESSION_ID:/backup ubuntu bash -c 'tar xvf /backup/'\$(basename \$volume_tar)' -C /' && \
-        echo \"Volume \$VOLUME_NAME restored from \$volume_tar\"; \
-    done && \
-    echo 'All data has been restored.'
-"
+# Set the filename for the exported Docker container
+EXPORT_FILE="${CONTAINER_NAME}.tar"
 
-ssh "$REMOTE_USER@$REMOTE_IP" "$REMOTE_SCRIPT"
+# Export the Docker container
+echo "Exporting Docker container $CONTAINER_NAME..."
+docker export "$CONTAINER_NAME" > "$EXPORT_FILE"
+
+# Transfer the export to the new host
+echo "Transferring export to $DEST_HOST..."
+scp "$EXPORT_FILE" "${SSH_USER}@${DEST_HOST}:${DEST_PATH}/${EXPORT_FILE}"
+
+# Run commands on the new host to load and run the Docker container
+ssh "${SSH_USER}@${DEST_HOST}" bash -c "'
+docker load -i ${DEST_PATH}/${EXPORT_FILE}
+docker run --name ${NEW_CONTAINER_NAME} -d $(docker inspect --format='{{.Config.Cmd}}' ${CONTAINER_NAME}) $(docker inspect --format='{{range .Config.Env}}{{println \"-e\" .}}{{end}}' ${CONTAINER_NAME}) $(docker inspect --format='{{range .Config.ExposedPorts}}{{println \"-p\" .}}{{end}}' ${CONTAINER_NAME})
+'"
+
+# Clean up the exported file on the local machine
+echo "Cleaning up local export file..."
+rm "$EXPORT_FILE"
+
+echo "Docker container $CONTAINER_NAME has been exported, transferred, and should now be running on $DEST_HOST as $NEW_CONTAINER_NAME."
