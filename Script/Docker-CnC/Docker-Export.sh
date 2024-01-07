@@ -101,20 +101,19 @@ done
 BACKUP_ARCHIVE="backup_${SESSION_ID}.tar.gz"
 tar -czvf "$BACKUP_ARCHIVE" -C "$BACKUP_DIR" .
 
-# Check if scp is installed on the other machine and install it if not
-ssh $REMOTE_USER@$REMOTE_IP 'command -v scp >/dev/null 2>&1 || { echo "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
+# Check if scp and docker are installed on the remote machine, install if not
+ssh "$REMOTE_USER@$REMOTE_IP" 'command -v scp >/dev/null 2>&1 || { echo "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
+ssh "$REMOTE_USER@$REMOTE_IP" 'command -v docker >/dev/null 2>&1 || { echo "Docker is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y docker.io; }'
 
-scp "$BACKUP_ARCHIVE" $REMOTE_USER@$REMOTE_IP:~/
+# Transfer the backup archive to the remote machine
+scp "$BACKUP_ARCHIVE" "$REMOTE_USER@$REMOTE_IP:~/"
 
-sleep 5
+# Decompress the backup archive on the remote machine
+ssh "$REMOTE_USER@$REMOTE_IP" "tar -xzvf ~/$BACKUP_ARCHIVE -C ~/"
 
-# Decompress the backup archive on the remote machine via ssh
-ssh $REMOTE_USER@$REMOTE_IP "tar -xzvf ~/$BACKUP_ARCHIVE -C ~/ ."
+# Load the Docker image on the remote machine
+ssh "$REMOTE_USER@$REMOTE_IP" "docker load -i ~/${CONTAINER_NAME}_container.tar"
 
-sleep 3
-
-ssh $REMOTE_USER@$REMOTE_IP "cat ~/${CONTAINER_NAME}_container.tar | docker import - $IMAGE_NAME"
-
-# Load the Docker container from the backup and run it on the remote machine via ssh
-ssh $REMOTE_USER@$REMOTE_IP "docker load -i ~/${CONTAINER_NAME}_container.tar"
+# Start the Docker container using the loaded image
+ssh "$REMOTE_USER@$REMOTE_IP" "docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
 
