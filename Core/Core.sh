@@ -79,6 +79,7 @@ DOCKER_UPDATE="Docker-Update.sh"
 DOCKER_RESET="Docker-Reset.sh"
 DOCKER_REMOVE="Docker-Remove.sh"
 DOCKER_EXPORT="Docker-Export.sh"
+DOCKER_IMPORT="Docker-Import.sh"
 
 ## Background Jobs
 
