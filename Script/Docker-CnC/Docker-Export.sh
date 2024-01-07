@@ -2,7 +2,7 @@
 # Script to export a Docker container, transfer it to another host, and run it there.
 
 # Setup logging
-LOGFILE="/var/log/docker-export.log"
+LOGFILE="./docker-export.log"
 exec > >(tee -a "$LOGFILE") 2>&1
 
 echo "Logging initialized. All output will be saved to $LOGFILE"
