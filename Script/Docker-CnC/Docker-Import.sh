@@ -59,9 +59,9 @@ read -p "Do you need to use volume mappings? (y/n): " USE_VOLUME
 VOLUME_MAPPINGS=""
 if [[ "$USE_VOLUME" == "y" ]]; then
   read -p "Enter the volume mappings (format: /host/path:/container/path): " VOLUME_MAPPINGS
-  docker run -d --name "$CONTAINER_NAME" -p $PORT_MAPPINGS -v $VOLUME_MAPPINGS "$DOCKER_IMAGE_FILE"
+  docker run -d --name "$CONTAINER_NAME" -p $PORT_MAPPINGS -v $VOLUME_MAPPINGS "$CONTAINER_NAME"
 else
-  docker run -d --name "$CONTAINER_NAME" -p $PORT_MAPPINGS "$DOCKER_IMAGE_FILE"
+  docker run -d --name "$CONTAINER_NAME" -p $PORT_MAPPINGS "$CONTAINER_NAME"
 fi
 
 if [ $? -ne 0 ]; then
