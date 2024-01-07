@@ -91,7 +91,8 @@ BACKUP_DIR="./backup_${SESSION_ID}"
 mkdir -p "$BACKUP_DIR"
 
 # Move the container export and volume backups to the backup directory
-mv "${CONTAINER_NAME}_container.tar" "$BACKUP_DIR"
+CONTAINER_EXPORT_PATH="${CONTAINER_NAME}_container.tar"
+mv "$CONTAINER_EXPORT_PATH" "$BACKUP_DIR"
 for VOLUME in $VOLUMES; do
     mv "${VOLUME}_backup.tar" "$BACKUP_DIR"
 done
@@ -103,16 +104,16 @@ tar -czvf "$BACKUP_ARCHIVE" -C "$BACKUP_DIR" .
 # Check if scp is installed on the other machine and install it if not
 ssh $REMOTE_USER@$REMOTE_IP 'command -v scp >/dev/null 2>&1 || { echo "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
 
-scp $BACKUP_ARCHIVE $REMOTE_USER@$REMOTE_IP:~/
+scp "$BACKUP_ARCHIVE" $REMOTE_USER@$REMOTE_IP:~/
 
-sleep 5 
+sleep 5
 
 # Decompress the backup archive on the remote machine via ssh
 ssh $REMOTE_USER@$REMOTE_IP "tar -xzvf ~/$BACKUP_ARCHIVE -C ~/ ."
 
 sleep 3
 
-# Start the Docker container from the backup on the other machine via ssh
-# Assuming the backup file is now in the user's home directory
-ssh $REMOTE_USER@$REMOTE_IP "docker load -i ~/$CONTAINER_EXPORT_PATH && docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
+# Load the Docker container from the backup and run it on the remote machine via ssh
+CONTAINER_NAME_RESTORED="${CONTAINER_NAME}_restored"
+ssh $REMOTE_USER@$REMOTE_IP "docker load -i ~/${CONTAINER_NAME}_container.tar && docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
 
