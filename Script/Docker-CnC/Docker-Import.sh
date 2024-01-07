@@ -36,10 +36,9 @@ spin_up_docker() {
     local image_name=$(basename "$image_path")
     local container_name="${image_name%_image.tar}"
 
-    {
-      echo "docker load -i $image_path"
-      echo "docker run -d --name $container_name $PORTS $VOLUMES ${container_name}_image"
-    } >> "${LOG_FILE}_success"
+    read -p "Enter ports (format: 'host_port:container_port', separate multiple with spaces): " PORTS
+    read -p "Enter volumes (format: 'host_volume:container_volume', separate multiple with spaces): " VOLUMES
+    read -p "Enter container name: " container_name
 
     echo "Loading image $image_name" | tee -a "$LOG_FILE"
     docker load -i "$image_path" | tee -a "$LOG_FILE"
@@ -47,19 +46,6 @@ spin_up_docker() {
     echo "Starting container from $image_name" | tee -a "$LOG_FILE"
     docker run -d --name "$container_name" $PORTS $VOLUMES "${container_name}_image" | tee -a "$LOG_FILE"
 }
-
-# Function to ask user for ports and volumes
-ask_ports_and_volumes() {
-  read -p "Enter ports (format: 'host_port:container_port', separate multiple with spaces): " PORTS
-  read -p "Enter volumes (format: 'host_volume:container_volume', separate multiple with spaces): " VOLUMES
-}
-
-# Main script execution
-echo "Starting Docker spin up at $(date)" | tee -a "$LOG_FILE"
-
-# Ask the user for the ports and volumes
-ask_ports_and_volumes
-
 
 # Main script execution
 echo "Starting Docker spin up at $(date)" | tee -a "$LOG_FILE"
