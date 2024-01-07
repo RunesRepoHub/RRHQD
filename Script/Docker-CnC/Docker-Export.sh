@@ -93,6 +93,7 @@ VOLUMES=$(docker inspect --format='{{range .Mounts}} -v {{.Source}}:{{.Destinati
 export_docker
 transfer_docker
 verify_transfer
+display_commands_dialog
 
 echo "Docker export and migration completed."
 
