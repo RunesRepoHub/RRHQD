@@ -39,6 +39,7 @@ function show_dialog_menu() {
             cd $ROOT_FOLDER
             git pull
             echo -e "${Green}You can now run the script fully updated${NC}"
+            exit 0
             ;;
         *)
             dialog --title "Exiting" --msgbox "Thank you for using RRHQD. Support me via github https://github.com/RunesRepoHub/" 6 52
