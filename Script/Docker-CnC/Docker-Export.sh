@@ -106,6 +106,14 @@ REMOTE_BACKUP_PATH="~/"
 echo "Use the following command to copy the backup to the other machine:"
 echo "scp $BACKUP_ARCHIVE $username@$ip_address:$REMOTE_BACKUP_PATH"
 
+
+sleep 5 
+
+# Decompress the backup archive on the remote machine via ssh
+ssh $username@$ip_address "tar -xzvf $REMOTE_BACKUP_PATH/$BACKUP_ARCHIVE -C $REMOTE_BACKUP_PATH"
+
+sleep 3
+
 # Start the Docker container from the backup on the other machine via ssh
 # Assuming the backup file is now in the user's home directory
 ssh $username@$ip_address "docker load -i $REMOTE_BACKUP_PATH/$BACKUP_ARCHIVE && docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
