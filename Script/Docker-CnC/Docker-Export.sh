@@ -104,19 +104,18 @@ tar -czvf "$BACKUP_ARCHIVE" -C "$BACKUP_DIR" .
 ssh $REMOTE_USER@$REMOTE_IP 'command -v scp >/dev/null 2>&1 || { echo "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
 
 # Correct the REMOTE_BACKUP_PATH to use the absolute path of the user's home directory instead of '~'
-REMOTE_BACKUP_PATH="/home/$REMOTE_USER"
 echo "Use the following command to copy the backup to the other machine:"
-echo "scp $BACKUP_ARCHIVE $REMOTE_USER@$REMOTE_IP:$REMOTE_BACKUP_PATH"
+echo "scp $BACKUP_ARCHIVE $REMOTE_USER@$REMOTE_IP:~/"
 
 
 sleep 5 
 
 # Decompress the backup archive on the remote machine via ssh
-ssh $REMOTE_USER@$REMOTE_IP "tar -xzvf $REMOTE_BACKUP_PATH/$BACKUP_ARCHIVE -C $REMOTE_BACKUP_PATH"
+ssh $REMOTE_USER@$REMOTE_IP "tar -xzvf ~/$BACKUP_ARCHIVE -C $REMOTE_BACKUP_PATH"
 
 sleep 3
 
 # Start the Docker container from the backup on the other machine via ssh
 # Assuming the backup file is now in the user's home directory
-ssh $REMOTE_USER@$REMOTE_IP "docker load -i $REMOTE_BACKUP_PATH/$BACKUP_ARCHIVE && docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
+ssh $REMOTE_USER@$REMOTE_IP "docker load -i ~/$BACKUP_ARCHIVE && docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
 
