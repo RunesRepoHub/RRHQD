@@ -17,7 +17,7 @@ function show_dialog_menu() {
            5 "Docker - Reset" \
            6 "Docker - Remove" \
            7 "Docker - Export" \
-           8 "Docker - Export" \
+           8 "Docker - Import" \
            9 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
