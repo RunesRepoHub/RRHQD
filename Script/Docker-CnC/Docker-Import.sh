@@ -7,7 +7,11 @@ LOG_DIR="$HOME/RRHQD/logs"
 DOCKER_REMOTE_PATH=$DOCKER_MIGRATION_PATH     # Remote directory path for Docker images
 LOG_FILE="$LOG_DIR/docker_import.log"  # Log file location
 
+# Prompt user for volume mappings
+read -p "Enter the volume mappings (e.g., /local/path:/container/path): " VOLUMES
 
+# Prompt user for port mappings
+read -p "Enter the port mappings (e.g., 8080:80): " PORTS
 
 # Function to increment log file name
 increment_log_file_name() {
@@ -74,3 +78,4 @@ spin_up_docker "$image_path"
 
 echo "Docker spin up completed at $(date)" | tee -a "$LOG_FILE"
 
+dialog --title "Import Success" --msgbox "The Docker image has been successfully imported and the container is running." 6 50
