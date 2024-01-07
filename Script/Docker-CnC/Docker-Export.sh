@@ -113,6 +113,8 @@ ssh $REMOTE_USER@$REMOTE_IP "tar -xzvf ~/$BACKUP_ARCHIVE -C ~/ ."
 
 sleep 3
 
+ssh $REMOTE_USER@$REMOTE_IP "cat ~/${CONTAINER_NAME}_container.tar | docker import - $IMAGE_NAME"
+
 # Load the Docker container from the backup and run it on the remote machine via ssh
 CONTAINER_NAME_RESTORED="${CONTAINER_NAME}_restored"
 ssh $REMOTE_USER@$REMOTE_IP "docker load -i ~/${CONTAINER_NAME}_container.tar && docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
