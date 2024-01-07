@@ -70,9 +70,11 @@ verify_transfer() {
   fi
 }
 
-# Inform the user to run the load and run commands on the remote host
-DIALOG_COMMAND="dialog --msgbox 'Please run the following commands on the remote host:\ndocker load -i $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar\ndocker run -d --name $CONTAINER_NAME $PORTS $VOLUMES ${CONTAINER_NAME}_image' 10 50"
-ssh -t "$REMOTE_USER@$REMOTE_HOST" "$DIALOG_COMMAND"
+# Refactor the code block to echo commands into a log file with _success appended
+{
+  echo "docker load -i $DOCKER_MIGRATION_PATH/${CONTAINER_NAME}_image.tar"
+  echo "docker run -d --name $CONTAINER_NAME $PORTS $VOLUMES ${CONTAINER_NAME}_image"
+} >> "${LOG_FILE}_success"
 
 
 
@@ -94,7 +96,6 @@ VOLUMES=$(docker inspect --format='{{range .Mounts}} -v {{.Source}}:{{.Destinati
 export_docker
 transfer_docker
 verify_transfer
-display_commands_dialog
 
 echo "Docker export and migration completed."
 
