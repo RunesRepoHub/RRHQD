@@ -96,14 +96,12 @@ read -p "Enter the IP address: " ip_address
 # Check if scp is installed on the other machine and install it if not
 ssh $username@$ip_address 'command -v scp >/dev/null 2>&1 || { echo "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
 
-echo "Enter the destination path for the backup on the other machine, for example: /path/to/destination"
-read -p "Enter the destination path for the backup on the other machine: " destination_path
-
-
-
 # Provide the command to copy the backup archive to the other machine
+# Place the backup file into the user's home directory on the remote machine
+REMOTE_BACKUP_PATH="~/"
 echo "Use the following command to copy the backup to the other machine:"
-echo "scp $BACKUP_ARCHIVE $username@$ip_address:$destination_path"
+echo "scp $BACKUP_ARCHIVE $username@$ip_address:$REMOTE_BACKUP_PATH"
 
 # Start the Docker container from the backup on the other machine via ssh
-ssh $username@$ip_address "docker load -i $destination_path/$BACKUP_ARCHIVE && docker run -d --name $CONTAINER_NAME_RESTORED <image>"
+# Assuming the backup file is now in the user's home directory
+ssh $username@$ip_address "docker load -i $REMOTE_BACKUP_PATH/$BACKUP_ARCHIVE && docker run -d --name $CONTAINER_NAME_RESTORED <image>"
