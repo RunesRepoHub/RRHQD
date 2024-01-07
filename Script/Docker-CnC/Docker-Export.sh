@@ -103,10 +103,7 @@ tar -czvf "$BACKUP_ARCHIVE" -C "$BACKUP_DIR" .
 # Check if scp is installed on the other machine and install it if not
 ssh $REMOTE_USER@$REMOTE_IP 'command -v scp >/dev/null 2>&1 || { echo "scp is not installed. Installing..."; sudo apt-get update && sudo apt-get install -y openssh-client; }'
 
-# Correct the REMOTE_BACKUP_PATH to use the absolute path of the user's home directory instead of '~'
-echo "Use the following command to copy the backup to the other machine:"
-echo "scp $BACKUP_ARCHIVE $REMOTE_USER@$REMOTE_IP:~/"
-
+scp $BACKUP_ARCHIVE $REMOTE_USER@$REMOTE_IP:~/
 
 sleep 5 
 
