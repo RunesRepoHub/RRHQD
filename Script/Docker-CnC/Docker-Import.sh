@@ -47,10 +47,18 @@ echo "Docker image loaded successfully."
 # Extract the container name from the image file name
 CONTAINER_NAME=$(basename "$DOCKER_IMAGE_FILE" "_image.tar")
 
-# Run the Docker container
+# Run the Docker container with optional volume mappings
 read -p "Enter the port mappings (format: 80:80): " PORT_MAPPINGS
-read -p "Enter the volume mappings (format: /host/path:/container/path): " VOLUME_MAPPINGS
-docker run -d --name "$CONTAINER_NAME" -p $PORT_MAPPINGS -v $VOLUME_MAPPINGS "$DOCKER_IMAGE_FILE"
+read -p "Do you need to use volume mappings? (y/n): " USE_VOLUME
+
+VOLUME_MAPPINGS=""
+if [[ "$USE_VOLUME" == "y" ]]; then
+  read -p "Enter the volume mappings (format: /host/path:/container/path): " VOLUME_MAPPINGS
+  docker run -d --name "$CONTAINER_NAME" -p $PORT_MAPPINGS -v $VOLUME_MAPPINGS "$DOCKER_IMAGE_FILE"
+else
+  docker run -d --name "$CONTAINER_NAME" -p $PORT_MAPPINGS "$DOCKER_IMAGE_FILE"
+fi
+
 if [ $? -ne 0 ]; then
   echo "Failed to run Docker container."
   exit 1
