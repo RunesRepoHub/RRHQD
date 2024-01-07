@@ -114,5 +114,5 @@ sleep 3
 
 # Start the Docker container from the backup on the other machine via ssh
 # Assuming the backup file is now in the user's home directory
-ssh $REMOTE_USER@$REMOTE_IP "docker load -i ~/$BACKUP_ARCHIVE && docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
+ssh $REMOTE_USER@$REMOTE_IP "docker load -i ~/$CONTAINER_EXPORT_PATH && docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
 
