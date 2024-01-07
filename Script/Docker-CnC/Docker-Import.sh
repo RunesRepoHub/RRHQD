@@ -44,8 +44,8 @@ if [ $? -ne 0 ]; then
 fi
 echo "Docker image loaded successfully."
 
-# Extract the container name from the image file name
-CONTAINER_NAME=$(basename "$DOCKER_IMAGE_FILE" "_image.tar")
+# Extract the container name from the image file name, excluding the tar extension
+CONTAINER_NAME=$(basename "$DOCKER_IMAGE_FILE" "_image.tar" | sed 's/.tar$//')
 
 # Run the Docker container with optional volume mappings
 read -p "Enter the port mappings (format: 80:80): " PORT_MAPPINGS
