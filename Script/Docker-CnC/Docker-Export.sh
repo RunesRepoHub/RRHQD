@@ -55,6 +55,10 @@ else
     exit 1
 fi
 
+# Retrieve the Docker image name used by the container
+IMAGE_NAME=$(docker inspect --format='{{.Config.Image}}' "$CONTAINER_NAME")
+echo "Docker image name retrieved: $IMAGE_NAME"
+
 # Stop the container before exporting
 docker stop "$CONTAINER_NAME"
 
@@ -104,4 +108,4 @@ echo "scp $BACKUP_ARCHIVE $username@$ip_address:$REMOTE_BACKUP_PATH"
 
 # Start the Docker container from the backup on the other machine via ssh
 # Assuming the backup file is now in the user's home directory
-ssh $username@$ip_address "docker load -i $REMOTE_BACKUP_PATH/$BACKUP_ARCHIVE && docker run -d --name $CONTAINER_NAME_RESTORED <image>"
+ssh $username@$ip_address "docker load -i $REMOTE_BACKUP_PATH/$BACKUP_ARCHIVE && docker run -d --name $CONTAINER_NAME_RESTORED $IMAGE_NAME"
