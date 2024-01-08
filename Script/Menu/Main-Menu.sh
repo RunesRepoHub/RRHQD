@@ -35,10 +35,10 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER_CNC
             ;;
         6)
-            echo -e "${Green}Updating...${NC}"
+            dialog --infobox "${Green}Updating...${NC}" 3 50
             cd $ROOT_FOLDER
             git pull
-            echo -e "${Green}You can now run the script fully updated${NC}"
+            dialog --msgbox "${Green}You can now run the script fully updated${NC}" 5 50
             exit 0
             ;;
         *)
