@@ -39,17 +39,19 @@ get_container_image() {
   docker inspect --format='{{.Config.Image}}' "$1"
 }
 
-# Function to update the Docker container
++# Function to update the Docker container with ports and volumes
 update_container() {
   local container_name="$1"
   local container_image="$(get_container_image "$container_name")"
+  local container_ports="$(docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}}{{$p}};{{end}}' "$container_name" | sed 's/;$//')"
+  local container_volumes="$(docker inspect --format='{{range .Mounts}}{{.Source}}:{{.Destination}};{{end}}' "$container_name" | sed 's/;$//')"
 
   echo "Updating $container_name with image $container_image..."
   docker pull "$container_image" && \
   docker stop "$container_name" && \
   docker rm "$container_name" && \
   docker run -d --name "$container_name" "$container_image"
-}
+
 
 # Main menu
 echo "Select Docker containers to update:"
@@ -73,3 +75,5 @@ for selection in "${selections[@]}"; do
 done
 
 echo "Update process completed."
+  docker run -d --name "$container_name" -p $container_ports -v $container_volumes "$container_image"
+}
