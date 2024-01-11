@@ -37,7 +37,7 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER_CNC
             ;;
         6)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$QUICK_TOOLS
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_TOOLS
             ;;
         7)
             dialog --msgbox "Updating..." 5 50
