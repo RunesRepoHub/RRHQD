@@ -34,6 +34,12 @@ script_name=$(basename "$0" .sh)
 
 # Use dialog to create a more user-friendly menu
 function show_dialog_menu() {
+    # Define the input file for dialog selections
+    INPUT=/tmp/menu.sh.$$
+
+    # Ensure the temp file is removed upon script termination
+    trap "rm -f $INPUT" 0 1 2 5 15
+
     dialog --clear \
            --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
            --title "Main Menu - $script_name" \
@@ -49,44 +55,39 @@ function show_dialog_menu() {
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
         1)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER
+            bash "$ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER"
             ;;
         2)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$RRH_SOFTWARE
+            bash "$ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$RRH_SOFTWARE"
             ;;
         3)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_INSTALLERS
+            bash "$ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_INSTALLERS"
             ;;
         4)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$CRONJOB
+            bash "$ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$CRONJOB"
             ;;
         5)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER_CNC
+            bash "$ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER_CNC"
             ;;
         6)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_TOOLS
+            bash "$ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_TOOLS"
             ;;
         7)
             dialog --msgbox "Updating..." 5 50
-            cd $ROOT_FOLDER
+            cd "$ROOT_FOLDER" || exit
             git pull
-            dialog --msgbox "You can now run the script fully updated" 5 50
+            dialog --msgbox "You can now run the script fully updated." 5 50
             exit 0
             ;;
         *)
-            dialog --title "Exiting" --msgbox "Thank you for using RRHQD. Support me via github https://github.com/RunesRepoHub/" 6 52
+            dialog --title "Exiting" --msgbox "Thank you for using RRHQD. Support me via Github: https://github.com/RunesRepoHub/" 6 52
             exit 0
             ;;
     esac
 }
 
-# Define the input file for dialog selections
-INPUT=/tmp/menu.sh.$$
-
-# Ensure the temp file is removed upon script termination
-trap "rm -f $INPUT" 0 1 2 5 15
-
 # Main loop
 while true; do
     show_dialog_menu
 done
+
