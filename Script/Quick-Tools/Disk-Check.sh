@@ -20,29 +20,62 @@ mkdir -p "$LOG_DIR"
 increment_log_file_name
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-# Function to perform a full scan on a disk using smartctl and badblocks
+# Ensure all dependencies for disk checking are installed
+ensure_dependencies_installed() {
+  local dependencies=(smartmontools e2fsprogs dialog)
+  local missing_dependencies=()
+
+  for dep in "${dependencies[@]}"; do
+    if ! command -v $dep &> /dev/null; then
+      missing_dependencies+=($dep)
+    fi
+  done
+
+  if [ ${#missing_dependencies[@]} -ne 0 ]; then
+    echo "The following dependencies are missing: ${missing_dependencies[*]}"
+    echo "Attempting to install missing dependencies..."
+    sudo apt-get update && sudo apt-get install -y "${missing_dependencies[@]}"
+  else
+    echo "All necessary dependencies are already installed."
+  fi
+}
+
+ensure_dependencies_installed
+
+# Function to perform a full scan on a disk using smartctl and badblocks with dialog for user interaction
 perform_full_scan() {
   local disk=$1
-  echo "Starting full scan on $disk..."
+  dialog --title "Scan Initiated" --infobox "Starting full scan on $disk..." 5 60
+  sleep 2
 
   # Check S.M.A.R.T. status
-  echo "Checking S.M.A.R.T. status..."
-  smartctl -H /dev/"$disk" || { echo "S.M.A.R.T. status check failed for /dev/$disk"; return 1; }
+  if ! smartctl -H /dev/"$disk"; then
+    dialog --title "S.M.A.R.T. Status" --msgbox "S.M.A.R.T. status check failed for /dev/$disk" 5 60
+    return 1
+  fi
 
   # Run a short S.M.A.R.T. self-test
-  echo "Running short S.M.A.R.T. self-test..."
-  smartctl -t short /dev/"$disk" || { echo "Short S.M.A.R.T. self-test failed for /dev/$disk"; return 1; }
+  dialog --title "S.M.A.R.T. Self-Test" --infobox "Running short S.M.A.R.T. self-test on $disk..." 5 60
+  if ! smartctl -t short /dev/"$disk"; then
+    dialog --title "S.M.A.R.T. Self-Test" --msgbox "Short S.M.A.R.T. self-test failed for /dev/$disk" 5 60
+    return 1
+  fi
 
-  # Wait for the short test to complete
+  # Inform user to wait for the short test to complete
+  dialog --title "Please Wait" --infobox "Waiting 2 minutes for the short S.M.A.R.T. self-test to complete on $disk..." 5 60
   sleep 2m
 
   # Check self-test logs
-  echo "Checking self-test logs..."
-  smartctl -l selftest /dev/"$disk" || { echo "Self-test log check failed for /dev/$disk"; return 1; }
+  if ! smartctl -l selftest /dev/"$disk"; then
+    dialog --title "Self-Test Logs" --msgbox "Self-test log check failed for /dev/$disk" 5 60
+    return 1
+  fi
 
   # Check for bad sectors
-  echo "Checking for bad sectors..."
-  badblocks -sv /dev/"$disk" || { echo "Bad sectors found on /dev/$disk"; return 1; }
+  if ! badblocks -sv /dev/"$disk"; then
+    dialog --title "Bad Sectors" --msgbox "Bad sectors found on /dev/$disk" 5 60
+    return 1
+  fi
 
   dialog --title "Scan Completed" --msgbox "Full scan completed successfully for /dev/$disk." 5 60
 }
@@ -50,7 +83,7 @@ perform_full_scan() {
 # List all block devices without partitions
 disks=$(lsblk -d -n -o name,type | awk '$2 == "disk" {print $1}')
 
-# Iterate through each disk and perform a full scan
+# Iterate through each disk and perform a full scan using dialog
 for disk in $disks; do
   perform_full_scan "$disk"
 done
