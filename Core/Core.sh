@@ -30,6 +30,7 @@ CRONJOB_FOLDER=Cronjob
 LLAMA_GPT_FOLDER=llama-gpt
 DOCKER_CNC_FOLDER=Docker-CnC
 BACKGROUND=Background
+QUICK_TOOLS_DIR=Quick-Tools
 
 ## Installers Scripts
 
@@ -54,6 +55,7 @@ QUICK_INSTALLERS="Quick-Installers.sh"
 RRH_SOFTWARE="RRH-Software.sh"
 CRONJOB="Cronjob.sh"
 DOCKER_CNC="Docker-CnC.sh"
+QUICK_TOOLS="Quick-Tools.sh"
 
 
 ## Quick Installers Scripts
@@ -83,3 +85,9 @@ DOCKER_IMPORT="Docker-Import.sh"
 
 ## Background Jobs
 
+
+## Quick Tools Scripts
+
+DISK_CHECK="Disk-Check.sh"
+SECURITY_CHECK="Security-Check.sh"
+VULNERABILITY_CHECK="Vulnerability-Check.sh"

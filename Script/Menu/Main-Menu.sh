@@ -43,7 +43,8 @@ function show_dialog_menu() {
            3 "Find and use a Quick Installer for other software" \
            4 "Add Cronjobs Quickly" \
            5 "Docker-CnC Scripts" \
-           6 "Update" 2>"${INPUT}"
+           6 "Quick Tools" \
+           7 "Update" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -63,6 +64,9 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$DOCKER_CNC
             ;;
         6)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_TOOLS
+            ;;
+        7)
             dialog --msgbox "Updating..." 5 50
             cd $ROOT_FOLDER
             git pull
