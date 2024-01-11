@@ -1,39 +1,37 @@
-perform_full_scan() {
-  local disk=$1
-  dialog --title "Scan Initiated" --infobox "Starting full scan on $disk..." 5 60
-  sleep 2
+#!/bin/bash
 
-  # Check S.M.A.R.T. status
-  smartctl -H /dev/"$disk" &> /tmp/smart_status_$disk
-  local smart_status=$?
-  if [ $smart_status -ne 0 ]; then
-    dialog --title "S.M.A.R.T. Status" --textbox /tmp/smart_status_$disk 20 60
-    return 1
-  fi
+# Script to scan all drives for failures, bad sectors, and S.M.A.R.T status
+# Outputs the information in dialog boxes for easy overview
 
-  # Run a short S.M.A.R.T. self-test
-  dialog --title "S.M.A.R.T. Self-Test" --infobox "Running short S.M.A.R.T. self-test on $disk..." 5 60
-  if ! smartctl -t short /dev/"$disk" &> /tmp/smart_selftest_$disk; then
-    dialog --title "S.M.A.R.T. Self-Test" --textbox /tmp/smart_selftest_$disk 20 60
-    return 1
-  fi
+# Function to check and display drive health
+check_drive_health() {
+  local drive=$1
+  local temp_file=$(mktemp /tmp/drive_health.XXXXXX)
+  
+  {
+    echo "Checking drive $drive for failures and bad sectors..."
+    sudo smartctl -H -l error $drive
+    echo "Checking S.M.A.R.T status..."
+    sudo smartctl -A $drive
+  } | tee "$temp_file"
 
-  # Inform user to wait for the short test to complete
-  dialog --title "Please Wait" --infobox "Waiting 2 minutes for the short S.M.A.R.T. self-test to complete on $disk..." 5 60
-  sleep 2m
-
-  # Check self-test logs
-  if ! smartctl -l selftest /dev/"$disk" &> /tmp/smart_selftest_log_$disk; then
-    dialog --title "Self-Test Logs" --textbox /tmp/smart_selftest_log_$disk 20 60
-    return 1
-  fi
-
-  # Check for bad sectors
-  if ! badblocks -sv /dev/"$disk" &> /tmp/badblocks_$disk; then
-    dialog --title "Bad Sectors" --textbox /tmp/badblocks_$disk 20 60
-    return 1
-  fi
-
-  dialog --title "Scan Completed" --msgbox "Full scan completed successfully for /dev/$disk." 5 60
+  dialog --title "Drive Health Information for $drive" --textbox "$temp_file" 0 0
+  rm -f "$temp_file"
 }
 
+# Check if smartmontools is installed, if not install it
+if ! command -v smartctl &> /dev/null; then
+  echo "Installing smartmontools, which is required for S.M.A.R.T checks..."
+  sudo apt-get update && sudo apt-get install smartmontools -y
+fi
+
+# Detect all connected drives
+drives=$(lsblk -nd --output NAME)
+
+# Loop through each connected drive and check its health
+for drive in $drives; do
+  check_drive_health "/dev/$drive"
+done
+
+# Final message
+dialog --title "Scan Complete" --msgbox "All drive scans complete. Please close this window." 6 50
