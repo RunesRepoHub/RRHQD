@@ -17,7 +17,7 @@ function show_dialog_menu() {
            4 "Add Cronjobs Quickly" \
            5 "Docker-CnC Scripts" \
            6 "Quick Tools" \
-           7 "Update" 2>"${INPUT}"
+           7 "Update RRHQD" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
