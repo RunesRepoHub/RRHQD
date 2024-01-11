@@ -27,9 +27,32 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-# Start all Docker containers
+# Generate a menu for user to select Docker containers to start
+echo "Available Docker containers:"
+mapfile -t containers < <(docker ps -a --format "{{.Names}}")
+for i in "${!containers[@]}"; do
+    echo "$((i+1))) ${containers[i]}"
+done
 
-# List all container IDs and start them using docker start
-docker start $(docker ps -aq)
+# Ask user to select containers
+echo "Enter the numbers of the Docker containers to start (separated by space):"
+read -r -a selections
+
+# Validate selections and prepare container names
+selected_containers=()
+for selection in "${selections[@]}"; do
+    # Adjust selection index to match array index
+    idx=$((selection - 1))
+    if [[ idx -ge 0 && idx -lt ${#containers[@]} ]]; then
+        selected_containers+=("${containers[idx]}")
+    else
+        echo "Invalid selection: $selection"
+    fi
+done
+
+# Start the chosen Docker containers
+for CONTAINER_NAME in "${selected_containers[@]}"; do
+    docker start "$CONTAINER_NAME" && echo "$CONTAINER_NAME started successfully." || echo "Failed to start $CONTAINER_NAME."
+done
 
 echo "All Docker containers have been started."
