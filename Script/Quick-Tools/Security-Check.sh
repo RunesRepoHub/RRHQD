@@ -76,4 +76,4 @@ echo "Review the list of unwanted files at $UNWANTED_FILES_RESULTS"
   cat "$UNWANTED_FILES_RESULTS"
 } > "$LOG_FILE"
 
-echo "Full system scan complete. Review the results in $LOG_FILE"
+dialog --title "Scan Complete" --msgbox "Full system scan complete. Review the results in $LOG_FILE" 6 50
