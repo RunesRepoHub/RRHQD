@@ -44,7 +44,7 @@ perform_full_scan() {
   echo "Checking for bad sectors..."
   badblocks -sv /dev/"$disk" || { echo "Bad sectors found on /dev/$disk"; return 1; }
 
-  echo "Full scan completed successfully for /dev/$disk."
+  dialog --title "Scan Completed" --msgbox "Full scan completed successfully for /dev/$disk." 5 60
 }
 
 # List all block devices without partitions
