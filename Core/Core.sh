@@ -57,7 +57,7 @@ RRH_SOFTWARE="RRH-Software.sh"
 CRONJOB="Cronjob.sh"
 DOCKER_CNC="Docker-CnC.sh"
 QUICK_TOOLS="Quick-Tools.sh"
-QUICK_SCRIPTS="Quick-Scripts.sh"
+QUICK_SCRIPTS="Quick-Script.sh"
 
 
 ## Quick Installers Scripts
