@@ -1,9 +1,7 @@
 # Prompt user to enter the desired output path for the downloaded video
 read -p "Enter the output path for the downloaded video: " output_path
 
-
-# Set the video URL to download
-url="${video_urls[0]}"
+read -p "Link for youtube playlist" url
 
 # Extract the video ID from the URL
 video_id=$(echo "${url}" | awk -F '[=&]' '{print $2}')
