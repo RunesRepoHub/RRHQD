@@ -61,3 +61,7 @@ docker run \
     --download-archive "download-archive.txt" \
     --output '/output/%(title)s.%(ext)s' \
     "${url}"
+
+sleep 5 
+
+echo "Downloaded video: ${video_file}"
