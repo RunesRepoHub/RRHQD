@@ -31,7 +31,7 @@ playlist_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(playlist
 playlist_name=${playlist_name:-no_playlist}
 
 # Create the video folder if it doesn't exist
-video_folder="${output_path}/${channel_name}/${playlist_name}/"
+video_folder="${output_path}/${channel_name}/${playlist_name}"
 if [ ! -d "${video_folder}" ]; then
     mkdir -p "${video_folder}"
 fi
@@ -62,6 +62,3 @@ docker run \
     --output '/output/%(title)s.%(ext)s' \
     "${url}"
 
-sleep 5 
-
-echo "Downloaded video: ${video_file}"
