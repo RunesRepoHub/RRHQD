@@ -1,50 +1,56 @@
 # Prompt user to enter the desired output path for the downloaded video
 read -p "Enter the output path for the downloaded video: " output_path
 
-read -p "Enter the link for the YouTube playlist: " url
+read -p "Link for youtube playlist: " url
 
 MEDIA=~/plex/media
 
-# Extract the playlist ID from the URL
-playlist_id=$(echo "${url}" | awk -F '[=&]' '{print $2}')
+# Exit if no URL is provided
+[ -z "$url" ] && exit
 
-# Get the channel name using youtube-dl with Docker
-channel_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(channel)s" -- "${url}" | head -n 1)
+# Record the start time of the script
+start_time=$(date +%s)
 
-# Get the playlist name using youtube-dl with Docker
-playlist_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(playlist)s" -- "${url}" | head -n 1)
+# Check if the script has been running for more than 45 minutes (2700 seconds)
+elapsed_time=$(( $(date +%s) - start_time ))
+if [[ "$elapsed_time" -ge 2700 ]]; then
+    echo "The script has been running for more than 45 minutes. Exiting."
+    exit
+fi
+
+# Extract the video ID from the URL
+video_id=$(echo "${url}" | awk -F '[=&]' '{print $2}')
+
+# Get the channel name using youtube-dl --get-filename
+channel_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(channel)s" "$url" | head -n 1)
+
+# Get the playlist name using youtube-dl --get-filename
+playlist_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(playlist)s" "$url" | head -n 1)
 
 # If the playlist name is not available, default to 'no_playlist'
 playlist_name=${playlist_name:-no_playlist}
 
-# Create the playlist folder if it doesn't exist
-playlist_folder="${output_path}/${channel_name}/${playlist_name}/"
-
-if [ ! -d "${playlist_folder}" ]; then
-    mkdir -p "${playlist_folder}"
+# Create the video folder if it doesn't exist
+video_folder="${output_path}/${channel_name}/${playlist_name}/"
+if [ ! -d "${video_folder}" ]; then
+    mkdir -p "${video_folder}"
 fi
+video_file="${video_folder}/${video_id}.mp4"
 
-# Generate a unique container name based on the playlist ID
-container_name="playlist_${playlist_id}"
+# Generate a unique container name based on the video ID 
+container_name="${video_id}"
 
-# Check if a container with the same playlist ID is already running
-if docker ps --filter "name=${container_name}" --format '{{.Names}}' | grep -q "${container_name}"; then
-    echo "A download for this playlist is already in progress."
-    exit 0
-fi
-
-# Download playlist using docker run command in detached mode and delete the container when finished
+# Download video using docker run command in detached mode and delete the container when finished
 docker run \
     --rm -d \
     -e PGID=$(id -g) \
     -e PUID=$(id -u) \
     -v "$MEDIA":/workdir:rw \
-    -v "${playlist_folder}":/output:rw \
+    -v "${video_folder}":/output:rw \
     --name "${container_name}" \
     --cpus 1 \
     --memory 2g \
     mikenye/youtube-dl -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' \
-    --yes-playlist \
     --write-info-json \
     --write-thumbnail \
     --write-description \
@@ -52,10 +58,6 @@ docker run \
     --embed-subs \
     --convert-subs srt \
     --write-auto-sub \
-    --download-archive "${playlist_folder}/download-archive.txt" \
+    --download-archive "download-archive.txt" \
     --output '/output/%(title)s.%(ext)s' \
     "${url}"
-
-# Notify the user that the download has started
-dialog --title "Download Started" --msgbox "The download for playlist ID ${playlist_id} has started. Please wait..." 6 50
-
