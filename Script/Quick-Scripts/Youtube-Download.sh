@@ -26,7 +26,7 @@ playlist_name=${playlist_name:-no_playlist}
 
 
 # Create the video folder if it doesn't exist
-video_folder="${output_path}/${sanitized_channel_name}/${sanitized_playlist_name}"
+video_folder="${output_path}/${channel_name}/${playlist_name}"
 if [ ! -d "${video_folder}" ]; then
     mkdir -p "${video_folder}"
 fi
