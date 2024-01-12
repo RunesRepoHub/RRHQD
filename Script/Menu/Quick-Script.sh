@@ -26,9 +26,6 @@ function show_dialog_menu() {
         3)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_SCRIPTS_FOLDER/Script3.sh
             ;;
-        4)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$MAIN_MENU
-            ;;
         *)
             dialog --title "Exiting" --msgbox "Returning to the Main Menu." 6 52
             exit 0
