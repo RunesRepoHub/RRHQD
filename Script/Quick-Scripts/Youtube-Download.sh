@@ -3,6 +3,8 @@ read -p "Enter the output path for the downloaded video: " output_path
 
 read -p "Link for youtube playlist" url
 
+MEDIA=~/plex/media
+
 # Extract the video ID from the URL
 video_id=$(echo "${url}" | awk -F '[=&]' '{print $2}')
 
@@ -62,3 +64,6 @@ docker run \
     --download-archive "download-archive.txt" \
     --output '/output/%(title)s.%(ext)s' \
     "${url}"
+
+# Notify the user that the download has started
+dialog --title "Download Started" --msgbox "The download for video ID ${video_id} has started. Please wait..." 6 50
