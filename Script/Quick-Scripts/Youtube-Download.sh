@@ -8,16 +8,12 @@ MEDIA=~/plex/media
 # Extract the video ID from the URL
 video_id=$(echo "${url}" | awk -F '[=&]' '{print $2}')
 
-# Function to get channel and playlist name using youtube-dl --get-filename
-get_youtube_details() {
-local url=$1
-local details=($(docker run --rm mikenye/youtube-dl --get-filename -o "%(channel)s %(playlist)s" "$url" | head -n 1))
-echo "${details[@]}"
-}
-    
-# Call get_youtube_details function and read results into respective variables
-read channel_name playlist_name < <(get_youtube_details "$url" | head -n 1)
-    
+# Get the channel name using youtube-dl with Docker
+channel_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(channel)s" "${url}" | head -n 1)
+
+# Get the playlist name using youtube-dl with Docker
+playlist_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(playlist)s" "${url}" | head -n 1)
+
 # If the playlist name is not available, default to 'no_playlist'
 playlist_name=${playlist_name:-no_playlist}
     
@@ -36,9 +32,6 @@ video_file="${video_folder}/${video_id}.mp4"
 if docker ps --filter "name=${video_id}" --format '{{.Names}}' | grep -q "${video_id}"; then
     exit 0
 fi
-
-# Wait for Docker to spin up
-sleep 5
 
 # Generate a unique container name based on the video ID 
 container_name="${video_id}"
