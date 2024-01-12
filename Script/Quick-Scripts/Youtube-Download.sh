@@ -32,13 +32,7 @@ video_file="${video_folder}/${video_id}.mp4"
 
 # Check if the container with the same video ID is already running
 if docker ps --filter "name=${video_id}" --format '{{.Names}}' | grep -q "${video_id}"; then
-    # Remove the processed URL from the array
-    video_urls=("${video_urls[@]:1}")
-    continue
-fi
-
-if [ $total_lines -eq 0 ]; then
-        exit
+    exit 0
 fi
 
 # Wait for Docker to spin up
