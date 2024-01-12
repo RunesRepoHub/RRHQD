@@ -1,13 +1,16 @@
-# Create a sanitized folder name by replacing invalid characters
-sanitize_folder() {
-  echo "$1" | sed 's/[^a-zA-Z0-9_.-]/_/g'
-}
+# Source Core.sh script if it exists, otherwise exit the script
+if [ -f ~/ACS/ACSF-Scripts/Core.sh ]; then
+  source ~/ACS/ACSF-Scripts/Core.sh
+else
+  dialog --title "Error" --msgbox "Core.sh script not found. Exiting." 6 50
+  exit 0
+fi
 
-# Prompt user to enter the desired output path for the downloaded video
-read -p "Enter the output path for the downloaded video: " output_path
 read -p "Link for youtube playlist: " url
 
-MEDIA=~/plex/media
+MEDIA="$MEDIA"
+
+output_path="$YOUTUBE"
 
 # Exit if no URL is provided
 [ -z "$url" ] && exit
@@ -21,9 +24,6 @@ playlist_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(playlist
 # If the playlist name is not available, default to 'no_playlist'
 playlist_name=${playlist_name:-no_playlist}
 
-# Sanitize channel and playlist names to ensure they do not contain invalid characters
-sanitized_channel_name=$(sanitize_folder "${channel_name}")
-sanitized_playlist_name=$(sanitize_folder "${playlist_name}")
 
 # Create the video folder if it doesn't exist
 video_folder="${output_path}/${sanitized_channel_name}/${sanitized_playlist_name}"
@@ -40,8 +40,8 @@ docker run \
     --rm -d \
     -e PGID=$(id -g) \
     -e PUID=$(id -u) \
-    -v "$(sanitize_folder "$MEDIA")":/workdir:rw \
-    -v "$(sanitize_folder "$video_folder")":/output:rw \
+    -v "$MEDIA":/workdir:rw \
+    -v "$video_folder":/output:rw \
     --name "${container_name}" \
     --cpus 1 \
     --memory 2g \
