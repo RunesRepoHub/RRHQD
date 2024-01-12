@@ -31,6 +31,7 @@ LLAMA_GPT_FOLDER=llama-gpt
 DOCKER_CNC_FOLDER=Docker-CnC
 BACKGROUND=Background
 QUICK_TOOLS_DIR=Quick-Tools
+QUICK_SCRIPTS_FOLDER=Quick-Scripts
 
 ## Installers Scripts
 
@@ -56,6 +57,7 @@ RRH_SOFTWARE="RRH-Software.sh"
 CRONJOB="Cronjob.sh"
 DOCKER_CNC="Docker-CnC.sh"
 QUICK_TOOLS="Quick-Tools.sh"
+QUICK_SCRIPTS="Quick-Scripts.sh"
 
 
 ## Quick Installers Scripts
@@ -91,3 +93,8 @@ DOCKER_IMPORT="Docker-Import.sh"
 DISK_CHECK="Disk-Check.sh"
 SECURITY_CHECK="Security-Check.sh"
 VULNERABILITY_CHECK="Vulnerability-Check.sh"
+
+
+## Quick Scripts Scripts
+
+YOUTUBE_DOWNLOAD="Youtube-Download.sh"
