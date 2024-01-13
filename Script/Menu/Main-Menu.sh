@@ -44,9 +44,16 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_SCRIPTS
             ;;
         8)
-            dialog --msgbox "Updating..." 5 50
+            dialog --infobox "Updating..." 5 50
             cd $ROOT_FOLDER
-            git pull
+            dialog --infobox "Pulling updates from repository..." 5 70
+            git pull --progress > /tmp/git-pull-output.txt 2>&1
+            EXIT_STATUS=$?
+            if [ $EXIT_STATUS -eq 0 ]; then
+                dialog --textbox /tmp/git-pull-output.txt 20 80
+            else
+                dialog --title "Error" --textbox /tmp/git-pull-output.txt 20 80
+            fi
             dialog --msgbox "You can now run the script fully updated" 5 50
             exit 0
             ;;
