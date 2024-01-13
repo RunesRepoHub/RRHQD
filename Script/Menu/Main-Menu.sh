@@ -44,7 +44,6 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_SCRIPTS
             ;;
         8)
-            dialog --infobox "Updating..." 5 50
             cd $ROOT_FOLDER
             dialog --infobox "Pulling updates from repository..." 5 70
             git pull --progress > /tmp/git-pull-output.txt 2>&1
