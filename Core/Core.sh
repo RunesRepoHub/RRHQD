@@ -98,3 +98,4 @@ VULNERABILITY_CHECK="Vulnerability-Check.sh"
 ## Quick Scripts Scripts
 
 YOUTUBE_DOWNLOAD="Youtube-Download.sh"
+YOUTUBE_CHANNEL_DOWNLOAD="Youtube-Channel-Download.sh"

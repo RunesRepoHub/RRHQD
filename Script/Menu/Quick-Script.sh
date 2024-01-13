@@ -11,7 +11,7 @@ function show_dialog_menu() {
            --title "Quick Scripts Menu - $script_name" \
            --menu "Please select an option:" 15 60 4 \
            1 "Download YouTube Video" \
-           2 "Script 2 Description" \
+           2 "Download Fully Youtube Channel" \
            3 "Script 3 Description" \
            4 "Back To Main Menu" 2>"${INPUT}"
 
@@ -21,7 +21,7 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_SCRIPTS_FOLDER/$YOUTUBE_DOWNLOAD
             ;;
         2)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_SCRIPTS_FOLDER/Script2.sh
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_SCRIPTS_FOLDER/$YOUTUBE_CHANNEL_DOWNLOAD
             ;;
         3)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_SCRIPTS_FOLDER/Script3.sh
