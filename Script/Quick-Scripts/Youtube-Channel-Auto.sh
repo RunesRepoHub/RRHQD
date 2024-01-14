@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/RRHQD/Core/Core.sh
+
 # Source Core.sh script if it exists, otherwise exit the script
 if [ -f ~/ACS/ACSF-Scripts/Core.sh ]; then
   source ~/ACS/ACSF-Scripts/Core.sh
