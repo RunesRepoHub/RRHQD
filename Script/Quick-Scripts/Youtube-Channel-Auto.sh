@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# Check if the current script is already added to /etc/crontab
+# Check if the current script is already scheduled in /etc/crontab
 script_path="$(realpath "$0")"
-script_entry="@reboot root $script_path"
+script_entry="0 1 * * * root $script_path"
 
-if grep -qF -- "$script_path" /etc/crontab; then
-  echo "Script $script_path is already added to /etc/crontab."
+if grep -qF -- "$script_entry" /etc/crontab; then
+  echo "Script $script_path is already scheduled to run daily at 01:00 AM."
 else
-  # Add the script to /etc/crontab
+  # Schedule the script to run daily at 01:00 AM
   echo "$script_entry" >> /etc/crontab
-  echo "Script $script_path added to /etc/crontab successfully."
+  echo "Script $script_path scheduled to run daily at 01:00 AM successfully."
 fi
 
 # Source Core.sh script if it exists, otherwise exit the script

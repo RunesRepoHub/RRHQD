@@ -22,6 +22,11 @@ if [ -z "$url" ]; then
 fi
 
 
+# Ensure the history file exists before attempting to add URLs
+if [ ! -f "$history_file" ]; then
+    touch "$history_file"
+fi
+
 # Create or append to a file to keep track of channel URLs
 history_file="${output_path}/channel_urls_history.txt"
 
