@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Check if the current script is already added to /etc/crontab
+script_path="$(realpath "$0")"
+script_entry="@reboot root $script_path"
+
+if grep -qF -- "$script_path" /etc/crontab; then
+  echo "Script $script_path is already added to /etc/crontab."
+else
+  # Add the script to /etc/crontab
+  echo "$script_entry" >> /etc/crontab
+  echo "Script $script_path added to /etc/crontab successfully."
+fi
+
 # Source Core.sh script if it exists, otherwise exit the script
 if [ -f ~/ACS/ACSF-Scripts/Core.sh ]; then
   source ~/ACS/ACSF-Scripts/Core.sh
@@ -12,23 +24,16 @@ fi
 output_path="$YOUTUBE"
 media_dir="$MEDIA"
 
-# Read the channel URL
-read -p "Enter the YouTube channel URL: " url
-
-# Check if the URL is provided
-if [ -z "$url" ]; then
-  echo "No URL provided. Exiting."
-  exit 1
+# Read a random URL from the history file if there is more than one link
+url_count=$(wc -l < "${history_file}")
+if [ "$url_count" -gt 1 ]; then
+    # Pick a random line number
+    random_line=$((RANDOM % url_count + 1))
+    url=$(sed -n "${random_line}p" "${history_file}")
+else
+    url=$(tail -n 1 "${history_file}")
 fi
 
-
-# Create or append to a file to keep track of channel URLs
-history_file="${output_path}/channel_urls_history.txt"
-
-# Add the new channel URL to the history file, ensuring no duplicates
-if ! grep -q "^${url}$" "$history_file"; then
-    echo "$url" >> "$history_file"
-fi
 
 # Get the channel name using youtube-dl --get-filename
 channel_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(uploader)s" "$url" | head -n 1)
@@ -70,3 +75,4 @@ docker run \
     "${url}"
 
 dialog --title "Download Started" --msgbox "Download started for the channel: ${channel_name}\nVideos will be saved in the folder: ${channel_folder}" 8 50
+
