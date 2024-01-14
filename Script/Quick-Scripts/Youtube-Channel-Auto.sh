@@ -29,6 +29,9 @@ fi
 output_path="$YOUTUBE"
 media_dir="$MEDIA"
 
+# Create or append to a file to keep track of channel URLs
+history_file="${output_path}/channel_urls_history.txt"
+
 # Read a random URL from the history file if there is more than one link
 url_count=$(wc -l < "${history_file}")
 if [ "$url_count" -gt 1 ]; then
