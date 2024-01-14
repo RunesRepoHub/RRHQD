@@ -21,14 +21,13 @@ if [ -z "$url" ]; then
   exit 1
 fi
 
+# Create or append to a file to keep track of channel URLs
+history_file="${output_path}/channel_urls_history.txt"
 
 # Ensure the history file exists before attempting to add URLs
 if [ ! -f "$history_file" ]; then
     touch "$history_file"
 fi
-
-# Create or append to a file to keep track of channel URLs
-history_file="${output_path}/channel_urls_history.txt"
 
 # Add the new channel URL to the history file, ensuring no duplicates
 if ! grep -q "^${url}$" "$history_file"; then
