@@ -26,7 +26,7 @@ function show_dialog_menu() {
         2)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/NRD/Production/Setup.sh)
             bash ~/NRD/Pull-News.sh
-            bash ~/Docker-Up.sh
+            bash ~/NRD/Docker-Up.sh
             ;;
         3)
             
