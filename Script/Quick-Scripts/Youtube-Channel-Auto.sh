@@ -10,6 +10,7 @@ else
   exit 0
 fi
 
+ROOT_FOLDER=~/RRHQD
 
 # Check if the current script is already scheduled in /etc/crontab
 script_path=$ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_SCRIPTS_FOLDER/$YOUTUBE_CHANNEL_AUTO
