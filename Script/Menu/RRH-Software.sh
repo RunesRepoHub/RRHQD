@@ -13,7 +13,7 @@ function show_dialog_menu() {
            --title "Main Menu - $script_name" \
            --menu "Please select an option:" 15 60 6 \
            1 "Run the ACS Installer" \
-           2 "Coming Soon" \
+           2 "News Report Docker Installer" \
            3 "Coming Soon" \
            4 "Run the EWD Installer" \
            5 "Back To Main Menu" 2>"${INPUT}"
@@ -24,7 +24,7 @@ function show_dialog_menu() {
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/ACS/Production/setup.sh)
             ;;
         2)
-            
+            bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/NRD/Production/Setup.sh)
             ;;
         3)
             
