@@ -12,7 +12,7 @@ function show_dialog_menu() {
            --menu "Please select an option:" 15 60 4 \
            1 "Download YouTube Video" \
            2 "Download Fully Youtube Channel" \
-           3 "Script 3 Description" \
+           3 "Auto Update Youtube Channel Downloads" \
            4 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
@@ -24,7 +24,7 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_SCRIPTS_FOLDER/$YOUTUBE_CHANNEL_DOWNLOAD
             ;;
         3)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_SCRIPTS_FOLDER/Script3.sh
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_SCRIPTS_FOLDER/$YOUTUBE_CHANNEL_AUTO
             ;;
         *)
             exit 0

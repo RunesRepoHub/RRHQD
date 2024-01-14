@@ -99,3 +99,4 @@ VULNERABILITY_CHECK="Vulnerability-Check.sh"
 
 YOUTUBE_DOWNLOAD="Youtube-Download.sh"
 YOUTUBE_CHANNEL_DOWNLOAD="Youtube-Channel-Download.sh"
+YOUTUBE_CHANNEL_AUTO="Youtube-Channel-Auto.sh"
