@@ -1,7 +1,16 @@
 #!/bin/bash
 
+# Source Core.sh script if it exists, otherwise exit the script
+if [ -f ~/ACS/ACSF-Scripts/Core.sh ]; then
+  source ~/ACS/ACSF-Scripts/Core.sh
+else
+  dialog --title "Error" --msgbox "Core.sh script not found. Exiting." 6 50
+  exit 0
+fi
+
+
 # Check if the current script is already scheduled in /etc/crontab
-script_path="$(realpath "$0")"
+script_path=$ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_SCRIPTS_FOLDER/$YOUTUBE_CHANNEL_AUTO
 script_entry="0 1 * * * root $script_path"
 
 if grep -qF -- "$script_entry" /etc/crontab; then
@@ -12,13 +21,6 @@ else
   echo "Script $script_path scheduled to run daily at 01:00 AM successfully."
 fi
 
-# Source Core.sh script if it exists, otherwise exit the script
-if [ -f ~/ACS/ACSF-Scripts/Core.sh ]; then
-  source ~/ACS/ACSF-Scripts/Core.sh
-else
-  dialog --title "Error" --msgbox "Core.sh script not found. Exiting." 6 50
-  exit 0
-fi
 
 # Define output path and media directory
 output_path="$YOUTUBE"
