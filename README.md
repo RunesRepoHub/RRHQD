@@ -73,8 +73,8 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Docker - Start (Start all Docker)
 - Docker - Stop (Stop all Docker)
 - Docker - Update (Update a Docker)
-***- Docker - Export (Export a Docker) (Still in testing)***
-***- Docker - Import (Import a Docker) (Still in testing)***
+- ***Docker - Export (Export a Docker) (Still in testing)***
+- ***Docker - Import (Import a Docker) (Still in testing)***
 
 ---------------------------------------------------------------------------------------------
 
