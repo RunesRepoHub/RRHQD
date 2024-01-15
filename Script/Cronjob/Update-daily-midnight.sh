@@ -29,23 +29,21 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 source ~/RRHQD/Core/Core.sh
 
-dialog --title "Cron Job Addition" --infobox "Adding update cron job..." 5 50
-sleep 2  # Optional: give the user time to read the message
+echo -e "${Green}Adding update cron job...${NC}"
 
 add_update_cronjob() {
     local update_command="apt-get update && apt-get upgrade -y"
-    local current_user=$(whoami)
-    local cronjob_entry="0 0 * * * $current_user $update_command"
+    local cronjob_entry="0 0 * * * root $update_command"
 
     # Check if the update cron job already exists in /etc/crontab
     if grep -qF -- "$update_command" /etc/crontab; then
-        dialog --title "Cron Job Exists" --msgbox "Update cron job already exists in /etc/crontab. No changes made." 10 50
+        echo -e "${Red}Update cron job already exists in /etc/crontab. No changes made.${NC}"
     else
         # Add the update cron job to /etc/crontab
         if echo "$cronjob_entry" >> /etc/crontab; then
-            dialog --title "Cron Job Update" --msgbox "Update cron job added to /etc/crontab successfully." 10 50
+            echo -e "${Green}Update cron job added to /etc/crontab successfully.${NC}"
         else
-            dialog --title "Cron Job Failure" --msgbox "Failed to add update cron job to /etc/crontab." 10 50
+            echo -e "${Red}Failed to add update cron job to /etc/crontab.${NC}"
             return 1
         fi
     fi
@@ -54,11 +52,3 @@ add_update_cronjob() {
 # Call the function to add the cron job
 add_update_cronjob
 
-# Check if the cron job already exists in the user's crontab
-if crontab -l | grep -qF -- "$cronjob_entry"; then
-    dialog --title "Cron Job Exists" --msgbox "Cron job already exists. No changes made." 10 50
-else
-    # Write out current crontab and add the new cron job
-    (crontab -l; echo "$cronjob_entry") | crontab -
-    dialog --title "Cron Job Update" --msgbox "Cron job added successfully." 10 50
-fi

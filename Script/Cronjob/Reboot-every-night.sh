@@ -29,57 +29,17 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 source ~/RRHQD/Core/Core.sh
 
-dialog --title "Check" --infobox "Checking for existing reboot cron job..." 5 70
-sleep 2
+echo -e "${Green}Checking for existing reboot cron job...${NC}"
 
-# Function to check if a cron job exists in /etc/crontab
-cron_job_exists() {
-    local cron_entry="$1"
-    
-    # Use `grep` to check if the cron entry already exists in /etc/crontab
-    grep -qF -- "$cron_entry" /etc/crontab
-}
+cronjob_entry="45 4 * * * root /sbin/reboot"
 
-# Function to add a cron job to /etc/crontab
-add_cron_job() {
-    local cron_entry="$1"
-    
-    # Append the cron job to /etc/crontab
-    echo "$cron_entry" | sudo tee -a /etc/crontab
-    dialog --title "Cron Job Update" --msgbox "Reboot cron job added to /etc/crontab successfully." 10 50
-}
-
-# Get the current logged-in username
-current_user="$(whoami)"
-cronjob_entry="45 4 * * * $current_user /sbin/reboot"
-
-# Add cron jobs if they do not exist in /etc/crontab
-if cron_job_exists "$cronjob_entry"; then
-    dialog --title "Cron Job Exists" --msgbox "Reboot cron job already exists in /etc/crontab. Aborting script." 10 50
+# Check if the reboot cron job already exists in /etc/crontab
+if grep -qF -- "$cronjob_entry" /etc/crontab; then
+    echo -e "${Red}Reboot cron job already exists in /etc/crontab. Aborting script.${NC}"
     exit 1
 else
-    add_cron_job "$cronjob_entry"
+    # Add the reboot cron job to /etc/crontab
+    echo "$cronjob_entry" >> /etc/crontab
+    echo -e "${Green}Reboot cron job added to /etc/crontab successfully.${NC}"
 fi
 
-
-# Function to check if a cron job exists in the user's crontab
-cron_job_exists_in_user() {
-    local cronjob_entry="$1"
-    
-    # Use `grep` to check if the cron job already exists in the user's crontab
-    crontab -l | grep -qF -- "$cronjob_entry"
-}
-
-# Function to add a cron job to the user's crontab
-add_cron_job_to_user() {
-    local cronjob_entry="$1"
-    
-    # Write out current crontab and add the new cron job
-    (crontab -l; echo "$cronjob_entry") | crontab -
-    dialog --title "Cron Job Update" --msgbox "Cron job added successfully." 10 50
-}
-
-# Check and add cron job to user's crontab if it does not exist
-if ! cron_job_exists_in_user "$cronjob_entry"; then
-    add_cron_job_to_user "$cronjob_entry"
-fi

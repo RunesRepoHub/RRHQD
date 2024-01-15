@@ -29,27 +29,17 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 source ~/RRHQD/Core/Core.sh
 
-cronjob_entry="0 0 * * 0 $(whoami) /sbin/reboot"
+cronjob_entry="0 0 * * 0 root /sbin/reboot"
 
-dialog --title "Cron Job Addition" --infobox "Adding reboot cron job for every Sunday..." 5 50
-sleep 2  # Provide a moment for the user to read the message
+echo -e "${Green}Adding reboot cron job for every Sunday...${NC}"
 
 # Check if the reboot cron job already exists in /etc/crontab
 if grep -qF -- "$cronjob_entry" /etc/crontab; then
-    dialog --title "Reboot Cron Job" --msgbox "Reboot cron job already exists in /etc/crontab. Aborting script." 10 50
+    echo -e "${Red}Reboot cron job for every Sunday already exists in /etc/crontab. Aborting script.${NC}"
     exit 1
 else
-    # Add the reboot cron job to /etc/crontab
+    # Add the reboot cron job to /etc/crontab for every Sunday at 00:00
     echo "$cronjob_entry" >> /etc/crontab
-    dialog --title "Cron Job Update" --msgbox "Reboot cron job added to /etc/crontab successfully." 10 50
-fi
-
-# Check if the cron job already exists in the user's crontab
-if crontab -l | grep -qF -- "$cronjob_entry"; then
-    dialog --title "Cron Job Exists" --msgbox "Cron job already exists. No changes made." 10 50
-else
-    # Write out current crontab and add the new cron job
-    (crontab -l; echo "$cronjob_entry") | crontab -
-    dialog --title "Cron Job Update" --msgbox "Cron job added successfully." 10 50
+    echo -e "${Green}Reboot cron job for every Sunday added to /etc/crontab successfully.${NC}"
 fi
 
