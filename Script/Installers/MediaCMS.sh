@@ -67,12 +67,32 @@ mkdir -p "$COMPOSE_SUBFOLDER"
 # Inform the user where the Docker compose file has been created
 echo "Docker compose file created at: $COMPOSE_FILE"
 
-# Check if Docker is running
-if ! docker info >/dev/null 2>&1; then
-    echo "Docker does not seem to be running, start it first and then re-run this script."
-    exit 1
-fi
+# Check if Docker is running and use sudo if the OS is ubuntu, zorin, linuxmint, or kali
+OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
+case $OS_DISTRO in
+  ubuntu|zorin|linuxmint|kali)
+    if ! sudo docker info >/dev/null 2>&1; then
+      echo "Docker does not seem to be running, start it first with sudo and then re-run this script."
+      exit 1
+    fi
+    ;;
+  *)
+    if ! docker info >/dev/null 2>&1; then
+      echo "Docker does not seem to be running, start it first and then re-run this script."
+      exit 1
+    fi
+    ;;
+esac
 
-# Start the Docker container using docker-compose
-echo "Starting MediaCMS Docker container..."
-docker compose -f "$COMPOSE_FILE" up -d
+# Determine the OS distribution
+OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
+
+# Start the Docker container using docker-compose with or without sudo based on the OS
+case $OS_DISTRO in
+  ubuntu|zorin|linuxmint|kali)
+    sudo docker compose -f "$COMPOSE_FILE" up -d
+    ;;
+  *)
+    docker compose -f "$COMPOSE_FILE" up -d
+    ;;
+esac
