@@ -1,11 +1,14 @@
 #!/bin/bash
 
-# Check if Python and pip are installed
-if command -v python3 &> /dev/null && command -v pip3 &> /dev/null; then
-    echo "Python and pip are installed."
-else
-    echo "Error: Python and/or pip are not installed."
-    exit 1
+# Check if Python and pip are installed, install if not
+if ! command -v python3 &> /dev/null; then
+    echo "Python is not installed. Attempting to install Python..."
+    sudo apt-get update && sudo apt-get install -y python3
+fi
+
+if ! command -v pip3 &> /dev/null; then
+    echo "pip is not installed. Attempting to install pip..."
+    sudo apt-get update && sudo apt-get install -y python3-pip
 fi
 
 # Clone theHarvester repository
