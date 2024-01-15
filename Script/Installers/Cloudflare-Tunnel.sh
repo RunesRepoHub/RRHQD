@@ -95,14 +95,14 @@ else
   # Populate the configuration file
   {
     echo "tunnel: $UUID"
-echo "credentials-file: /home/nonroot/.cloudflared/$UUID.json"
-echo " "
-echo "# forward all traffic to Reverse Proxy w/ SSL"
-echo "# NOTE: You should only have one ingress tag, so if you uncomment one block, comment the other one."
-echo "ingress:"
-echo "  - hostname: $YOURDOMAIN"
-echo "    service: $PROTOCOL://$REVERSEPROXYIP:$PORT"
-echo "  - service: http_status:404"
+    echo "credentials-file: /home/nonroot/.cloudflared/$UUID.json"
+    echo " "
+    echo "# forward all traffic to Reverse Proxy w/ SSL"
+    echo "# NOTE: You should only have one ingress tag, so if you uncomment one block, comment the other one."
+    echo "ingress:"
+    echo "  - hostname: $YOURDOMAIN"
+    echo "    service: $PROTOCOL://$REVERSEPROXYIP:$PORT"
+    echo "  - service: http_status:404"
   } >> "$CONFIG_FILE"
 
   dialog --title "Configuration Complete" --msgbox "\nConfiguration file created at: $CONFIG_FILE\n\nConfigure the file for the other sites manually, and then restart the Cloudflare tunnel Docker.\nYou can copy hostname and service from the above site configuration, and just update the information in the configuration file." 10 50
