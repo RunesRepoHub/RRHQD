@@ -35,17 +35,24 @@ source ~/RRHQD/Core/Core.sh
 
 echo -e "${Green}Setup a Docker container for Cloudflare Tunnel${NC}"
 
+# Detect OS and set USE_SUDO accordingly
+OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+USE_SUDO=""
+if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
+  USE_SUDO="sudo"
+fi
+
 # Create the appdata directory and set permissions
-mkdir -p /mnt/user/appdata/cloudflared/ && chmod -R 777 /mnt/user/appdata/cloudflared/
+$USE_SUDO mkdir -p /mnt/user/appdata/cloudflared/ && $USE_SUDO chmod -R 777 /mnt/user/appdata/cloudflared/
 
 # Run Cloudflare Tunnel login command
-docker run -it --rm -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel login
+$USE_SUDO docker run -it --rm -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel login
 
 # Prompt user for tunnel name
 read -p "Enter the name for the Cloudflare Tunnel: " TUNNELNAME
 
 # Create a Cloudflare tunnel
-docker run -it --rm -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel create "$TUNNELNAME"
+$USE_SUDO docker run -it --rm -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel create "$TUNNELNAME"
 
 # Prompt user for the number of sites to host via the Cloudflare Tunnel
 read -p "Enter the number of sites you want to host via the Cloudflare Tunnel (1 for a single site, more for multiple sites): " NUM_SITES
@@ -64,7 +71,7 @@ fi
 
 # Create the configuration file
 CONFIG_FILE="/mnt/user/appdata/cloudflared/config.yml"
-touch "$CONFIG_FILE"
+$USE_SUDO touch "$CONFIG_FILE"
 
 # Prompt user for tunnel UUID
 read -p "Enter the Tunnel UUID: " UUID
@@ -90,7 +97,7 @@ if [ "$NUM_SITES" -eq 1 ]; then
     echo "  - service: $PROTOCOL://$REVERSEPROXYIP:$PORT"
     echo "    originRequest:"
     echo "      originServerName: $YOURDOMAIN"
-  } >> "$CONFIG_FILE"
+  } >> $USE_SUDO "$CONFIG_FILE"
 else 
   # Populate the configuration file
   {
@@ -103,16 +110,11 @@ else
     echo "  - hostname: $YOURDOMAIN"
     echo "    service: $PROTOCOL://$REVERSEPROXYIP:$PORT"
     echo "  - service: http_status:404"
-  } >> "$CONFIG_FILE"
+  } >>$USE_SUDO "$CONFIG_FILE"
 
   dialog --title "Configuration Complete" --msgbox "\nConfiguration file created at: $CONFIG_FILE\n\nConfigure the file for the other sites manually, and then restart the Cloudflare tunnel Docker.\nYou can copy hostname and service from the above site configuration, and just update the information in the configuration file." 10 50
 fi
 
 # Start the Cloudflare tunnel
-docker run -it -d --name "cloudflare-tunnel" -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel run -- "$UUID"
+$USE_SUDO docker run -it -d --name "cloudflare-tunnel" -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel run -- "$UUID"
 
-# Check if Docker is running
-if ! docker info >/dev/null 2>&1; then
-    echo "Docker does not seem to be running, start it first and then re-run this script."
-    exit 1
-fi

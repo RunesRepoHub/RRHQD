@@ -27,6 +27,13 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
+# Detect OS and set USE_SUDO accordingly
+OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+USE_SUDO=""
+if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
+  USE_SUDO="sudo"
+fi
+
 cd
 # Script to setup and configure a Llama-GPT.sh Docker container and start it
 
@@ -34,8 +41,8 @@ source ~/RRHQD/Core/Core.sh
 
 cd $ROOT_FOLDER
 
-git clone https://github.com/getumbrel/llama-gpt.git
+$USE_SUDO git clone https://github.com/getumbrel/llama-gpt.git
 
 cd $ROOT_FOLDER/$LLAMA_GPT_FOLDER
 
-./run.sh --model 7b
+$USE_SUDO ./run.sh --model 7b
