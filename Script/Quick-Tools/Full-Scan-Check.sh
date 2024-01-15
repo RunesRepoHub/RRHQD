@@ -1,5 +1,20 @@
 #!/bin/bash
 
+
+# Clone theHarvester repository
+git clone https://github.com/laramies/theHarvester
+cd theHarvester
+
+# Install dependencies based on the environment
+if [ "$ENVIRONMENT" == "development" ]; then
+    python3 -m pip install -r requirements/dev.txt
+else
+    python3 -m pip install -r requirements/base.txt
+fi
+
+# Display help for the theHarvester tool
+python3 theHarvester.py -h
+
 # Full Security Check Script
 
 # Configuration for logging
@@ -29,7 +44,6 @@ ensure_tool_installed() {
 # Ensure each tool's installation
 ensure_tool_installed nmap
 ensure_tool_installed masscan
-ensure_tool_installed theharvester
 ensure_tool_installed unicornscan
 ensure_tool_installed dnsrecon
 
