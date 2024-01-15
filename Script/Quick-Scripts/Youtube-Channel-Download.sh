@@ -12,6 +12,13 @@ fi
 output_path="$YOUTUBE"
 media_dir="$MEDIA"
 
+# Detect OS and set USE_SUDO accordingly
+OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+USE_SUDO=""
+if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
+  USE_SUDO="sudo"
+fi
+
 # Read the channel URL
 read -p "Enter the YouTube channel URL: " url
 
@@ -35,7 +42,7 @@ if ! grep -q "^${url}$" "$history_file"; then
 fi
 
 # Get the channel name using youtube-dl --get-filename
-channel_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(uploader)s" "$url" | head -n 1)
+channel_name=$($USE_SUDO docker run --rm mikenye/youtube-dl --get-filename -o "%(uploader)s" "$url" | head -n 1)
 
 # If the channel name is not available, default to 'unknown_channel'
 channel_name=${channel_name:-unknown_channel}
@@ -50,7 +57,7 @@ fi
 container_name="youtube_dl_${channel_name}"
 
 # Download all videos from the channel using youtube-dl in a Docker container
-docker run \
+$USE_SUDO docker run \
     --rm -d \
     -e PGID=$(id -g) \
     -e PUID=$(id -u) \

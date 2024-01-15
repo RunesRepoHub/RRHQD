@@ -47,11 +47,24 @@ else
 fi
 
 
-# Check if the cron job already exists in the user's crontab
-if crontab -l | grep -qF -- "$cronjob_entry"; then
-    dialog --title "Cron Job Exists" --msgbox "Cron job already exists. No changes made." 10 50
-else
+# Function to check if a cron job exists in the user's crontab
+cron_job_exists_in_user() {
+    local cronjob_entry="$1"
+    
+    # Use `grep` to check if the cron job already exists in the user's crontab
+    crontab -l | grep -qF -- "$cronjob_entry"
+}
+
+# Function to add a cron job to the user's crontab
+add_cron_job_to_user() {
+    local cronjob_entry="$1"
+    
     # Write out current crontab and add the new cron job
     (crontab -l; echo "$cronjob_entry") | crontab -
     dialog --title "Cron Job Update" --msgbox "Cron job added successfully." 10 50
+}
+
+# Check and add cron job to user's crontab if it does not exist
+if ! cron_job_exists_in_user "$cronjob_entry"; then
+    add_cron_job_to_user "$cronjob_entry"
 fi

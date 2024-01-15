@@ -12,15 +12,22 @@ MEDIA="$MEDIA"
 
 output_path="$YOUTUBE"
 
+# Detect OS and set USE_SUDO accordingly
+OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+USE_SUDO=""
+if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
+  USE_SUDO="sudo"
+fi
+
 # Exit if no URL is provided
 [ -z "$url" ] && exit
 
 # Extract the video ID from the URL
 video_id=$(echo "${url}" | awk -F '[=&]' '{print $2}')
 # Get the channel name using youtube-dl --get-filename
-channel_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(channel)s" "$url" | head -n 1)
+channel_name=$($USE_SUDO docker run --rm mikenye/youtube-dl --get-filename -o "%(channel)s" "$url" | head -n 1)
 # Get the playlist name using youtube-dl --get-filename
-playlist_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(playlist)s" "$url" | head -n 1)
+playlist_name=$($USE_SUDO docker run --rm mikenye/youtube-dl --get-filename -o "%(playlist)s" "$url" | head -n 1)
 # If the playlist name is not available, default to 'no_playlist'
 playlist_name=${playlist_name:-no_playlist}
 
@@ -36,7 +43,7 @@ video_file="${video_folder}/${video_id}.mp4"
 container_name="${video_id}"
 
 # Download video using docker run command in detached mode and delete the container when finished
-docker run \
+$USE_SUDO docker run \
     --rm -d \
     -e PGID=$(id -g) \
     -e PUID=$(id -u) \
