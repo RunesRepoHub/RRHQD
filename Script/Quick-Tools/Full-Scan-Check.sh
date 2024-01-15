@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check if Python and pip are installed
+if command -v python3 &> /dev/null && command -v pip3 &> /dev/null; then
+    echo "Python and pip are installed."
+else
+    echo "Error: Python and/or pip are not installed."
+    exit 1
+fi
 
 # Clone theHarvester repository
 git clone https://github.com/laramies/theHarvester
