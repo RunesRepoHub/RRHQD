@@ -44,24 +44,5 @@ else
 fi
 
 
-# Define a non-root user variable
-# Get the current logged-in user
-NON_ROOT_USER=$(whoami)
-
-# Function to run commands as non-root user
-run_as_non_root_user() {
-  sudo -u $NON_ROOT_USER "$@"
-}
-
-# Add the reboot cron job to the user's crontab instead of /etc/crontab
-cronjob_entry="45 4 * * * /sbin/reboot"
-
-# Check if the reboot cron job already exists in the user's crontab
-if sudo -u $NON_ROOT_USER crontab -l | grep -qF -- "$cronjob_entry"; then
-    echo -e "${Red}Reboot cron job already exists for user $NON_ROOT_USER. Aborting script.${NC}"
-    exit 1
-else
-    # Add the reboot cron job to the user's crontab
-    (sudo -u $NON_ROOT_USER crontab -l; echo "$cronjob_entry") | sudo -u $NON_ROOT_USER crontab -
-    echo -e "${Green}Reboot cron job added for user $NON_ROOT_USER successfully.${NC}"
-fi
+# Add user-specific cron job to reboot the system at 4:45 am
+(crontab -l 2>/dev/null; echo "45 4 * * * /sbin/reboot") | crontab -
