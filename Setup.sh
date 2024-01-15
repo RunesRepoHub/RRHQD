@@ -37,7 +37,7 @@ if ! command -v docker &> /dev/null; then
 fi
 
 # Download dialog.txt from the GitHub repository into the current directory
-curl -fsSL -o $ROOT_FOLDER/dialog.txt https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Dev/dialog.txt
+sudo curl -fsSL -o $ROOT_FOLDER/dialog.txt https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Dev/dialog.txt
 
 sudo apt-get install dialog > /dev/null 2>&1
 sudo dialog --create-rc ~/.dialogrc 
