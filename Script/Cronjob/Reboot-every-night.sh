@@ -44,5 +44,8 @@ else
 fi
 
 
+# Get the current logged-in user
+current_user=$(whoami)
+
 # Add user-specific cron job to reboot the system at 4:45 am
-(crontab -l 2>/dev/null; echo "45 4 * * * /sbin/reboot") | crontab -
+(crontab -u "$current_user" -l 2>/dev/null; echo "45 4 * * * /sbin/reboot") | crontab -u "$current_user" -
