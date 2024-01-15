@@ -1,6 +1,7 @@
 #!/bin/bash
+# Attempt to find the download directory even if the system language is not English
+DOWNLOAD_DIR=$(xdg-user-dir DOWNLOAD 2>/dev/null || echo "$HOME/Downloads")
 
-DOWNLOAD_DIR=~/Downloads
 DEB_FILES=($(ls "$DOWNLOAD_DIR"/*.deb))
 
 if [ ${#DEB_FILES[@]} -eq 0 ]; then
