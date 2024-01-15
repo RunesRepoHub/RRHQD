@@ -13,7 +13,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 ### Docker Support:
 
-![Alt text](Docs/Docker-Images.png)
+![Alt text](Docker-Images.png)
 
 - Uptime-Kuma - A fancy self-hosted monitoring tool
 - Vaultwarden - An unofficial Bitwarden compatible server
@@ -73,8 +73,8 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Docker - Start (Start all Docker)
 - Docker - Stop (Stop all Docker)
 - Docker - Update (Update a Docker)
-- Docker - Export (Export a Docker) (Still in testing)
-- Docker - Import (Import a Docker) (Still in testing)
+***- Docker - Export (Export a Docker) (Still in testing)***
+***- Docker - Import (Import a Docker) (Still in testing)***
 
 ---------------------------------------------------------------------------------------------
 
@@ -108,6 +108,8 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 ### Update RRHQD
 
 ![Alt text](Docs/Update-RRHQD.png)
+
+This will do a git pull based on the selected branch on install. After the script will exit, this is done to make sure the script is up to date. Just run the script again.  
 
 ---------------------------------------------------------------------------------------------
 
