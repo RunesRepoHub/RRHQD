@@ -33,39 +33,35 @@ echo -e "${Green}Checking for existing reboot cron job...${NC}"
 
 cronjob_entry="45 4 * * * root /sbin/reboot"
 
-debian_cron_job() {
-    local cronjob_entry="45 4 * * * root /sbin/reboot"
-
-    # Check if the reboot cron job already exists in /etc/crontab
-    if grep -qF -- "$cronjob_entry" /etc/crontab; then
-        echo -e "${Red}Reboot cron job already exists in /etc/crontab. Aborting script.${NC}"
-        exit 1
-    else
-        # Add the reboot cron job to /etc/crontab
-        echo "$cronjob_entry" >> /etc/crontab
-        echo -e "${Green}Reboot cron job added to /etc/crontab successfully.${NC}"
-    fi
-}
-
-# Add a cron job for Ubuntu to run a script every 5 minutes
-ubuntu_cron_job() {
-    local job_command="/sbin/reboot"
-    local cronjob_entry="*45 4 * * * $job_command"
-
-    # Add the cron job using crontab
-    (crontab -l 2>/dev/null; echo "$cronjob_entry") | crontab -
+# Check if the reboot cron job already exists in /etc/crontab
+if grep -qF -- "$cronjob_entry" /etc/crontab; then
+    echo -e "${Red}Reboot cron job already exists in /etc/crontab. Aborting script.${NC}"
+    exit 1
+else
+    # Add the reboot cron job to /etc/crontab
+    echo "$cronjob_entry" >> /etc/crontab
     echo -e "${Green}Reboot cron job added to /etc/crontab successfully.${NC}"
-}
-
-# Determine the OS distribution
-OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
-
-# If the OS is Ubuntu, run the ubuntu_cron_job function
-if [ "$OS_DISTRO" = "ubuntu" ]; then
-    ubuntu_cron_job
 fi
 
-# If the OS is Debian, run the debian_cron_job function
-if [ "$OS_DISTRO" = "debian" ]; then
-    debian_cron_job
+
+# Define a non-root user variable
+# Get the current logged-in user
+NON_ROOT_USER=$(whoami)
+
+# Function to run commands as non-root user
+run_as_non_root_user() {
+  sudo -u $NON_ROOT_USER "$@"
+}
+
+# Add the reboot cron job to the user's crontab instead of /etc/crontab
+cronjob_entry="45 4 * * * /sbin/reboot"
+
+# Check if the reboot cron job already exists in the user's crontab
+if sudo -u $NON_ROOT_USER crontab -l | grep -qF -- "$cronjob_entry"; then
+    echo -e "${Red}Reboot cron job already exists for user $NON_ROOT_USER. Aborting script.${NC}"
+    exit 1
+else
+    # Add the reboot cron job to the user's crontab
+    (sudo -u $NON_ROOT_USER crontab -l; echo "$cronjob_entry") | sudo -u $NON_ROOT_USER crontab -
+    echo -e "${Green}Reboot cron job added for user $NON_ROOT_USER successfully.${NC}"
 fi
