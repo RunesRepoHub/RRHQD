@@ -68,7 +68,7 @@ docker run \
     --embed-subs \
     --convert-subs srt \
     --write-auto-sub \
-    --download-archive "${channel_folder}/download-archive.txt" \
+    --download-archive "download-archive.txt" \
     --output '/output/%(title)s.%(ext)s' \
     --yes-playlist \
     "${url}"
