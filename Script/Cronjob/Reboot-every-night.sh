@@ -29,26 +29,29 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 source ~/RRHQD/Core/Core.sh
 
-echo -e "${Green}Checking for existing reboot cron job...${NC}"
+dialog --title "Check" --infobox "Checking for existing reboot cron job..." 5 70
+sleep 2
 
-cronjob_entry="45 4 * * * root /sbin/reboot"
+# Get the current logged-in username
+current_user="$(whoami)"
+cronjob_entry="45 4 * * * $current_user /sbin/reboot"
 
 # Check if the reboot cron job already exists in /etc/crontab
 if grep -qF -- "$cronjob_entry" /etc/crontab; then
-    echo -e "${Red}Reboot cron job already exists in /etc/crontab. Aborting script.${NC}"
+    dialog --title "Cron Job Exists" --msgbox "Reboot cron job already exists in /etc/crontab. Aborting script." 10 50
     exit 1
 else
     # Add the reboot cron job to /etc/crontab
     echo "$cronjob_entry" >> /etc/crontab
-    echo -e "${Green}Reboot cron job added to /etc/crontab successfully.${NC}"
+    dialog --title "Cron Job Update" --msgbox "Reboot cron job added to /etc/crontab successfully." 10 50
 fi
 
 
 # Check if the cron job already exists in the user's crontab
 if crontab -l | grep -qF -- "$cronjob_entry"; then
-    echo -e "${Red}Cron job already exists. No changes made.${NC}"
+    dialog --title "Cron Job Exists" --msgbox "Cron job already exists. No changes made." 10 50
 else
     # Write out current crontab and add the new cron job
     (crontab -l; echo "$cronjob_entry") | crontab -
-    echo -e "${Green}Cron job added successfully.${NC}"
+    dialog --title "Cron Job Update" --msgbox "Cron job added successfully." 10 50
 fi
