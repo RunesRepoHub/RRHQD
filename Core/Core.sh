@@ -94,6 +94,7 @@ DISK_CHECK="Disk-Check.sh"
 SECURITY_CHECK="Security-Check.sh"
 VULNERABILITY_CHECK="Vulnerability-Check.sh"
 FULL_SCAN_CHECK="Full-Scan-Check.sh"
+MANUALLY-INSTALL-SOFTWARE-UPDATE="Manually-Install-Software-Update.sh"
 
 
 ## Quick Scripts Scripts
