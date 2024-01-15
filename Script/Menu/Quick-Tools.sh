@@ -17,7 +17,8 @@ function show_dialog_menu() {
            2 "Security Check" \
            3 "Vulnerability Check" \
            4 "Full Scan Check" \
-           5 "Back To Main Menu" 2>"${INPUT}"
+           5 "Update Software Via deb Files" \
+           6 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -34,7 +35,7 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$FULL_SCAN_CHECK
             ;;
         5)
-            exit 0
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$MANUALLY_INSTALL_SOFTWARE_UPDATE
             ;;
         *)
             exit 0
