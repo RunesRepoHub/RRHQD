@@ -122,15 +122,17 @@ This will do a git pull based on the selected branch on install. After the scrip
 
 ## How to use
 
-Run the setup via the command below.
+- Run the setup via the command below.
 
-Follow the setup "guide" after.
+- Follow the setup "guide" after.
 
-When asked what branch do you want to use, select the branch you want to use. If you want to use a stable branch, select "Prod".
+- When asked what branch do you want to use, select the branch you want to use. If you want to use a stable branch, select "Prod".
 
-If you want to the nightly updated code base, then use the "PoC" branch.
+- If you want to the nightly updated code base, then use the "PoC" branch.
 
 ***Don't use the Dev branch***
+
+### Setup Command
 
 ```
 bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Prod/Setup.sh)
