@@ -59,6 +59,9 @@ read -p "Enter if you want to use http or https: " PROTOCOL
 # Prompt user for reverse proxy IP
 read -p "Enter the reverse proxy IP ($PROTOCOL://): " REVERSEPROXYIP
 
+# Prompt user for the port
+read -p "Enter the port: " PORT
+
 # Prompt user for the domain
 read -p "Enter your domain (yourdomain.com): " YOURDOMAIN
 
@@ -69,13 +72,13 @@ read -p "Enter your domain (yourdomain.com): " YOURDOMAIN
   echo " "
   echo "# forward all traffic to Reverse Proxy w/ SSL"
   echo "ingress:"
-  echo "  - service: $PROTOCOL://$REVERSEPROXYIP"
+  echo "  - service: $PROTOCOL://$REVERSEPROXYIP:$PORT"
   echo "    originRequest:"
   echo "      originServerName: $YOURDOMAIN"
 } >> "$CONFIG_FILE"
 
 # Start the Cloudflare tunnel
-docker run -it -d --name "Cloudflare Tunnel" -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel run -- "$UUID"
+docker run -it -d --name "cloudflare-tunnel" -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel run -- "$UUID"
 
 # Check if Docker is running
 if ! docker info >/dev/null 2>&1; then
