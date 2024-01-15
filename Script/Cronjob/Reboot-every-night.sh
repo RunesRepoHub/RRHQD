@@ -46,7 +46,7 @@ if grep -qF -- "$cronjob_entry" /etc/crontab; then
     exit 1
 else
     # Add the reboot cron job to /etc/crontab
-    echo "$cronjob_entry" >> $USE_SUDO /etc/crontab
+    $USE_SUDO echo "$cronjob_entry" >> /etc/crontab
     echo -e "${Green}Reboot cron job added to /etc/crontab successfully.${NC}"
 fi
 
