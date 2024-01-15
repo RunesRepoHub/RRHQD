@@ -13,7 +13,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 ### Docker Support:
 
-![Alt text](Docker-Images.png)
+![Alt text](Docs/Docker-Images.png)
 
 - Uptime-Kuma - A fancy self-hosted monitoring tool
 - Vaultwarden - An unofficial Bitwarden compatible server
