@@ -27,6 +27,13 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
+# Detect OS and set USE_SUDO accordingly
+OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+USE_SUDO=""
+if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
+  USE_SUDO="sudo"
+fi
+
 source ~/RRHQD/Core/Core.sh
 
 echo -e "${Green}Checking for existing reboot cron job...${NC}"
@@ -39,7 +46,7 @@ if grep -qF -- "$cronjob_entry" /etc/crontab; then
     exit 1
 else
     # Add the reboot cron job to /etc/crontab
-    echo "$cronjob_entry" >> /etc/crontab
+    echo "$cronjob_entry" >> $USE_SUDO /etc/crontab
     echo -e "${Green}Reboot cron job added to /etc/crontab successfully.${NC}"
 fi
 
