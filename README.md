@@ -1,38 +1,13 @@
 # RRHQD
 RunesRepoHub Quick Deploy this script has been made to make it easy to deploy the most used docker, software and other installers that we use.
 
-![Alt text](Docs/Main-Menu.png)
+![Alt text](Main-Menu.png)
 
 ### Current Versions:
 
 1. Dev = Development branch (Very unstable)
 2. PoC = Proof of concept (Nightly Updates)
 3. Prod = Production (Stable branch)
-
----------------------------------------------------------------------------------------------
-
-### RunesRepoHub Software Support:
-
-![Alt text](Docs/RRH.png)
-
-* ACS (Automated Content System)
-* CnC-WebGUI (Command And Control)
-* CnC-Agent (Command And Control)
-* EWD (Easy Web Development)
-
----------------------------------------------------------------------------------------------
-
-### Quick Installer Support:
-
-![Alt text](Docs/Quick-Installers.png)
-
-* Starship - A minimalistic, powerful, and extremely customizable prompt for any shell
-* Tailscale VPN - A private network that makes securing your online activity and managing your devices easy
-* Filezilla - A free software, cross-platform FTP application that supports FTP, SFTP, and FTPS
-* Fail2Ban - An intrusion prevention software framework that protects computer servers from brute-force attacks
-* Ansible - A radically simple IT automation tool
-
-* Docker (is auto installed) - A set of platform as a service products that use OS-level virtualization to deliver software in packages called containers
 
 ---------------------------------------------------------------------------------------------
 
@@ -54,6 +29,40 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 ---------------------------------------------------------------------------------------------
 
+### RunesRepoHub Software Support:
+
+![Alt text](Docs/RRH.png)
+
+* ACS (Automated Content System)
+* News Report Docker (Automated News Reporting System)
+* EWD (Easy Web Development)
+
+---------------------------------------------------------------------------------------------
+
+### Quick Installer Support:
+
+![Alt text](Docs/Quick-Installers.png)
+
+* Starship - A minimalistic, powerful, and extremely customizable prompt for any shell
+* Tailscale VPN - A private network that makes securing your online activity and managing your devices easy
+* Filezilla - A free software, cross-platform FTP application that supports FTP, SFTP, and FTPS
+* Fail2Ban - An intrusion prevention software framework that protects computer servers from brute-force attacks
+* Ansible - A radically simple IT automation tool
+
+* Docker (is auto installed) - A set of platform as a service products that use OS-level virtualization to deliver software in packages called containers
+
+---------------------------------------------------------------------------------------------
+
+### Cronjobs
+
+![Alt text](Docs/Cronjobs.png)
+
+- Add a nightly reboot at 4:45 am
+- Daily midnight update (Debian Systems)
+- Add a reboot cronjob for every Sunday at 00:00 am
+
+---------------------------------------------------------------------------------------------
+
 ### Docker Command and Control
 
 ![Alt text](Docs/Docker-CnC.png)
@@ -69,9 +78,36 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 ---------------------------------------------------------------------------------------------
 
-### Cronjobs
+### Quick Tools
 
-![Alt text](Docs/Cronjobs.png)
+![Alt text](Docs/Quick-Tools.png)
+
+(Early Access) Has not been full tested yet.
+
+- Disk Space - Check disk space
+- Security - Check security
+- Vulnerability - Check vulnerability
+- Full Scan Check - Check all 
+
+---------------------------------------------------------------------------------------------
+
+### Quick Scripts
+
+![Alt text](Docs/Quick-Scripts.png)
+
+(These scripts are made to work with the ACS)
+
+***IT WILL NOT WORK WITHOUT THE ACS***
+
+- Download Youtube Video - Download a youtube playlist
+- Download Full Youtube Channel - Add a youtube channel to download
+- Auto Update Youtube Channel Downloads - Check if there are new videos on the channel
+
+---------------------------------------------------------------------------------------------
+
+### Update RRHQD
+
+![Alt text](Docs/Update-RRHQD.png)
 
 ---------------------------------------------------------------------------------------------
 
