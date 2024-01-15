@@ -15,24 +15,27 @@ OSINT_RESULTS="$LOG_DIR/osint_scan.log"
 UNICORNSCAN_RESULTS="$LOG_DIR/unicornscan_scan.log"
 DNSRECON_RESULTS="$LOG_DIR/dnsrecon_scan.log"
 
-# Function to check for tool installation
-check_tool_installation() {
+# Function to check for tool installation and install if not present
+ensure_tool_installed() {
     if ! command -v "$1" &> /dev/null; then
-        echo "$1 is not installed. Please install before running this script."
-        exit 1
+        echo "$1 is not installed. Attempting to install."
+        sudo apt-get install -y "$1" || {
+            echo "Failed to install $1. Please install it manually."
+            exit 1
+        }
     fi
 }
 
-# Check for each tool's installation
-check_tool_installation openvas
-check_tool_installation burpsuite
-check_tool_installation w3af
-check_tool_installation zap-cli
-check_tool_installation nmap
-check_tool_installation masscan
-check_tool_installation theharvester
-check_tool_installation unicornscan
-check_tool_installation dnsrecon
+# Ensure each tool's installation
+ensure_tool_installed openvas
+ensure_tool_installed burpsuite
+ensure_tool_installed w3af
+ensure_tool_installed zap-cli
+ensure_tool_installed nmap
+ensure_tool_installed masscan
+ensure_tool_installed theharvester
+ensure_tool_installed unicornscan
+ensure_tool_installed dnsrecon
 
 # Create log directory if it doesn't exist
 mkdir -p "$LOG_DIR"
@@ -42,17 +45,34 @@ echo "Starting OpenVAS scan..."
 # Add OpenVAS scan command here
 # openvas_command > "$OPENVAS_RESULTS"
 
+openvas-start
+openvas_scan_task_id=$(omp --username admin --password admin -G | grep "Full and fast" | awk '{ print $1 }')
+omp --username admin --password admin -S "$openvas_scan_task_id" > "$OPENVAS_RESULTS"
+
+
 echo "Starting Burp Suite scan..."
 # Add Burp Suite scan command here
 # burpsuite_command > "$BURP_SUITE_RESULTS"
+
+# Burp Suite scan command placeholder
+# Replace 'http://target' with the target URL to be scanned
+burpsuite_command="burpsuite -url http://target"
+$burpsuite_command > "$BURP_SUITE_RESULTS"
 
 echo "Starting w3af scan..."
 # Add w3af scan command here
 # w3af_command > "$W3AF_RESULTS"
 
+# Start w3af scan
+w3af_command="w3af_console -s /path/to/w3af_script"
+$w3af_command > "$W3AF_RESULTS"
+
 echo "Starting OWASP ZAP scan..."
 # Add WASP ZAP scan command here
 # zap-cli quick-scan --self-contained > "$WASP_ZAP_RESULTS"
+
+# Start WASP ZAP scan
+zap-cli quick-scan --self-contained -o "-config api.disablekey=true" http://target > "$WASP_ZAP_RESULTS"
 
 echo "Starting Nmap scan..."
 nmap -v -A -T4 > "$NMAP_RESULTS"
