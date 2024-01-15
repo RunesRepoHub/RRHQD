@@ -93,6 +93,7 @@ DOCKER_IMPORT="Docker-Import.sh"
 DISK_CHECK="Disk-Check.sh"
 SECURITY_CHECK="Security-Check.sh"
 VULNERABILITY_CHECK="Vulnerability-Check.sh"
+FULL_SCAN_CHECK="Full-Scan-Check.sh"
 
 
 ## Quick Scripts Scripts

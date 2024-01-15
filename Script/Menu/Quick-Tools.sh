@@ -16,7 +16,8 @@ function show_dialog_menu() {
            1 "Disk Check" \
            2 "Security Check" \
            3 "Vulnerability Check" \
-           4 "Back To Main Menu" 2>"${INPUT}"
+           4 "Full Scan Check" \
+           5 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -28,6 +29,12 @@ function show_dialog_menu() {
             ;;
         3)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$VULNERABILITY_CHECK
+            ;;
+        4)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$FULL_SCAN_CHECK
+            ;;
+        5)
+            exit 0
             ;;
         *)
             exit 0
