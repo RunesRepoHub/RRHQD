@@ -27,9 +27,16 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
+# Detect OS and set USE_SUDO accordingly
+OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+USE_SUDO=""
+if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
+  USE_SUDO="sudo"
+fi
+
 # Generate a menu for user to select Docker containers to start
 echo "Available Docker containers:"
-mapfile -t containers < <(docker ps -a --format "{{.Names}}")
+mapfile -t containers < <($USE_SUDO docker ps -a --format "{{.Names}}")
 for i in "${!containers[@]}"; do
     echo "$((i+1))) ${containers[i]}"
 done
@@ -52,7 +59,7 @@ done
 
 # Start the chosen Docker containers
 for CONTAINER_NAME in "${selected_containers[@]}"; do
-    docker start "$CONTAINER_NAME" && echo "$CONTAINER_NAME started successfully." || echo "Failed to start $CONTAINER_NAME."
+    $USE_SUDO docker start "$CONTAINER_NAME" && echo "$CONTAINER_NAME started successfully." || echo "Failed to start $CONTAINER_NAME."
 done
 
 echo "All Docker containers have been started."

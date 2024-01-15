@@ -41,7 +41,7 @@ source ~/RRHQD/Core/Core.sh
 
 cd $ROOT_FOLDER
 
-$USE_SUDO git clone https://github.com/getumbrel/llama-gpt.git
+git clone https://github.com/getumbrel/llama-gpt.git
 
 cd $ROOT_FOLDER/$LLAMA_GPT_FOLDER
 

@@ -31,6 +31,13 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 INPUT=/tmp/menu.sh.$$
 OUTPUT=/tmp/output.sh.$$
 
+# Detect OS and set USE_SUDO accordingly
+OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+USE_SUDO=""
+if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
+  USE_SUDO="sudo"
+fi
+
 # Function to list and select Docker containers for deletion
 function show_docker_delete_menu() {
     local containers=($(docker ps -a --format "{{.Names}}"))
@@ -50,7 +57,7 @@ function show_docker_delete_menu() {
         # When user presses 'OK', containers to delete are stored in $OUTPUT
         local selected_containers=($(<"${OUTPUT}"))
         for container in "${selected_containers[@]}"; do
-            docker rm -f "$container"
+            $USE_SUDO docker rm -f "$container"
         done
     fi
 }

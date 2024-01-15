@@ -27,24 +27,31 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
+# Detect OS and set USE_SUDO accordingly
+OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+USE_SUDO=""
+if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
+  USE_SUDO="sudo"
+fi
+
 # Script to stop all running Docker containers and delete all Docker objects
 
 echo "Stopping all running Docker containers..."
-docker stop $(docker ps -aq)
+$USE_SUDO docker stop $(docker ps -aq)
 
 echo "Removing all Docker containers..."
-docker rm $(docker ps -aq)
+$USE_SUDO docker rm $(docker ps -aq)
 
 echo "Removing all Docker images..."
-docker rmi $(docker images -q) --force
+$USE_SUDO docker rmi $(docker images -q) --force
 
 echo "Removing all Docker volumes..."
-docker volume rm $(docker volume ls -q)
+$USE_SUDO docker volume rm $(docker volume ls -q)
 
 echo "Removing all Docker networks..."
-docker network rm $(docker network ls -q)
+$USE_SUDO docker network rm $(docker network ls -q)
 
 echo "Docker system pruning to remove any remaining unused data..."
-docker system prune -a --volumes --force
+$USE_SUDO docker system prune -a --volumes --force
 
 echo "Docker reset completed."

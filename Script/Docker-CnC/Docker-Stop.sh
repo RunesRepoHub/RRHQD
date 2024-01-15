@@ -27,9 +27,16 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
+# Detect OS and set USE_SUDO accordingly
+OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+USE_SUDO=""
+if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
+  USE_SUDO="sudo"
+fi
+
 # Stop all running Docker containers
 
 echo "Stopping all running Docker containers..."
-docker stop $(docker ps -q)
+$USE_SUDO docker stop $($USE_SUDO docker ps -q)
 
 echo "All Docker containers have been stopped."
