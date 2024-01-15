@@ -44,8 +44,32 @@ else
 fi
 
 
-# Get the current logged-in user
-current_user=$(whoami)
 
-# Add user-specific cron job to reboot the system at 4:45 am
-(crontab -u "$current_user" -l 2>/dev/null; echo "45 4 * * * /sbin/reboot") | crontab -u "$current_user" -
+# Ensure the script is being run as root
+if [[ $EUID -ne 0 ]]; then
+    echo -e "${Red}This script must be run as root. Aborting.${NC}"
+    exit 1
+fi
+
+# Define the cronjob entry to reboot the system
+cronjob_reboot_entry="0 2 * * * root /sbin/reboot"
+
+# Function to add a cronjob for rebooting Ubuntu
+add_reboot_cronjob() {
+    echo -e "${Green}Attempting to add reboot cron job...${NC}"
+
+    # Check if reboot cron job already exists
+    if ! grep -qF -- "$cronjob_reboot_entry" /etc/crontab; then
+        # Add the reboot cron job to /etc/crontab
+        echo "$cronjob_reboot_entry" >> /etc/crontab
+        echo -e "${Green}Reboot cron job added to /etc/crontab successfully.${NC}"
+    else
+        echo -e "${Yellow}Reboot cron job already exists. No changes made.${NC}"
+    fi
+}
+
+# Call the function to add the reboot cron job
+add_reboot_cronjob
+
+# Display a message indicating the cron job was added
+echo -e "${Green}Cron job added successfully.${NC}"
