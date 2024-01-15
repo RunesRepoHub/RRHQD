@@ -32,18 +32,33 @@ source ~/RRHQD/Core/Core.sh
 dialog --title "Check" --infobox "Checking for existing reboot cron job..." 5 70
 sleep 2
 
+# Function to check if a cron job exists in /etc/crontab
+cron_job_exists() {
+    local cron_entry="$1"
+    
+    # Use `grep` to check if the cron entry already exists in /etc/crontab
+    grep -qF -- "$cron_entry" /etc/crontab
+}
+
+# Function to add a cron job to /etc/crontab
+add_cron_job() {
+    local cron_entry="$1"
+    
+    # Append the cron job to /etc/crontab
+    echo "$cron_entry" | sudo tee -a /etc/crontab
+    dialog --title "Cron Job Update" --msgbox "Reboot cron job added to /etc/crontab successfully." 10 50
+}
+
 # Get the current logged-in username
 current_user="$(whoami)"
 cronjob_entry="45 4 * * * $current_user /sbin/reboot"
 
-# Check if the reboot cron job already exists in /etc/crontab
-if grep -qF -- "$cronjob_entry" /etc/crontab; then
+# Add cron jobs if they do not exist in /etc/crontab
+if cron_job_exists "$cronjob_entry"; then
     dialog --title "Cron Job Exists" --msgbox "Reboot cron job already exists in /etc/crontab. Aborting script." 10 50
     exit 1
 else
-    # Add the reboot cron job to /etc/crontab
-    echo "$cronjob_entry" >> /etc/crontab
-    dialog --title "Cron Job Update" --msgbox "Reboot cron job added to /etc/crontab successfully." 10 50
+    add_cron_job "$cronjob_entry"
 fi
 
 
