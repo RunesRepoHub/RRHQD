@@ -36,12 +36,23 @@ if ! command -v docker &> /dev/null; then
     echo "Docker has been successfully installed."
 fi
 
-# Download dialog.txt from the GitHub repository into the current directory
-sudo curl -fsSL -o $ROOT_FOLDER/dialog.txt https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Dev/dialog.txt
+# Function to safely execute commands with sudo if not running as root
+execute() {
+    if [ "$(id -u)" -ne 0 ]; then
+        sudo "$@"
+    else
+        "$@"
+    fi
+}
 
-sudo apt-get install dialog > /dev/null 2>&1
-sudo dialog --create-rc ~/.dialogrc 
-sudo cat $ROOT_FOLDER/dialog.txt > ~/.dialogrc
+# Install dialog package if not already installed
+execute apt-get install dialog -y > /dev/null 2>&1
+
+# Download dialog.txt from the GitHub repository into the ROOT_FOLDER
+execute curl -fsSL -o "$ROOT_FOLDER/dialog.txt" "https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Dev/dialog.txt"
+
+# Create or overwrite the .dialogrc configuration file in the user's home directory
+execute cp "$ROOT_FOLDER/dialog.txt" "${HOME}/.dialogrc"
 
 # Define the GitHub repository URL
 GITHUB_REPO_URL="https://github.com/RunesRepoHub/RRHQD.git"
