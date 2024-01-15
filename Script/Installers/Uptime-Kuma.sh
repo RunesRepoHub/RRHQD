@@ -35,19 +35,6 @@ cd
 
 echo -e "${Green}Setup a Docker container for Uptime-Kuma${NC}"
 
-# Check for Debian or Ubuntu and install Docker if not present
-if [[ -f /etc/debian_version ]]; then
-    if ! command -v docker >/dev/null 2>&1; then
-        echo "Docker is not installed. Installing now..."
-        sudo apt-get update
-        sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-        curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
-        sudo apt-get update
-        sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-    fi
-fi
-
 # Prompt user for input with defaults
 read -p "Enter the Docker image for Uptime-Kuma (e.g., louislam/uptime-kuma:1): " IMAGE
 IMAGE=${IMAGE:-"louislam/uptime-kuma:1"}
@@ -83,12 +70,33 @@ mkdir -p "$COMPOSE_SUBFOLDER"
 # Inform the user where the Docker compose file has been created
 echo "Docker compose file created at: $COMPOSE_FILE"
 
-# Check if Docker is running
-if ! docker info >/dev/null 2>&1; then
-    echo "Docker does not seem to be running, start it first and then re-run this script."
-    exit 1
-fi
+# Check if Docker is running and use sudo if the OS is ubuntu, zorin, linuxmint, or kali
+OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
+case $OS_DISTRO in
+  ubuntu|zorin|linuxmint|kali)
+    if ! sudo docker info >/dev/null 2>&1; then
+      echo "Docker does not seem to be running, start it first with sudo and then re-run this script."
+      exit 1
+    fi
+    ;;
+  *)
+    if ! docker info >/dev/null 2>&1; then
+      echo "Docker does not seem to be running, start it first and then re-run this script."
+      exit 1
+    fi
+    ;;
+esac
 
-# Start the Docker container using docker-compose
-docker compose -f "$COMPOSE_FILE" up -d
+# Determine the OS distribution
+OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
+
+# Start the Docker container using docker-compose with or without sudo based on the OS
+case $OS_DISTRO in
+  ubuntu|zorin|linuxmint|kali)
+    sudo docker compose -f "$COMPOSE_FILE" up -d
+    ;;
+  *)
+    docker compose -f "$COMPOSE_FILE" up -d
+    ;;
+esac
 
