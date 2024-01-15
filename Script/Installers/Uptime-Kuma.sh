@@ -35,6 +35,19 @@ cd
 
 echo -e "${Green}Setup a Docker container for Uptime-Kuma${NC}"
 
+# Check for Debian or Ubuntu and install Docker if not present
+if [[ -f /etc/debian_version ]]; then
+    if ! command -v docker >/dev/null 2>&1; then
+        echo "Docker is not installed. Installing now..."
+        sudo apt-get update
+        sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+        curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+        sudo apt-get update
+        sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+    fi
+fi
+
 # Prompt user for input with defaults
 read -p "Enter the Docker image for Uptime-Kuma (e.g., louislam/uptime-kuma:1): " IMAGE
 IMAGE=${IMAGE:-"louislam/uptime-kuma:1"}
@@ -78,3 +91,4 @@ fi
 
 # Start the Docker container using docker-compose
 docker compose -f "$COMPOSE_FILE" up -d
+
