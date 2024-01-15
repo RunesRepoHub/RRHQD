@@ -54,7 +54,6 @@ ensure_tool_installed() {
 # Ensure each tool's installation
 ensure_tool_installed nmap
 ensure_tool_installed masscan
-ensure_tool_installed unicornscan
 ensure_tool_installed dnsrecon
 
 # Create log directory if it doesn't exist
@@ -77,22 +76,12 @@ dnsrecon -d example.com > "$DNSRECON_RESULTS" # Replace example.com with the int
 
 # Combine all results into one log file
 {
-    echo "OpenVAS Scan Results:"
-    cat "$OPENVAS_RESULTS"
-    echo "Burp Suite Scan Results:"
-    cat "$BURP_SUITE_RESULTS"
-    echo "w3af Scan Results:"
-    cat "$W3AF_RESULTS"
-    echo "OWASP ZAP Scan Results:"
-    cat "$WASP_ZAP_RESULTS"
     echo "Nmap Scan Results:"
     cat "$NMAP_RESULTS"
     echo "Masscan Scan Results:"
     cat "$MASSCAN_RESULTS"
     echo "OSINT Results:"
     cat "$OSINT_RESULTS"
-    echo "Unicornscan Results:"
-    cat "$UNICORNSCAN_RESULTS"
     echo "DNSrecon Results:"
     cat "$DNSRECON_RESULTS"
 } > "$LOG_FILE"
