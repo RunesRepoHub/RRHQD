@@ -1,5 +1,5 @@
 # RRHQD
-RunesRepoHub Quick Deploy this script has been made to make it easy to deploy the most used docker, software and other installers that we use.
+RunesRepoHub Quick Deploy this script has been made to make it easy to deploy the docker, software and other installers that I use.
 
 ## Operating Systems Supported:
 
