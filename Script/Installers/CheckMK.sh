@@ -37,14 +37,23 @@ source ~/RRHQD/Core/Core.sh
 echo -e "${Green}Starting CheckMK Docker configuration script.${NC}"
 
 # Prompt user for input with defaults
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
 read -p "Enter the Docker image for CheckMK (e.g., checkmk/check-mk-raw:latest): " IMAGE
 IMAGE=${IMAGE:-"checkmk/check-mk-raw:latest"}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the name for the CheckMK container: " CONTAINER_NAME
 CONTAINER_NAME=${CONTAINER_NAME:-"checkmk-container"}
 
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
 read -p "Enter the port to expose CheckMK on (e.g., 8080): " PORT
 PORT=${PORT:-8080}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the path for CheckMK data (e.g., /checkmk-data/): " DATA_PATH
 DATA_PATH=${DATA_PATH:-./Data/checkmk-data}

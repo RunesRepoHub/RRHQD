@@ -36,23 +36,37 @@ source ~/RRHQD/Core/Core.sh
 echo -e "${Green}Setup a Docker container for Vaultwarden${NC}"
 
 # Prompt user for input with defaults
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
 read -p "Enter the Docker image for Vaultwarden (e.g., vaultwarden/server:latest): " IMAGE
 IMAGE=${IMAGE:-vaultwarden/server:latest}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the name for the Vaultwarden container: " CONTAINER_NAME
 CONTAINER_NAME=${CONTAINER_NAME:-vaultwarden}
 
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
 read -p "Enter the port to expose Vaultwarden on (e.g., 80): " PORT
 PORT=${PORT:-80}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the path for Vaultwarden data (e.g., /vw-data/): " DATA_PATH
 DATA_PATH=${DATA_PATH:-./Data/vw-data}
 
+echo -e "${Red}This step cannot be skipped${NC}"
+
 read -p "Enter the admin token for Vaultwarden: " ADMIN_TOKEN
 ADMIN_TOKEN=${ADMIN_TOKEN:-$(openssl rand -base64 32)}
 
+echo -e "${Red}This step cannot be skipped${NC}"
+
 read -p "Allow signups? (y/n): " SIGNUPS_ALLOWED
 SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED:-y}
+
+echo -e "${Red}This step cannot be skipped${NC}"
 
 read -p "Enable WebSockets? (y/n): " WEBSOCKET_ENABLED
 WEBSOCKET_ENABLED=${WEBSOCKET_ENABLED:-y}

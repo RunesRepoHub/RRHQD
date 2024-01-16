@@ -33,20 +33,32 @@ cd
 echo "MySQL Docker configuration script."
 
 # Prompt user for input with defaults
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
 read -p "Enter the Docker image for MySQL (e.g., mysql:5.7): " IMAGE
 IMAGE=${IMAGE:-"mysql:5.7"}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the name for the MySQL container: " CONTAINER_NAME
 CONTAINER_NAME=${CONTAINER_NAME:-"mysql-container"}
 
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
 read -p "Enter the port to expose MySQL on (e.g., 3306): " PORT
 PORT=${PORT:-3306}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (root)${NC}"
 
 read -p "Enter the database user: " DB_USER
 DB_USER=${DB_USER:-"root"}
 
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (mysql)${NC}"
+
 read -p "Enter the database password: " DB_PASS
 DB_PASS=${DB_PASS:-"mysql"}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (mydb)${NC}"
 
 read -p "Enter the default database name: " DB_NAME
 DB_NAME=${DB_NAME:-"mydb"}

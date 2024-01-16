@@ -39,6 +39,8 @@ cd
 
 source ~/RRHQD/Core/Core.sh
 
+echo -e "${Green}When the script is done, and you see the access via localhost:port, you can just press ctrl+c to exit back to Main Menu${NC}"
+
 cd $ROOT_FOLDER
 
 git clone https://github.com/getumbrel/llama-gpt.git

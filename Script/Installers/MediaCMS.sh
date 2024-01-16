@@ -33,14 +33,22 @@ cd
 echo "Starting MediaCMS Docker configuration script."
 
 # Prompt user for input with defaults
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
 read -p "Enter the Docker image for MediaCMS (e.g., mediacms-io/mediacms:latest): " IMAGE
 IMAGE=${IMAGE:-"mediacms-io/mediacms:latest"}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the name for the MediaCMS container: " CONTAINER_NAME
 CONTAINER_NAME=${CONTAINER_NAME:-"mediacms-container"}
 
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
 read -p "Enter the port to expose MediaCMS on (e.g., 8000): " PORT
 PORT=${PORT:-8000}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the path for MediaCMS data (e.g., /mediacms-data/): " DATA_PATH
 DATA_PATH=${DATA_PATH:-./Data/mediacms-data}

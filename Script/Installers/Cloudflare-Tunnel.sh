@@ -54,6 +54,10 @@ read -p "Enter the name for the Cloudflare Tunnel: " TUNNELNAME
 # Create a Cloudflare tunnel
 $USE_SUDO docker run -it --rm -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel create "$TUNNELNAME"
 
+echo -e "${Green}Pick what config should be used, for just one site or multiple sites${NC}"
+echo -e "${Yellow}This script will only add one website, but just copi its config to the other sites if needed${NC}"
+echo -e "${Yellow}If you want to add multiple websites, please use edit the config after the script has finished${NC}"
+
 # Prompt user for the number of sites to host via the Cloudflare Tunnel
 read -p "Enter the number of sites you want to host via the Cloudflare Tunnel (1 for a single site, more for multiple sites): " NUM_SITES
 
@@ -74,16 +78,23 @@ CONFIG_FILE="/mnt/user/appdata/cloudflared/config.yml"
 $USE_SUDO touch "$CONFIG_FILE"
 
 # Prompt user for tunnel UUID
+echo -e "${Yellow}Enter the Tunnel UUID from above${NC}"
+
 read -p "Enter the Tunnel UUID: " UUID
+
+echo -e "${Yellow}What does the site use when accessing it locally?${NC}"
 
 read -p "Enter if you want to use http or https: " PROTOCOL
 
+echo -e "${Yellow}Enter the IP of the machine hosting the website${NC}"
 # Prompt user for reverse proxy IP
 read -p "Enter the reverse proxy IP ($PROTOCOL://): " REVERSEPROXYIP
 
+echo -e "${Yellow}Enter the port of the machine hosting the website${NC}"
 # Prompt user for the port
 read -p "Enter the port: " PORT
 
+echo -e "${Yellow}Enter your domain (yourdomain.com or website.yourdomain.com)${NC}"
 # Prompt user for the domain
 read -p "Enter your domain (yourdomain.com): " YOURDOMAIN
 if [ "$NUM_SITES" -eq 1 ]; then
