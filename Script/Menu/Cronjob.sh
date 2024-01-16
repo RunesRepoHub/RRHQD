@@ -21,15 +21,15 @@ function show_dialog_menu() {
     case $menu_choice in
         1)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$REBOOT_EVERY_NIGHT
-            exit 1
+            exit 2
             ;;
         2)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$UPDATE_DAILY_MIDNIGHT
-            exit 1
+            exit 2
             ;;
         3)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$REBOOT_EVERY_SUNDAY
-            exit 1
+            exit 2
             ;;
         *)
             exit 0
