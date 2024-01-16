@@ -41,12 +41,11 @@ if ! grep -q "^${url}$" "$history_file"; then
     echo "$url" >> "$history_file"
 fi
 
-clean_url=$url
+# Get the channel name using youtube-dl --get-filename
+channel_name=$($USE_SUDO docker run --rm mikenye/youtube-dl --get-filename -o "%(uploader)s" "$url" | head -n 1)
 
-# Cleanup the URL by removing any trailing whitespaces and unnecessary parameters
-# Extract the channel name from the URL
-clean_url=$(echo "$clean_url" | sed 's|.*https://www\.youtube\.com/||')
-channel_name=$(echo "$clean_url" | sed -n 's|^\(@[^&/]*\).*|\1|p')
+# If the channel name is not available, default to 'unknown_channel'
+channel_name=${channel_name:-unknown_channel}
 
 # Create the channel folder if it doesn't exist
 channel_folder="${output_path}/${channel_name}"
