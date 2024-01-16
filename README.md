@@ -101,12 +101,13 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Vulnerability - Check vulnerability
 - Full Scan Check - Check all 
 - Manually Install Software Updates - Install update from deb file in the download folder
+- ACS Cleanup - Check for Dubblicate Entries
 
 ---------------------------------------------------------------------------------------------
 
 ### Youtube Scripts
 
-![Alt text](Docs/Quick-Scripts.png)
+![Alt text](Docs/Youtube-Scripts.png)
 
 (These scripts are made to work with the ACS)
 
