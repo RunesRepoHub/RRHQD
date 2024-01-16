@@ -20,13 +20,16 @@ function show_dialog_menu() {
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
         1)
-            source $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$REBOOT_EVERY_NIGHT
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$REBOOT_EVERY_NIGHT
+            exit 1
             ;;
         2)
-            source $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$UPDATE_DAILY_MIDNIGHT
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$UPDATE_DAILY_MIDNIGHT
+            exit 1
             ;;
         3)
-            source $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$REBOOT_EVERY_SUNDAY
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_TOOLS_DIR/$REBOOT_EVERY_SUNDAY
+            exit 1
             ;;
         *)
             exit 0
