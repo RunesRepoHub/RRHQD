@@ -10,7 +10,7 @@ script_name=$(basename "$0" .sh)
 # Use dialog to create a more user-friendly menu
 function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy)" \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy)" - Quick-Installers \
            --title "Main Menu - $script_name" \
            --menu "Please select an option:" 15 60 6 \
            1 "Run the Tailscale Installer" \

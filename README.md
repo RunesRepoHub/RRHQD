@@ -16,7 +16,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 3. Prod = Production (Stable branch)
 
 
-### Main Menu
+### Main Menu:
 
 ![Alt text](Docs/Main-Menu.png)
 
@@ -154,6 +154,12 @@ bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Prod/Setup
 ```
 
 ### Custom Commands 
+
+To use custom commands you will have to run 
+
+```
+source ~/.bashrc
+```
 
 If you want to access the script again after exiting it use the command below.
 
