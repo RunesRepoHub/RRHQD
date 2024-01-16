@@ -1,13 +1,25 @@
 # RRHQD
 RunesRepoHub Quick Deploy this script has been made to make it easy to deploy the most used docker, software and other installers that we use.
 
-![Alt text](Docs/Main-Menu.png)
+## Operating Systems Supported:
+
+- Debian 10 - 11
+- Ubuntu 20.04 - 22.04
+- Linuxmint 21.3 - Cinnamon
+- Kail Linux 2023.4 (Not tested yet, should still mostly work)
+- Zorin OS - 17 - Core (Not tested yet, should still mostly work)
 
 ### Current Versions:
 
 1. Dev = Development branch (Very unstable)
 2. PoC = Proof of concept (Nightly Updates)
 3. Prod = Production (Stable branch)
+
+
+### Main Menu
+
+![Alt text](Docs/Main-Menu.png)
+
 
 ---------------------------------------------------------------------------------------------
 
