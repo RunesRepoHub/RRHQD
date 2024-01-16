@@ -31,7 +31,7 @@ LLAMA_GPT_FOLDER=llama-gpt
 DOCKER_CNC_FOLDER=Docker-CnC
 BACKGROUND=Background
 QUICK_TOOLS_DIR=Quick-Tools
-QUICK_SCRIPTS_FOLDER=Quick-Scripts
+YOUTUBE_SCRIPTS_FOLDER=Youtube-Scripts
 
 ## Installers Scripts
 
@@ -57,7 +57,7 @@ RRH_SOFTWARE="RRH-Software.sh"
 CRONJOB="Cronjob.sh"
 DOCKER_CNC="Docker-CnC.sh"
 QUICK_TOOLS="Quick-Tools.sh"
-QUICK_SCRIPTS="Quick-Script.sh"
+YOUTUBE_SCRIPTS="Youtube-Script.sh"
 
 
 ## Quick Installers Scripts
