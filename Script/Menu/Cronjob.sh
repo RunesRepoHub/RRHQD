@@ -25,6 +25,9 @@ function show_options_menu() {
         3)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$REBOOT_EVERY_SUNDAY
             ;;
+        4)  
+            exit 0
+            ;;
         *)
             ;;
     esac
