@@ -100,6 +100,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Security - Check security
 - Vulnerability - Check vulnerability
 - Full Scan Check - Check all 
+- Manually Install Software Updates - Install update from deb file in the download folder
 
 ---------------------------------------------------------------------------------------------
 
@@ -114,6 +115,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Download Youtube Video - Download a youtube playlist
 - Download Full Youtube Channel - Add a youtube channel to download
 - Auto Update Youtube Channel Downloads - Check if there are new videos on the channel
+- Download Youtube Playlist MP3 - Download a youtube playlist in mp3
 
 ---------------------------------------------------------------------------------------------
 
