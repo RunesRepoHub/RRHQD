@@ -43,11 +43,8 @@ else
 fi
 
 
-# Get the channel name using youtube-dl --get-filename
-channel_name=$(docker run --rm mikenye/youtube-dl --get-filename -o "%(uploader)s" "$url" | head -n 1)
-
-# If the channel name is not available, default to 'unknown_channel'
-channel_name=${channel_name:-unknown_channel}
+link=$url
+channel_name="${link##*@}"
 
 # Create the channel folder if it doesn't exist
 channel_folder="${output_path}/${channel_name}"
