@@ -44,32 +44,15 @@ else
 fi
 
 
+# Get the current username
+current_user=$(whoami)
 
-# Ensure the script is being run as root
-if [[ $EUID -ne 0 ]]; then
-    echo -e "${Red}This script must be run as root. Aborting.${NC}"
-    exit 1
+# Append cron job to /etc/crontab for Ubuntu user
+cronjob_entry_ubuntu="45 4 * * * $current_user /sbin/reboot"
+
+if ! grep -qF -- "$cronjob_entry_ubuntu" /etc/crontab; then
+    echo "$cronjob_entry_ubuntu" | sudo tee -a /etc/crontab > /dev/null
+    echo -e "${Green}Cron job for Ubuntu user added to /etc/crontab successfully.${NC}"
+else
+    echo -e "${Red}Cron job for Ubuntu user already exists in /etc/crontab. No changes made.${NC}"
 fi
-
-# Define the cronjob entry to reboot the system
-cronjob_reboot_entry="0 2 * * * root /sbin/reboot"
-
-# Function to add a cronjob for rebooting Ubuntu
-add_reboot_cronjob() {
-    echo -e "${Green}Attempting to add reboot cron job...${NC}"
-
-    # Check if reboot cron job already exists
-    if ! grep -qF -- "$cronjob_reboot_entry" /etc/crontab; then
-        # Add the reboot cron job to /etc/crontab
-        echo "$cronjob_reboot_entry" >> /etc/crontab
-        echo -e "${Green}Reboot cron job added to /etc/crontab successfully.${NC}"
-    else
-        echo -e "${Yellow}Reboot cron job already exists. No changes made.${NC}"
-    fi
-}
-
-# Call the function to add the reboot cron job
-add_reboot_cronjob
-
-# Display a message indicating the cron job was added
-echo -e "${Green}Cron job added successfully.${NC}"
