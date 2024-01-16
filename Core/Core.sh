@@ -95,7 +95,7 @@ SECURITY_CHECK="Security-Check.sh"
 VULNERABILITY_CHECK="Vulnerability-Check.sh"
 FULL_SCAN_CHECK="Full-Scan-Check.sh"
 MANUALLY_INSTALL_SOFTWARE_UPDATE="Manually-Install-Software-Update.sh"
-DISK_CLEANUP="Disk-Cleanup.sh"
+DISK_CLEANUP="ACS-Cleanup.sh"
 
 
 ## Quick Scripts Scripts

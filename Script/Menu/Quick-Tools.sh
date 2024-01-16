@@ -18,7 +18,7 @@ function show_dialog_menu() {
            3 "Vulnerability Check" \
            4 "Full Scan Check" \
            5 "Update Software Via deb Files" \
-           6 "Disk Cleanup" \
+           6 "ACS Cleanup" \
            7 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
