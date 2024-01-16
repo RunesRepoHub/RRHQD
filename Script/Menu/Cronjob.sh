@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 clear
 source ~/RRHQD/Core/Core.sh
 
