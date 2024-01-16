@@ -16,11 +16,11 @@ add_cron_job() {
 reboot_job="45 4 * * * root /sbin/reboot"
 
 if cron_job_exists "$reboot_job"; then
-    dialog --msgbox "Reboot cron job already exists in /etc/crontab. Aborting script." 10 50
+    echo "Reboot cron job already exists in /etc/crontab. Aborting script."
     exit 1
 else
     add_cron_job "$reboot_job"
-    dialog --msgbox "Reboot cron job added to /etc/crontab successfully." 10 50
-    exit 2
+    echo "Reboot cron job added to /etc/crontab successfully."
+    exit 0
 fi
 
