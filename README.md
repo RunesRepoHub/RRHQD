@@ -104,7 +104,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 ---------------------------------------------------------------------------------------------
 
-### Quick Scripts
+### Youtube Scripts
 
 ![Alt text](Docs/Quick-Scripts.png)
 
