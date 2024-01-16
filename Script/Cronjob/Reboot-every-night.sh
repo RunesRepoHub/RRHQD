@@ -21,5 +21,6 @@ if cron_job_exists "$reboot_job"; then
 else
     add_cron_job "$reboot_job"
     dialog --msgbox "Reboot cron job added to /etc/crontab successfully." 10 50
+    exit 2
 fi
 
