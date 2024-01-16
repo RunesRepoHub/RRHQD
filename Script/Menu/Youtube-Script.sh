@@ -13,7 +13,8 @@ function show_dialog_menu() {
            1 "Download YouTube Video" \
            2 "Download Fully Youtube Channel" \
            3 "Auto Update Youtube Channel Downloads" \
-           4 "Back To Main Menu" 2>"${INPUT}"
+           4 "Download Playlist MP3" \
+           5 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -25,6 +26,9 @@ function show_dialog_menu() {
             ;;
         3)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$YOUTUBE_CHANNEL_AUTO
+            ;;
+        4)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$YOUTUBE_AUDIO_PLAYLIST
             ;;
         *)
             exit 0
