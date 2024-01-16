@@ -17,7 +17,7 @@ os_distro=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
 case "$os_distro" in
   kali|ubuntu|debian|zorin|linuxmint)
     # Schedule the reboot using at command
-    echo "$reboot_command" | at 04:45
+    $reboot_command | at 04:45
     ;;
   *)
     echo "This script does not support the current OS: $os_distro"
