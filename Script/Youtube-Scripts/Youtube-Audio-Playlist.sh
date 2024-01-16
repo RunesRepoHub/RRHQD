@@ -10,6 +10,8 @@ else
   exit 0
 fi
 
+ROOT_FOLDER=~/RRHQD
+
 # Define output path and media directory
 output_path="$YOUTUBE_AUDIO"
 media_dir="$MEDIA"

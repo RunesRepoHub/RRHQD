@@ -6,6 +6,8 @@ else
   exit 0
 fi
 
+ROOT_FOLDER=~/RRHQD
+
 read -p "Link for youtube playlist: " url
 
 MEDIA="$MEDIA"
