@@ -41,17 +41,29 @@ if ! grep -q "^${url}$" "$history_file"; then
     echo "$url" >> "$history_file"
 fi
 
-# Get the channel name and download all videos from the channel using youtube-dl in a Docker container
-$USE_SUDO docker run --rm -d \
+# Cleanup the URL by removing any trailing whitespaces and unnecessary parameters
+clean_url=$(echo "$url" | sed 's/&.*//' | xargs)
+
+# Create the channel folder if it doesn't exist
+channel_folder="${output_path}/${channel_name}"
+if [ ! -d "${channel_folder}" ]; then
+    mkdir -p "${channel_folder}"
+fi
+
+# Generate a unique container name based on the channel name
+container_name="youtube_dl_${channel_name}"
+
+# Download all videos from the channel using youtube-dl in a Docker container
+$USE_SUDO docker run \
+    --rm -d \
     -e PGID=$(id -g) \
     -e PUID=$(id -u) \
     -v "${media_dir}":/workdir:rw \
-    --name "youtube_dl_$(echo $url | md5sum | cut -d ' ' -f 1)" \
+    -v "${channel_folder}":/output:rw \
+    --name "${container_name}" \
     --cpus 1 \
     --memory 2g \
     mikenye/youtube-dl \
-    --get-filename -o "/output/%(uploader)s/%(title)s.%(ext)s" \
-    --exec 'mkdir -p /output/%(uploader)s && echo "Download started for the channel: %(uploader)s\nVideos will be saved in the folder: /output/%(uploader)s" && if [ ! -d /output/%(uploader)s ]; then mkdir -p /output/%(uploader)s; fi' \
     -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' \
     --write-info-json \
     --write-thumbnail \
@@ -60,8 +72,8 @@ $USE_SUDO docker run --rm -d \
     --embed-subs \
     --convert-subs srt \
     --write-auto-sub \
-    --download-archive "/output/%(uploader)s/download-archive.txt" \
-    --output '/output/%(uploader)s/%(title)s.%(ext)s' \
+    --download-archive "download-archive.txt" \
+    --output '/output/%(title)s.%(ext)s' \
     --yes-playlist \
     "${url}"
 
