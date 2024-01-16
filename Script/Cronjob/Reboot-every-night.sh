@@ -2,17 +2,24 @@
 
 source ~/RRHQD/Core/Core.sh
 
-echo -e "${Green}Checking for existing reboot cron job...${NC}"
+cron_job_exists() {
+    local cron_command="$1"
+    grep -qF "$cron_command" /etc/crontab
+}
 
-cronjob_entry="45 4 * * * root /sbin/reboot"
+add_cron_job() {
+    local cron_command="$1"
+    echo "$cron_command" | sudo tee -a /etc/crontab >/dev/null
+    echo "Cron job added: $cron_command"
+}
 
-# Check if the reboot cron job already exists in /etc/crontab
-if grep -qF -- "$cronjob_entry" /etc/crontab; then
+reboot_job="45 4 * * * root /sbin/reboot"
+
+if cron_job_exists "$reboot_job"; then
     dialog --msgbox "Reboot cron job already exists in /etc/crontab. Aborting script." 10 50
     exit 1
 else
-    # Add the reboot cron job to /etc/crontab
-    echo "$cronjob_entry" >> /etc/crontab
+    add_cron_job "$reboot_job"
     dialog --msgbox "Reboot cron job added to /etc/crontab successfully." 10 50
 fi
 
