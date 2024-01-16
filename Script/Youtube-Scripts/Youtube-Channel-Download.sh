@@ -41,9 +41,11 @@ if ! grep -q "^${url}$" "$history_file"; then
     echo "$url" >> "$history_file"
 fi
 
+clean_url=$url
+
 # Cleanup the URL by removing any trailing whitespaces and unnecessary parameters
 # Extract the channel name from the URL
-channel_name=$(echo "$url" | sed -n 's|.*youtube\.com/\(@[^&/]*\).*|\1|p')
+channel_name=$(echo "$clean_url" | sed -n 's|.*youtube\.com/\(@[^&/]*\).*|\1|p')
 
 # Create the channel folder if it doesn't exist
 channel_folder="${output_path}/${channel_name}"
