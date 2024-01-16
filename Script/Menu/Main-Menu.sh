@@ -41,7 +41,7 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_TOOLS
             ;;
         7)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_SCRIPTS
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$YOUTUBE_SCRIPTS
             ;;
         8)
             cd $ROOT_FOLDER
