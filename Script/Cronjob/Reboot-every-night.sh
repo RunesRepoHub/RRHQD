@@ -5,7 +5,8 @@ source ~/RRHQD/Core/Core.sh
 #!/bin/bash
 
 # Install AT command scheduler
-apt install at
+apt install at 
+sudo apt install at
 
 # Define the reboot command without using systemd or cronjob/crontab
 reboot_command="/sbin/shutdown -r +5"
