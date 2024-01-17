@@ -58,6 +58,7 @@ function show_dialog_menu() {
             ;;
         *)
             dialog --title "Exiting" --msgbox "Thank you for using RRHQD. Support me via github https://github.com/RunesRepoHub/" 6 52
+            clear
             exit 0
             ;;
     esac
