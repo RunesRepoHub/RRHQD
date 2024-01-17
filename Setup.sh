@@ -97,6 +97,15 @@ git config --global pull.ff only
 
 cd ..
 
+
+# Detect OS and set USE_SUDO accordingly
+OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+USE_SUDO=""
+if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
+  USE_SUDO="sudo"
+fi
+
+
 # Determine the operating system
 OS=$(grep '^ID=' /etc/os-release | cut -d= -f2)
 
@@ -105,7 +114,7 @@ add_alias() {
     local file=$1
     local alias=$2
     local command=$3
-    echo "alias $alias=\"$command\"" >> "$file"
+    $USE_SUDO echo "alias $alias=\"$command\"" >> "$file"
 }
 
 # Check if the alias 'qd' already exists in the appropriate file
