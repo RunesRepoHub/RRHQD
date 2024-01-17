@@ -24,6 +24,23 @@ check_and_install git
 # Check and install curl if necessary
 check_and_install curl
 
+
+# Kali Linux specific Docker CE installation
+if [ "$OS_DISTRO" = "kali" ]; then
+    echo "Detected Kali Linux. Installing Docker CE..."
+    sudo apt-get update
+    sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian buster stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+    sudo systemctl enable docker --now
+    echo "Docker CE has been installed and started on Kali Linux."
+else
+    echo "This section is for Kali Linux only. Skipping Docker CE installation for other distributions."
+fi
+
+
 # Check if Docker is installed and install it if not
 if ! command -v docker &> /dev/null; then
     echo "Docker is not installed. Attempting to install Docker..."
