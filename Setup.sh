@@ -97,20 +97,18 @@ git config --global pull.ff only
 
 cd ..
 
-# Check if the alias 'qd' already exists in .bash_profile or .bashrc
-if grep -q "alias qd=" ~/.bash_profile ~/.bashrc 2> /dev/null; then
+# Check if the alias 'qd' already exists in .bashrc
+if grep -q "alias qd=" ~/.bashrc; then
     echo "The alias 'qd' already exists. Would you like to pick a new alias name? (yes/no)"
     read -p "Enter yes or no: " user_choice
     if [[ $user_choice == "yes" ]]; then
         echo "Please enter a new alias name:"
         read -p "New alias name: " new_alias
-        # Add the new alias to .bash_profile or .bashrc
-        echo "alias $new_alias=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bash_profile
+        # Add the new alias to .bashrc
         echo "alias $new_alias=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
     fi
 else
-    # Add the alias 'qd' to .bash_profile and .bashrc
-    echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bash_profile
+    # Add the alias 'qd' to .bashrc
     echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
 fi
 
