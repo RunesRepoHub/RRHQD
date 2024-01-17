@@ -97,19 +97,36 @@ git config --global pull.ff only
 
 cd ..
 
-# Check if the alias 'qd' already exists in .bashrc
-if grep -q "alias qd=" ~/.bashrc; then
+# Determine the operating system
+OS=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+
+# Define the function to add an alias
+add_alias() {
+    local file=$1
+    local alias=$2
+    local command=$3
+    echo "alias $alias=\"$command\"" >> "$file"
+}
+
+# Check if the alias 'qd' already exists in the appropriate file
+if [ "$OS" = "kali" ]; then
+    ALIAS_FILE="$HOME/.bash_aliases"
+else
+    ALIAS_FILE="$HOME/.bashrc"
+fi
+
+if grep -q "alias qd=" "$ALIAS_FILE"; then
     echo "The alias 'qd' already exists. Would you like to pick a new alias name? (yes/no)"
     read -p "Enter yes or no: " user_choice
     if [[ $user_choice == "yes" ]]; then
         echo "Please enter a new alias name:"
         read -p "New alias name: " new_alias
-        # Add the new alias to .bashrc
-        echo "alias $new_alias=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
+        # Add the new alias to the appropriate file
+        add_alias "$ALIAS_FILE" "$new_alias" "bash ~/RRHQD/Script/Menu/Main-Menu.sh"
     fi
 else
-    # Add the alias 'qd' to .bashrc
-    echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
+    # Add the alias 'qd' to the appropriate file
+    add_alias "$ALIAS_FILE" "qd" "bash ~/RRHQD/Script/Menu/Main-Menu.sh"
 fi
 
 sleep 3 
