@@ -157,9 +157,20 @@ bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Prod/Setup
 
 To use custom commands you will have to run 
 
+
+***This is for Ubuntu, Debian and Linux Mint.***
+
 ```
 source ~/.bashrc
 ```
+
+***This is for Kali Linux***
+
+```
+source ~/.zshrc
+```
+
+--------------------------------------------------------------------
 
 If you want to access the script again after exiting it use the command below.
 

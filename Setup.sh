@@ -112,18 +112,26 @@ else
     echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
 fi
 
-# Check if the alias 'qd' already exists in .bash_aliases
-if grep -q "alias qd=" ~/.bash_aliases; then
-    echo "The alias 'qd' already exists in .bash_aliases. Please choose another name."
+# Check if the alias 'qd' already exists in .zshrc
+if grep -q "alias qd=" ~/.zshrc; then
+    echo "The alias 'qd' already exists in .zshrc. Please choose another name."
 else
-    # Add the alias 'qd' to .bash_aliases
-    echo "Adding alias 'qd' to .bash_aliases"
-    echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bash_aliases
+    # Add the alias 'qd' to .zshrc with proper permissions
+    if [ ! -f ~/.zshrc ]; then
+        touch ~/.zshrc
+        chmod 644 ~/.zshrc
+    fi
+    echo "Adding alias 'qd' to .zshrc"
+    echo "alias qd='bash ~/RRHQD/Script/Menu/Main-Menu.sh'" >> ~/.zshrc
 fi
 
-# Source the .bash_aliases to make the new alias available
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
+# Source the .bashrc to make the new alias available
+if [ -f ~/.bashrc ]; then
+    source ~/.bashrc
+fi
+
+if [ -f ~/.zshrc ]; then
+    source ~/.zshrc
 fi
 
 sleep 3 
