@@ -19,9 +19,7 @@ function show_dialog_menu() {
            4 "Docker - Update" \
            5 "Docker - Reset" \
            6 "Docker - Remove" \
-           7 "Docker - Export" \
-           8 "Docker - Import" \
-           9 "Back To Main Menu" 2>"${INPUT}"
+           7 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -42,12 +40,6 @@ function show_dialog_menu() {
             ;;
         6)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$DOCKER_CNC_FOLDER/$DOCKER_REMOVE
-            ;;
-        7)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$DOCKER_CNC_FOLDER/$DOCKER_EXPORT
-            ;;
-        8)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$DOCKER_CNC_FOLDER/$DOCKER_IMPORT
             ;;
         *)
             exit 0

@@ -6,8 +6,8 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Debian 10 - 11
 - Ubuntu 20.04 - 22.04
 - Linuxmint 21.3 - Cinnamon
-- Kail Linux 2023.4 (Not tested yet, should still mostly work)
-- Zorin OS - 17 - Core (Not tested yet, should still mostly work)
+- Kail Linux 2023.4 
+- Zorin OS - 17 - Core
 
 ### Current Versions:
 
@@ -85,8 +85,6 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Docker - Start (Start all Docker)
 - Docker - Stop (Stop all Docker)
 - Docker - Update (Update a Docker)
-- ***Docker - Export (Export a Docker) (Still in testing)***
-- ***Docker - Import (Import a Docker) (Still in testing)***
 
 ---------------------------------------------------------------------------------------------
 
@@ -111,7 +109,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 (These scripts are made to work with the ACS)
 
-***IT WILL NOT WORK WITHOUT THE ACS***
+***IT WILL NOT WORK WITHOUT INSTALLING THE ACS First***
 
 - Download Youtube Video - Download a youtube playlist
 - Download Full Youtube Channel - Add a youtube channel to download
@@ -158,7 +156,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Prod/Setup
 To use custom commands you will have to run 
 
 
-***This is for Ubuntu, Debian and Linux Mint.***
+***This is for Ubuntu, Debian, Zorin OS and Linux Mint.***
 
 ```
 source ~/.bashrc
