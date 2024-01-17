@@ -112,6 +112,20 @@ else
     echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
 fi
 
+# Check if the alias 'qd' already exists in .bash_aliases
+if grep -q "alias qd=" ~/.bash_aliases; then
+    echo "The alias 'qd' already exists in .bash_aliases. Please choose another name."
+else
+    # Add the alias 'qd' to .bash_aliases
+    echo "Adding alias 'qd' to .bash_aliases"
+    echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bash_aliases
+fi
+
+# Source the .bash_aliases to make the new alias available
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
+fi
+
 sleep 3 
 
 bash ~/RRHQD/Script/Menu/Main-Menu.sh
