@@ -97,45 +97,21 @@ git config --global pull.ff only
 
 cd ..
 
-
-# Detect OS and set USE_SUDO accordingly
-OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
-USE_SUDO=""
-if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
-  USE_SUDO="sudo"
-fi
-
-
-# Determine the operating system
-OS=$(grep '^ID=' /etc/os-release | cut -d= -f2)
-
-# Define the function to add an alias
-add_alias() {
-    local file=$1
-    local alias=$2
-    local command=$3
-    $USE_SUDO echo "alias $alias=\"$command\"" >> "$file"
-}
-
-# Check if the alias 'qd' already exists in the appropriate file
-if [ "$OS" = "kali" ]; then
-    ALIAS_FILE="$HOME/.bash_aliases"
-else
-    ALIAS_FILE="$HOME/.bashrc"
-fi
-
-if grep -q "alias qd=" "$ALIAS_FILE"; then
+# Check if the alias 'qd' already exists in .bash_profile or .bashrc
+if grep -q "alias qd=" ~/.bash_profile ~/.bashrc 2> /dev/null; then
     echo "The alias 'qd' already exists. Would you like to pick a new alias name? (yes/no)"
     read -p "Enter yes or no: " user_choice
     if [[ $user_choice == "yes" ]]; then
         echo "Please enter a new alias name:"
         read -p "New alias name: " new_alias
-        # Add the new alias to the appropriate file
-        add_alias "$ALIAS_FILE" "$new_alias" "bash ~/RRHQD/Script/Menu/Main-Menu.sh"
+        # Add the new alias to .bash_profile or .bashrc
+        echo "alias $new_alias=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bash_profile
+        echo "alias $new_alias=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
     fi
 else
-    # Add the alias 'qd' to the appropriate file
-    add_alias "$ALIAS_FILE" "qd" "bash ~/RRHQD/Script/Menu/Main-Menu.sh"
+    # Add the alias 'qd' to .bash_profile and .bashrc
+    echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bash_profile
+    echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
 fi
 
 sleep 3 
