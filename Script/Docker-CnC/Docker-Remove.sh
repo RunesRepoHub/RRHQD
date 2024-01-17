@@ -31,39 +31,32 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 INPUT=/tmp/menu.sh.$$
 OUTPUT=/tmp/output.sh.$$
 
-# Detect OS and set USE_SUDO accordingly
-OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
-USE_SUDO=""
-if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
-  USE_SUDO="sudo"
-fi
+# Generate a menu for user to select Docker containers to delete
+echo "Available Docker containers:"
+mapfile -t containers < <($USE_SUDO docker ps -a --format "{{.Names}}")
+for i in "${!containers[@]}"; do
+    echo "$((i+1))) ${containers[i]}"
+done
 
-# Function to list and select Docker containers for deletion
-function show_docker_delete_menu() {
-    local containers=($(docker ps -a --format "{{.Names}}"))
-    local options=()
+# Ask user to select containers
+echo "Enter the numbers of the Docker containers to delete (separated by space):"
+read -r -a selections
 
-    for container in "${containers[@]}"; do
-        options+=("$container" "" OFF)
-    done
-
-    dialog --clear \
-           --backtitle "Docker Management" \
-           --title "Select Docker Containers to Delete" \
-           --checklist "Use SPACE to select containers to delete:" 15 60 6 \
-           "${options[@]}" 2>"${OUTPUT}"
-
-    if [ $? -eq 0 ]; then
-        # When user presses 'OK', containers to delete are stored in $OUTPUT
-        local selected_containers=($(<"${OUTPUT}"))
-        for container in "${selected_containers[@]}"; do
-            $USE_SUDO docker rm -f "$container"
-        done
+# Validate selections and prepare container names for deletion
+selected_containers=()
+for selection in "${selections[@]}"; do
+    # Adjust selection index to match array index
+    idx=$((selection - 1))
+    if [[ idx -ge 0 && idx -lt ${#containers[@]} ]]; then
+        selected_containers+=("${containers[idx]}")
+    else
+        echo "Invalid selection: $selection"
     fi
-}
+done
 
-# Ensure the temp files are removed upon script termination
-trap "rm -f $INPUT $OUTPUT" 0 1 2 5 15
+# Delete the chosen Docker containers
+for CONTAINER_NAME in "${selected_containers[@]}"; do
+    $USE_SUDO docker rm -f "$CONTAINER_NAME" && echo "$CONTAINER_NAME deleted successfully." || echo "Failed to delete $CONTAINER_NAME."
+done
 
-# Show the menu
-show_docker_delete_menu
+echo "All selected Docker containers have been deleted."
