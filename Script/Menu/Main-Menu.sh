@@ -54,6 +54,7 @@ function show_dialog_menu() {
                 dialog --title "Error" --textbox /tmp/git-pull-output.txt 20 80
             fi
             dialog --msgbox "You can now run the script fully updated" 5 50
+            clear
             exit 0
             ;;
         *)
