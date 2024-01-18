@@ -31,20 +31,14 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 echo "Initiating Docker cleanup process..."
 
-# Detect OS and set USE_SUDO accordingly
-OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
-USE_SUDO=""
-if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
-  USE_SUDO="sudo"
-fi
 
 # Remove all unused images, not just dangling ones
-$USE_SUDO docker image prune -a --force
+sudo docker image prune -a --force
 
 # Remove all unused volumes
-$USE_SUDO docker volume prune --force
+sudo docker volume prune --force
 
 # Remove all unused networks
-$USE_SUDO docker network prune --force
+sudo docker network prune --force
 
 echo "Docker cleanup completed."

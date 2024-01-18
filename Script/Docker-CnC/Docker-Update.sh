@@ -29,35 +29,28 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 # RRHQD/Script/Docker-CnC/Docker-Update.sh
 
-# Detect OS and set USE_SUDO accordingly
-OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
-USE_SUDO=""
-if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "kali" || "$OS_NAME" == "linuxmint" || "$OS_NAME" == "zorin" ]]; then
-  USE_SUDO="sudo"
-fi
-
 # Function to list all running Docker containers
 list_containers() {
-  $USE_SUDO docker ps --format "{{.Names}}" | nl -w2 -s ') '
+  sudo docker ps --format "{{.Names}}" | nl -w2 -s ') '
 }
 
 # Function to get the image of a specific Docker container
 get_container_image() {
-  $USE_SUDO docker inspect --format='{{.Config.Image}}' "$1"
+  sudo docker inspect --format='{{.Config.Image}}' "$1"
 }
 
 +# Function to update the Docker container with ports and volumes
 update_container() {
   local container_name="$1"
   local container_image="$(get_container_image "$container_name")"
-  local container_ports="$($USE_SUDO docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}}{{$p}};{{end}}' "$container_name" | sed 's/;$//')"
-  local container_volumes="$($USE_SUDO docker inspect --format='{{range .Mounts}}{{.Source}}:{{.Destination}};{{end}}' "$container_name" | sed 's/;$//')"
+  local container_ports="$(sudo docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}}{{$p}};{{end}}' "$container_name" | sed 's/;$//')"
+  local container_volumes="$(sudo docker inspect --format='{{range .Mounts}}{{.Source}}:{{.Destination}};{{end}}' "$container_name" | sed 's/;$//')"
 
   echo "Updating $container_name with image $container_image..."
-  $USE_SUDO docker pull "$container_image" && \
-  $USE_SUDO docker stop "$container_name" && \
-  $USE_SUDO docker rm "$container_name" && \
-  $USE_SUDO docker run -d --name "$container_name" "$container_image"
+  sudo docker pull "$container_image" && \
+  sudo docker stop "$container_name" && \
+  sudo docker rm "$container_name" && \
+  sudo docker run -d --name "$container_name" "$container_image"
 
 
 # Main menu
@@ -82,5 +75,5 @@ for selection in "${selections[@]}"; do
 done
 
 echo "Update process completed."
-  $USE_SUDO docker run -d --name "$container_name" -p $container_ports -v $container_volumes "$container_image"
+  sudo docker run -d --name "$container_name" -p $container_ports -v $container_volumes "$container_image"
 }

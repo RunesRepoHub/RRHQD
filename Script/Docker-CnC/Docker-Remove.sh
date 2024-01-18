@@ -33,7 +33,7 @@ OUTPUT=/tmp/output.sh.$$
 
 # Generate a menu for user to select Docker containers to delete
 echo "Available Docker containers:"
-mapfile -t containers < <($USE_SUDO docker ps -a --format "{{.Names}}")
+mapfile -t containers < <(sudo docker ps -a --format "{{.Names}}")
 for i in "${!containers[@]}"; do
     echo "$((i+1))) ${containers[i]}"
 done
@@ -56,7 +56,7 @@ done
 
 # Delete the chosen Docker containers
 for CONTAINER_NAME in "${selected_containers[@]}"; do
-    $USE_SUDO docker rm -f "$CONTAINER_NAME" && echo "$CONTAINER_NAME deleted successfully." || echo "Failed to delete $CONTAINER_NAME."
+    sudo docker rm -f "$CONTAINER_NAME" && echo "$CONTAINER_NAME deleted successfully." || echo "Failed to delete $CONTAINER_NAME."
 done
 
 echo "All selected Docker containers have been deleted."
