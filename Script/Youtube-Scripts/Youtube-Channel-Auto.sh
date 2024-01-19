@@ -48,9 +48,7 @@ channel_name="${link##*@}"
 
 # Create the channel folder if it doesn't exist
 channel_folder="${output_path}/${channel_name}"
-if [ ! -d "${channel_folder}" ]; then
-    mkdir -p "${channel_folder}"
-fi
+
 
 # Generate a unique container name based on the channel name
 container_name="youtube_dl_${channel_name}"
