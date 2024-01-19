@@ -56,7 +56,7 @@ fi
 container_name="youtube_dl_${channel_name}"
 
 # Download all videos from the channel using youtube-dl in a Docker container
-docker run \
+sudo docker run \
     --rm -d \
     -e PGID=$(id -g) \
     -e PUID=$(id -u) \
