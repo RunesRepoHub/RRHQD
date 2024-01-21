@@ -5,7 +5,7 @@
 
 CRONTAB_FILE="/etc/crontab"
 
-# Function to display menu
+# Function to display menu and get choice
 show_menu() {
     echo "Cronjob Manager"
     echo "1. Add a new cronjob"
@@ -14,7 +14,7 @@ show_menu() {
     echo "4. Exit the script"
     echo -n "Choose an action [1-4]: "
     read -r menu_choice
-    echo "$menu_choice"
+    return "$menu_choice"
 }
 
 # Function to add a cronjob
@@ -47,6 +47,7 @@ remove_cronjob() {
     done <<< "$cronjobs"
 
     read -p "Enter number of cronjob to remove: " choice
+    choice=$((choice + 6)) # Offset for system cronjobs that are not displayed
 
     if [[ -n $choice ]]; then
         sed -i "${choice}d" "${CRONTAB_FILE}"
@@ -59,7 +60,7 @@ remove_cronjob() {
 # Function to list cronjobs
 list_cronjobs() {
     echo "Current cronjobs:"
-    cat "${CRONTAB_FILE}"
+    tail -n +7 "${CRONTAB_FILE}"
 }
 
 # Check if the user is root
@@ -70,7 +71,9 @@ fi
 
 # Main loop
 while true; do
-    choice=$(show_menu)
+    show_menu
+    choice=$?
+
     case "$choice" in
         1)
             add_cronjob
