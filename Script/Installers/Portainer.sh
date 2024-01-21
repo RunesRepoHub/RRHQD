@@ -28,52 +28,29 @@ CONTAINER_NAME=$(dialog --inputbox "Enter the name for the Portainer container:"
 PORT=$(dialog --inputbox "Enter the port to expose Portainer on (e.g., 9000):" 10 60 "9000" 3>&1 1>&2 2>&3 3>&-)
 DATA_PATH=$(dialog --inputbox "Enter the volume path for Portainer data (e.g., /portainer-data/):" 10 60 "./Data/portainer-data" 3>&1 1>&2 2>&3 3>&-)
 options=("Docker standalone" "Docker Swarm")
+# Define the input file for dialog selections
+INPUT=/tmp/menu.sh.$$
+
+# Ensure the temp file is removed upon script termination
+trap "rm -f $INPUT" 0 1 2 5 15
+
 DEPLOYMENT_TYPE=$(dialog --menu "Choose the deployment type:" 12 60 2 \
-  "${options[0]}" "Docker standalone" \
-  "${options[1]}" "Docker Swarm" 3>&1 1>&2 2>&3 3>&-)
-
-if [[ -z $DEPLOYMENT_TYPE ]]; then
-  echo "No selection made. Exiting."
-  exit 1
-fi
-
-if [[ $DEPLOYMENT_TYPE == "Docker standalone" ]]; then
-  DEPLOYMENT_TYPE="standalone"
-elif [[ $DEPLOYMENT_TYPE == "Docker Swarm" ]]; then
-  DEPLOYMENT_TYPE="swarm"
-fi
+  1 "Docker standalone" \
+  2 "Docker Swarm" 3>&1 1>&2 2>&3)
 
 COMPOSE_SUBFOLDER="./portainer-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 mkdir -p "$COMPOSE_SUBFOLDER"
 
-if [ "$DEPLOYMENT_TYPE" = "swarm" ]; then
-  cat > "$COMPOSE_FILE" <<EOF
-version: '3.8'
-services:
-  $CONTAINER_NAME:
-    image: $IMAGE
-    ports:
-      - "$PORT:9000"
-    volumes:
-      - $DATA_PATH:/data
-    deploy:
-      mode: replicated
-      replicas: 1
-EOF
+# Define the Docker Compose configuration template
+compose_template_standalone="version: '3'\nservices:\n  $CONTAINER_NAME:\n    image: $IMAGE\n    container_name: $CONTAINER_NAME\n    ports:\n      - \"$PORT:9000\"\n    volumes:\n      - $DATA_PATH:/data\n    restart: always"
+compose_template_swarm="version: '3.8'\nservices:\n  $CONTAINER_NAME:\n    image: $IMAGE\n    ports:\n      - \"$PORT:9000\"\n    volumes:\n      - $DATA_PATH:/data\n    deploy:\n      mode: replicated\n      replicas: 1"
+
+# Generate the Docker Compose file based on the selected deployment type
+if [ "$DEPLOYMENT_TYPE" = "2" ]; then
+  echo -e "$compose_template_swarm" > "$COMPOSE_FILE"
 else
-  cat > "$COMPOSE_FILE" <<EOF
-version: '3'
-services:
-  $CONTAINER_NAME:
-    image: $IMAGE
-    container_name: $CONTAINER_NAME
-    ports:
-      - "$PORT:9000"
-    volumes:
-      - $DATA_PATH:/data
-    restart: always
-EOF
+  echo -e "$compose_template_standalone" > "$COMPOSE_FILE"
 fi
 
 dialog --title "Docker Compose" --msgbox "Docker compose file for $DEPLOYMENT_TYPE created at: $COMPOSE_FILE" 6 50
