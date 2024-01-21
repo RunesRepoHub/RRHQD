@@ -89,3 +89,6 @@ case $OS_DISTRO in
     docker compose -f "$COMPOSE_FILE" up -d
     ;;
 esac
+
+# Inform the user that the script has finished
+dialog --msgbox "CheckMK has been installed successfully." 10 60

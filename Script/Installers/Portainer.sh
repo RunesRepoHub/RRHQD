@@ -27,9 +27,16 @@ IMAGE=$(dialog --inputbox "Enter the Docker image for Portainer (e.g., portainer
 CONTAINER_NAME=$(dialog --inputbox "Enter the name for the Portainer container:" 10 60 "portainer" 3>&1 1>&2 2>&3 3>&-)
 PORT=$(dialog --inputbox "Enter the port to expose Portainer on (e.g., 9000):" 10 60 "9000" 3>&1 1>&2 2>&3 3>&-)
 DATA_PATH=$(dialog --inputbox "Enter the volume path for Portainer data (e.g., /portainer-data/):" 10 60 "./Data/portainer-data" 3>&1 1>&2 2>&3 3>&-)
-DEPLOYMENT_TYPE=$(dialog --menu "Is this setup for Docker standalone or Docker Swarm?" 12 60 2 \
-"standalone" "Docker standalone" \
-"swarm" "Docker Swarm" 3>&1 1>&2 2>&3 3>&-)
+DEPLOYMENT_TYPE=$(dialog --menu "Choose the deployment type:" 12 60 2 \
+1 "Docker standalone" \
+2 "Docker Swarm" 3>&1 1>&2 2>&3 3>&-)
+
+# Map user selection to deployment types
+case $DEPLOYMENT_TYPE in
+  1) DEPLOYMENT_TYPE="standalone";;
+  2) DEPLOYMENT_TYPE="swarm";;
+  *) echo "Invalid selection"; exit 1;;
+esac
 
 COMPOSE_SUBFOLDER="./portainer-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
