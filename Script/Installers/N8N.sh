@@ -1,6 +1,7 @@
 #!/bin/bash
 
 LOG_DIR="$HOME/RRHQD/logs"
+# Configuration
 LOG_FILE="$LOG_DIR/n8n_install.log"  # Log file location
 
 # Function to increment log file name
@@ -17,37 +18,53 @@ increment_log_file_name() {
   echo "Log file will be saved as $LOG_FILE"
 }
 
+# Create log directory if it doesn't exist
 mkdir -p "$LOG_DIR"
+
+# Increment log file name for this run
 increment_log_file_name
+
+# Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 cd
-# Use dialog to interact with the user
-if ! command -v dialog &> /dev/null; then
-    echo "The dialog program could not be found, please install dialog to use this script."
-    exit 1
-fi
+# Script to setup and configure a n8n Docker container and start it
 
-# Define the default settings
-DEFAULT_IMAGE="n8nio/n8n:latest"
-DEFAULT_CONTAINER_NAME="n8n-container"
-DEFAULT_PORT=5678
-DEFAULT_TZ="Europe/Berlin"
-DEFAULT_DATA_PATH="./Data/n8n-data"
-DEFAULT_GENERIC_TIMEZONE="UTC"
+# Prompt user for input with defaults
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
-# Prompt user for input with defaults using dialog
-IMAGE=$(dialog --title "Docker image configuration" --inputbox "Enter the Docker image for n8n:" 8 60 $DEFAULT_IMAGE 3>&1 1>&2 2>&3)
-CONTAINER_NAME=$(dialog --title "Container name configuration" --inputbox "Enter the name for the n8n container:" 8 60 $DEFAULT_CONTAINER_NAME 3>&1 1>&2 2>&3)
-PORT=$(dialog --title "Port configuration" --inputbox "Enter the port to expose n8n on:" 8 60 $DEFAULT_PORT 3>&1 1>&2 2>&3)
-TZ=$(dialog --title "Timezone configuration" --inputbox "Enter the timezone:" 8 60 $DEFAULT_TZ 3>&1 1>&2 2>&3)
-DATA_PATH=$(dialog --title "Data path configuration" --inputbox "Enter the path for n8n data:" 8 60 $DEFAULT_DATA_PATH 3>&1 1>&2 2>&3)
-SUBDOMAIN=$(dialog --title "Subdomain configuration" --inputbox "Enter the subdomain for n8n:" 8 60 3>&1 1>&2 2>&3)
-DOMAIN_NAME=$(dialog --title "Domain name configuration" --inputbox "Enter the domain name:" 8 60 3>&1 1>&2 2>&3)
-GENERIC_TIMEZONE=$(dialog --title "Generic timezone configuration" --inputbox "Enter a generic timezone for n8n:" 8 60 $DEFAULT_GENERIC_TIMEZONE 3>&1 1>&2 2>&3)
+read -p "Enter the Docker image for n8n (e.g., n8nio/n8n:latest): " IMAGE
+IMAGE=${IMAGE:-"n8nio/n8n:latest"}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
+read -p "Enter the name for the n8n container: " CONTAINER_NAME
+CONTAINER_NAME=${CONTAINER_NAME:-"n8n-container"}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
+read -p "Enter the port to expose n8n on (e.g., 5678): " PORT
+PORT=${PORT:-5678}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (Europa/Berlin)${NC}"
+
+read -p "Enter the timezone (e.g., Europe/Berlin): " TZ
+TZ=${TZ:-"Europe/Berlin"}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
+read -p "Enter the path for n8n data (e.g., /n8n-data/): " DATA_PATH
+DATA_PATH=${DATA_PATH:-./Data/n8n-data}
+
+echo -e "${RED}This step cannot be skipped${NC}"
+
+read -p "Enter the subdomain for n8n (e.g., n8n): " SUBDOMAIN
+read -p "Enter the domain name (e.g., example.com): " DOMAIN_NAME
+read -p "Enter a generic timezone for n8n (e.g., UTC): " GENERIC_TIMEZONE
+GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-"UTC"}
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./RRHQD-Dockers/n8n-docker"
+COMPOSE_SUBFOLDER="./n8n-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist
@@ -76,45 +93,34 @@ services:
 EOF
 
 # Inform the user where the Docker compose file has been created
-dialog --title "Success" --msgbox "Docker compose file created at: $COMPOSE_FILE" 6 50
+echo "Docker compose file created at: $COMPOSE_FILE"
 
 # Check if Docker is running and use sudo if the OS is ubuntu, zorin, linuxmint, or kali
 OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
-
-check_docker() {
-  if ! docker info >/dev/null 2>&1; then
-    dialog --title "Error" --msgbox "Docker does not seem to be running. Please start Docker first and then re-run this script." 8 50
-    exit 1
-  fi
-}
-
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
-    sudo check_docker
+    if ! sudo docker info >/dev/null 2>&1; then
+      echo "Docker does not seem to be running, start it first with sudo and then re-run this script."
+      exit 1
+    fi
     ;;
   *)
-    check_docker
+    if ! docker info >/dev/null 2>&1; then
+      echo "Docker does not seem to be running, start it first and then re-run this script."
+      exit 1
+    fi
     ;;
 esac
+
+# Determine the OS distribution
+OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
 
 # Start the Docker container using docker-compose with or without sudo based on the OS
-start_container() {
-  docker compose -f "$COMPOSE_FILE" up -d
-}
-
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
-    sudo start_container
+    sudo docker compose -f "$COMPOSE_FILE" up -d
     ;;
   *)
-    start_container
+    docker compose -f "$COMPOSE_FILE" up -d
     ;;
 esac
-
-# Check if the Docker container(s) have started successfully
-if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
-    dialog --title "Success" --msgbox "The Docker container $CONTAINER_NAME has started successfully." 6 60
-else
-    dialog --title "Error" --msgbox "Failed to start the Docker container $CONTAINER_NAME. Please check the logs for details." 6 60
-    exit 1
-fi

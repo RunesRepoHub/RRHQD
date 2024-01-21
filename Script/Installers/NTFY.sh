@@ -30,59 +30,31 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 cd
 # Script to configure and start a Docker container running NTFY
 
-# Use dialog to prompt user for input with defaults in a more user-friendly way
+echo "Starting NTFY Docker configuration script."
 
-# Define dialog exit status codes
-: "${DIALOG_OK=0}"
-: "${DIALOG_CANCEL=1}"
-: "${DIALOG_ESC=255}"
+# Prompt user for input with defaults
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
-# Function to prompt user input using dialog
-prompt_with_dialog() {
-  local __resultvar=$1
-  local __title=$2
-  local __prompt=$3
-  local __default=$4
-  local __input=""
+read -p "Enter the Docker image for NTFY (e.g., binwiederhier/ntfy:latest): " IMAGE
+IMAGE=${IMAGE:-"binwiederhier/ntfy:latest"}
 
-  dialog --title "$__title" --inputbox "$__prompt" 8 60 "$__default" 2> /tmp/input.$$
-  
-  local exit_status=$?
-  case $exit_status in
-    $DIALOG_OK)
-      __input=$(< /tmp/input.$$)
-      ;;
-    $DIALOG_CANCEL)
-      echo "Cancel pressed."
-      ;;
-    $DIALOG_ESC)
-      echo "ESC pressed."
-      ;;
-  esac
-  rm -f /tmp/input.$$
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
-  # If input is empty, use default value
-  if [[ -z "$__input" ]]; then
-    eval $__resultvar="'$__default'"
-  else
-    eval $__resultvar="'$__input'"
-  fi
-}
+read -p "Enter the name for the NTFY container: " CONTAINER_NAME
+CONTAINER_NAME=${CONTAINER_NAME:-"ntfy-container"}
 
-# Prompt user for Docker image with dialog
-prompt_with_dialog IMAGE "NTFY Docker Configuration" "Enter the Docker image for NTFY (e.g., binwiederhier/ntfy:latest):" "binwiederhier/ntfy:latest"
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
-# Prompt user for container name with dialog
-prompt_with_dialog CONTAINER_NAME "NTFY Docker Configuration" "Enter the name for the NTFY container:" "ntfy-container"
+read -p "Enter the port to expose NTFY on (e.g., 8080): " PORT
+PORT=${PORT:-8080}
 
-# Prompt user for port with dialog
-prompt_with_dialog PORT "NTFY Docker Configuration" "Enter the port to expose NTFY on (e.g., 8080):" "8080"
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
-# Prompt user for data path with dialog
-prompt_with_dialog DATA_PATH "NTFY Docker Configuration" "Enter the path for NTFY data (e.g., /ntfy-data/):" "./Data/ntfy-data"
+read -p "Enter the path for NTFY data (e.g., /ntfy-data/): " DATA_PATH
+DATA_PATH=${DATA_PATH:-./Data/ntfy-data}
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./RRHQD-Dockers/ntfy-docker"
+COMPOSE_SUBFOLDER="./ntfy-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist
@@ -107,25 +79,28 @@ echo "      - \"$PORT:80\""
 echo "    restart: always"
 } > "$COMPOSE_FILE"
 
-# Inform the user where the Docker compose file has been created using dialog
-dialog --title "File Created" --msgbox "Docker compose file created at: $COMPOSE_FILE" 6 50
+# Inform the user where the Docker compose file has been created
+echo "Docker compose file created at: $COMPOSE_FILE"
 
 # Check if Docker is running and use sudo if the OS is ubuntu, zorin, linuxmint, or kali
 OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
     if ! sudo docker info >/dev/null 2>&1; then
-      dialog --title "Docker not running" --msgbox "Docker does not seem to be running. Please start it first with sudo and then re-run this script." 10 60
+      echo "Docker does not seem to be running, start it first with sudo and then re-run this script."
       exit 1
     fi
     ;;
   *)
     if ! docker info >/dev/null 2>&1; then
-      dialog --title "Docker not running" --msgbox "Docker does not seem to be running. Please start it first and then re-run this script." 10 60
+      echo "Docker does not seem to be running, start it first and then re-run this script."
       exit 1
     fi
     ;;
 esac
+
+# Determine the OS distribution
+OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
 
 # Start the Docker container using docker-compose with or without sudo based on the OS
 case $OS_DISTRO in
@@ -136,11 +111,3 @@ case $OS_DISTRO in
     docker compose -f "$COMPOSE_FILE" up -d
     ;;
 esac
-
-# Check if the Docker container(s) have started successfully
-if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
-    dialog --title "Success" --msgbox "The Docker container $CONTAINER_NAME has started successfully." 6 60
-else
-    dialog --title "Error" --msgbox "Failed to start the Docker container $CONTAINER_NAME. Please check the logs for details." 6 60
-    exit 1
-fi

@@ -33,7 +33,7 @@ clear
 
 source ~/RRHQD/Core/Core.sh
 
-dialog --title "Setup" --msgbox "Setup a Docker container for Cloudflare Tunnel" 5 50
+echo -e "${Green}Setup a Docker container for Cloudflare Tunnel${NC}"
 
 # Detect OS and set USE_SUDO accordingly
 OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
@@ -48,27 +48,29 @@ $USE_SUDO mkdir -p /mnt/user/appdata/cloudflared/ && $USE_SUDO chmod -R 777 /mnt
 # Run Cloudflare Tunnel login command
 $USE_SUDO docker run -it --rm -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel login
 
-# Use dialog to prompt user for tunnel name
-TUNNELNAME=$(dialog --title "Cloudflare Tunnel Setup" --inputbox "Enter the name for the Cloudflare Tunnel:" 8 40 3>&1 1>&2 2>&3)
+# Prompt user for tunnel name
+read -p "Enter the name for the Cloudflare Tunnel: " TUNNELNAME
 
 # Create a Cloudflare tunnel
 $USE_SUDO docker run -it --rm -v /mnt/user/appdata/cloudflared:/home/nonroot/.cloudflared/ cloudflare/cloudflared:latest tunnel create "$TUNNELNAME"
 
-dialog --title "Configuration Type" --msgbox "Pick what config should be used, for just one site or multiple sites.\\n\\nThis script will only add one website, but just copy its config to the other sites if needed.\\n\\nIf you want to add multiple websites, please edit the config after the script has finished." 10 50
+echo -e "${Green}Pick what config should be used, for just one site or multiple sites${NC}"
+echo -e "${Yellow}This script will only add one website, but just copi its config to the other sites if needed${NC}"
+echo -e "${Yellow}If you want to add multiple websites, please use edit the config after the script has finished${NC}"
 
-# Use dialog to prompt user for the number of sites to host via the Cloudflare Tunnel
-NUM_SITES=$(dialog --title "Cloudflare Tunnel Site Count" --inputbox "Enter the number of sites you want to host via the Cloudflare Tunnel (1 for a single site, more for multiple sites):" 8 60 3>&1 1>&2 2>&3)
+# Prompt user for the number of sites to host via the Cloudflare Tunnel
+read -p "Enter the number of sites you want to host via the Cloudflare Tunnel (1 for a single site, more for multiple sites): " NUM_SITES
 
 # Validate the input to ensure it is a number
 while ! [[ "$NUM_SITES" =~ ^[0-9]+$ ]]; do
-    dialog --title "Invalid Input" --msgbox "Invalid input. Please enter a valid number." 6 50
-NUM_SITES=$(dialog --title "Cloudflare Tunnel Site Count" --inputbox "Enter the number of sites you want to host via the Cloudflare Tunnel:" 8 60 3>&1 1>&2 2>&3)
+    echo "Invalid input. Please enter a valid number."
+    read -p "Enter the number of sites you want to host via the Cloudflare Tunnel: " NUM_SITES
 done
 
 if [ "$NUM_SITES" -eq 1 ]; then
-    dialog --title "Configuration Notice" --msgbox "You have selected to host a single site via the Cloudflare Tunnel." 6 60
+    echo "You have selected to host a single site via the Cloudflare Tunnel."
 else
-    dialog --title "Configuration Notice" --msgbox "You have selected to host $NUM_SITES sites via the Cloudflare Tunnel." 6 60
+    echo "You have selected to host $NUM_SITES sites via the Cloudflare Tunnel."
 fi
 
 # Create the configuration file
@@ -76,21 +78,25 @@ CONFIG_FILE="/mnt/user/appdata/cloudflared/config.yml"
 $USE_SUDO touch "$CONFIG_FILE"
 
 # Prompt user for tunnel UUID
-UUID=$(dialog --title "Cloudflare Tunnel UUID" --inputbox "Enter the Tunnel UUID from above:" 8 50 3>&1 1>&2 2>&3)
+echo -e "${Yellow}Enter the Tunnel UUID from above${NC}"
 
-# Prompt user for protocol
-PROTOCOL=$(dialog --title "Site Protocol" --menu "Choose the protocol your site uses when accessed locally:" 12 50 2 \
-  "http" "Use HTTP protocol" \
-  "https" "Use HTTPS protocol" 3>&1 1>&2 2>&3)
+read -p "Enter the Tunnel UUID: " UUID
 
+echo -e "${Yellow}What does the site use when accessing it locally?${NC}"
+
+read -p "Enter if you want to use http or https: " PROTOCOL
+
+echo -e "${Yellow}Enter the IP of the machine hosting the website${NC}"
 # Prompt user for reverse proxy IP
-REVERSEPROXYIP=$(dialog --title "Reverse Proxy IP" --inputbox "Enter the IP of the machine hosting the website ($PROTOCOL://):" 8 50 3>&1 1>&2 2>&3)
+read -p "Enter the reverse proxy IP ($PROTOCOL://): " REVERSEPROXYIP
 
-# Prompt user for port
-PORT=$(dialog --title "Website Port" --inputbox "Enter the port of the machine hosting the website:" 8 50 3>&1 1>&2 2>&3)
+echo -e "${Yellow}Enter the port of the machine hosting the website${NC}"
+# Prompt user for the port
+read -p "Enter the port: " PORT
 
-# Prompt user for domain
-YOURDOMAIN=$(dialog --title "Domain Name" --inputbox "Enter your domain (e.g., yourdomain.com or website.yourdomain.com):" 8 60 3>&1 1>&2 2>&3)
+echo -e "${Yellow}Enter your domain (yourdomain.com or website.yourdomain.com)${NC}"
+# Prompt user for the domain
+read -p "Enter your domain (yourdomain.com): " YOURDOMAIN
 if [ "$NUM_SITES" -eq 1 ]; then
   # Populate the configuration file
   {

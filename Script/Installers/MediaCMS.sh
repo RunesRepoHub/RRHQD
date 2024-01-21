@@ -1,6 +1,7 @@
 #!/bin/bash
 
 LOG_DIR="$HOME/RRHQD/logs"
+# Configuration
 LOG_FILE="$LOG_DIR/mediacms_install.log"  # Log file location
 
 # Function to increment log file name
@@ -17,12 +18,6 @@ increment_log_file_name() {
   echo "Log file will be saved as $LOG_FILE"
 }
 
-# Ensure dialog is installed
-if ! command -v dialog &> /dev/null; then
-    echo "Installing dialog package for better user interface..."
-    sudo apt-get update && sudo apt-get install dialog -y
-fi
-
 # Create log directory if it doesn't exist
 mkdir -p "$LOG_DIR"
 
@@ -35,13 +30,28 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 cd
 # Script to configure and start a Docker container running MediaCMS
 
-dialog --title "MediaCMS Configuration" --msgbox "Starting MediaCMS Docker configuration script." 6 50
+echo "Starting MediaCMS Docker configuration script."
 
-# Use dialog to prompt user for input with defaults
-IMAGE=$(dialog --title "MediaCMS Docker Image" --inputbox "Enter the Docker image for MediaCMS (e.g., mediacms-io/mediacms:latest):" 8 50 "mediacms-io/mediacms:latest" 3>&1 1>&2 2>&3 3>&-)
-CONTAINER_NAME=$(dialog --title "MediaCMS Container Name" --inputbox "Enter the name for the MediaCMS container:" 8 50 "mediacms-container" 3>&1 1>&2 2>&3 3>&-)
-PORT=$(dialog --title "MediaCMS Port" --inputbox "Enter the port to expose MediaCMS on (e.g., 8000):" 8 50 "8000" 3>&1 1>&2 2>&3 3>&-)
-DATA_PATH=$(dialog --title "MediaCMS Data Path" --inputbox "Enter the path for MediaCMS data (e.g., /mediacms-data/):" 8 50 "./Data/mediacms-data" 3>&1 1>&2 2>&3 3>&-)
+# Prompt user for input with defaults
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
+read -p "Enter the Docker image for MediaCMS (e.g., mediacms-io/mediacms:latest): " IMAGE
+IMAGE=${IMAGE:-"mediacms-io/mediacms:latest"}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
+read -p "Enter the name for the MediaCMS container: " CONTAINER_NAME
+CONTAINER_NAME=${CONTAINER_NAME:-"mediacms-container"}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
+read -p "Enter the port to expose MediaCMS on (e.g., 8000): " PORT
+PORT=${PORT:-8000}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+
+read -p "Enter the path for MediaCMS data (e.g., /mediacms-data/): " DATA_PATH
+DATA_PATH=${DATA_PATH:-./Data/mediacms-data}
 
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./mediacms-docker"
@@ -63,7 +73,7 @@ mkdir -p "$COMPOSE_SUBFOLDER"
 } > "$COMPOSE_FILE"
 
 # Inform the user where the Docker compose file has been created
-dialog --title "File Created" --msgbox "Docker compose file created at: $COMPOSE_FILE" 6 50
+echo "Docker compose file created at: $COMPOSE_FILE"
 
 # Check if Docker is running and use sudo if the OS is ubuntu, zorin, linuxmint, or kali
 OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
@@ -81,6 +91,9 @@ case $OS_DISTRO in
     fi
     ;;
 esac
+
+# Determine the OS distribution
+OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
 
 # Start the Docker container using docker-compose with or without sudo based on the OS
 case $OS_DISTRO in
