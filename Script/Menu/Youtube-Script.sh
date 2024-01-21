@@ -37,6 +37,7 @@ function show_dialog_menu() {
             ;;
         6)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$YOUTUBE_CRONJOB_DOWNLOAD
+            ;;
         *)
             exit 0
             ;;
