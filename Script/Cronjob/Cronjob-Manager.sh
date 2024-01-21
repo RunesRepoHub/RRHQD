@@ -5,15 +5,19 @@
 
 CRONTAB_FILE="/etc/crontab"
 
-# Function to display menu and get choice
+# Function to display menu and get choice using dialog
 show_menu() {
-    echo "Cronjob Manager"
-    echo "1. Add a new cronjob"
-    echo "2. Remove an existing cronjob"
-    echo "3. List current cronjobs"
-    echo "4. Exit the script"
-    echo -n "Choose an action [1-4]: "
-    read -r menu_choice
+    menu_choice=$(dialog --title "Cronjob Manager" --menu "Choose an action:" 15 50 4 \
+        1 "Add a new cronjob" \
+        2 "Remove an existing cronjob" \
+        3 "List current cronjobs" \
+        4 "Exit the script" 3>&1 1>&2 2>&3)
+    
+    if [ -z "$menu_choice" ]; then
+        clear
+        exit 0 # Exit the script if cancel is pressed or ESC is pressed
+    fi
+
     return "$menu_choice"
 }
 
@@ -45,32 +49,38 @@ add_cronjob() {
     clear
 }
 
-# Function to remove a cronjob
 remove_cronjob() {
     local cronjobs=$(tail -n +7 "${CRONTAB_FILE}")
     local i=1
-    echo "Select a cronjob to remove:"
+    local options=()
 
     while read -r line; do
-        echo "$i. $line"
+        options+=($i "$line")
         ((i++))
     done <<< "$cronjobs"
 
-    read -p "Enter number of cronjob to remove: " choice
-    choice=$((choice + 6)) # Offset for system cronjobs that are not displayed
-
-    if [[ -n $choice ]]; then
-        sed -i "${choice}d" "${CRONTAB_FILE}"
-        echo "Cronjob removed successfully."
+    if [ ${#options[@]} -eq 0 ]; then
+        dialog --title "Remove Cronjob" --msgbox "No cronjobs available to remove." 6 50
     else
-        echo "No cronjob selected."
+        choice=$(dialog --title "Remove Cronjob" --menu "Select a cronjob to remove:" 15 70 6 "${options[@]}" 3>&1 1>&2 2>&3)
+
+        if [ -n "$choice" ]; then
+            choice=$((choice + 6)) # Offset for system cronjobs that are not displayed
+            sed -i "${choice}d" "${CRONTAB_FILE}"
+            dialog --title "Success" --msgbox "Cronjob removed successfully." 6 50
+        else
+            dialog --title "Notice" --msgbox "No cronjob selected." 6 50
+        fi
     fi
+
+    clear
 }
 
-# Function to list cronjobs
+# Function to list cronjobs with dialog interface
 list_cronjobs() {
-    echo "Current cronjobs:"
-    tail -n +7 "${CRONTAB_FILE}"
+    cronjobs=$(tail -n +7 "${CRONTAB_FILE}")
+    dialog --title "List of Cronjobs" --msgbox "$cronjobs" 20 70
+    clear
 }
 
 # Check if the user is root
