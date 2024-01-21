@@ -106,8 +106,22 @@ esac
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
     sudo docker compose -f "$COMPOSE_FILE" up -d && dialog --msgbox "Docker container started successfully." 10 60
+    # Check if the Docker container(s) have started successfully
+    if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+        dialog --title "Success" --msgbox "The Docker container $CONTAINER_NAME has started successfully." 6 60
+    else
+        dialog --title "Error" --msgbox "Failed to start the Docker container $CONTAINER_NAME. Please check the logs for details." 6 60
+        exit 1
+    fi
     ;;
   *)
     docker compose -f "$COMPOSE_FILE" up -d && dialog --msgbox "Docker container started successfully." 10 60
+    # Check if the Docker container(s) have started successfully
+    if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+        dialog --title "Success" --msgbox "The Docker container $CONTAINER_NAME has started successfully." 6 60
+    else
+        dialog --title "Error" --msgbox "Failed to start the Docker container $CONTAINER_NAME. Please check the logs for details." 6 60
+        exit 1
+    fi
     ;;
 esac
