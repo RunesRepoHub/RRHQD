@@ -83,9 +83,10 @@ list_cronjobs() {
     clear
 }
 
-# Check if the user is root
+# Check if the user is root and display a dialog message if not
 if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root."
+    dialog --title "Permission Denied" --msgbox "This script must be run as root." 6 50
+    clear
     exit 1
 fi
 
