@@ -36,10 +36,8 @@ CONTAINER_NAME=$(dialog --title "Container name" --inputbox "Enter the name for 
 PORT=$(dialog --title "Port configuration" --inputbox "Enter the port to expose Vaultwarden on (e.g., 80):" 8 50 "80" 3>&1 1>&2 2>&3 3>&-)
 DATA_PATH=$(dialog --title "Data path" --inputbox "Enter the path for Vaultwarden data (e.g., /vw-data/):" 8 50 "./Data/vw-data" 3>&1 1>&2 2>&3 3>&-)
 ADMIN_TOKEN=$(dialog --title "Admin token" --inputbox "Enter the admin token for Vaultwarden:" 8 50 "$(openssl rand -base64 32)" 3>&1 1>&2 2>&3 3>&-)
-SIGNUPS_ALLOWED=$(dialog --title "Signups allowed" --yesno "Allow signups?" 7 50 3>&1 1>&2 2>&3 3>&-)
-SIGNUPS_ALLOWED=$([[ "$?" == 0 ]] && echo "true" || echo "false")
-WEBSOCKET_ENABLED=$(dialog --title "WebSocket" --yesno "Enable WebSockets?" 7 50 3>&1 1>&2 2>&3 3>&-)
-WEBSOCKET_ENABLED=$([[ "$?" == 0 ]] && echo "true" || echo "false")
+SIGNUPS_ALLOWED=$(dialog --title "Signups Configuration" --yesno "Do you want to allow new user signups for Vaultwarden?" 7 60) && SIGNUPS_ALLOWED="true" || SIGNUPS_ALLOWED="false"
+WEBSOCKET_ENABLED=$(dialog --title "WebSockets Configuration" --yesno "Do you want to enable WebSocket support for real-time updates?" 7 60) && WEBSOCKET_ENABLED="true" || WEBSOCKET_ENABLED="false"
 
 COMPOSE_SUBFOLDER="./RRHQD-Dockers"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
