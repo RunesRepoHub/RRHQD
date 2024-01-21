@@ -103,6 +103,7 @@ DISK_CLEANUP="ACS-Cleanup.sh"
 
 YOUTUBE_DOWNLOAD="Youtube-Download.sh"
 YOUTUBE_CHANNEL_DOWNLOAD="Youtube-Channel-Download.sh"
-YOUTUBE_CHANNEL_AUTO="Youtube-Channel-Auto.sh"
+YOUTUBE_CHANNEL_AUTO="Youtube-Channel-Rescan.sh"
 YOUTUBE_AUDIO_PLAYLIST="Youtube-Audio-Playlist.sh"
 YOUTUBE_STOP_DOWNLOAD="Youtube-Stop-Download.sh"
+YOUTUBE_CRONJOB_DOWNLOAD="Youtube-Cronjob-Download.sh"

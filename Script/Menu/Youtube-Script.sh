@@ -12,10 +12,11 @@ function show_dialog_menu() {
            --menu "Please select an option:" 15 60 4 \
            1 "Download YouTube Video" \
            2 "Download Fully Youtube Channel" \
-           3 "Auto Update Youtube Channel Downloads" \
+           3 "Rescan Youtube Channel Downloads For New Videos" \
            4 "Download Playlist MP3" \
            5 "Stop all Youtube Downlaods" \
-           6 "Back To Main Menu" 2>"${INPUT}"
+           6 "Add Youtube Script To Cronjob So It Will Rescan Every 4 Hours" \
+           7 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -34,6 +35,8 @@ function show_dialog_menu() {
         5)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$YOUTUBE_STOP_DOWNLOAD
             ;;
+        6)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$YOUTUBE_CRONJOB_DOWNLOAD
         *)
             exit 0
             ;;
