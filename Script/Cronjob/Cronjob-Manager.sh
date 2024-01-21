@@ -11,7 +11,7 @@ show_menu() {
         1 "Add a new cronjob" \
         2 "Remove an existing cronjob" \
         3 "List current cronjobs" \
-        4 "Exit the script" 3>&1 1>&2 2>&3)
+        4 "Go back to the main menu" 3>&1 1>&2 2>&3)
     
     if [ -z "$menu_choice" ]; then
         clear
