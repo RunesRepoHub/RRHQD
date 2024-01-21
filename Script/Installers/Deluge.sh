@@ -34,18 +34,17 @@ source ~/RRHQD/Core/Core.sh
 
 # Script to configure and start a Docker container running Deluge
 
+# Prompt user for input with defaults using dialog
+IMAGE=$(dialog --inputbox "Enter the Docker image for Deluge (e.g., lscr.io/linuxserver/deluge:latest):" 10 60 $DEFAULT_IMAGE 3>&1 1>&2 2>&3 3>&-)
+CONTAINER_NAME=$(dialog --inputbox "Enter the name for the Deluge container:" 10 60 $DEFAULT_CONTAINER_NAME 3>&1 1>&2 2>&3 3>&-)
+DOCKER_ROOT_FOLDER=$(dialog --inputbox "Enter Docker root folder for configs:" 10 60 $DOCKER_ROOT_FOLDER_DEFAULT 3>&1 1>&2 2>&3 3>&-)
+DOCKER_DOWNLOAD_FOLDER=$(dialog --inputbox "Enter folder for downloads:" 10 60 $DOCKER_DOWNLOAD_FOLDER_DEFAULT 3>&1 1>&2 2>&3 3>&-)
+
 # Define the default settings for Deluge
 DEFAULT_IMAGE="lscr.io/linuxserver/deluge:latest"
 DEFAULT_CONTAINER_NAME="deluge-container"
 DEFAULT_DOCKER_ROOT_FOLDER="/path/to/docker/configs"
 DEFAULT_DOCKER_DOWNLOAD_FOLDER="/path/to/downloads"
-
-# Prompt user for input with defaults using dialog
-IMAGE=$(dialog --title "Docker image configuration" --inputbox "Enter the Docker image for Deluge:" 8 60 $DEFAULT_IMAGE 3>&1 1>&2 2>&3)
-CONTAINER_NAME=$(dialog --title "Container name configuration" --inputbox "Enter the name for the Deluge container:" 8 60 $DEFAULT_CONTAINER_NAME 3>&1 1>&2 2>&3)
-DOCKER_ROOT_FOLDER=$(dialog --title "Docker root folder configuration" --inputbox "Enter Docker root folder for configs:" 8 60 $DEFAULT_DOCKER_ROOT_FOLDER 3>&1 1>&2 2>&3)
-DOCKER_DOWNLOAD_FOLDER=$(dialog --title "Download folder configuration" --inputbox "Enter folder for downloads:" 8 60 $DEFAULT_DOCKER_DOWNLOAD_FOLDER 3>&1 1>&2 2>&3)
-
 
 
 # Define the subfolder for the Docker compose files
