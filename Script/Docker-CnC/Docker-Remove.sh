@@ -29,8 +29,14 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 # Function to present a dialog for container selection and write output to a file
 select_containers() {
-  local container_list=$(sudo docker ps -a --format '{{.ID}} {{.Names}}' | awk '{print $1 " " $2}')
-  dialog --checklist "Select containers to delete:" 20 60 15 ${container_list} 2> "$OUTPUT"
+  # Fetch the list of containers and format it as "ID Name" pairs
+  local container_list=()
+  while IFS= read -r line; do
+    container_list+=("$line" "off")
+  done < <(sudo docker ps -a --format '{{.ID}} {{.Names}}')
+
+  # Use the container list to create a dialog checklist
+  dialog --checklist "Select containers to delete:" 20 60 15 "${container_list[@]}" 2> "$OUTPUT"
 }
 
 # Function to delete selected containers using dialog for improved user interaction
