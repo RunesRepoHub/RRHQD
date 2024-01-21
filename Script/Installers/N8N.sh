@@ -99,7 +99,7 @@ esac
 
 # Start the Docker container using docker-compose with or without sudo based on the OS
 start_container() {
-  docker compose -f "$COMPOSE_FILE" up -d && dialog --title "Success" --msgbox "Docker container started successfully." 6 50
+  docker compose -f "$COMPOSE_FILE" up -d
 }
 
 case $OS_DISTRO in
@@ -110,3 +110,11 @@ case $OS_DISTRO in
     start_container
     ;;
 esac
+
+# Check if the Docker container(s) have started successfully
+if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+    dialog --title "Success" --msgbox "The Docker container $CONTAINER_NAME has started successfully." 6 60
+else
+    dialog --title "Error" --msgbox "Failed to start the Docker container $CONTAINER_NAME. Please check the logs for details." 6 60
+    exit 1
+fi

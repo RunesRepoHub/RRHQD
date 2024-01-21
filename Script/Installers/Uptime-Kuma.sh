@@ -81,12 +81,17 @@ esac
 # Start the Docker container using docker-compose with or without sudo based on the OS
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
-    sudo docker compose -f "$COMPOSE_FILE" up -d && \
-    dialog --title "Success" --msgbox "Docker container for $CONTAINER_NAME started successfully." 10 60
+    sudo docker compose -f "$COMPOSE_FILE" up -d 
     ;;
   *)
-    docker compose -f "$COMPOSE_FILE" up -d && \
-    dialog --title "Success" --msgbox "Docker container for $CONTAINER_NAME started successfully." 10 60
+    docker compose -f "$COMPOSE_FILE" up -d 
     ;;
 esac
 
+# Check if the Docker container(s) have started successfully
+if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+    dialog --title "Success" --msgbox "The Docker container $CONTAINER_NAME has started successfully." 6 60
+else
+    dialog --title "Error" --msgbox "Failed to start the Docker container $CONTAINER_NAME. Please check the logs for details." 6 60
+    exit 1
+fi
