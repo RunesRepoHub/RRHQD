@@ -16,7 +16,7 @@ show_menu() {
         "Exit" "Exit the script" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
-    echo $menu_choice
+    echo "$menu_choice"
 }
 
 # Function to add a cronjob
@@ -49,7 +49,7 @@ remove_cronjob() {
 
     while read -r line; do
         cronjob_list+=("$i" "$line")
-        let i++
+        ((i++))
     done <<< "$cronjobs"
 
     dialog --clear --backtitle "Cronjob Manager" \
@@ -90,7 +90,7 @@ INPUT=$(mktemp)
 # Main loop
 while true; do
     choice=$(show_menu)
-    case $choice in
+    case "$choice" in
         Add)
             add_cronjob
             ;;
@@ -112,3 +112,4 @@ done
 # Clean up
 clear
 [ -f "$INPUT" ] && rm "$INPUT"
+
