@@ -28,15 +28,19 @@ CONTAINER_NAME=$(dialog --inputbox "Enter the name for the Portainer container:"
 PORT=$(dialog --inputbox "Enter the port to expose Portainer on (e.g., 9000):" 10 60 "9000" 3>&1 1>&2 2>&3 3>&-)
 DATA_PATH=$(dialog --inputbox "Enter the volume path for Portainer data (e.g., /portainer-data/):" 10 60 "./Data/portainer-data" 3>&1 1>&2 2>&3 3>&-)
 options=("Docker standalone" "Docker Swarm")
-DEPLOYMENT_TYPE=$(dialog --menu "Choose the deployment type:" 12 60 ${#options[@]} "${options[@]}" 3>&1 1>&2 2>&3 3>&-)
+DEPLOYMENT_TYPE=$(dialog --menu "Choose the deployment type:" 12 60 2 \
+  "${options[0]}" "Docker standalone" \
+  "${options[1]}" "Docker Swarm" 3>&1 1>&2 2>&3 3>&-)
 
-if [[ $DEPLOYMENT_TYPE == ${options[0]} ]]; then
-  DEPLOYMENT_TYPE="standalone"
-elif [[ $DEPLOYMENT_TYPE == ${options[1]} ]]; then
-  DEPLOYMENT_TYPE="swarm"
-else
-  echo "Invalid selection"
+if [[ -z $DEPLOYMENT_TYPE ]]; then
+  echo "No selection made. Exiting."
   exit 1
+fi
+
+if [[ $DEPLOYMENT_TYPE == "Docker standalone" ]]; then
+  DEPLOYMENT_TYPE="standalone"
+elif [[ $DEPLOYMENT_TYPE == "Docker Swarm" ]]; then
+  DEPLOYMENT_TYPE="swarm"
 fi
 
 COMPOSE_SUBFOLDER="./portainer-docker"
