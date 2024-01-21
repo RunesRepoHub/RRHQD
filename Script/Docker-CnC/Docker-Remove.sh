@@ -27,52 +27,42 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-# Refactored Code Block
+# Function to present a dialog for container selection and write output to a file
+select_containers() {
+  local container_list=$(sudo docker ps -a --format '{{.ID}} {{.Names}}' | awk '{print $1 " " $2}')
+  dialog --checklist "Select containers to delete:" 20 60 15 ${container_list} 2> "$OUTPUT"
+}
 
-# Function to delete selected containers with improved error handling
+# Function to delete selected containers using dialog for improved user interaction
 delete_selected_containers() {
-  local selected_containers=()
-  mapfile -t selected_containers < "$OUTPUT"
-  local container_name
+  local selected_ids=()
+  mapfile -t selected_ids < "$OUTPUT"
+  local container_id container_name
 
-  for id in "${selected_containers[@]}"; do
-    if [[ $id =~ ^[0-9]+$ ]] && [ "$id" -le "${#containers[@]}" ]; then
-      container_name="${containers[id-1]}"
-      if sudo docker rm -f "$container_name" > /dev/null 2>&1; then
-        echo "$container_name deleted successfully."
-      else
-        echo "Failed to delete $container_name."
-      fi
+  for container_id in "${selected_ids[@]}"; do
+    container_name=$(sudo docker ps -a --format '{{.ID}} {{.Names}}' | awk -v id="$container_id" '$1 == id {print $2}')
+    if sudo docker rm -f "$container_name" > /dev/null 2>&1; then
+      dialog --msgbox "$container_name deleted successfully." 6 40
     else
-      echo "Invalid container selection: $id"
+      dialog --msgbox "Failed to delete $container_name." 6 40
     fi
   done
 }
 
-# Main function for container removal with improved error handling
+# Main function for container removal with dialog-based user interface
 remove_containers_main() {
   select_containers
   local exit_status=$?
-  
+
   if [ $exit_status -eq $DIALOG_OK ]; then
     delete_selected_containers
-    echo "All selected Docker containers have been deleted."
+    dialog --msgbox "All selected Docker containers have been deleted." 6 40
   elif [ $exit_status -eq $DIALOG_CANCEL ]; then
-    echo "Container deletion was canceled."
+    dialog --msgbox "Container deletion was canceled." 6 40
   elif [ $exit_status -eq $DIALOG_ESC ]; then
-    echo "Container deletion was aborted."
+    dialog --msgbox "Container deletion was aborted." 6 40
   else
-    echo "Unknown error occurred."
+    dialog --msgbox "Unknown error occurred." 6 40
   fi
 }
-
-# Ensure the containers array is available globally or passed to functions that require it
-containers=()
-mapfile -t containers < <(sudo docker ps -a --format "{{.Names}}")
-
-# Run the main function
-remove_containers_main
-
-# Cleanup
-rm -f "$OUTPUT"
 
