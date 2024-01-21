@@ -38,7 +38,7 @@ cd
 dialog --title "MediaCMS Configuration" --msgbox "Starting MediaCMS Docker configuration script." 6 50
 
 # Use dialog to prompt user for input with defaults
-IMAGE=$(dialog --title "MediaCMS Docker Image" --inputbox "Enter the Docker image for MediaCMS (e.g., mediacms-io/mediacms:latest):" 8 50 "mediacms-io/mediacms:latest" 3>&1 1>&2 2>&3 3>&-)
+IMAGE=$(dialog --title "MediaCMS Docker Image" --inputbox "Enter the Docker image for MediaCMS (e.g., mediacms/mediacms:latest):" 8 50 "mediacms/mediacms:latest" 3>&1 1>&2 2>&3 3>&-)
 CONTAINER_NAME=$(dialog --title "MediaCMS Container Name" --inputbox "Enter the name for the MediaCMS container:" 8 50 "mediacms-container" 3>&1 1>&2 2>&3 3>&-)
 PORT=$(dialog --title "MediaCMS Port" --inputbox "Enter the port to expose MediaCMS on (e.g., 8000):" 8 50 "8000" 3>&1 1>&2 2>&3 3>&-)
 DATA_PATH=$(dialog --title "MediaCMS Data Path" --inputbox "Enter the path for MediaCMS data (e.g., /mediacms-data/):" 8 50 "./Data/mediacms-data" 3>&1 1>&2 2>&3 3>&-)
