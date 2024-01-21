@@ -31,20 +31,16 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 INPUT=/tmp/menu.sh.$$
 OUTPUT=/tmp/output.sh.$$
 
-# Generate a menu for user to select Docker containers to delete using dialog
-dialog --clear --title "Select Docker containers to delete" --checklist "Use SPACE to select/deselect containers:" 15 60 4 \
-$(mapfile -t containers < <(sudo docker ps -a --format "{{.Names}}"); IFS=$'\n'; for i in "${!containers[@]}"; do echo $((i+1)) "${containers[i]}" off; done) 2>"$OUTPUT"
+# Generate a menu for user to select Docker containers to delete
+echo "Available Docker containers:"
+mapfile -t containers < <(sudo docker ps -a --format "{{.Names}}")
+for i in "${!containers[@]}"; do
+    echo "$((i+1))) ${containers[i]}"
+done
 
-# Check if the output file is empty which indicates no selection
-if [ ! -s "$OUTPUT" ]; then
-    echo "No containers selected for deletion."
-    dialog --msgbox "No containers selected for deletion." 5 40
-    rm -f "$OUTPUT"
-    exit 0
-fi
-
-# Read user's selections
-mapfile -t selections < "$OUTPUT"
+# Ask user to select containers
+echo "Enter the numbers of the Docker containers to delete (separated by space):"
+read -r -a selections
 
 # Validate selections and prepare container names for deletion
 selected_containers=()
@@ -55,27 +51,12 @@ for selection in "${selections[@]}"; do
         selected_containers+=("${containers[idx]}")
     else
         echo "Invalid selection: $selection"
-        dialog --msgbox "Invalid selection: $selection" 5 40
     fi
 done
 
 # Delete the chosen Docker containers
 for CONTAINER_NAME in "${selected_containers[@]}"; do
-    if sudo docker rm -f "$CONTAINER_NAME"; then
-        echo "$CONTAINER_NAME deleted successfully."
-        dialog --msgbox "$CONTAINER_NAME deleted successfully." 5 40
-    else
-        echo "Failed to delete $CONTAINER_NAME."
-        dialog --msgbox "Failed to delete $CONTAINER_NAME." 5 40
-    fi
+    sudo docker rm -f "$CONTAINER_NAME" && echo "$CONTAINER_NAME deleted successfully." || echo "Failed to delete $CONTAINER_NAME."
 done
 
-# Inform the user that all selected Docker containers have been deleted
-if [ ${#selected_containers[@]} -ne 0 ]; then
-    echo "All selected Docker containers have been deleted."
-    dialog --msgbox "All selected Docker containers have been deleted." 5 60
-fi
-
-# Cleanup
-rm -f "$OUTPUT"
-
+echo "All selected Docker containers have been deleted."
