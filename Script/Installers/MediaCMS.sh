@@ -35,7 +35,7 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 cd
 # Script to configure and start a Docker container running MediaCMS
 
-echo "Starting MediaCMS Docker configuration script."
+dialog --title "MediaCMS Configuration" --msgbox "Starting MediaCMS Docker configuration script." 6 50
 
 # Use dialog to prompt user for input with defaults
 IMAGE=$(dialog --title "MediaCMS Docker Image" --inputbox "Enter the Docker image for MediaCMS (e.g., mediacms-io/mediacms:latest):" 8 50 "mediacms-io/mediacms:latest" 3>&1 1>&2 2>&3 3>&-)
@@ -63,31 +63,43 @@ mkdir -p "$COMPOSE_SUBFOLDER"
 } > "$COMPOSE_FILE"
 
 # Inform the user where the Docker compose file has been created
-echo "Docker compose file created at: $COMPOSE_FILE"
+dialog --title "File Created" --msgbox "Docker compose file created at: $COMPOSE_FILE" 6 50
 
 # Check if Docker is running and use sudo if the OS is ubuntu, zorin, linuxmint, or kali
 OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
+
+check_docker() {
+  if ! docker info >/dev/null 2>&1; then
+    dialog --title "Error" --msgbox "Docker does not seem to be running. Please start Docker first and then re-run this script." 8 50
+    exit 1
+  fi
+}
+
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
-    if ! sudo docker info >/dev/null 2>&1; then
-      echo "Docker does not seem to be running, start it first with sudo and then re-run this script."
-      exit 1
-    fi
+    sudo check_docker
     ;;
   *)
-    if ! docker info >/dev/null 2>&1; then
-      echo "Docker does not seem to be running, start it first and then re-run this script."
-      exit 1
-    fi
+    check_docker
     ;;
 esac
 
 # Start the Docker container using docker-compose with or without sudo based on the OS
+start_container() {
+  if sudo docker compose -f "$COMPOSE_FILE" up -d; then
+    dialog --title "Success" --msgbox "Docker container started successfully." 6 50
+  else
+    dialog --title "Error" --msgbox "Failed to start the Docker container. Please check the Docker compose file." 8 50
+    exit 1
+  fi
+}
+
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
-    sudo docker compose -f "$COMPOSE_FILE" up -d
+    sudo start_container
     ;;
   *)
-    docker compose -f "$COMPOSE_FILE" up -d
+    start_container
     ;;
 esac
+

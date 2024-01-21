@@ -76,34 +76,37 @@ services:
 EOF
 
 # Inform the user where the Docker compose file has been created
-echo "Docker compose file created at: $COMPOSE_FILE"
+dialog --title "Success" --msgbox "Docker compose file created at: $COMPOSE_FILE" 6 50
 
 # Check if Docker is running and use sudo if the OS is ubuntu, zorin, linuxmint, or kali
 OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
+
+check_docker() {
+  if ! docker info >/dev/null 2>&1; then
+    dialog --title "Error" --msgbox "Docker does not seem to be running. Please start Docker first and then re-run this script." 8 50
+    exit 1
+  fi
+}
+
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
-    if ! sudo docker info >/dev/null 2>&1; then
-      echo "Docker does not seem to be running, start it first with sudo and then re-run this script."
-      exit 1
-    fi
+    sudo check_docker
     ;;
   *)
-    if ! docker info >/dev/null 2>&1; then
-      echo "Docker does not seem to be running, start it first and then re-run this script."
-      exit 1
-    fi
+    check_docker
     ;;
 esac
 
-# Determine the OS distribution
-OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
-
 # Start the Docker container using docker-compose with or without sudo based on the OS
+start_container() {
+  docker compose -f "$COMPOSE_FILE" up -d && dialog --title "Success" --msgbox "Docker container started successfully." 6 50
+}
+
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
-    sudo docker compose -f "$COMPOSE_FILE" up -d
+    sudo start_container
     ;;
   *)
-    docker compose -f "$COMPOSE_FILE" up -d
+    start_container
     ;;
 esac

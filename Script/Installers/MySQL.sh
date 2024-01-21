@@ -60,7 +60,7 @@ services:
     restart: always
 EOF
 
-echo "Docker compose file created at: $COMPOSE_FILE"
+dialog --title "Success" --msgbox "Docker compose file created at: $COMPOSE_FILE" 6 50
 
 OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
 

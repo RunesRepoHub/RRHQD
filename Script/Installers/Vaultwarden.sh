@@ -60,30 +60,29 @@ mkdir -p "$COMPOSE_SUBFOLDER"
   echo "      - SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED}"
 } > "$COMPOSE_FILE"
 
-echo "Docker compose file created at: $COMPOSE_FILE"
+dialog --title "File Created" --msgbox "Docker compose file created at: $COMPOSE_FILE" 10 60
 
+# Use dialog to inform the user about Docker status and actions
 OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
 
-case $OS_DISTRO in
-  ubuntu|zorin|linuxmint|kali)
-    if ! sudo docker info >/dev/null 2>&1; then
-      echo "Docker does not seem to be running, start it first with sudo and then re-run this script."
-      exit 1
-    fi
-    ;;
-  *)
-    if ! docker info >/dev/null 2>&1; then
-      echo "Docker does not seem to be running, start it first and then re-run this script."
-      exit 1
-    fi
-    ;;
-esac
+check_docker() {
+  if ! docker info >/dev/null 2>&1; then
+    dialog --title "Docker not running" --msgbox "Docker does not seem to be running. Please start Docker first and then re-run this script." 7 60
+    exit 1
+  fi
+}
+
+start_docker_compose() {
+  dialog --title "Starting Docker Compose" --infobox "Starting the Docker containers using docker-compose..." 4 60
+  docker compose -f "$COMPOSE_FILE" up -d
+}
 
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
-    sudo docker compose -f "$COMPOSE_FILE" up -d
+    sudo -v && check_docker && sudo start_docker_compose || exit 1
     ;;
   *)
-    docker compose -f "$COMPOSE_FILE" up -d
+    check_docker && start_docker_compose
     ;;
 esac
+

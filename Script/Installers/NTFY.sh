@@ -65,7 +65,7 @@ echo "      - \"$PORT:80\""
 echo "    restart: always"
 } > "$COMPOSE_FILE"
 
-echo "Docker compose file created at: $COMPOSE_FILE"
+dialog --title "Success" --msgbox "Docker compose file created at: $COMPOSE_FILE" 10 60
 
 OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
 
@@ -79,8 +79,11 @@ case $OS_DISTRO in
 esac
 
 if ! $DOCKER_COMPOSE_CMD info >/dev/null 2>&1; then
-  echo "Docker does not seem to be running, start it first with 'sudo' if required and then re-run this script."
+  dialog --title "Docker not running" --msgbox "Docker does not seem to be running. Start it first with 'sudo' if required and then re-run this script." 10 60
   exit 1
 fi
 
+dialog --title "Launching Docker Compose" --infobox "Starting Docker containers using docker-compose..." 4 60
 $DOCKER_COMPOSE_CMD -f "$COMPOSE_FILE" up -d
+dialog --title "Success" --msgbox "Docker containers started successfully." 5 60
+
