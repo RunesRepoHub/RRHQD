@@ -38,13 +38,13 @@ cd
 dialog --title "MediaCMS Configuration" --msgbox "Starting MediaCMS Docker configuration script." 6 50
 
 # Use dialog to prompt user for input with defaults
-IMAGE=$(dialog --title "MediaCMS Docker Image" --inputbox "Enter the Docker image for MediaCMS (e.g., mediacms/mediacms:latest):" 8 50 3>&1 1>&2 2>&3 3>&-)
-CONTAINER_NAME=$(dialog --title "MediaCMS Container Name" --inputbox "Enter the name for the MediaCMS container:" 8 50 3>&1 1>&2 2>&3 3>&-)
-PORT=$(dialog --title "MediaCMS Port" --inputbox "Enter the port to expose MediaCMS on (e.g., 8000):" 8 50 3>&1 1>&2 2>&3 3>&-)
-DATA_PATH=$(dialog --title "MediaCMS Data Path" --inputbox "Enter the path for MediaCMS data (e.g., /mediacms-data/):" 8 50 3>&1 1>&2 2>&3 3>&-)
+IMAGE=$(dialog --title "MediaCMS Docker Image" --inputbox "Enter the Docker image for MediaCMS (e.g., mediacms-io/mediacms:latest):" 8 50 "mediacms-io/mediacms:latest" 3>&1 1>&2 2>&3 3>&-)
+CONTAINER_NAME=$(dialog --title "MediaCMS Container Name" --inputbox "Enter the name for the MediaCMS container:" 8 50 "mediacms-container" 3>&1 1>&2 2>&3 3>&-)
+PORT=$(dialog --title "MediaCMS Port" --inputbox "Enter the port to expose MediaCMS on (e.g., 8000):" 8 50 "8000" 3>&1 1>&2 2>&3 3>&-)
+DATA_PATH=$(dialog --title "MediaCMS Data Path" --inputbox "Enter the path for MediaCMS data (e.g., /mediacms-data/):" 8 50 "./Data/mediacms-data" 3>&1 1>&2 2>&3 3>&-)
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./RRHQD-Dockers/mediacms-docker"
+COMPOSE_SUBFOLDER="./mediacms-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist
@@ -67,39 +67,27 @@ dialog --title "File Created" --msgbox "Docker compose file created at: $COMPOSE
 
 # Check if Docker is running and use sudo if the OS is ubuntu, zorin, linuxmint, or kali
 OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
-
-check_docker() {
-  if ! docker info >/dev/null 2>&1; then
-    dialog --title "Error" --msgbox "Docker does not seem to be running. Please start Docker first and then re-run this script." 8 50
-    exit 1
-  fi
-}
-
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
-    sudo check_docker
+    if ! sudo docker info >/dev/null 2>&1; then
+      echo "Docker does not seem to be running, start it first with sudo and then re-run this script."
+      exit 1
+    fi
     ;;
   *)
-    check_docker
+    if ! docker info >/dev/null 2>&1; then
+      echo "Docker does not seem to be running, start it first and then re-run this script."
+      exit 1
+    fi
     ;;
 esac
 
 # Start the Docker container using docker-compose with or without sudo based on the OS
-start_container() {
-  if sudo docker compose -f "$COMPOSE_FILE" up -d; then
-    dialog --title "Success" --msgbox "Docker container started successfully." 6 50
-  else
-    dialog --title "Error" --msgbox "Failed to start the Docker container. Please check the Docker compose file." 8 50
-    exit 1
-  fi
-}
-
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
-    sudo start_container
+    sudo docker compose -f "$COMPOSE_FILE" up -d
     ;;
   *)
-    start_container
+    docker compose -f "$COMPOSE_FILE" up -d
     ;;
 esac
-
