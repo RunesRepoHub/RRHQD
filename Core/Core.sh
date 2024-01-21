@@ -46,6 +46,7 @@ MYSQL="MySQL.sh"
 CHECKMK="CheckMK.sh"
 LLAMA_GPT="Llama-GPT.sh"
 PORTAINER="Portainer.sh"
+DELUGE="Deluge.sh"
 
 ## Menu Scripts
 

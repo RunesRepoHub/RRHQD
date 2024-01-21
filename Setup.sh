@@ -24,9 +24,11 @@ check_and_install git
 # Check and install curl if necessary
 check_and_install curl
 
+# Detect the distribution name from /etc/os-release
+OS_DISTRO=$(grep '^NAME=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
 
 # Kali Linux specific Docker CE installation
-if [ "$OS_DISTRO" = "kali" ]; then
+if [ "$OS_DISTRO" = "Kali GNU/Linux" ]; then
     echo "Detected Kali Linux. Installing Docker CE..."
     sudo apt-get update
     sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
@@ -36,21 +38,20 @@ if [ "$OS_DISTRO" = "kali" ]; then
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io
     sudo systemctl enable docker --now
     echo "Docker CE has been installed and started on Kali Linux."
-else
-    echo "This section is for Kali Linux only. Skipping Docker CE installation for other distributions."
 fi
 
-
-# Check if Docker is installed and install it if not
-if ! command -v docker &> /dev/null; then
-    echo "Docker is not installed. Attempting to install Docker..."
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sh get-docker.sh
+if [ "$OS_DISTRO" = "Kali GNU/Linux" ]; then
+    # Check if Docker is installed and install it if not
     if ! command -v docker &> /dev/null; then
-        echo "Failed to install Docker. Aborting script."
-        exit 1
+        echo "Docker is not installed. Attempting to install Docker..."
+        curl -fsSL https://get.docker.com -o get-docker.sh
+        sh get-docker.sh
+        if ! command -v docker &> /dev/null; then
+            echo "Failed to install Docker. Aborting script."
+            exit 1
+        fi
+        echo "Docker has been successfully installed."
     fi
-    echo "Docker has been successfully installed."
 fi
 
 # Function to safely execute commands with sudo if not running as root
@@ -97,41 +98,60 @@ git config --global pull.ff only
 
 cd ..
 
-# Check if the alias 'qd' already exists in .bashrc
-if grep -q "alias qd=" ~/.bashrc; then
-    echo "The alias 'qd' already exists. Would you like to pick a new alias name? (yes/no)"
-    read -p "Enter yes or no: " user_choice
-    if [[ $user_choice == "yes" ]]; then
-        echo "Please enter a new alias name:"
-        read -p "New alias name: " new_alias
-        # Add the new alias to .bashrc
-        echo "alias $new_alias=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
+# Detect the distribution name from /etc/os-release
+OS_DISTRO=$(grep '^NAME=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
+
+# Only run the block if the OS_DISTRO is not Kali GNU/Linux
+if [ "$OS_DISTRO" != "Kali GNU/Linux" ]; then
+    # Check if the alias 'qd' already exists in .bashrc
+    if grep -q "alias qd=" ~/.bashrc; then
+        echo "The alias 'qd' already exists. Would you like to pick a new alias name? (yes/no)"
+        read -p "Enter yes or no: " user_choice
+        if [[ $user_choice == "yes" ]]; then
+            echo "Please enter a new alias name:"
+            read -p "New alias name: " new_alias
+            # Add the new alias to .bashrc
+            echo "alias $new_alias=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
+        fi
+    else
+        # Add the alias 'qd' to .bashrc
+        echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
     fi
-else
-    # Add the alias 'qd' to .bashrc
-    echo "alias qd=\"bash ~/RRHQD/Script/Menu/Main-Menu.sh\"" >> ~/.bashrc
 fi
 
-# Check if the alias 'qd' already exists in .zshrc
-if grep -q "alias qd=" ~/.zshrc; then
-    echo "The alias 'qd' already exists in .zshrc. Please choose another name."
-else
-    # Add the alias 'qd' to .zshrc with proper permissions
-    if [ ! -f ~/.zshrc ]; then
-        touch ~/.zshrc
-        chmod 644 ~/.zshrc
+# Only run the block if the OS_DISTRO is Kali GNU/Linux
+if [ "$OS_DISTRO" = "Kali GNU/Linux" ]; then
+    # Check if the alias 'qd' already exists in .zshrc
+    if grep -q "alias qd=" ~/.zshrc; then
+        echo "The alias 'qd' already exists in .zshrc. Please choose another name."
+    else
+        # Ensure .zshrc exists and has the correct permissions
+        if [ ! -f ~/.zshrc ]; then
+            touch ~/.zshrc
+            chmod 644 ~/.zshrc
+        fi
+        echo "Adding alias 'qd' to .zshrc"
+        echo "alias qd='bash ~/RRHQD/Script/Menu/Main-Menu.sh'" >> ~/.zshrc
     fi
-    echo "Adding alias 'qd' to .zshrc"
-    echo "alias qd='bash ~/RRHQD/Script/Menu/Main-Menu.sh'" >> ~/.zshrc
 fi
 
-# Source the .bashrc to make the new alias available
-if [ -f ~/.bashrc ]; then
-    source ~/.bashrc
+if [ "$OS_DISTRO" != "Kali GNU/Linux" ]; then
+    # Source the .bashrc to make the new alias available
+    if [ -f ~/.bashrc ]; then
+        source ~/.bashrc
+    fi
 fi
 
-if [ -f ~/.zshrc ]; then
-    source ~/.zshrc
+
+if [ "$OS_DISTRO" = "Kali GNU/Linux" ]; then
+    # Source the .zshrc to make the new alias available
+    if [ -f ~/.zshrc ]; then
+        source ~/.zshrc
+    fi
+fi
+
+if [ "$OS_DISTRO" != "Kali GNU/Linux" ]; then
+    rm ~/get-docker.sh
 fi
 
 sleep 3 
