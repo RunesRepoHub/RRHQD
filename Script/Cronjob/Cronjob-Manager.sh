@@ -23,22 +23,11 @@ show_menu() {
 
 # Function to add a cronjob with dialog interface for easier input
 add_cronjob() {
-    minute=$(dialog --title "Cronjob Minute" --inputbox "Minute (0-59):" 8 40 2>&1 >/dev/tty)
-    hour=$(dialog --title "Cronjob Hour" --inputbox "Hour (0-23):" 8 40 2>&1 >/dev/tty)
-    day=$(dialog --title "Cronjob Day of Month" --inputbox "Day of Month (1-31):" 8 40 2>&1 >/dev/tty)
-    month=$(dialog --title "Cronjob Month" --inputbox "Month (1-12):" 8 40 2>&1 >/dev/tty)
-    dow=$(dialog --title "Cronjob Day of Week" --menu "Day of Week:" 15 50 7 \
-        0 "Sunday" \
-        1 "Monday" \
-        2 "Tuesday" \
-        3 "Wednesday" \
-        4 "Thursday" \
-        5 "Friday" \
-        6 "Saturday" 2>&1 >/dev/tty)
+    settime=$(dialog --title "Cronjob Minute" --inputbox "Time (https://crontab.guru/):" 8 40 2>&1 >/dev/tty)
     user=$(dialog --title "Cronjob User" --inputbox "User:" 8 40 2>&1 >/dev/tty)
     command=$(dialog --title "Cronjob Command" --inputbox "Command:" 8 40 2>&1 >/dev/tty)
 
-    cronjob="${minute} ${hour} ${day} ${month} ${dow} ${user} ${command}"
+    cronjob="${settime} ${user} ${command}"
 
     if echo "${cronjob}" >> "${CRONTAB_FILE}"; then
         dialog --title "Success" --msgbox "Cronjob added successfully." 6 50
@@ -62,7 +51,7 @@ remove_cronjob() {
     if [ ${#options[@]} -eq 0 ]; then
         dialog --title "Remove Cronjob" --msgbox "No cronjobs available to remove." 6 50
     else
-        choice=$(dialog --title "Remove Cronjob" --menu "Select a cronjob to remove:" 15 70 6 "${options[@]}" 3>&1 1>&2 2>&3)
+        choice=$(dialog --title "Remove Cronjob" --menu "Select a cronjob to remove (Press spacebar to delete):" 15 70 6 "${options[@]}" 3>&1 1>&2 2>&3)
 
         if [ -n "$choice" ]; then
             choice=$((choice + 6)) # Offset for system cronjobs that are not displayed
