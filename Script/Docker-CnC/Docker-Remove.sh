@@ -30,9 +30,9 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 # Use dialog to create a more user-friendly interface for Docker container selection and removal
 
 # Define the dialog exit status codes
-: "${DIALOG_OK=0}"
-: "${DIALOG_CANCEL=1}"
-: "${DIALOG_ESC=255}"
+DIALOG_OK=0
+DIALOG_CANCEL=1
+DIALOG_ESC=255
 
 # Function to generate a list of Docker containers for dialog
 generate_container_list() {
@@ -62,23 +62,30 @@ delete_selected_containers() {
 # Define the output file for dialog selections
 OUTPUT=/tmp/output.sh.$$
 
-# Show container selection dialog
-select_containers
+# Main function for container removal
+remove_containers_main() {
+  select_containers
 
-# Check dialog's exit status
-exit_status=$?
-case $exit_status in
-  $DIALOG_OK)
-    delete_selected_containers
-    echo "All selected Docker containers have been deleted."
-    ;;
-  $DIALOG_CANCEL)
-    echo "Container deletion was canceled."
-    ;;
-  $DIALOG_ESC)
-    echo "Container deletion was aborted."
-    ;;
-esac
+  local exit_status=$?
+  case $exit_status in
+    $DIALOG_OK)
+      delete_selected_containers
+      echo "All selected Docker containers have been deleted."
+      ;;
+    $DIALOG_CANCEL)
+      echo "Container deletion was canceled."
+      ;;
+    $DIALOG_ESC)
+      echo "Container deletion was aborted."
+      ;;
+    *)
+      echo "Unknown error occurred."
+      ;;
+  esac
+}
+
+# Run the main function
+remove_containers_main
 
 # Cleanup
 rm -f "$OUTPUT"
