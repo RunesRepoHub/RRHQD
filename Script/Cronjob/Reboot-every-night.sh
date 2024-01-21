@@ -37,7 +37,7 @@ cron_job_exists() {
 add_cron_job() {
     local cron_command="$1"
     echo "$cron_command" | sudo tee -a /etc/crontab >/dev/null
-    echo "Cron job added: $cron_command"
+    dialog --title "Cron Job Added" --msgbox "Cron job added: $cron_command" 6 50
 }
 
 reboot_job="45 4 * * * root /sbin/reboot"

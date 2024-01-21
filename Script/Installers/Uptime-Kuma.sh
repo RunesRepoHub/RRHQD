@@ -33,28 +33,11 @@ source ~/RRHQD/Core/Core.sh
 
 cd
 
-echo -e "${Green}Setup a Docker container for Uptime-Kuma${NC}"
-
-# Prompt user for input with defaults
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
-read -p "Enter the Docker image for Uptime-Kuma (e.g., louislam/uptime-kuma:1): " IMAGE
-IMAGE=${IMAGE:-"louislam/uptime-kuma:1"}
-
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
-read -p "Enter the name for the Uptime-Kuma container: " CONTAINER_NAME
-CONTAINER_NAME=${CONTAINER_NAME:-"uptime-kuma-container"}
-
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
-read -p "Enter the port to expose Uptime-Kuma on (e.g., 3001): " PORT
-PORT=${PORT:-3001}
-
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
-read -p "Enter the path for Uptime-Kuma data (e.g., /kuma-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./Data/kuma-data}
+# Using dialog to create a more user-friendly interface
+IMAGE=$(dialog --title "Docker Image" --inputbox "Enter the Docker image for Uptime-Kuma:" 10 60 "louislam/uptime-kuma:1" 3>&1 1>&2 2>&3 3>&-)
+CONTAINER_NAME=$(dialog --title "Container Name" --inputbox "Enter the name for the Uptime-Kuma container:" 10 60 "uptime-kuma-container" 3>&1 1>&2 2>&3 3>&-)
+PORT=$(dialog --title "Port" --inputbox "Enter the port to expose Uptime-Kuma on:" 10 60 "3001" 3>&1 1>&2 2>&3 3>&-)
+DATA_PATH=$(dialog --title "Data Path" --inputbox "Enter the path for Uptime-Kuma data:" 10 60 "./Data/kuma-data" 3>&1 1>&2 2>&3 3>&-)
 
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./RRHQD-Dockers"
@@ -94,9 +77,6 @@ case $OS_DISTRO in
     fi
     ;;
 esac
-
-# Determine the OS distribution
-OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
 
 # Start the Docker container using docker-compose with or without sudo based on the OS
 case $OS_DISTRO in

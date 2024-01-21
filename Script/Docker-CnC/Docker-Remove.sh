@@ -27,36 +27,59 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-# Define the input file for dialog selections
-INPUT=/tmp/menu.sh.$$
+# Use dialog to create a more user-friendly interface for Docker container selection and removal
+
+# Define the dialog exit status codes
+: "${DIALOG_OK=0}"
+: "${DIALOG_CANCEL=1}"
+: "${DIALOG_ESC=255}"
+
+# Function to generate a list of Docker containers for dialog
+generate_container_list() {
+  mapfile -t containers < <(sudo docker ps -a --format "{{.Names}}")
+  local container_list=()
+  for i in "${!containers[@]}"; do
+    container_list+=("$((i+1))" "${containers[i]}" OFF)
+  done
+  echo "${container_list[@]}"
+}
+
+# Function to show dialog for container selection
+select_containers() {
+  local container_list=($(generate_container_list))
+  dialog --checklist "Select Docker containers to delete:" 15 60 10 "${container_list[@]}" 2>"$OUTPUT"
+}
+
+# Function to delete selected containers
+delete_selected_containers() {
+  local selected_containers=($(<"$OUTPUT"))
+  for id in "${selected_containers[@]}"; do
+    local container_name="${containers[id-1]}"
+    sudo docker rm -f "$container_name" && echo "$container_name deleted successfully." || echo "Failed to delete $container_name."
+  done
+}
+
+# Define the output file for dialog selections
 OUTPUT=/tmp/output.sh.$$
 
-# Generate a menu for user to select Docker containers to delete
-echo "Available Docker containers:"
-mapfile -t containers < <(sudo docker ps -a --format "{{.Names}}")
-for i in "${!containers[@]}"; do
-    echo "$((i+1))) ${containers[i]}"
-done
+# Show container selection dialog
+select_containers
 
-# Ask user to select containers
-echo "Enter the numbers of the Docker containers to delete (separated by space):"
-read -r -a selections
+# Check dialog's exit status
+exit_status=$?
+case $exit_status in
+  $DIALOG_OK)
+    delete_selected_containers
+    echo "All selected Docker containers have been deleted."
+    ;;
+  $DIALOG_CANCEL)
+    echo "Container deletion was canceled."
+    ;;
+  $DIALOG_ESC)
+    echo "Container deletion was aborted."
+    ;;
+esac
 
-# Validate selections and prepare container names for deletion
-selected_containers=()
-for selection in "${selections[@]}"; do
-    # Adjust selection index to match array index
-    idx=$((selection - 1))
-    if [[ idx -ge 0 && idx -lt ${#containers[@]} ]]; then
-        selected_containers+=("${containers[idx]}")
-    else
-        echo "Invalid selection: $selection"
-    fi
-done
+# Cleanup
+rm -f "$OUTPUT"
 
-# Delete the chosen Docker containers
-for CONTAINER_NAME in "${selected_containers[@]}"; do
-    sudo docker rm -f "$CONTAINER_NAME" && echo "$CONTAINER_NAME deleted successfully." || echo "Failed to delete $CONTAINER_NAME."
-done
-
-echo "All selected Docker containers have been deleted."

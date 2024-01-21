@@ -1,10 +1,8 @@
 #!/bin/bash
 
 LOG_DIR="$HOME/RRHQD/logs"
-# Configuration
-LOG_FILE="$LOG_DIR/vaultwarden_install.log"  # Log file location
+LOG_FILE="$LOG_DIR/vaultwarden_install.log"
 
-# Function to increment log file name
 increment_log_file_name() {
   local log_file_base_name="vaultwarden_install_run_"
   local log_file_extension=".log"
@@ -18,71 +16,35 @@ increment_log_file_name() {
   echo "Log file will be saved as $LOG_FILE"
 }
 
-# Create log directory if it doesn't exist
 mkdir -p "$LOG_DIR"
-
-# Increment log file name for this run
 increment_log_file_name
-
-# Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 cd
-
 clear
-
 source ~/RRHQD/Core/Core.sh
 
-echo -e "${Green}Setup a Docker container for Vaultwarden${NC}"
+# Check if dialog is installed
+if ! command -v dialog &> /dev/null; then
+    echo "dialog not found, please install it first."
+    exit 1
+fi
 
-# Prompt user for input with defaults
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+# Use dialog to make the script more user-friendly
+IMAGE=$(dialog --title "Vaultwarden Docker image" --inputbox "Enter the Docker image for Vaultwarden (e.g., vaultwarden/server:latest):" 8 50 "vaultwarden/server:latest" 3>&1 1>&2 2>&3 3>&-)
+CONTAINER_NAME=$(dialog --title "Container name" --inputbox "Enter the name for the Vaultwarden container:" 8 50 "vaultwarden" 3>&1 1>&2 2>&3 3>&-)
+PORT=$(dialog --title "Port configuration" --inputbox "Enter the port to expose Vaultwarden on (e.g., 80):" 8 50 "80" 3>&1 1>&2 2>&3 3>&-)
+DATA_PATH=$(dialog --title "Data path" --inputbox "Enter the path for Vaultwarden data (e.g., /vw-data/):" 8 50 "./Data/vw-data" 3>&1 1>&2 2>&3 3>&-)
+ADMIN_TOKEN=$(dialog --title "Admin token" --inputbox "Enter the admin token for Vaultwarden:" 8 50 "$(openssl rand -base64 32)" 3>&1 1>&2 2>&3 3>&-)
+SIGNUPS_ALLOWED=$(dialog --title "Signups allowed" --yesno "Allow signups?" 7 50 3>&1 1>&2 2>&3 3>&-)
+SIGNUPS_ALLOWED=$([[ "$?" == 0 ]] && echo "true" || echo "false")
+WEBSOCKET_ENABLED=$(dialog --title "WebSocket" --yesno "Enable WebSockets?" 7 50 3>&1 1>&2 2>&3 3>&-)
+WEBSOCKET_ENABLED=$([[ "$?" == 0 ]] && echo "true" || echo "false")
 
-read -p "Enter the Docker image for Vaultwarden (e.g., vaultwarden/server:latest): " IMAGE
-IMAGE=${IMAGE:-vaultwarden/server:latest}
-
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
-read -p "Enter the name for the Vaultwarden container: " CONTAINER_NAME
-CONTAINER_NAME=${CONTAINER_NAME:-vaultwarden}
-
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
-read -p "Enter the port to expose Vaultwarden on (e.g., 80): " PORT
-PORT=${PORT:-80}
-
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
-read -p "Enter the path for Vaultwarden data (e.g., /vw-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./Data/vw-data}
-
-echo -e "${Red}This step cannot be skipped${NC}"
-
-read -p "Enter the admin token for Vaultwarden: " ADMIN_TOKEN
-ADMIN_TOKEN=${ADMIN_TOKEN:-$(openssl rand -base64 32)}
-
-echo -e "${Red}This step cannot be skipped${NC}"
-
-read -p "Allow signups? (y/n): " SIGNUPS_ALLOWED
-SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED:-y}
-
-echo -e "${Red}This step cannot be skipped${NC}"
-
-read -p "Enable WebSockets? (y/n): " WEBSOCKET_ENABLED
-WEBSOCKET_ENABLED=${WEBSOCKET_ENABLED:-y}
-
-# Convert y/n input to true/false for environment variables
-SIGNUPS_ALLOWED=$( [[ "$SIGNUPS_ALLOWED" == "y" ]] && echo "true" || echo "false" )
-WEBSOCKET_ENABLED=$( [[ "$WEBSOCKET_ENABLED" == "y" ]] && echo "true" || echo "false" )
-
-# Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./RRHQD-Dockers"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
-
-# Create the subfolder if it does not exist
 mkdir -p "$COMPOSE_SUBFOLDER"
 
-# Create a Docker compose file with the user input inside the subfolder
 {
   echo "version: '3'"
   echo "services:"
@@ -98,11 +60,10 @@ mkdir -p "$COMPOSE_SUBFOLDER"
   echo "      - SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED}"
 } > "$COMPOSE_FILE"
 
-# Inform the user where the Docker compose file has been created
 echo "Docker compose file created at: $COMPOSE_FILE"
 
-# Check if Docker is running and use sudo if the OS is ubuntu, zorin, linuxmint, or kali
 OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
+
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
     if ! sudo docker info >/dev/null 2>&1; then
@@ -118,10 +79,6 @@ case $OS_DISTRO in
     ;;
 esac
 
-# Determine the OS distribution
-OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
-
-# Start the Docker container using docker-compose with or without sudo based on the OS
 case $OS_DISTRO in
   ubuntu|zorin|linuxmint|kali)
     sudo docker compose -f "$COMPOSE_FILE" up -d

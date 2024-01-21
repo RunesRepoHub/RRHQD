@@ -29,7 +29,11 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 # Stop all running Docker containers
 
-echo "Stopping all running Docker containers..."
-sudo docker stop $(sudo docker ps -q)
-
-echo "All Docker containers have been stopped."
+dialog --title "Stopping Docker containers" --infobox "Stopping all running Docker containers..." 5 70
+container_ids=$(sudo docker ps -q)
+if [ -n "$container_ids" ]; then
+    sudo docker stop $container_ids
+    dialog --title "Docker containers stopped" --msgbox "All Docker containers have been stopped." 5 70
+else
+    dialog --title "No containers to stop" --msgbox "There are no running Docker containers to stop." 5 70
+fi

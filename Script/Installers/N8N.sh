@@ -1,7 +1,6 @@
 #!/bin/bash
 
 LOG_DIR="$HOME/RRHQD/logs"
-# Configuration
 LOG_FILE="$LOG_DIR/n8n_install.log"  # Log file location
 
 # Function to increment log file name
@@ -18,50 +17,34 @@ increment_log_file_name() {
   echo "Log file will be saved as $LOG_FILE"
 }
 
-# Create log directory if it doesn't exist
 mkdir -p "$LOG_DIR"
-
-# Increment log file name for this run
 increment_log_file_name
-
-# Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 cd
-# Script to setup and configure a n8n Docker container and start it
+# Use dialog to interact with the user
+if ! command -v dialog &> /dev/null; then
+    echo "The dialog program could not be found, please install dialog to use this script."
+    exit 1
+fi
 
-# Prompt user for input with defaults
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+# Define the default settings
+DEFAULT_IMAGE="n8nio/n8n:latest"
+DEFAULT_CONTAINER_NAME="n8n-container"
+DEFAULT_PORT=5678
+DEFAULT_TZ="Europe/Berlin"
+DEFAULT_DATA_PATH="./Data/n8n-data"
+DEFAULT_GENERIC_TIMEZONE="UTC"
 
-read -p "Enter the Docker image for n8n (e.g., n8nio/n8n:latest): " IMAGE
-IMAGE=${IMAGE:-"n8nio/n8n:latest"}
-
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
-read -p "Enter the name for the n8n container: " CONTAINER_NAME
-CONTAINER_NAME=${CONTAINER_NAME:-"n8n-container"}
-
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
-read -p "Enter the port to expose n8n on (e.g., 5678): " PORT
-PORT=${PORT:-5678}
-
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (Europa/Berlin)${NC}"
-
-read -p "Enter the timezone (e.g., Europe/Berlin): " TZ
-TZ=${TZ:-"Europe/Berlin"}
-
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
-read -p "Enter the path for n8n data (e.g., /n8n-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./Data/n8n-data}
-
-echo -e "${RED}This step cannot be skipped${NC}"
-
-read -p "Enter the subdomain for n8n (e.g., n8n): " SUBDOMAIN
-read -p "Enter the domain name (e.g., example.com): " DOMAIN_NAME
-read -p "Enter a generic timezone for n8n (e.g., UTC): " GENERIC_TIMEZONE
-GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-"UTC"}
+# Prompt user for input with defaults using dialog
+IMAGE=$(dialog --title "Docker image configuration" --inputbox "Enter the Docker image for n8n:" 8 60 $DEFAULT_IMAGE 3>&1 1>&2 2>&3)
+CONTAINER_NAME=$(dialog --title "Container name configuration" --inputbox "Enter the name for the n8n container:" 8 60 $DEFAULT_CONTAINER_NAME 3>&1 1>&2 2>&3)
+PORT=$(dialog --title "Port configuration" --inputbox "Enter the port to expose n8n on:" 8 60 $DEFAULT_PORT 3>&1 1>&2 2>&3)
+TZ=$(dialog --title "Timezone configuration" --inputbox "Enter the timezone:" 8 60 $DEFAULT_TZ 3>&1 1>&2 2>&3)
+DATA_PATH=$(dialog --title "Data path configuration" --inputbox "Enter the path for n8n data:" 8 60 $DEFAULT_DATA_PATH 3>&1 1>&2 2>&3)
+SUBDOMAIN=$(dialog --title "Subdomain configuration" --inputbox "Enter the subdomain for n8n:" 8 60 3>&1 1>&2 2>&3)
+DOMAIN_NAME=$(dialog --title "Domain name configuration" --inputbox "Enter the domain name:" 8 60 3>&1 1>&2 2>&3)
+GENERIC_TIMEZONE=$(dialog --title "Generic timezone configuration" --inputbox "Enter a generic timezone for n8n:" 8 60 $DEFAULT_GENERIC_TIMEZONE 3>&1 1>&2 2>&3)
 
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./n8n-docker"

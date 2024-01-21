@@ -1,10 +1,8 @@
 #!/bin/bash
 
 LOG_DIR="$HOME/RRHQD/logs"
-# Configuration
 LOG_FILE="$LOG_DIR/fail2ban_installer.log"  # Log file location
 
-# Function to increment log file name
 increment_log_file_name() {
   local log_file_base_name="fail2ban_installer_run_"
   local log_file_extension=".log"
@@ -18,31 +16,28 @@ increment_log_file_name() {
   echo "Log file will be saved as $LOG_FILE"
 }
 
-# Create log directory if it doesn't exist
 mkdir -p "$LOG_DIR"
-
-# Increment log file name for this run
 increment_log_file_name
-
-# Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-# RRHQD/Script/Quick-Installers/Fail2ban-Installer.sh
-# Script to setup and configure Fail2ban with user input
+# Check for dialog command
+if ! command -v dialog >/dev/null 2>&1; then
+    echo "This script requires 'dialog'. Install it with 'sudo apt-get install dialog'"
+    exit 1
+fi
 
 echo "Fail2ban setup and configuration script."
 
-# Prompt user for input with defaults
-read -p "Enter the email address for fail2ban notifications: " EMAIL
+# Use dialog for user input
+EMAIL=$(dialog --stdout --inputbox "Enter the email address for fail2ban notifications:" 0 0 "admin@example.com")
+BANTIME=$(dialog --stdout --inputbox "Enter the ban time in seconds (e.g., 3600):" 0 0 "3600")
+FINDTIME=$(dialog --stdout --inputbox "Enter the find time in seconds (e.g., 600):" 0 0 "600")
+MAXRETRY=$(dialog --stdout --inputbox "Enter the max retry attempts:" 0 0 "5")
+
+# Check for empty input and set default variables if necessary
 EMAIL=${EMAIL:-"admin@example.com"}
-
-read -p "Enter the ban time in seconds (e.g., 3600): " BANTIME
 BANTIME=${BANTIME:-3600}
-
-read -p "Enter the find time in seconds (e.g., 600): " FINDTIME
 FINDTIME=${FINDTIME:-600}
-
-read -p "Enter the max retry attempts: " MAXRETRY
 MAXRETRY=${MAXRETRY:-5}
 
 # Install Fail2ban if not already installed
@@ -66,3 +61,4 @@ sudo systemctl restart fail2ban
 
 # Inform the user that Fail2ban has been configured
 echo "Fail2ban has been configured and restarted with the new settings."
+
