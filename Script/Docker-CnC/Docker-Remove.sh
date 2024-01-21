@@ -35,39 +35,47 @@ OUTPUT=/tmp/output.sh.$$
 dialog --clear --title "Select Docker containers to delete" --checklist "Use SPACE to select/deselect containers:" 15 60 4 \
 $(mapfile -t containers < <(sudo docker ps -a --format "{{.Names}}"); IFS=$'\n'; for i in "${!containers[@]}"; do echo $((i+1)) "${containers[i]}" off; done) 2>"$OUTPUT"
 
+# Check if the output file is empty which indicates no selection
+if [ ! -s "$OUTPUT" ]; then
+    echo "No containers selected for deletion."
+    dialog --msgbox "No containers selected for deletion." 5 40
+    rm -f "$OUTPUT"
+    exit 0
+fi
+
 # Read user's selections
-if [[ $? -eq 0 ]]; then
-    mapfile -t selections < "$OUTPUT"
-    # Validate selections and prepare container names for deletion
-    selected_containers=()
-    for selection in "${selections[@]}"; do
-        # Adjust selection index to match array index
-        idx=$((selection - 1))
-        if [[ idx -ge 0 && idx -lt ${#containers[@]} ]]; then
-            selected_containers+=("${containers[idx]}")
-        else
-            echo "Invalid selection: $selection"
-            dialog --msgbox "Invalid selection: $selection" 5 40
-        fi
-    done
+mapfile -t selections < "$OUTPUT"
 
-    # Delete the chosen Docker containers
-    for CONTAINER_NAME in "${selected_containers[@]}"; do
-        if sudo docker rm -f "$CONTAINER_NAME"; then
-            echo "$CONTAINER_NAME deleted successfully."
-            dialog --msgbox "$CONTAINER_NAME deleted successfully." 5 40
-        else
-            echo "Failed to delete $CONTAINER_NAME."
-            dialog --msgbox "Failed to delete $CONTAINER_NAME." 5 40
-        fi
-    done
+# Validate selections and prepare container names for deletion
+selected_containers=()
+for selection in "${selections[@]}"; do
+    # Adjust selection index to match array index
+    idx=$((selection - 1))
+    if [[ idx -ge 0 && idx -lt ${#containers[@]} ]]; then
+        selected_containers+=("${containers[idx]}")
+    else
+        echo "Invalid selection: $selection"
+        dialog --msgbox "Invalid selection: $selection" 5 40
+    fi
+done
 
+# Delete the chosen Docker containers
+for CONTAINER_NAME in "${selected_containers[@]}"; do
+    if sudo docker rm -f "$CONTAINER_NAME"; then
+        echo "$CONTAINER_NAME deleted successfully."
+        dialog --msgbox "$CONTAINER_NAME deleted successfully." 5 40
+    else
+        echo "Failed to delete $CONTAINER_NAME."
+        dialog --msgbox "Failed to delete $CONTAINER_NAME." 5 40
+    fi
+done
+
+# Inform the user that all selected Docker containers have been deleted
+if [ ${#selected_containers[@]} -ne 0 ]; then
     echo "All selected Docker containers have been deleted."
     dialog --msgbox "All selected Docker containers have been deleted." 5 60
-else
-    echo "Container deletion canceled."
-    dialog --msgbox "Container deletion canceled." 5 40
 fi
 
 # Cleanup
 rm -f "$OUTPUT"
+
