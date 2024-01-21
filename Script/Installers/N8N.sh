@@ -47,7 +47,7 @@ DOMAIN_NAME=$(dialog --title "Domain name configuration" --inputbox "Enter the d
 GENERIC_TIMEZONE=$(dialog --title "Generic timezone configuration" --inputbox "Enter a generic timezone for n8n:" 8 60 $DEFAULT_GENERIC_TIMEZONE 3>&1 1>&2 2>&3)
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./n8n-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/n8n-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

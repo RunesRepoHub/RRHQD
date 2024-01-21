@@ -82,7 +82,7 @@ prompt_with_dialog PORT "NTFY Docker Configuration" "Enter the port to expose NT
 prompt_with_dialog DATA_PATH "NTFY Docker Configuration" "Enter the path for NTFY data (e.g., /ntfy-data/):" "./Data/ntfy-data"
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./ntfy-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/ntfy-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

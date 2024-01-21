@@ -38,7 +38,7 @@ DB_USER=$(dialog --title "MySQL Docker Configuration" --inputbox "Enter the data
 DB_PASS=$(dialog --title "MySQL Docker Configuration" --inputbox "Enter the database password:" 8 50 "$DEFAULT_DB_PASS" 3>&1 1>&2 2>&3 3>&-)
 DB_NAME=$(dialog --title "MySQL Docker Configuration" --inputbox "Enter the default database name:" 8 50 "$DEFAULT_DB_NAME" 3>&1 1>&2 2>&3 3>&-)
 
-COMPOSE_SUBFOLDER="./mysql-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/mysql-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 mkdir -p "$COMPOSE_SUBFOLDER"
 

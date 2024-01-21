@@ -41,7 +41,7 @@ PORT=$(dialog --inputbox "Enter the port to expose CheckMK on (e.g., 8080):" 10 
 DATA_PATH=$(dialog --inputbox "Enter the path for CheckMK data (e.g., /checkmk-data/):" 10 60 "./Data/checkmk-data" 3>&1 1>&2 2>&3 3>&-)
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./checkmk-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/checkmk-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

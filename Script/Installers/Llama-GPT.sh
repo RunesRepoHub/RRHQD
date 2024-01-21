@@ -41,10 +41,10 @@ source ~/RRHQD/Core/Core.sh
 
 dialog --title "Script Completion" --msgbox "When the script is done, and you see the access via localhost:port, you can just press ctrl+c to exit back to Main Menu" 8 50
 
-cd $ROOT_FOLDER
+cd $ROOT_FOLDER/RRHQD-Dockers
 
 git clone https://github.com/getumbrel/llama-gpt.git
 
-cd $ROOT_FOLDER/$LLAMA_GPT_FOLDER
+cd $ROOT_FOLDER/RRHQD-Dockers/$LLAMA_GPT_FOLDER
 
 $USE_SUDO ./run.sh --model 7b

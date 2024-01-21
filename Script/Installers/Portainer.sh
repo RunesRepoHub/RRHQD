@@ -29,7 +29,7 @@ PORT=$(dialog --inputbox "Enter the port to expose Portainer on (e.g., 9000):" 1
 DATA_PATH=$(dialog --inputbox "Enter the volume path for Portainer data (e.g., /portainer-data/):" 10 60 "./Data/portainer-data" 3>&1 1>&2 2>&3 3>&-)
 DEPLOYMENT_TYPE=$(dialog --inputbox "Enter the deployment type (standalone or swarm):" 10 60 3>&1 1>&2 2>&3 3>&-)
 
-COMPOSE_SUBFOLDER="./portainer-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/portainer-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 mkdir -p "$COMPOSE_SUBFOLDER"
 

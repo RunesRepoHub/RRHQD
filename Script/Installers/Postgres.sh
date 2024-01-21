@@ -58,7 +58,7 @@ fi
 clear
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./postgres-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/postgres-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

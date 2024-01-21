@@ -1,53 +1,73 @@
 #!/bin/bash
 
 LOG_DIR="$HOME/RRHQD/logs"
-LOG_FILE="$LOG_DIR/docker_update.log"
+# Configuration
+LOG_FILE="$LOG_DIR/docker_update.log"  # Log file location
 
+# Function to increment log file name
+increment_log_file_name() {
+  local log_file_base_name="docker_update_run_"
+  local log_file_extension=".log"
+  local log_file_counter=1
+
+  while [[ -f "$LOG_DIR/${log_file_base_name}${log_file_counter}${log_file_extension}" ]]; do
+    ((log_file_counter++))
+  done
+
+  LOG_FILE="$LOG_DIR/${log_file_base_name}${log_file_counter}${log_file_extension}"
+  echo "Log file will be saved as $LOG_FILE"
+}
+
+# Create log directory if it doesn't exist
 mkdir -p "$LOG_DIR"
+
+# Increment log file name for this run
+increment_log_file_name
+
+# Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
+# RRHQD/Script/Docker-CnC/Docker-Update.sh
+
+# Function to list all running Docker containers
 list_containers() {
   sudo docker ps --format "{{.Names}}" | nl -w2 -s ') '
 }
 
+# Function to get the image of a specific Docker container
 get_container_image() {
   sudo docker inspect --format='{{.Config.Image}}' "$1"
 }
 
++# Function to update the Docker container with ports and volumes
 update_container() {
   local container_name="$1"
   local container_image="$(get_container_image "$container_name")"
   local container_ports="$(sudo docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}}{{$p}};{{end}}' "$container_name" | sed 's/;$//')"
   local container_volumes="$(sudo docker inspect --format='{{range .Mounts}}{{.Source}}:{{.Destination}};{{end}}' "$container_name" | sed 's/;$//')"
 
+  echo "Updating $container_name with image $container_image..."
   sudo docker pull "$container_image" && \
   sudo docker stop "$container_name" && \
   sudo docker rm "$container_name" && \
-  sudo docker run -d --name "$container_name" -p $container_ports -v $container_volumes "$container_image"
-}
+  sudo docker run -d --name "$container_name" "$container_image"
 
-generate_container_list() {
-  mapfile -t containers < <(sudo docker ps -a --format "{{.Names}}")
-  local container_list=()
-  for i in "${!containers[@]}"; do
-    container_list+=("$((i+1))" "${containers[i]}" OFF)
-  done
-  echo "${container_list[@]}"
-}
 
-show_dialog() {
-  local container_list=($(generate_container_list))
-  dialog --title "Select Docker containers to update" \
-         --checklist "Use SPACE to select containers, ENTER to confirm:" 15 60 4 \
-         "${container_list[@]}" 2>&1 >/dev/tty
-}
+# Main menu
+echo "Select Docker containers to update:"
+list_containers
+read -p "Enter the numbers of the containers to update (separated by spaces): " input
 
-selections=($(show_dialog))
+# Split the input into an array
+IFS=' ' read -r -a selections <<< "$input"
 
+# Loop over the selections and update the corresponding containers
 for selection in "${selections[@]}"; do
-  container_name=$(sudo docker ps --format "{{.Names}}" | sed "${selection}q;d")
+  # Fetch the container name by its number
+  container_name=$(list_containers | sed "${selection}q;d" | awk '{print $2}')
+
+  # Update the container
   if [ -n "$container_name" ]; then
-    echo "Updating container: $container_name"
     update_container "$container_name"
   else
     echo "Invalid selection: $selection"
@@ -55,3 +75,5 @@ for selection in "${selections[@]}"; do
 done
 
 echo "Update process completed."
+  sudo docker run -d --name "$container_name" -p $container_ports -v $container_volumes "$container_image"
+}

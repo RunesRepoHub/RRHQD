@@ -40,7 +40,7 @@ PORT=$(dialog --title "Port" --inputbox "Enter the port to expose Uptime-Kuma on
 DATA_PATH=$(dialog --title "Data Path" --inputbox "Enter the path for Uptime-Kuma data:" 10 60 "./Data/kuma-data" 3>&1 1>&2 2>&3 3>&-)
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./RRHQD-Dockers"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/Uptime-Kuma"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

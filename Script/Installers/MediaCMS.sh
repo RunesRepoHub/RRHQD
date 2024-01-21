@@ -44,7 +44,7 @@ PORT=$(dialog --title "MediaCMS Port" --inputbox "Enter the port to expose Media
 DATA_PATH=$(dialog --title "MediaCMS Data Path" --inputbox "Enter the path for MediaCMS data (e.g., /mediacms-data/):" 8 50 "./Data/mediacms-data" 3>&1 1>&2 2>&3 3>&-)
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./mediacms-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/mediacms-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

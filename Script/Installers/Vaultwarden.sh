@@ -39,7 +39,7 @@ ADMIN_TOKEN=$(dialog --title "Admin token" --inputbox "Enter the admin token for
 SIGNUPS_ALLOWED=$(dialog --title "Signups Configuration" --yesno "Do you want to allow new user signups for Vaultwarden?" 7 60) && SIGNUPS_ALLOWED="true" || SIGNUPS_ALLOWED="false"
 WEBSOCKET_ENABLED=$(dialog --title "WebSockets Configuration" --yesno "Do you want to enable WebSocket support for real-time updates?" 7 60) && WEBSOCKET_ENABLED="true" || WEBSOCKET_ENABLED="false"
 
-COMPOSE_SUBFOLDER="./RRHQD-Dockers"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/Vaultwarden"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 mkdir -p "$COMPOSE_SUBFOLDER"
 
