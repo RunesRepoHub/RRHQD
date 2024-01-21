@@ -1,82 +1,66 @@
 #!/bin/bash
 
 # Cronjob Manager Script
-# This script provides a dialog interface to manage, add, and remove cronjobs via /etc/crontab
+# This script provides a simple interface to manage, add, and remove cronjobs via /etc/crontab
 
 CRONTAB_FILE="/etc/crontab"
 
-# Function to display menu using dialog
+# Function to display menu
 show_menu() {
-    dialog --clear --backtitle "Cronjob Manager" \
-        --title "Main Menu" \
-        --menu "Choose an action:" 15 50 4 \
-        "Add" "Add a new cronjob" \
-        "Remove" "Remove an existing cronjob" \
-        "List" "List current cronjobs" \
-        "Exit" "Exit the script" 2>"${INPUT}"
-
-    menu_choice=$(<"${INPUT}")
+    echo "Cronjob Manager"
+    echo "1. Add a new cronjob"
+    echo "2. Remove an existing cronjob"
+    echo "3. List current cronjobs"
+    echo "4. Exit the script"
+    echo -n "Choose an action [1-4]: "
+    read -r menu_choice
     echo "$menu_choice"
 }
 
 # Function to add a cronjob
 add_cronjob() {
-    dialog --title "Add a cronjob" --form "\nEnter the new cronjob details:" \
-    15 50 0 \
-    "Minute:" 1 1 "" 1 10 40 0 \
-    "Hour:" 2 1 "" 2 10 40 0 \
-    "Day of Month:" 3 1 "" 3 10 40 0 \
-    "Month:" 4 1 "" 4 10 40 0 \
-    "Day of Week:" 5 1 "" 5 10 40 0 \
-    "User:" 6 1 "" 6 10 40 0 \
-    "Command:" 7 1 "" 7 10 40 0 2>"${INPUT}"
-
-    IFS="|" read -r minute hour day month dow user command < "${INPUT}"
+    read -p "Minute: " minute
+    read -p "Hour: " hour
+    read -p "Day of Month: " day
+    read -p "Month: " month
+    read -p "Day of Week: " dow
+    read -p "User: " user
+    read -p "Command: " command
     cronjob="${minute} ${hour} ${day} ${month} ${dow} ${user} ${command}"
 
     if echo "${cronjob}" >> "${CRONTAB_FILE}"; then
-        dialog --msgbox "Cronjob added successfully." 6 50
+        echo "Cronjob added successfully."
     else
-        dialog --msgbox "Failed to add cronjob." 6 50
+        echo "Failed to add cronjob."
     fi
 }
 
 # Function to remove a cronjob
 remove_cronjob() {
     local cronjobs=$(tail -n +7 "${CRONTAB_FILE}")
-    local cronjob_list=()
     local i=1
+    echo "Select a cronjob to remove:"
 
     while read -r line; do
-        cronjob_list+=("$i" "$line")
+        echo "$i. $line"
         ((i++))
     done <<< "$cronjobs"
 
-    dialog --clear --backtitle "Cronjob Manager" \
-        --title "Remove a cronjob" \
-        --menu "Select a cronjob to remove:" 15 80 6 \
-        "${cronjob_list[@]}" 2>"${INPUT}"
-
-    local choice=$(<"${INPUT}")
+    read -p "Enter number of cronjob to remove: " choice
 
     if [[ -n $choice ]]; then
         sed -i "${choice}d" "${CRONTAB_FILE}"
-        dialog --msgbox "Cronjob removed successfully." 6 50
+        echo "Cronjob removed successfully."
     else
-        dialog --msgbox "No cronjob selected." 6 50
+        echo "No cronjob selected."
     fi
 }
 
 # Function to list cronjobs
 list_cronjobs() {
-    dialog --textbox "${CRONTAB_FILE}" 22 80
+    echo "Current cronjobs:"
+    cat "${CRONTAB_FILE}"
 }
-
-# Check if dialog is installed
-if ! command -v dialog &> /dev/null; then
-    echo "dialog is not installed. Please install it to run this script."
-    exit 1
-fi
 
 # Check if the user is root
 if [[ $EUID -ne 0 ]]; then
@@ -84,32 +68,28 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-# Input file for dialog responses
-INPUT=$(mktemp)
-
 # Main loop
 while true; do
     choice=$(show_menu)
     case "$choice" in
-        Add)
+        1)
             add_cronjob
             ;;
-        Remove)
+        2)
             remove_cronjob
             ;;
-        List)
+        3)
             list_cronjobs
             ;;
-        Exit)
+        4)
             break
             ;;
         *)
-            dialog --msgbox "Invalid choice." 6 50
+            echo "Invalid choice."
             ;;
     esac
 done
 
 # Clean up
 clear
-[ -f "$INPUT" ] && rm "$INPUT"
 
