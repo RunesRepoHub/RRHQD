@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/RRHQD/Core/Core.sh
+
 LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
 LOG_FILE="$LOG_DIR/portainer_install.log"  # Log file location
@@ -30,7 +32,7 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 cd 
 # Script to setup and configure a Portainer Docker container based on user input
 
-echo "Starting Portainer Docker configuration script."
+echo -e "${Green}Starting Portainer Docker configuration script.${NC}"
 
 # Prompt user for input with defaults
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
