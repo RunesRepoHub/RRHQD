@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/RRHQD/Core/Core.sh
+
 LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
 LOG_FILE="$LOG_DIR/n8n_install.log"  # Log file location
