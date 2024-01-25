@@ -47,8 +47,7 @@ next_line=$((last_processed_line + 1))
 # Read the next URL from the history file
 url=$(sed -n "${next_line}p" "${history_file}")
 
-link=$url
-channel_name="${link##*@}"
+channel_name=$(echo "$url" | awk -F '@' '{print $NF}')
 
 # Update the last processed line number
 echo "${next_line}" > "${last_processed_line_file}"
