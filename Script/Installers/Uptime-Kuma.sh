@@ -35,24 +35,23 @@ cd
 
 echo -e "${Green}Setup a Docker container for Uptime-Kuma${NC}"
 
-# Prompt user for input with defaults
+## Ask user for image
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the Docker image for Uptime-Kuma (e.g., louislam/uptime-kuma:1): " IMAGE
 IMAGE=${IMAGE:-"louislam/uptime-kuma:1"}
 
+## Ask user for container name
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the name for the Uptime-Kuma container: " CONTAINER_NAME
 CONTAINER_NAME=${CONTAINER_NAME:-"uptime-kuma-container"}
 
+## Ask user for port
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the port to expose Uptime-Kuma on (e.g., 3001): " PORT
 PORT=${PORT:-3001}
 
+## Ask user for data path
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the path for Uptime-Kuma data (e.g., /kuma-data/): " DATA_PATH
 DATA_PATH=${DATA_PATH:-./Data/kuma-data}
 
