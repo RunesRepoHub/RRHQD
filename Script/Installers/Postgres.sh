@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/RRHQD/Core/Core.sh
+
 LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
 LOG_FILE="$LOG_DIR/postgres_install.log"  # Log file location
@@ -30,7 +32,7 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 cd 
 # Script to configure and start a Docker container with PostgreSQL
 
-echo "PostgreSQL Docker configuration script."
+echo -e "${Green}Starting PostgreSQL Docker configuration script.${NC}"
 
 # Prompt user for input with defaults
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
@@ -50,7 +52,7 @@ read -p "Enter the database user: " DB_USER
 DB_USER=${DB_USER:-"postgres"}
 
 echo -e "${Yellow}This step can't be skipped${NC}"
-read -p "Enter the database password: " DB_PASS
+read -s -p "Enter the database password: " DB_PASS
 
 # Ensure the user inputs a password for the database
 while [ -z "$DB_PASS" ]; do
