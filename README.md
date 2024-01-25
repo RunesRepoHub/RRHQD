@@ -27,10 +27,17 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 ![Alt text](Docs/Docker-Images.png)
 
+Every docker "Installer" has been tested and is working.
+
+#### Pay attention to:
+
+- If the input can be skipped or not. (Else the docker might not work)
+- All dockers are in the "RRHQD-Dockers" folder.
+
 - Uptime-Kuma - A fancy self-hosted monitoring tool
 - Vaultwarden - An unofficial Bitwarden compatible server
 - Cloudflare Tunnel - Securely connect your network to the Internet
-- MediaCMS - A modern, fully featured open source video and media CMS
+- ~~MediaCMS - A modern, fully featured open source video and media CMS~~ (Not supported, due to unstable scripts, working on fix)
 - CheckMK - A unified monitoring and alerting system
 - MySQL - The world's most popular open source database
 - NTFY - A simple and powerful notification service
@@ -39,6 +46,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - llama-GPT - A modern, open source chat bot.
 - Portainer - A web management interface for Docker
 - Deluge - A lightweight torrent client
+- Ghost - A simple, powerful, and open source content management system
 
 ---------------------------------------------------------------------------------------------
 
