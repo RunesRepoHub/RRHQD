@@ -29,7 +29,8 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 # Script to cleanup unused Docker resources including images, volumes, and networks
 
-echo "Initiating Docker cleanup process..."
+dialog --title "Docker Cleanup" --infobox "Initiating Docker cleanup process..." 5 70
+sleep 2  # Short pause to allow the user to read the message
 
 
 # Remove all unused images, not just dangling ones
@@ -41,4 +42,4 @@ sudo docker volume prune --force
 # Remove all unused networks
 sudo docker network prune --force
 
-echo "Docker cleanup completed."
+dialog --title "Docker Cleanup" --msgbox "Docker cleanup completed." 5 70

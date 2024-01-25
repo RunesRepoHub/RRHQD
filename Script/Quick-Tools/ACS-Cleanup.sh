@@ -12,12 +12,12 @@ fi
 
 ROOT_FOLDER=~/RRHQD
 
-# Ask the user to choose which folder to scan
-echo "Choose the folder to scan:"
-echo "1) YOUTUBE"
-echo "2) YOUTUBE_AUDIO"
-read -p "Selection (1 or 2): " folder_choice
+# Use dialog to get the folder to scan from the user
+folder_choice=$(dialog --title "Select Folder" --menu "Choose the folder to scan:" 15 40 2 \
+    1 "YOUTUBE" \
+    2 "YOUTUBE_AUDIO" 3>&1 1>&2 2>&3)
 
+# Set the folder_to_scan variable based on user selection
 case $folder_choice in
     1)
         folder_to_scan=$YOUTUBE
@@ -26,33 +26,33 @@ case $folder_choice in
         folder_to_scan=$YOUTUBE_AUDIO
         ;;
     *)
-        echo "Invalid selection. Exiting."
+        dialog --title "Error" --msgbox "Invalid selection. Exiting." 6 50
         exit 1
         ;;
 esac
 
-# Continue with operations on the selected folder
-echo "Selected folder: $folder_to_scan"
+# Inform the user of the selected folder
+dialog --title "Folder Selection" --msgbox "Selected folder: $folder_to_scan" 6 50
 
-# Ask the user for the path to check
-read -p "Enter the path to check for duplicates: " folder_to_check
+# Use dialog to get the path to check for duplicates
+folder_to_check=$(dialog --title "Path Selection" --inputbox "Enter the path to check for duplicates:" 8 50 3>&1 1>&2 2>&3)
 
 # Install 'fdupes' if not already installed
-if ! command -v fdupes > /dev/null; then
-    echo "fdupes is not installed. Attempting to install fdupes..."
+if ! command -v fdupes &> /dev/null; then
+    dialog --title "fdupes Installation" --infobox "fdupes is not installed. Attempting to install fdupes..." 4 50
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         sudo apt-get install fdupes || exit 1
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         brew install fdupes || exit 1
     else
-        echo "Unsupported operating system. Please install fdupes manually."
+        dialog --title "Error" --msgbox "Unsupported operating system. Please install fdupes manually." 6 50
         exit 1
     fi
-    echo "fdupes has been installed. Re-run the script to clean up duplicates."
+    dialog --title "Installation Successful" --msgbox "fdupes has been installed. Re-run the script to clean up duplicates." 6 50
 else
     # Check for duplicate files including subdirectories using 'fdupes' and delete them
-echo "Checking for duplicate files in $folder_to_check and its subfolders"
-fdupes -rdN --recurse "$folder_to_check"
-echo "Duplicate files including those in subfolders have been cleaned up."
+    dialog --title "Duplicate File Check" --infobox "Checking for duplicate files in $folder_to_check and its subfolders." 4 50
+    fdupes -rdN --recurse "$folder_to_check"
+    dialog --title "Cleanup Complete" --msgbox "Duplicate files including those in subfolders have been cleaned up." 6 50
 fi
 

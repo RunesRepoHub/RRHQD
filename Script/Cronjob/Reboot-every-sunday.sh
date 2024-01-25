@@ -31,7 +31,7 @@ source ~/RRHQD/Core/Core.sh
 
 cronjob_entry="0 0 * * 0 root /sbin/reboot"
 
-echo -e "${Green}Adding reboot cron job for every Sunday...${NC}"
+dialog --infobox "Adding reboot cron job for every Sunday..." 5 50
 
 # Check if the reboot cron job already exists in /etc/crontab
 if grep -qF -- "$cronjob_entry" /etc/crontab; then

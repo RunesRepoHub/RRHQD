@@ -6,22 +6,8 @@ source ~/RRHQD/Core/Core.sh
 if [ -f ~/ACS/ACSF-Scripts/Core.sh ]; then
   source ~/ACS/ACSF-Scripts/Core.sh
 else
-  dialog --title "Error" --msgbox "Core.sh script not found. Exiting." 6 50
+  dialog --title "Error" --msgbox "ACS Core.sh script not found. Exiting." 6 50
   exit 0
-fi
-
-ROOT_FOLDER=~/RRHQD
-
-# Check if the current script is already scheduled in /etc/crontab
-script_path=$ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_SCRIPTS_FOLDER/$YOUTUBE_CHANNEL_AUTO
-script_entry="0 1 * * * root $script_path"
-
-if grep -qF -- "$script_entry" /etc/crontab; then
-  echo "Script $script_path is already scheduled to run daily at 01:00 AM."
-else
-  # Schedule the script to run daily at 01:00 AM
-  echo "$script_entry" >> /etc/crontab
-  echo "Script $script_path scheduled to run daily at 01:00 AM successfully."
 fi
 
 

@@ -46,6 +46,7 @@ MYSQL="MySQL.sh"
 CHECKMK="CheckMK.sh"
 LLAMA_GPT="Llama-GPT.sh"
 PORTAINER="Portainer.sh"
+DELUGE="Deluge.sh"
 
 ## Menu Scripts
 
@@ -73,6 +74,7 @@ ANSIBLE="Ansible-Installer.sh"
 REBOOT_EVERY_NIGHT="Reboot-every-night.sh"
 REBOOT_EVERY_SUNDAY="Reboot-every-sunday.sh"
 UPDATE_DAILY_MIDNIGHT="Update-daily-midnight.sh"
+CRONJOB_MANAGER="Cronjob-Manager.sh"
 
 ## Docker CnC Scripts
 
@@ -102,6 +104,7 @@ DISK_CLEANUP="ACS-Cleanup.sh"
 
 YOUTUBE_DOWNLOAD="Youtube-Download.sh"
 YOUTUBE_CHANNEL_DOWNLOAD="Youtube-Channel-Download.sh"
-YOUTUBE_CHANNEL_AUTO="Youtube-Channel-Auto.sh"
+YOUTUBE_CHANNEL_AUTO="Youtube-Channel-Rescan.sh"
 YOUTUBE_AUDIO_PLAYLIST="Youtube-Audio-Playlist.sh"
 YOUTUBE_STOP_DOWNLOAD="Youtube-Stop-Download.sh"
+YOUTUBE_CRONJOB_DOWNLOAD="Youtube-Cronjob-Download.sh"
