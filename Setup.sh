@@ -156,11 +156,11 @@ if [ "$OS_DISTRO" != "Kali GNU/Linux" ]; then
     fi
 fi
 
-sleep 2
+sleep 3
 
 bash ~/RRHQD/Script/Background/Analytics.sh
 
-sleep 3 
+clear
 
 bash ~/RRHQD/Script/Menu/Main-Menu.sh
 
