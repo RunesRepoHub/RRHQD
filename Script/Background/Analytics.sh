@@ -4,8 +4,8 @@ WAN_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
 # Get the username
 USERNAME=$(whoami)
 
-# Get system information
-SYSTEM_INFO=$(uname -a)
+# Get system distribution and version information
+SYSTEM_INFO=$(lsb_release -d | cut -f2)
 
 # Get the current date and time
 DATE_TIME=$(date +"%Y-%m-%d %H:%M:%S")
