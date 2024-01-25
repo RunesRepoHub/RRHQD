@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/RRHQD/Core/Core.sh
+
 LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
 LOG_FILE="$LOG_DIR/mysql_install.log"  # Log file location
@@ -30,7 +32,7 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 cd
 # Script to configure and start a Docker container with MySQL
 
-echo "MySQL Docker configuration script."
+echo -e "${Green}Starting MySQL Docker configuration script.${NC}"
 
 # Prompt user for input with defaults
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
@@ -45,9 +47,16 @@ echo -e "${Green}This step can be skipped if you don't want any changes to the d
 read -p "Enter the port to expose MySQL on (e.g., 3306): " PORT
 PORT=${PORT:-3306}
 
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (root)${NC}"
+echo -e "${Yellow}This step can't be skipped${NC}"
 read -p "Enter the database user: " DB_USER
-DB_USER=${DB_USER:-"root"}
+
+# Ensure the user inputs a username and it is not 'root'
+while [[ -z "$DB_USER" ]] || [[ "$DB_USER" == "root" ]]; do
+    if [[ "$DB_USER" == "root" ]]; then
+        echo -e "${Red}The database user cannot be 'root'.${NC}"
+    fi
+    read -p "Enter the database user (cannot be 'root'): " DB_USER
+done
 
 echo -e "${Yellow}This step can't be skipped${NC}"
 read -s -p "Enter the database password: " DB_PASS
