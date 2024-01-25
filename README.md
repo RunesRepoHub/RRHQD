@@ -27,7 +27,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 ![Alt text](Docs/Docker-Images.png)
 
-Every docker "Installer" has been tested and is working.
+**Every docker "Installer" has been tested and is working.**
 
 > [!IMPORTANT]
 > Pay attention to:
@@ -37,7 +37,7 @@ Every docker "Installer" has been tested and is working.
 >- All dockers are made using docker compose files.
 >- All docker compose files are located in "RRHQD-Dockers"
 
-
+#### Docker images currently supported:
 
 - Uptime-Kuma - A fancy self-hosted monitoring tool
 - Vaultwarden - An unofficial Bitwarden compatible server
