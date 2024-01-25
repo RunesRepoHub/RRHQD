@@ -32,34 +32,32 @@ cd
 
 # Prompt user for input with defaults
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the Docker image for n8n (e.g., n8nio/n8n:latest): " IMAGE
 IMAGE=${IMAGE:-"n8nio/n8n:latest"}
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the name for the n8n container: " CONTAINER_NAME
 CONTAINER_NAME=${CONTAINER_NAME:-"n8n-container"}
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the port to expose n8n on (e.g., 5678): " PORT
 PORT=${PORT:-5678}
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (Europa/Berlin)${NC}"
-
 read -p "Enter the timezone (e.g., Europe/Berlin): " TZ
 TZ=${TZ:-"Europe/Berlin"}
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the path for n8n data (e.g., /n8n-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/n8n-docker/Data/n8n-data}
+DATA_PATH=${DATA_PATH:-./Data/n8n-data}
 
 echo -e "${RED}This step cannot be skipped${NC}"
-
 read -p "Enter the subdomain for n8n (e.g., n8n): " SUBDOMAIN
+
+echo -e "${RED}This step cannot be skipped${NC}"
 read -p "Enter the domain name (e.g., example.com): " DOMAIN_NAME
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 read -p "Enter a generic timezone for n8n (e.g., UTC): " GENERIC_TIMEZONE
 GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-"UTC"}
 

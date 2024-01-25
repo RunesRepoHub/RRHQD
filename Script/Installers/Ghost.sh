@@ -1,30 +1,54 @@
 #!/bin/bash
 
-# Set variables for Docker image and container names
-IMAGE="ghost:latest"
-CONTAINER_NAME="ghost_blog"
-PORTS=2368
-GHOST_CONTENT_FOLDER=./RRHQD-Dockers/ghost/content # Replace with the default path for Ghost content
-MYSQL_FOLDER=./RRHQD-Dockers/ghost/mysql
-
-# Function to prompt the user for input with a default value
-prompt_for_input() {
-    local prompt_message=$1
-    local default_value=$2
-    read -p "$prompt_message [$default_value]: " input_value
-    echo "${input_value:-$default_value}"
-}
+source ~/RRHQD/Core/Core.sh
 
 # Ask user for necessary environment variables
-echo "Setting up Ghost Docker container."
-IMAGE=$(prompt_for_input "Enter Docker image for Ghost" $IMAGE)
-CONTAINER_NAME=$(prompt_for_input "Enter container name" $CONTAINER_NAME)
-URL=$(prompt_for_input "Enter URL for Ghost" "https://blog.yourdomain.com")
-PORTS=$(prompt_for_input "Enter port for Ghost" 2368)
-GHOST_CONTENT_FOLDER=$(prompt_for_input "Enter Ghost content folder" $GHOST_CONTENT_FOLDER)
-MYSQL_PASSWORD=$(prompt_for_input "Enter MySQL password")
-MYSQL_ROOT_PASSWORD=$(prompt_for_input "Enter MySQL root password")
-MYSQL_FOLDER=$(prompt_for_input "Enter MySQL folder" $MYSQL_FOLDER)
+echo -e "${Green}Setting up Ghost Docker container.${NC}"
+
+## Ask user for image
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+read -p "Enter Docker image for Ghost (e.g., ghost:latest): " IMAGE
+IMAGE=${IMAGE:-"ghost:latest"}
+
+## Ask user for container name
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+read -p "Enter container name: " CONTAINER_NAME
+CONTAINER_NAME=${CONTAINER_NAME:-"ghost_blog"}
+
+## Ask user for URL
+echo -e "${Yellow}This step can't be skipped${NC}"
+read -p "Enter URL for Ghost (https://blog.yourdomain.com): " URL
+
+# Ensure the user inputs a URL
+if [ -z "$URL" ]; then
+    echo -e "${Red}You must enter a URL for Ghost.${NC}"
+    while [ -z "$URL" ]; do
+        read -p "Enter URL for Ghost: " URL
+    done
+fi
+
+## Ask user for port
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+read -p "Enter port for Ghost: " PORTS
+PORTS=${PORTS:-2368}
+
+## Ask user for Ghost content folder
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+read -p "Enter Ghost content folder: " GHOST_CONTENT_FOLDER
+GHOST_CONTENT_FOLDER=${GHOST_CONTENT_FOLDER:-./ghost/content}
+
+## Ask user for MySQL password
+echo -e "${Yellow}This step can't be skipped${NC}"
+read -s -p "Enter MySQL password: " MYSQL_PASSWORD
+
+## Ask user for MySQL Root password
+echo -e "${Yellow}This step can't be skipped${NC}"
+read -s -p "Enter MySQL root password: " MYSQL_ROOT_PASSWORD
+
+## Ask user for MySQL folder
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+read -p "Enter MySQL folder: " MYSQL_FOLDER
+MYSQL_FOLDER=${MYSQL_FOLDER:-./ghost/mysql}
 
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./RRHQD-Dockers/Ghost"

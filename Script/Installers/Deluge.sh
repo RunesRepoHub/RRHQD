@@ -1,25 +1,25 @@
 #!/bin/bash
 
-# Set variables for Docker image and container names
-DEFAULT_IMAGE="lscr.io/linuxserver/deluge:latest"
-DEFAULT_CONTAINER_NAME="deluge"
-DOCKER_ROOT_FOLDER_DEFAULT=./RRHQD-Dockers/Deluge/configs # Replace with the default path for Docker configs
-DOCKER_DOWNLOAD_FOLDER_DEFAULT=./RRHQD-Dockers/Deluge/downloads # Replace with the default path for downloads
-
-# Function to prompt the user for input with a default value
-prompt_for_input() {
-    local prompt_message=$1
-    local default_value=$2
-    read -p "$prompt_message [$default_value]: " input_value
-    echo "${input_value:-$default_value}"
-}
+source ~/RRHQD/Core/Core.sh
 
 # Ask user for necessary environment variables
-echo "Setting up Deluge Docker container."
-IMAGE=$(prompt_for_input "Enter Docker image for Deluge" $DEFAULT_IMAGE)
-CONTAINER_NAME=$(prompt_for_input "Enter container name" $DEFAULT_CONTAINER_NAME)
-DOCKER_ROOT_FOLDER=$(prompt_for_input "Enter Docker root folder for configs" $DOCKER_ROOT_FOLDER_DEFAULT)
-DOCKER_DOWNLOAD_FOLDER=$(prompt_for_input "Enter folder for downloads" $DOCKER_DOWNLOAD_FOLDER_DEFAULT)
+echo -e "${Green}Setting up Deluge Docker container.${NC}"
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+read -p "Enter Docker image for Deluge (e.g., lscr.io/linuxserver/deluge:latest): " IMAGE
+IMAGE=${IMAGE:-"lscr.io/linuxserver/deluge:latest"}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+read -p "Enter container name: " CONTAINER_NAME
+CONTAINER_NAME=${CONTAINER_NAME:-"deluge-container"}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+read -p "Enter Deluge root folder: " DOCKER_ROOT_FOLDER
+DOCKER_ROOT_FOLDER=${DOCKER_ROOT_FOLDER:-./Data/config}
+
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+read -p "Enter download folder: " DOCKER_DOWNLOAD_FOLDER
+DOCKER_DOWNLOAD_FOLDER=${DOCKER_DOWNLOAD_FOLDER:-./Data/downloads}
 
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./RRHQD-Dockers/Deluge"

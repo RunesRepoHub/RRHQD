@@ -34,37 +34,38 @@ echo "PostgreSQL Docker configuration script."
 
 # Prompt user for input with defaults
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the Docker image for PostgreSQL (e.g., postgres:latest): " IMAGE
 IMAGE=${IMAGE:-"postgres:latest"}
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the name for the PostgreSQL container: " CONTAINER_NAME
 CONTAINER_NAME=${CONTAINER_NAME:-"postgres-container"}
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the port to expose PostgreSQL on (e.g., 5432): " PORT
 PORT=${PORT:-5432}
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (postgres)${NC}"
-
 read -p "Enter the database user: " DB_USER
 DB_USER=${DB_USER:-"postgres"}
 
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (postgres)${NC}"
-
+echo -e "${Yellow}This step can't be skipped${NC}"
 read -p "Enter the database password: " DB_PASS
-DB_PASS=${DB_PASS:-"postgres"}
+
+# Ensure the user inputs a password for the database
+while [ -z "$DB_PASS" ]; do
+    echo -e "${Red}A database password is required.${NC}"
+    read -s -p "Enter the database password: " DB_PASS
+done
+
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (postgres)${NC}"
-
 read -p "Enter the default database name: " DB_NAME
 DB_NAME=${DB_NAME:-"postgres"}
 
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (postgres)${NC}"
 read -p "Enter the default path to the database: " DB_PATH
-DB_PATH=${DB_PATH:-"./RRHQD-Dockers/postgres-docker/postgres-data"}
+DB_PATH=${DB_PATH:-"./postgres-data"}
 
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./RRHQD-Dockers/postgres-docker"

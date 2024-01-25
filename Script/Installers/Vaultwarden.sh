@@ -54,7 +54,7 @@ PORT=${PORT:-80}
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the path for Vaultwarden data (e.g., /vw-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/Vaultwarden/Data/vw-data}
+DATA_PATH=${DATA_PATH:-./Data/vw-data}
 
 echo -e "${Red}This step cannot be skipped${NC}"
 

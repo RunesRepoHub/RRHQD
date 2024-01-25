@@ -34,24 +34,20 @@ echo "Starting NTFY Docker configuration script."
 
 # Prompt user for input with defaults
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the Docker image for NTFY (e.g., binwiederhier/ntfy:latest): " IMAGE
 IMAGE=${IMAGE:-"binwiederhier/ntfy:latest"}
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the name for the NTFY container: " CONTAINER_NAME
 CONTAINER_NAME=${CONTAINER_NAME:-"ntfy-container"}
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the port to expose NTFY on (e.g., 8080): " PORT
 PORT=${PORT:-8080}
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the path for NTFY data (e.g., /ntfy-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/ntfy-docker/Data/ntfy-data}
+DATA_PATH=${DATA_PATH:-./Data/ntfy-data}
 
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./RRHQD-Dockers/ntfy-docker"
