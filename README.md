@@ -111,7 +111,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 (These scripts are made to work with the ACS)
 
-***IT WILL NOT WORK WITHOUT INSTALLING THE ACS First***
+***IT WILL NOT WORK WITHOUT INSTALLING THE ACS First*** (https://github.com/RunesRepoHub/RRHQD#runesrepohub-software-support)
 
 - Download Youtube Video - Download a youtube playlist
 - Download Full Youtube Channel - Add a youtube channel to download
