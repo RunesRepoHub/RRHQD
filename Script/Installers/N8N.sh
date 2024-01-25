@@ -67,7 +67,9 @@ GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-"UTC"}
 COMPOSE_SUBFOLDER="./RRHQD-Dockers/n8n-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
-chmod 777 -R $COMPOSE_SUBFOLDER/$DATA_PATH
+cd $COMPOSE_SUBFOLDER
+
+chmod 777 -R $DATA_PATH
 
 # Create the subfolder if it does not exist
 mkdir -p "$COMPOSE_SUBFOLDER"
