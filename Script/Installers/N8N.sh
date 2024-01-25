@@ -53,8 +53,6 @@ echo -e "${Green}This step can be skipped if you don't want any changes to the d
 read -p "Enter the path for n8n data (e.g., /n8n-data/): " DATA_PATH
 DATA_PATH=${DATA_PATH:-./Data/n8n-data}
 
-chmod 777 -R $COMPOSE_SUBFOLDER/$DATA_PATH
-
 echo -e "${RED}This step cannot be skipped${NC}"
 read -p "Enter the subdomain for n8n (e.g., n8n): " SUBDOMAIN
 
@@ -68,6 +66,8 @@ GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-"UTC"}
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./RRHQD-Dockers/n8n-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
+
+chmod 777 -R $COMPOSE_SUBFOLDER/$DATA_PATH
 
 # Create the subfolder if it does not exist
 mkdir -p "$COMPOSE_SUBFOLDER"
