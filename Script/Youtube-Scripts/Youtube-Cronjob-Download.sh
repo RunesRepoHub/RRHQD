@@ -81,9 +81,11 @@ if [ "$running_containers" -lt 3 ]; then
         --output '/output/%(title)s.%(ext)s' \
         --yes-playlist \
         "${url}"
+
+        dialog --title "Download Started" --msgbox "Download started for the channel: ${channel_name}\nVideos will be saved in the folder: ${channel_folder}" 8 50
 else
     dialog --title "Maximum Limit Reached" --msgbox "Maximum number of running containers with mikenye/youtube-dl image reached. Please try again later." 8 50
 fi
 
-dialog --title "Download Started" --msgbox "Download started for the channel: ${channel_name}\nVideos will be saved in the folder: ${channel_folder}" 8 50
+
 
