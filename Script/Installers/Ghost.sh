@@ -17,6 +17,7 @@ CONTAINER_NAME=${CONTAINER_NAME:-"ghost_blog"}
 
 ## Ask user for URL
 echo -e "${Yellow}This step can't be skipped${NC}"
+echo -e "${Blue}You can test Ghost locally by using domain: (http://ip-address:2368)${NC}"
 read -p "Enter URL for Ghost (https://blog.yourdomain.com): " URL
 
 # Ensure the user inputs a URL
