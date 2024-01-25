@@ -29,7 +29,7 @@ COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 mkdir -p "$COMPOSE_SUBFOLDER"
 
 # Create a Docker Compose file for Deluge
-cat > deluge-compose.yml <<EOF
+cat > $COMPOSE_FILE <<EOF
 version: '3'
 services:
   $CONTAINER_NAME:
@@ -58,7 +58,7 @@ echo "Docker Compose file for Deluge has been created."
 
 # Run Docker Compose to start the container
 echo "Starting Deluge container..."
-docker compose -f deluge-compose.yml up -d
+docker compose -f $COMPOSE_FILE up -d
 
 # Check if the Docker container(s) have started successfully
 if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
