@@ -51,7 +51,7 @@ echo "Docker Compose file for Deluge has been created."
 
 # Run Docker Compose to start the container
 echo "Starting Deluge container..."
-docker-compose -f deluge-compose.yml up -d
+docker compose -f deluge-compose.yml up -d
 
 # Check if the Docker container(s) have started successfully
 if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
