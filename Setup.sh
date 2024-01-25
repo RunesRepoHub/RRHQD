@@ -158,10 +158,6 @@ fi
 
 sleep 3
 
-bash ~/RRHQD/Script/Background/Analytics.sh
-
-clear
-
 bash ~/RRHQD/Script/Menu/Main-Menu.sh
 
 
