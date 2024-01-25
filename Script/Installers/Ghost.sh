@@ -95,7 +95,7 @@ echo "Docker Compose file for Ghost has been created."
 
 # Run Docker Compose to start the container
 echo "Starting Ghost container..."
-docker compose -f ghost-compose.yml up -d
+docker compose -f $COMPOSE_FILE up -d
 
 # Check if the Docker container(s) have started successfully
 if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
