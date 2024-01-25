@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/RRHQD/Core/Core.sh
+
 LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
 LOG_FILE="$LOG_DIR/mediacms_install.log"  # Log file location
@@ -30,12 +32,12 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 cd
 # Script to configure and start a Docker container running MediaCMS
 
-echo "Starting MediaCMS Docker configuration script."
+echo -e "${Green}Starting MediaCMS Docker configuration script.${NC}"
 
 # Prompt user for input with defaults
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-read -p "Enter the Docker image for MediaCMS (e.g., mediacms-io/mediacms:latest): " IMAGE
-IMAGE=${IMAGE:-"mediacms-io/mediacms:latest"}
+read -p "Enter the Docker image for MediaCMS (e.g., mediacms/mediacms:latest): " IMAGE
+IMAGE=${IMAGE:-"mediacms/mediacms:latest"}
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 read -p "Enter the name for the MediaCMS container: " CONTAINER_NAME
