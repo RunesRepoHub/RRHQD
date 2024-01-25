@@ -35,41 +35,52 @@ source ~/RRHQD/Core/Core.sh
 
 echo -e "${Green}Setup a Docker container for Vaultwarden${NC}"
 
-# Prompt user for input with defaults
+## Ask user for image
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the Docker image for Vaultwarden (e.g., vaultwarden/server:latest): " IMAGE
 IMAGE=${IMAGE:-vaultwarden/server:latest}
 
+## Ask user for container name
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the name for the Vaultwarden container: " CONTAINER_NAME
 CONTAINER_NAME=${CONTAINER_NAME:-vaultwarden}
 
+## Ask user for port
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the port to expose Vaultwarden on (e.g., 80): " PORT
 PORT=${PORT:-80}
 
+## Ask user for path
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-
 read -p "Enter the path for Vaultwarden data (e.g., /vw-data/): " DATA_PATH
 DATA_PATH=${DATA_PATH:-./Data/vw-data}
 
+## Ask user for admin token
 echo -e "${Red}This step cannot be skipped${NC}"
-
 read -p "Enter the admin token for Vaultwarden: " ADMIN_TOKEN
-ADMIN_TOKEN=${ADMIN_TOKEN:-$(openssl rand -base64 32)}
+# Ensure the user inputs a token
+while [ -z "$ADMIN_TOKEN" ]; do
+    echo -e "${Red}The admin token cannot be empty. Please enter a valid token.${NC}"
+    read -p "Enter the admin token for Vaultwarden: " ADMIN_TOKEN
+done
 
+## Ask user for signups allowed or not
 echo -e "${Red}This step cannot be skipped${NC}"
-
 read -p "Allow signups? (y/n): " SIGNUPS_ALLOWED
-SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED:-y}
+# Ensure the user picks 'y' for yes or 'n' for no
+while [[ "$SIGNUPS_ALLOWED" != "y" && "$SIGNUPS_ALLOWED" != "n" ]]; do
+    echo -e "${Red}Please pick 'y' for yes or 'n' for no.${NC}"
+    read -p "Allow signups? (y/n): " SIGNUPS_ALLOWED
+done
 
+## Ask user for enabling WebSockets or not
 echo -e "${Red}This step cannot be skipped${NC}"
-
 read -p "Enable WebSockets? (y/n): " WEBSOCKET_ENABLED
-WEBSOCKET_ENABLED=${WEBSOCKET_ENABLED:-y}
+# Prompt user for enabling WebSockets with a yes or no answer
+while [[ "$WEBSOCKET_ENABLED" != "y" && "$WEBSOCKET_ENABLED" != "n" ]]; do
+    echo -e "${Red}Please enter 'y' for yes or 'n' for no.${NC}"
+    read -p "Enable WebSockets? (y/n): " WEBSOCKET_ENABLED
+done
 
 # Convert y/n input to true/false for environment variables
 SIGNUPS_ALLOWED=$( [[ "$SIGNUPS_ALLOWED" == "y" ]] && echo "true" || echo "false" )
