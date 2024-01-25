@@ -158,7 +158,7 @@ fi
 
 sleep 2
 
-bash ~/RRHQD/Background/Analytics.sh
+bash ~/RRHQD/Script/Background/Analytics.sh
 
 sleep 3 
 
