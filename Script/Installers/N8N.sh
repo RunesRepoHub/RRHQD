@@ -96,11 +96,6 @@ volumes:
 
 EOF
 
-# Remove the leading '.' from DATA_PATH if it exists
-CHMOD_PATH=${DATA_PATH/#.\//}
-
-chmod 777 -R $COMPOSE_SUBFOLDER/$CHMOD_PATH
-
 # Inform the user where the Docker compose file has been created
 echo "Docker compose file created at: $COMPOSE_FILE"
 
@@ -130,6 +125,11 @@ case $OS_DISTRO in
     docker compose -f "$COMPOSE_FILE" up -d
     ;;
 esac
+
+# Remove the leading '.' from DATA_PATH if it exists
+CHMOD_PATH=${DATA_PATH/#.\//}
+
+chmod 777 -R $COMPOSE_SUBFOLDER/$CHMOD_PATH
 
 # Check if the Docker container(s) have started successfully
 if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
