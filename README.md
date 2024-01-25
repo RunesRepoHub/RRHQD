@@ -85,7 +85,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Docker - Remove (Stop and Delete a Docker)
 - Docker - Reset (Reset Docker - Delete everything)
 - Docker - Start (Start one or more Dockers)
-- Docker - Stop (Stop one or more Docker)
+- Docker - Stop (Stop one or more Dockers)
 - Docker - Update (Update a Docker)
 
 ---------------------------------------------------------------------------------------------
