@@ -3,8 +3,8 @@
 # Set variables for Docker image and container names
 DEFAULT_IMAGE="lscr.io/linuxserver/deluge:latest"
 DEFAULT_CONTAINER_NAME="deluge"
-DOCKER_ROOT_FOLDER_DEFAULT="/path/to/docker/configs" # Replace with the default path for Docker configs
-DOCKER_DOWNLOAD_FOLDER_DEFAULT="/path/to/downloads" # Replace with the default path for downloads
+DOCKER_ROOT_FOLDER_DEFAULT=~/deluge/configs # Replace with the default path for Docker configs
+DOCKER_DOWNLOAD_FOLDER_DEFAULT=~/deluge/downloads # Replace with the default path for downloads
 
 # Function to prompt the user for input with a default value
 prompt_for_input() {

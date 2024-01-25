@@ -151,7 +151,9 @@ if [ "$OS_DISTRO" = "Kali GNU/Linux" ]; then
 fi
 
 if [ "$OS_DISTRO" != "Kali GNU/Linux" ]; then
-    rm ~/get-docker.sh
+    if [ -f ~/get-docker.sh ]; then
+        rm ~/get-docker.sh
+    fi
 fi
 
 sleep 3 
