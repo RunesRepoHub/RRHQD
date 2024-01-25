@@ -25,7 +25,8 @@ function show_dialog_menu() {
            10 "Run the llama-gpt Installer" \
            11 "Run Portainer Installer" \
            12 "Run Deluge Installer" \
-           13 "Back To Main Menu" 2>"${INPUT}"
+           13 "Run Ghost Installer" \
+           14 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -64,6 +65,9 @@ function show_dialog_menu() {
             ;;
         12)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$DELUGE
+            ;;
+        13)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$GHOST
             ;;
         *)
             exit 0
