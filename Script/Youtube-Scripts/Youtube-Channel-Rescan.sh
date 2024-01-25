@@ -18,9 +18,6 @@ media_dir="$MEDIA"
 # Create or append to a file to keep track of channel URLs
 history_file="${output_path}/channel_urls_history.txt"
 
-link=$url
-channel_name="${link##*@}"
-
 # Check if there are already 3 youtube-dl Docker containers running
 running_containers=$(sudo docker ps --filter ancestor=mikenye/youtube-dl --format '{{.Image}}' | wc -l)
 if [ "$running_containers" -ge 3 ]; then
@@ -49,6 +46,9 @@ next_line=$((last_processed_line + 1))
 
 # Read the next URL from the history file
 url=$(sed -n "${next_line}p" "${history_file}")
+
+link=$url
+channel_name="${link##*@}"
 
 # Update the last processed line number
 echo "${next_line}" > "${last_processed_line_file}"
