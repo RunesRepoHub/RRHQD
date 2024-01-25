@@ -48,7 +48,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 #### Docker images currently supported:
 
-> [!TIP]
+> [!NOTE]
 >- Uptime-Kuma - A fancy self-hosted monitoring tool
 >- Vaultwarden - An unofficial Bitwarden compatible server
 >- Cloudflare Tunnel - Securely connect your network to the Internet
@@ -69,7 +69,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 ![Alt text](Docs/RRH.png)
 
-> [!TIP]
+> [!NOTE]
 >* ACS (Automated Content System)
 >* News Report Docker (Automated News Reporting System)
 >* EWD (Easy Web Development)
@@ -80,7 +80,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 ![Alt text](Docs/Quick-Installers.png)
 
-> [!TIP]
+> [!NOTE]
 >* Starship - A minimalistic, powerful, and extremely customizable prompt for any shell
 >* Tailscale VPN - A private network that makes securing your online activity and managing your devices easy
 >* Filezilla - A free software, cross-platform FTP application that supports FTP, SFTP, and FTPS
@@ -93,7 +93,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 ![Alt text](Docs/Cronjobs.png)
 
-> [!TIP]
+> [!NOTE]
 >- Add a nightly reboot at 4:45 am
 >- Daily midnight update (Debian Systems)
 >- Add a reboot cronjob for every Sunday at 00:00 am
@@ -105,7 +105,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 
 ![Alt text](Docs/Docker-CnC.png)
 
-> [!TIP]
+> [!NOTE]
 >- Docker - Cleanup (Clean all unused images, volumes and networks)
 >- Docker - Remove (Stop and Delete a Docker)
 >- Docker - Reset (Reset Docker - Delete everything)
@@ -140,7 +140,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 >***IT WILL NOT WORK WITHOUT INSTALLING THE ACS First*** 
 >(https://github.com/RunesRepoHub/RRHQD#runesrepohub-software-support)
 
-> [!TIP]
+> [!NOTE]
 >- Download Youtube Video - Download a youtube playlist
 >- Download Full Youtube Channel - Add a youtube channel to download
 >- Auto Update Youtube Channel Downloads - Check if there are new videos on the channel
