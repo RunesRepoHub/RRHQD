@@ -1,6 +1,14 @@
 # RRHQD
 RunesRepoHub Quick Deploy this script has been made to make it easy to deploy the docker, software and other installers that I use.
 
+## Requirements:
+
+- Sudo (is auto installed by setup)
+- Docker (is auto installed by setup)
+- Git (is auto installed by setup)
+- Curl (is auto installed by setup)
+- Dialog (is auto installed by setup and has a theme override)
+
 ## Operating Systems Supported:
 
 - Debian 10 - 11
@@ -15,11 +23,9 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 2. PoC = Proof of concept (Nightly Updates)
 3. Prod = Production (Stable branch)
 
-
 ### Main Menu:
 
 ![Alt text](Docs/Main-Menu.png)
-
 
 ---------------------------------------------------------------------------------------------
 
@@ -74,8 +80,6 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 * Filezilla - A free software, cross-platform FTP application that supports FTP, SFTP, and FTPS
 * Fail2Ban - An intrusion prevention software framework that protects computer servers from brute-force attacks
 * Ansible - A radically simple IT automation tool
-
-* Docker (is auto installed) - A set of platform as a service products that use OS-level virtualization to deliver software in packages called containers
 
 ---------------------------------------------------------------------------------------------
 
