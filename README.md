@@ -38,6 +38,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - N8N - A workflow automation platform
 - llama-GPT - A modern, open source chat bot.
 - Portainer - A web management interface for Docker
+- Deluge - A lightweight torrent client
 
 ---------------------------------------------------------------------------------------------
 
@@ -72,6 +73,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Add a nightly reboot at 4:45 am
 - Daily midnight update (Debian Systems)
 - Add a reboot cronjob for every Sunday at 00:00 am
+- Cronjob Manager - Easy and quick custom cronjob
 
 ---------------------------------------------------------------------------------------------
 
@@ -115,6 +117,8 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Download Full Youtube Channel - Add a youtube channel to download
 - Auto Update Youtube Channel Downloads - Check if there are new videos on the channel
 - Download Youtube Playlist MP3 - Download a youtube playlist in mp3
+- Stop all Youtube Downloads - Stop all youtube downloads
+- Scan all Youtube Downloads - Scan all youtube downloads every 4 hours 
 
 ---------------------------------------------------------------------------------------------
 
