@@ -156,13 +156,9 @@ if [ "$OS_DISTRO" != "Kali GNU/Linux" ]; then
     fi
 fi
 
-# Get the user's Git email
-USER_GIT_EMAIL=$(git config --global user.email)
-# Get the current user's username
-GIT_USERNAME=$(git config --global user.name)
+sleep 2
 
-# Send the Git email to the specified endpoint
-curl -d "The user $GIT_USERNAME with the email=$USER_GIT_EMAIL has just run RRHQD Setup.sh" notify.rp-helpdesk.com/Github
+bash ~/RRHQD/Background/Analytics.sh
 
 sleep 3 
 
