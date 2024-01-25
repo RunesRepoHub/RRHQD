@@ -84,8 +84,8 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 - Docker - Cleanup (Clean all unused images, volumes and networks)
 - Docker - Remove (Stop and Delete a Docker)
 - Docker - Reset (Reset Docker - Delete everything)
-- Docker - Start (Start all Docker)
-- Docker - Stop (Stop all Docker)
+- Docker - Start (Start one or more Dockers)
+- Docker - Stop (Stop one or more Docker)
 - Docker - Update (Update a Docker)
 
 ---------------------------------------------------------------------------------------------

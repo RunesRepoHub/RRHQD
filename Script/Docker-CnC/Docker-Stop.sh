@@ -27,13 +27,32 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-# Stop all running Docker containers
+# Generate a menu for user to select Docker containers to stop
+echo "Available Docker containers:"
+mapfile -t containers < <(sudo docker ps --format "{{.Names}}")  # List only running containers
+for i in "${!containers[@]}"; do
+    echo "$((i+1))) ${containers[i]}"
+done
 
-dialog --title "Stopping Docker containers" --infobox "Stopping all running Docker containers..." 5 70
-container_ids=$(sudo docker ps -q)
-if [ -n "$container_ids" ]; then
-    sudo docker stop $container_ids
-    dialog --title "Docker containers stopped" --msgbox "All Docker containers have been stopped." 5 70
-else
-    dialog --title "No containers to stop" --msgbox "There are no running Docker containers to stop." 5 70
-fi
+# Ask user to select containers
+echo "Enter the numbers of the Docker containers to stop (separated by space):"
+read -r -a selections
+
+# Validate selections and prepare container names
+selected_containers=()
+for selection in "${selections[@]}"; do
+    # Adjust selection index to match array index
+    idx=$((selection - 1))
+    if [[ idx -ge 0 && idx -lt ${#containers[@]} ]]; then
+        selected_containers+=("${containers[idx]}")
+    else
+        echo "Invalid selection: $selection"
+    fi
+done
+
+# Stop the chosen Docker containers
+for CONTAINER_NAME in "${selected_containers[@]}"; do
+    sudo docker stop "$CONTAINER_NAME" && echo "$CONTAINER_NAME stopped successfully." || echo "Failed to stop $CONTAINER_NAME."
+done
+
+echo "All selected Docker containers have been stopped."

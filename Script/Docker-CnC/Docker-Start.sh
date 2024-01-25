@@ -55,4 +55,4 @@ for CONTAINER_NAME in "${selected_containers[@]}"; do
     sudo docker start "$CONTAINER_NAME" && echo "$CONTAINER_NAME started successfully." || echo "Failed to start $CONTAINER_NAME."
 done
 
-echo "All Docker containers have been started."
+echo "All selected Docker containers have been started."
