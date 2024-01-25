@@ -33,7 +33,9 @@ Every docker "Installer" has been tested and is working.
 > Pay attention to:
 >
 >- If the input can be skipped or not. (Else the docker might not work)
->- All dockers are in the "RRHQD-Dockers" folder.
+>- All dockers are in the "RRHQD-Dockers" folder. 
+>- All dockers are made using docker compose files.
+>- All docker compose files are located in "RRHQD-Dockers"
 
 
 
