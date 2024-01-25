@@ -67,11 +67,6 @@ GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-"UTC"}
 COMPOSE_SUBFOLDER="./RRHQD-Dockers/n8n-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
-# Remove the leading '.' from DATA_PATH if it exists
-CHMOD_PATH=${DATA_PATH/#.\//}
-
-chmod 777 -R $COMPOSE_SUBFOLDER/$CHMOD_PATH
-
 # Create the subfolder if it does not exist
 mkdir -p "$COMPOSE_SUBFOLDER"
 
@@ -100,6 +95,11 @@ volumes:
     external: true
 
 EOF
+
+# Remove the leading '.' from DATA_PATH if it exists
+CHMOD_PATH=${DATA_PATH/#.\//}
+
+chmod 777 -R $COMPOSE_SUBFOLDER/$CHMOD_PATH
 
 # Inform the user where the Docker compose file has been created
 echo "Docker compose file created at: $COMPOSE_FILE"
