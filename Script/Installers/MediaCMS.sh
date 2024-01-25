@@ -51,10 +51,10 @@ PORT=${PORT:-8000}
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the path for MediaCMS data (e.g., /mediacms-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./Data/mediacms-data}
+DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/mediacms-docker/Data/mediacms-data}
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./mediacms-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/mediacms-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

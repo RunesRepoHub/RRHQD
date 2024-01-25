@@ -54,7 +54,7 @@ PORT=${PORT:-80}
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the path for Vaultwarden data (e.g., /vw-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./Data/vw-data}
+DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/Vaultwarden/Data/vw-data}
 
 echo -e "${Red}This step cannot be skipped${NC}"
 
@@ -76,7 +76,7 @@ SIGNUPS_ALLOWED=$( [[ "$SIGNUPS_ALLOWED" == "y" ]] && echo "true" || echo "false
 WEBSOCKET_ENABLED=$( [[ "$WEBSOCKET_ENABLED" == "y" ]] && echo "true" || echo "false" )
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./RRHQD-Dockers"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/Vaultwarden"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

@@ -63,8 +63,11 @@ echo -e "${Green}This step can be skipped if you don't want any changes to the d
 read -p "Enter the default database name: " DB_NAME
 DB_NAME=${DB_NAME:-"postgres"}
 
+read -p "Enter the default path to the database: " DB_PATH
+DB_PATH=${DB_PATH:-"./RRHQD-Dockers/postgres-docker/postgres-data"}
+
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./postgres-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/postgres-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist
@@ -82,7 +85,7 @@ services:
       - POSTGRES_USER=$DB_USER
       - POSTGRES_PASSWORD=$DB_PASS
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - $DB_PATH:/var/lib/postgresql/data
     ports:
       - "$PORT:5432"
     restart: always

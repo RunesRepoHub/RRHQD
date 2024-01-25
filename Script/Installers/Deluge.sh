@@ -3,8 +3,8 @@
 # Set variables for Docker image and container names
 DEFAULT_IMAGE="lscr.io/linuxserver/deluge:latest"
 DEFAULT_CONTAINER_NAME="deluge"
-DOCKER_ROOT_FOLDER_DEFAULT=~/deluge/configs # Replace with the default path for Docker configs
-DOCKER_DOWNLOAD_FOLDER_DEFAULT=~/deluge/downloads # Replace with the default path for downloads
+DOCKER_ROOT_FOLDER_DEFAULT=./RRHQD-Dockers/Deluge/configs # Replace with the default path for Docker configs
+DOCKER_DOWNLOAD_FOLDER_DEFAULT=./RRHQD-Dockers/Deluge/downloads # Replace with the default path for downloads
 
 # Function to prompt the user for input with a default value
 prompt_for_input() {
@@ -20,6 +20,13 @@ IMAGE=$(prompt_for_input "Enter Docker image for Deluge" $DEFAULT_IMAGE)
 CONTAINER_NAME=$(prompt_for_input "Enter container name" $DEFAULT_CONTAINER_NAME)
 DOCKER_ROOT_FOLDER=$(prompt_for_input "Enter Docker root folder for configs" $DOCKER_ROOT_FOLDER_DEFAULT)
 DOCKER_DOWNLOAD_FOLDER=$(prompt_for_input "Enter folder for downloads" $DOCKER_DOWNLOAD_FOLDER_DEFAULT)
+
+# Define the subfolder for the Docker compose files
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/Deluge"
+COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
+
+# Create the subfolder if it does not exist
+mkdir -p "$COMPOSE_SUBFOLDER"
 
 # Create a Docker Compose file for Deluge
 cat > deluge-compose.yml <<EOF
@@ -43,7 +50,7 @@ services:
       - "8112:8112"
       - "6881:6881"
       - "6881:6881/udp"
-    restart: unless-stopped
+    restart: always
 EOF
 
 # Inform the user that the Docker Compose file has been created

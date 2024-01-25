@@ -51,10 +51,10 @@ PORT=${PORT:-8080}
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the path for NTFY data (e.g., /ntfy-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./Data/ntfy-data}
+DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/ntfy-docker/Data/ntfy-data}
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./ntfy-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/ntfy-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

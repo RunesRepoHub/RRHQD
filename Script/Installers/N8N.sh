@@ -54,7 +54,7 @@ TZ=${TZ:-"Europe/Berlin"}
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the path for n8n data (e.g., /n8n-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./Data/n8n-data}
+DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/n8n-docker/Data/n8n-data}
 
 echo -e "${RED}This step cannot be skipped${NC}"
 
@@ -64,7 +64,7 @@ read -p "Enter a generic timezone for n8n (e.g., UTC): " GENERIC_TIMEZONE
 GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-"UTC"}
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./n8n-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/n8n-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

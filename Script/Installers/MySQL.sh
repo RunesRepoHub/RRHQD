@@ -64,7 +64,7 @@ read -p "Enter the default database name: " DB_NAME
 DB_NAME=${DB_NAME:-"mydb"}
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./mysql-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/mysql-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

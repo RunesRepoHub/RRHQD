@@ -51,7 +51,7 @@ PORT=${PORT:-9000}
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the volume path for Portainer data (e.g., /portainer-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-"./Data/portainer-data"}
+DATA_PATH=${DATA_PATH:-"./RRHQD-Dockers/portainer-docker/Data/portainer-data"}
 
 echo -e "${Red}This step cannot be skipped${NC}"
 
@@ -59,7 +59,7 @@ read -p "Is this setup for Docker standalone or Docker Swarm? [standalone/swarm]
 DEPLOYMENT_TYPE=${DEPLOYMENT_TYPE:-"standalone"}
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./portainer-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/portainer-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

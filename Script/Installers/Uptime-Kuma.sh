@@ -54,10 +54,10 @@ PORT=${PORT:-3001}
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the path for Uptime-Kuma data (e.g., /kuma-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./Data/kuma-data}
+DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/Uptime-Kuma/Data/kuma-data}
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./RRHQD-Dockers"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/Uptime-Kuma"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist

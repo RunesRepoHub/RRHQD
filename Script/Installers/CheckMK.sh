@@ -56,10 +56,10 @@ PORT=${PORT:-8080}
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 
 read -p "Enter the path for CheckMK data (e.g., /checkmk-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./Data/checkmk-data}
+DATA_PATH=${DATA_PATH:-./RRHQD-Dockers/checkmk-docker/Data/checkmk-data}
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./checkmk-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/checkmk-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist
