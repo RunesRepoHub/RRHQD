@@ -47,6 +47,7 @@ CHECKMK="CheckMK.sh"
 LLAMA_GPT="Llama-GPT.sh"
 PORTAINER="Portainer.sh"
 DELUGE="Deluge.sh"
+GHOST="Ghost.sh"
 
 ## Menu Scripts
 

@@ -88,6 +88,10 @@ services:
       - "$PORT:5678"
     restart: always
 
+volumes:
+  n8n_data:
+    external: true
+
 EOF
 
 # Inform the user where the Docker compose file has been created
