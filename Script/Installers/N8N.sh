@@ -68,9 +68,9 @@ COMPOSE_SUBFOLDER="./RRHQD-Dockers/n8n-docker"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Remove the leading '.' from DATA_PATH if it exists
-DATA_PATH=${DATA_PATH/#.\//}
+CHMOD_PATH=${DATA_PATH/#.\//}
 
-chmod 777 -R $COMPOSE_SUBFOLDER/$DATA_PATH
+chmod 777 -R $COMPOSE_SUBFOLDER/$CHMOD_PATH
 
 # Create the subfolder if it does not exist
 mkdir -p "$COMPOSE_SUBFOLDER"
