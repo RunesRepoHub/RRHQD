@@ -36,6 +36,6 @@ When submitting a pull request:
 
 ## Licensing
 
-By contributing to this project, you agree that your contributions will be licensed under the [project license](LICENSE.md).
+By contributing to this project, you agree that your contributions will be licensed under the [[project license](https://github.com/RunesRepoHub/RRHQD/blob/Prod/LICENSE)].
 
 Thank you for contributing to RRHQD!
