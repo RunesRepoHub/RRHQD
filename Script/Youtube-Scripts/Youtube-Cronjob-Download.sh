@@ -14,7 +14,7 @@ ROOT_FOLDER=~/RRHQD
 
 # Check if the current script is already scheduled in /etc/crontab
 script_path=$ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$YOUTUBE_CHANNEL_AUTO
-script_entry="20 * * * * root /bin/sh $script_path"
+script_entry="*/20 * * * * root /bin/sh $script_path"
 
 if grep -qF -- "$script_entry" /etc/crontab; then
   echo "Script $script_path is already scheduled to run daily every 4 hours."
