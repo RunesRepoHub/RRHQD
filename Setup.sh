@@ -156,7 +156,7 @@ if [ "$OS_DISTRO" != "Kali GNU/Linux" ]; then
     fi
 fi
 
-sleep 3 
+sleep 3
 
 bash ~/RRHQD/Script/Menu/Main-Menu.sh
 
