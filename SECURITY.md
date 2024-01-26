@@ -30,7 +30,8 @@ We encourage the following practices when discovering and reporting security vul
 - Do not exploit the vulnerability: Use caution and avoid attempting to compromise the privacy and security of other users.
 - Provide detailed information: Include as much information as possible in your report, including a proof-of-concept if applicable.
 - Cooperate with our team: Work with our security team to understand the scope and impact of the vulnerability, and to verify the fixes.
-Scope
+
+## Scope
 
 This security policy applies to the RRHQD GitHub repository and all associated projects under the RunesRepoHub organization.
 
