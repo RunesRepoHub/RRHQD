@@ -20,7 +20,7 @@ We welcome contributions in the form of bug reports, feature requests, code impr
 
 ## Issue Tracker
 
-If you find any issues or have suggestions, please check the ([link-to-issue-tracker](https://github.com/RunesRepoHub/RRHQD/issues)) before creating a new issue. If the issue doesn't already exist, feel free to open a new one.
+If you find any issues or have suggestions, please check the [link-to-issue-tracker](https://github.com/RunesRepoHub/RRHQD/issues) before creating a new issue. If the issue doesn't already exist, feel free to open a new one.
 
 When creating an issue, please provide a clear and detailed description of the problem, including steps to reproduce it if applicable.
 
@@ -36,6 +36,6 @@ When submitting a pull request:
 
 ## Licensing
 
-By contributing to this project, you agree that your contributions will be licensed under the [[project license](https://github.com/RunesRepoHub/RRHQD/blob/Prod/LICENSE)].
+By contributing to this project, you agree that your contributions will be licensed under the [project license](https://github.com/RunesRepoHub/RRHQD/blob/Prod/LICENSE).
 
 Thank you for contributing to RRHQD!
