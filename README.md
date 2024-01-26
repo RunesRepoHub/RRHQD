@@ -70,9 +70,9 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 ![Alt text](Docs/RRH.png)
 
 > [!NOTE]
->* ACS (Automated Content System)
->* News Report Docker (Automated News Reporting System)
->* EWD (Easy Web Development)
+>* ACS (Automated Content System) - [ACS Wiki](https://runesrepohub.github.io/ACS/)
+>* News Report Docker (Automated News Reporting System)[NRD Readme](https://github.com/RunesRepoHub/NRD)
+>* EWD (Easy Web Development)[EWD Repo](https://github.com/RunesRepoHub/EWD)
 
 ---------------------------------------------------------------------------------------------
 
@@ -138,7 +138,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 >(These scripts are made to work with the ACS)
 >
 >***IT WILL NOT WORK WITHOUT INSTALLING THE ACS First*** 
->(https://github.com/RunesRepoHub/RRHQD#runesrepohub-software-support)
+>[Install ACS](https://github.com/RunesRepoHub/RRHQD#runesrepohub-software-support)
 
 > [!NOTE]
 >- Download Youtube Video - Download a youtube playlist
@@ -187,7 +187,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Prod/Setup
 ```
 
 ### Custom Commands 
-> [!INFO]
+> [!NOTE]
 >To use custom commands you will have to run 
 
 > [!WARNING]
