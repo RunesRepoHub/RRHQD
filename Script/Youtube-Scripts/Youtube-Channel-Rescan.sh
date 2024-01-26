@@ -12,8 +12,8 @@ fi
 
 
 # Define output path and media directory
-output_path="$YOUTUBE"
-media_dir="$MEDIA"
+output_path=~/plex/media/youtube
+media_dir=~/plex/media
 
 # Create or append to a file to keep track of channel URLs
 history_file="${output_path}/channel_urls_history.txt"
