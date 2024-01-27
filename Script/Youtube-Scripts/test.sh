@@ -1,22 +1,8 @@
 #!/bin/bash
 
-source ~/RRHQD/Core/Core.sh
-
-# Source Core.sh script if it exists, otherwise exit the script
-if [ -f ~/ACS/ACSF-Scripts/Core.sh ]; then
-  source ~/ACS/ACSF-Scripts/Core.sh
-else
-  dialog --title "Error" --msgbox "ACS Core.sh script not found. Exiting." 6 50
-  exit 0
-fi
-
-
 # Define output path and media directory
 output_path=~/plex/media/youtube
 media_dir=~/plex/media
-
-# Create or append to a file to keep track of channel URLs
-history_file="${output_path}/channel_urls_history.txt"
 
 # Check if there are already 3 youtube-dl Docker containers running
 running_containers=$(sudo docker ps --filter ancestor=mikenye/youtube-dl --format '{{.Image}}' | wc -l)
@@ -25,15 +11,31 @@ if [ "$running_containers" -ge 3 ]; then
     exit 0
 fi
 
-# Read a random URL from the history file if there is more than one link
-url_count=$(wc -l < "${history_file}")
-if [ "$url_count" -gt 1 ]; then
-    # Use /usr/bin/shuf to pick a random line number since $RANDOM is not available in crontab
-    random_line=$(/usr/bin/shuf -i 1-"$url_count" -n 1)
+# Define a function to get a random URL from the history file
+get_random_url_from_history() {
+    local history_file="$1"
+    local url_count random_line url
+
+    # Ensure the history file exists and is not empty
+    if [ ! -s "${history_file}" ]; then
+        echo "History file is missing or empty. Aborting."
+        exit 1
+    fi
+
+    # Get the count of URLs in the history file
+    url_count=$(wc -l < "${history_file}")
+    
+    # Pick a random line number
+    random_line=$((RANDOM % url_count + 1))
+    
+    # Extract the URL from the random line
     url=$(sed -n "${random_line}p" "${history_file}")
-else
-    url=$(tail -n 1 "${history_file}")
-fi
+    echo "${url}"
+}
+
+# Use the function to get a random URL
+url=$(get_random_url_from_history "${history_file}")
+
 
 link=$url
 channel_name="${link##*@}"
@@ -70,3 +72,5 @@ sudo docker run \
     --output '/output/%(title)s.%(ext)s' \
     --yes-playlist \
     "${url}"
+
+
