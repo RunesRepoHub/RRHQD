@@ -18,12 +18,6 @@ increment_log_file_name() {
   echo "Log file will be saved as $LOG_FILE"
 }
 
-# Ensure dialog is installed
-if ! command -v dialog &> /dev/null; then
-    echo "Installing dialog package for better user interface..."
-    sudo apt-get update && sudo apt-get install dialog -y
-fi
-
 # Create log directory if it doesn't exist
 mkdir -p "$LOG_DIR"
 
@@ -33,39 +27,12 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-function install_starship() {
-    curl -sS https://starship.rs/install.sh | sh
-    echo 'eval "$(starship init bash)"' >> ~/.bashrc
-}
 
-function main_menu() {
-    while true; do
-        exec 3>&1
-        choice=$(dialog --clear \
-                        --backtitle "Starship Installer" \
-                        --title "Main Menu" \
-                        --menu "Choose one of the following options:" \
-                        15 50 4 \
-                        1 "Install Starship" \
-                        2 "Exit" \
-                        2>&1 1>&3)
-        exit_status=$?
-        exec 3>&-
+curl -sS https://starship.rs/install.sh | sh
+echo 'eval "$(starship init bash)"' >> ~/.bashrc
 
-        case $exit_status in
-            0)
-                case $choice in
-                    1) install_starship ;;
-                    2) break ;;
-                esac
-                ;;
-            1) break ;;
-            255) echo "Dialog canceled." && break ;;
-        esac
-    done
-}
 
-main_menu
+mkdir -p ~/.config
 
-mkdir -p ~/.config && mv ~/RRHQD/Script/Quick-Installers/starship.toml ~/.config/starship.toml
+mv ~/RRHQD/Script/Quick-Installers/starship.toml ~/.config/starship.toml
 
