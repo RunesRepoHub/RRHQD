@@ -67,7 +67,10 @@ function main_menu() {
 
 main_menu
 
-mkdir -p ~/.config && cat << 'EOF' > ~/.config/starship.toml
+# Create or update the Starship TOML configuration
+create_starship_config() {
+    mkdir -p ~/.config && cat << 'EOF' > ~/.config/starship.toml
+# Starship prompt configuration
 format = """
 [┌───────────────────>](red)$os running on $localip $hostname
 [│](red)$sudo $username|$status|$git_branch $directory|$git_state$package$python|$git_status$cmd_duration
@@ -144,3 +147,7 @@ ssh_only = false
 format = '[$localipv4](red)'
 disabled = false
 EOF
+}
+
+# Call the function to create or update the Starship configuration
+create_starship_config
