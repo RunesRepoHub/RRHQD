@@ -34,5 +34,7 @@ echo 'eval "$(starship init bash)"' >> ~/.bashrc
 
 mkdir -p ~/.config
 
+cd 
+
 mv ~/RRHQD/Script/Quick-Installers/starship.toml ~/.config/starship.toml
 
