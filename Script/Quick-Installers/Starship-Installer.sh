@@ -67,9 +67,13 @@ function main_menu() {
 
 main_menu
 
-# Create or update the Starship TOML configuration
-create_starship_config() {
-    mkdir -p ~/.config && cat << 'EOF' > ~/.config/starship.toml
+mkdir -p ~/.config && touch ~/.config/starship.toml
+
+# Backup existing starship.toml if it exists
+[ -f ~/.config/starship.toml ] && mv ~/.config/starship.toml ~/.config/starship.toml.bak
+
+# Write the new starship.toml configuration
+cat << 'EOF' > ~/.config/starship.toml
 # Starship prompt configuration
 format = """
 [┌───────────────────>](red)$os running on $localip $hostname
@@ -147,7 +151,3 @@ ssh_only = false
 format = '[$localipv4](red)'
 disabled = false
 EOF
-}
-
-# Call the function to create or update the Starship configuration
-create_starship_config
