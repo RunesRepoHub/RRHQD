@@ -40,7 +40,7 @@ if [ "$OS_DISTRO" = "Kali GNU/Linux" ]; then
     echo "Docker CE has been installed and started on Kali Linux."
 fi
 
-if [ "$OS_DISTRO" = "Kali GNU/Linux" ]; then
+if [ "$OS_DISTRO" =! "Kali GNU/Linux" ]; then
     # Check if Docker is installed and install it if not
     if ! command -v docker &> /dev/null; then
         echo "Docker is not installed. Attempting to install Docker..."
