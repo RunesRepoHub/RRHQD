@@ -20,7 +20,7 @@ history_file="${output_path}/channel_urls_history.txt"
 
 # Check if there are already 3 youtube-dl Docker containers running
 running_containers=$(sudo docker ps --filter ancestor=mikenye/youtube-dl --format '{{.Image}}' | wc -l)
-if [ "$running_containers" -ge 3 ]; then
+if [ "$running_containers" -ge 1 ]; then
     echo "Maximum number of youtube-dl containers running. Aborting."
     exit 0
 fi
