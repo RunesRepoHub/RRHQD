@@ -34,9 +34,11 @@ source ~/RRHQD/Core/Core.sh
 
 COMPOSE_SUBFOLDER="./RRHQD-Dockers/Linkwarden"
 
-if [ ! -d ~/RRHQD-Dockers ]; then
+if [ ! -d "$COMPOSE_SUBFOLDER" ]; then
     mkdir -p "$COMPOSE_SUBFOLDER"
 fi
+
+cd $COMPOSE_SUBFOLDER
 
 # Clone the Linkwarden repository
 dialog --backtitle "Cloning Linkwarden Repository" --infobox "Cloning Linkwarden repository from GitHub..." 5 60
