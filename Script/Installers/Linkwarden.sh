@@ -32,7 +32,7 @@ clear
 
 source ~/RRHQD/Core/Core.sh
 
-COMPOSE_SUBFOLDER="./RRHQD-Dockers/Linkwarden"
+COMPOSE_SUBFOLDER=~/RRHQD-Dockers/Linkwarden
 
 if [ ! -d "$COMPOSE_SUBFOLDER" ]; then
     mkdir -p "$COMPOSE_SUBFOLDER"
