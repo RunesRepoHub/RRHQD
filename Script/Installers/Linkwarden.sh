@@ -1,12 +1,14 @@
 #!/bin/bash
 
+SCRIPT_FILENAME=$(basename "$0")
+
 LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
-LOG_FILE="$LOG_DIR/linkwarden_install.log"  # Log file location
+LOG_FILE="$LOG_DIR/"$SCRIPT_FILENAME"_install.log"  # Log file location
 
 # Function to increment log file name
 increment_log_file_name() {
-  local log_file_base_name="linkwarden_install_run_"
+  local log_file_base_name=""$SCRIPT_FILENAME"_install_run_"
   local log_file_extension=".log"
   local log_file_counter=1
 
@@ -27,9 +29,7 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-clear 
-
-source ~/RRHQD/Core/Core.sh
+clear
 
 COMPOSE_SUBFOLDER=~/RRHQD-Dockers
 
