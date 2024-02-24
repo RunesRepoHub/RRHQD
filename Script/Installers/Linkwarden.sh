@@ -45,7 +45,7 @@ git clone https://github.com/linkwarden/linkwarden.git |& dialog --backtitle "Cl
 cd linkwarden
 
 
-dialog --title "Learn more?" --yesno "Do you want to learn more about how to set it up?" 7 60
+dialog --title "Learn more?" --yesno "Do you want to learn more about how to set it up?" 7 60 2> /dev/tty
 response=$?
 if [ $response -eq 0 ]; then
     dialog --title "Set up instructions" --msgbox "Follow the setup instructions to configure the system." 7 60
