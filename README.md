@@ -4,7 +4,13 @@
 </p>
 
 # RRHQD
-RunesRepoHub Quick Deploy this script has been made to make it easy to deploy the docker, software and other installers that I use.
+The "RRHQD" script is a comprehensive deployment tool designed to streamline the setup and management of diverse applications on Linux systems. Its primary goal—simplifying the deployment of Docker containers, software, and other tools.
+
+The script automates the installation of essential prerequisites, including Sudo, Docker, Git, Curl, and Dialog, ensuring a smooth deployment experience. It has been designed to provide compatibility with various operating systems such as Debian, Ubuntu, Linuxmint, Kali Linux, and Zorin OS.
+
+The development of the script is based on managing different development stages through branches like Dev, PoC, and Prod, the script offers users flexibility in choosing the stability level that suits their needs. The interactive main menu categorizes options for Docker support, RunesRepoHub software, quick installers, cronjobs, Docker command control, quick tools and YouTube scripts.
+
+RRHQD provides a user-friendly and efficient solution for deploying and managing applications on Linux systems.
 
 ## Requirements:
 
