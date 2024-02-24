@@ -48,6 +48,7 @@ LLAMA_GPT="Llama-GPT.sh"
 PORTAINER="Portainer.sh"
 DELUGE="Deluge.sh"
 GHOST="Ghost.sh"
+LINKWARDEN="Linkwarden.sh"
 
 ## Menu Scripts
 
