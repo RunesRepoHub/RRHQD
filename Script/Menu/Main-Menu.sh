@@ -4,6 +4,15 @@
 clear 
 source ~/RRHQD/Core/Core.sh
 
+dialog --infobox "Pulling updates from repository..." 5 70
+git pull --progress > /tmp/git-pull-output.txt 2>&1
+EXIT_STATUS=$?
+if [ $EXIT_STATUS -eq 0 ]; then
+    dialog --textbox /tmp/git-pull-output.txt 20 80
+else
+    dialog --title "Error" --textbox /tmp/git-pull-output.txt 20 80
+fi
+
 script_name=$(basename "$0" .sh)
 
 function show_dialog_menu() {
@@ -17,8 +26,7 @@ function show_dialog_menu() {
            4 "Add Cronjobs Quickly" \
            5 "Docker-CnC Scripts" \
            6 "Quick Tools" \
-           7 "Youtube Scripts" \
-           8 "Update RRHQD" 2>"${INPUT}"
+           7 "Youtube Scripts" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -42,20 +50,6 @@ function show_dialog_menu() {
             ;;
         7)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$YOUTUBE_SCRIPTS
-            ;;
-        8)
-            cd $ROOT_FOLDER
-            dialog --infobox "Pulling updates from repository..." 5 70
-            git pull --progress > /tmp/git-pull-output.txt 2>&1
-            EXIT_STATUS=$?
-            if [ $EXIT_STATUS -eq 0 ]; then
-                dialog --textbox /tmp/git-pull-output.txt 20 80
-            else
-                dialog --title "Error" --textbox /tmp/git-pull-output.txt 20 80
-            fi
-            dialog --msgbox "You can now run the script fully updated" 5 50
-            clear
-            exit 0
             ;;
         *)
             dialog --title "Exiting" --msgbox "Thank you for using RRHQD. Support me via github https://github.com/RunesRepoHub/" 6 52
