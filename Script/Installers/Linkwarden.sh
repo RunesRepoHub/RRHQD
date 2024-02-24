@@ -39,8 +39,23 @@ fi
 
 cd $COMPOSE_SUBFOLDER
 
+if [ -d "linkwarden" ]; then
+    echo -e "${Yellow}The folder 'linkwarden' already exists.${NC}"
+    echo -e "${Yellow}This can cause issues if the old 'linkwarden' folder is not removed.${NC}"
+    read -p "Do you want to remove the old folder first? (Y/N): " remove_decision
+
+    if [ "$remove_decision" == "Y" ] || [ "$remove_decision" == "y" ]; then
+        echo "Removing the old 'linkwarden' folder..."
+        rm -rf linkwarden
+        echo -e "${Blue}Old 'linkwarden' folder removed successfully.${NC}"
+    else
+        echo -e "${Yellow}Skipping removal of the old 'linkwarden' folder.${NC}"
+        echo -e "${Yellow}This can cause issues if the old 'linkwarden' folder is not removed.${NC}"
+    fi
+fi
+
 # Clone the Linkwarden repository
-echo "Cloning Linkwarden repository from GitHub..."
+echo -e "${Yellow}Cloning Linkwarden repository from GitHub...${NC}"
 git clone https://github.com/linkwarden/linkwarden.git
 cd linkwarden
 
