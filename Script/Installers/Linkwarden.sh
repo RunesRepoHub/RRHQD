@@ -46,12 +46,13 @@ cd linkwarden
 
 
 dialog --title "Learn more?" --yesno "Do you want to learn more about how to set it up?" 7 60
-if [ $? -eq 0 ]; then
+response=$?
+if [ $response -eq 0 ]; then
     dialog --title "Set up instructions" --msgbox "Follow the setup instructions to configure the system." 7 60
     dialog --title "Nextauth secret" --msgbox "NEXTAUTH_SECRET should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'" 7 60
     dialog --title "Nextauth URL" --msgbox "NEXTAUTH_URL should look like 'http://localhost:3000/api/v1/auth' this can also be a FQDN or IP if FQDN then https:// and no ports" 7 60
     dialog --title "Postgres password" --msgbox "POSTGRES_PASSWORD should be set to a strong password" 7 60
-else
+elif [ $response -eq 1 ]; then
     dialog --title "Skipping setup instructions" --msgbox "Skipping setup instructions." 7 60
 fi
 
