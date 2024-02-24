@@ -45,6 +45,17 @@ dialog --backtitle "Cloning Linkwarden Repository" --infobox "Cloning Linkwarden
 git clone https://github.com/linkwarden/linkwarden.git |& dialog --backtitle "Cloning Linkwarden Repository" --title "Git Clone Output" --textbox - 20 80
 cd linkwarden
 
+
+dialog --title "Learn more?" --yesno "Do you want to learn more about how to set it up?" 7 60
+if [ $? -eq 0 ]; then
+    dialog --title "Set up instructions" --msgbox "Follow the setup instructions to configure the system." 5 60
+    dialog --title "Nextauth secret" --msgbox "NEXTAUTH_SECRET should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'" 5 60
+    dialog --title "Nextauth URL" --msgbox "NEXTAUTH_URL should look like 'http://localhost:3000/api/v1/auth' this can also be a FQDN or IP if FQDN then https:// and no ports" 5 60
+    dialog --title "Postgres password" --msgbox "POSTGRES_PASSWORD should be set to a strong password" 5 60
+else
+    dialog --title "Skipping setup instructions" --msgbox "Skipping setup instructions." 5 60
+fi
+
 # Configure Environment Variables interactively using dialog
 dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the NEXTAUTH_SECRET (it should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'): " 8 60 2> temp_secret
 NEXTAUTH_SECRET=$(<temp_secret)
