@@ -48,44 +48,59 @@ cd linkwarden
 dialog --title "Learn more?" --yesno "Do you want to learn more about how to set it up?" 7 60 2> /dev/tty
 response=$?
 if [ $response -eq 0 ]; then
-    dialog --title "Set up instructions" --msgbox "Follow the setup instructions to configure the system." 7 60 
-    dialog --title "Nextauth secret" --msgbox "NEXTAUTH_SECRET should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'" 7 60
-    dialog --title "Nextauth URL" --msgbox "NEXTAUTH_URL should look like 'http://localhost:3000/api/v1/auth' this can also be a FQDN or IP if FQDN then https:// and no ports" 7 60
-    dialog --title "Postgres password" --msgbox "POSTGRES_PASSWORD should be set to a strong password" 7 60
+    dialog --title "Set up instructions" \
+           --msgbox "Follow the setup instructions to configure the system." 7 60
+
+    dialog --title "Nextauth secret" \
+           --msgbox "NEXTAUTH_SECRET should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'" 7 60
+    
+    dialog --title "Nextauth URL" \
+           --msgbox "NEXTAUTH_URL should look like 'http://localhost:3000/api/v1/auth' this can also be a FQDN or IP if FQDN then https:// and no ports" 7 60
+    
+    dialog --title "Postgres password" \
+           --msgbox "POSTGRES_PASSWORD should be set to a strong password" 7 60
 elif [ $response -eq 1 ]; then
-    dialog --title "Skipping setup instructions" --msgbox "Skipping setup instructions." 7 60
+    dialog --title "Skipping setup instructions" \
+           --msgbox "Skipping setup instructions." 7 60
 fi
 
 # Configure Environment Variables interactively using dialog
-dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the NEXTAUTH_SECRET (it should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'): " 8 60 2> temp_secret
+dialog --backtitle "Environment Variables Configuration" \
+       --title "Configure .env File" \
+       --inputbox "Enter the NEXTAUTH_SECRET (it should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'): " 8 60 2> temp_secret
 NEXTAUTH_SECRET=$(<temp_secret)
 # Check if the NEXTAUTH_SECRET is not empty
 if [ -z "$NEXTAUTH_SECRET" ]; then
-    dialog --title "Error" --msgbox "NEXTAUTH_SECRET is empty. Please enter a valid secret." 6 60
+    dialog --title "Error" \
+           --msgbox "NEXTAUTH_SECRET is empty. Please enter a valid secret." 6 60
     rm temp_secret
     exit 1
 fi
 rm temp_secret
 
-dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the NEXTAUTH_URL (it should look like 'http://localhost:3000/api/v1/auth'):" 8 60 2> temp_url
+dialog --backtitle "Environment Variables Configuration" \
+       --title "Configure .env File" \
+       --inputbox "Enter the NEXTAUTH_URL (it should look like 'http://localhost:3000/api/v1/auth'):" 8 60 2> temp_url
 NEXTAUTH_URL=$(<temp_url)
 # Check if the NEXTAUTH_URL is not empty
 if [ -z "$NEXTAUTH_URL" ]; then
-    dialog --title "Error" --msgbox "NEXTAUTH_URL is empty. Please enter a valid URL." 6 60
+    dialog --title "Error" \
+           --msgbox "NEXTAUTH_URL is empty. Please enter a valid URL." 6 60
     rm temp_url
     exit 1
 fi
 
-dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the POSTGRES_PASSWORD:" 8 60 2> temp_password
+dialog --backtitle "Environment Variables Configuration" \
+       --title "Configure .env File" \
+       --inputbox "Enter the POSTGRES_PASSWORD:" 8 60 2> temp_password
 POSTGRES_PASSWORD=$(<temp_password)
 # Check if the POSTGRES_PASSWORD is not empty
 if [ -z "$POSTGRES_PASSWORD" ]; then
-    dialog --title "Error" --msgbox "POSTGRES_PASSWORD is empty. Please enter a valid password." 6 60
+    dialog --title "Error" \
+           --msgbox "POSTGRES_PASSWORD is empty. Please enter a valid password." 6 60
     rm temp_password
     exit 1
 fi
-
-
 
 # Write the environment variables to .env file
 echo "NEXTAUTH_SECRET=$NEXTAUTH_SECRET" > .env
