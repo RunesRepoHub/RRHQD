@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
 LOG_FILE="$LOG_DIR/linkwarden_install.log"  # Log file location
@@ -17,6 +15,7 @@ increment_log_file_name() {
   done
 
   LOG_FILE="$LOG_DIR/${log_file_base_name}${log_file_counter}${log_file_extension}"
+  echo "Log file will be saved as $LOG_FILE"
 }
 
 # Create log directory if it doesn't exist
