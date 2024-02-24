@@ -9,7 +9,7 @@ dialog --infobox "Pulling updates from repository..." 5 70
 git pull --progress > /tmp/git-pull-output.txt 2>&1
 EXIT_STATUS=$?
 if [ $EXIT_STATUS -eq 0 ]; then
-    dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy)" --title "This script will check for updates before continuing" --textbox /tmp/git-pull-output.txt 15 60
+    dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy)" --title "Update RRHQD Codebase" --textbox /tmp/git-pull-output.txt 15 60
 else
     dialog --title "Error" --textbox /tmp/git-pull-output.txt 15 60
 fi
