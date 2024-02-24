@@ -15,7 +15,7 @@ function show_dialog_menu() {
            3 "Rescan Youtube Channel Downloads For New Videos" \
            4 "Download Playlist MP3" \
            5 "Stop all Youtube Downlaods" \
-           6 "Rescan urls Every 4 Hours" \
+           6 "Rescan urls Every 20 mins" \
            7 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
