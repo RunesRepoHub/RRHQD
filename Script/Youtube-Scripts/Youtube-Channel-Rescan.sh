@@ -12,9 +12,9 @@ fi
 
 # Check if there is at least 50GB of free storage
 if [ $(df --output=avail -BG / | sed '1d;s/G//') -ge 50 ]; then
-    echo -e "${Green}There is at least 50GB of free storage available.${NC}"
+    dialog --title "Storage Status" --msgbox "There is at least 50GB of free storage available." 6 50
     else 
-    echo -e "${Red}There is less than 50GB of free storage available. Aborting.${NC}"
+    dialog --title "Storage Error" --msgbox "There is less than 50GB of free storage available. Aborting." 6 50
 fi
 
 # Define output path and media directory
@@ -27,7 +27,7 @@ history_file="${output_path}/channel_urls_history.txt"
 # Check if there are already 3 youtube-dl Docker containers running
 running_containers=$(sudo docker ps --filter ancestor=mikenye/youtube-dl --format '{{.Image}}' | wc -l)
 if [ "$running_containers" -ge 1 ]; then
-    echo "Maximum number of youtube-dl containers running. Aborting."
+    dialog --title "Maximum Limit Reached" --msgbox "Maximum number of youtube-dl containers running. Aborting." 8 50
     exit 0
 fi
 

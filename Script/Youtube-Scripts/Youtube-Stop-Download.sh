@@ -13,7 +13,6 @@ increment_log_file_name() {
   done
 
   LOG_FILE="$LOG_DIR/${log_file_base_name}${log_file_counter}${log_file_extension}"
-  echo "Log file will be saved as $LOG_FILE"
 }
 
 mkdir -p "$LOG_DIR"
@@ -24,9 +23,7 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 source ~/ACS/ACSF-Scripts/Core.sh
 
-
-echo -e "${Green}Stopping all mikenye/youtube-dl containers...${NC}"
-echo -e "${Green}This may take a while...${NC}"
+dialog --title "Stopping Containers" --infobox "Stopping all mikenye/youtube-dl containers... This may take a while..." 5 50
 
 # Get the container IDs
 container_ids=$(sudo docker ps -q --filter ancestor=mikenye/youtube-dl)
