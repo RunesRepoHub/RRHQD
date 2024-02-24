@@ -10,6 +10,12 @@ else
   exit 0
 fi
 
+# Check if there is at least 50GB of free storage
+if [ $(df --output=avail -BG / | sed '1d;s/G//') -ge 50 ]; then
+    echo -e "${Green}There is at least 50GB of free storage available.${NC}"
+    else 
+    echo -e "${Red}There is less than 50GB of free storage available. Aborting.${NC}"
+fi
 
 # Define output path and media directory
 output_path=~/plex/media/youtube
