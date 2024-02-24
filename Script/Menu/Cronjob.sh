@@ -15,7 +15,8 @@ function show_dialog_menu() {
            2 "Daily Midnight Update" \
            3 "Add a Reboot cron job for every Sunday at 00:00 am" \
            4 "Cronjob Manager" \
-           5 "Back To Main Menu" 2>"${INPUT}"
+           5 "Add Cronmointer" \
+           6 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -30,6 +31,9 @@ function show_dialog_menu() {
             ;;
         4)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$CRONJOB_MANAGER
+            ;;
+        5)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$ADD_CRONMOINTER
             ;;
         *)
             exit 0
