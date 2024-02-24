@@ -1,4 +1,8 @@
-![alt text](Docs/RRHQD.png)
+
+<p align="center">
+  <img width="460" height="300" src="Docs/RRHQD.png">
+</p>
+
 # RRHQD
 RunesRepoHub Quick Deploy this script has been made to make it easy to deploy the docker, software and other installers that I use.
 
