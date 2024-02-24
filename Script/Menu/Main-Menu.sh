@@ -4,6 +4,7 @@
 clear 
 source ~/RRHQD/Core/Core.sh
 
+cd $ROOT_FOLDER
 dialog --infobox "Pulling updates from repository..." 5 70
 git pull --progress > /tmp/git-pull-output.txt 2>&1
 EXIT_STATUS=$?
