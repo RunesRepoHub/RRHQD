@@ -5,7 +5,7 @@ clear
 source ~/RRHQD/Core/Core.sh
 
 cd $ROOT_FOLDER
-dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy)" --title "Update RRHQD Codebase" --infobox "Pulling updates from repository..." 5 70
+dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy)" --title "Update RRHQD Codebase" --infobox "Pulling updates from repository..." 5 60
 sleep 1
 git pull --progress > /tmp/git-pull-output.txt 2>&1
 EXIT_STATUS=$?
