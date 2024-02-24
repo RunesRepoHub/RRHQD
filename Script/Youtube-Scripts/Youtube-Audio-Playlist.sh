@@ -28,7 +28,7 @@ container_name="${video_id}"
 
 # Check if the URL is provided
 if [ -z "$url" ]; then
-  echo "No URL provided. Exiting."
+  dialog --title "Error" --msgbox "No URL provided. Exiting." 6 50
   exit 1
 fi
 
@@ -70,4 +70,4 @@ sudo docker run \
     --yes-playlist \
     "${url}"
 
-echo "Download completed. The MP3 file is in the directory: $output_dir"
+dialog --title "Download completed" --msgbox "The MP3 file is in the directory: $output_dir" 6 50

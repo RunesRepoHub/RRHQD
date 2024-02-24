@@ -21,7 +21,7 @@ read -p "Enter the YouTube channel URL: " url
 
 # Check if the URL is provided
 if [ -z "$url" ]; then
-  echo "No URL provided. Exiting."
+  dialog --title "Error" --msgbox "No URL provided. Exiting." 6 50
   exit 1
 fi
 
