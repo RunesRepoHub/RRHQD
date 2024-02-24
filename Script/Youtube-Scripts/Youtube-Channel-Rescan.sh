@@ -10,47 +10,39 @@ else
   exit 0
 fi
 
+# Check if there is at least 50GB of free storage
+if [ $(df --output=avail -BG / | sed '1d;s/G//') -ge 50 ]; then
+    dialog --title "Storage Status" --msgbox "There is at least 50GB of free storage available." 6 50
+    else 
+    dialog --title "Storage Error" --msgbox "There is less than 50GB of free storage available. Aborting." 6 50
+fi
 
 # Define output path and media directory
-output_path="$YOUTUBE"
-media_dir="$MEDIA"
+output_path=~/plex/media/youtube
+media_dir=~/plex/media
 
 # Create or append to a file to keep track of channel URLs
 history_file="${output_path}/channel_urls_history.txt"
 
 # Check if there are already 3 youtube-dl Docker containers running
 running_containers=$(sudo docker ps --filter ancestor=mikenye/youtube-dl --format '{{.Image}}' | wc -l)
-if [ "$running_containers" -ge 3 ]; then
-    echo "Maximum number of youtube-dl containers running. Aborting."
+if [ "$running_containers" -ge 1 ]; then
+    dialog --title "Maximum Limit Reached" --msgbox "Maximum number of youtube-dl containers running. Aborting." 8 50
     exit 0
 fi
 
-# Determine the line number of the last processed URL
-last_processed_line_file="${output_path}/.last_processed_line"
-if [ -f "${last_processed_line_file}" ]; then
-    last_processed_line=$(<"${last_processed_line_file}")
-else
-    last_processed_line=0
-fi
-
-# Get the total number of URLs in the history file
+# Read a random URL from the history file if there is more than one link
 url_count=$(wc -l < "${history_file}")
-
-# If all URLs have been processed, start over
-if [ "$last_processed_line" -ge "$url_count" ]; then
-    last_processed_line=0
+if [ "$url_count" -gt 1 ]; then
+    # Use /usr/bin/shuf to pick a random line number since $RANDOM is not available in crontab
+    random_line=$(/usr/bin/shuf -i 1-"$url_count" -n 1)
+    url=$(sed -n "${random_line}p" "${history_file}")
+else
+    url=$(tail -n 1 "${history_file}")
 fi
 
-# Calculate the line number of the next URL to process
-next_line=$((last_processed_line + 1))
-
-# Read the next URL from the history file
-url=$(sed -n "${next_line}p" "${history_file}")
-
-channel_name=$(echo "$url" | awk -F '@' '{print $NF}')
-
-# Update the last processed line number
-echo "${next_line}" > "${last_processed_line_file}"
+link=$url
+channel_name="${link##*@}"
 
 # Create the channel folder if it doesn't exist
 channel_folder="${output_path}/${channel_name}"
