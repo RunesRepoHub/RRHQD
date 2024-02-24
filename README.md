@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img width="460" height="300" src="Docs/RRHQD.png">
+  <img width="640" height="320" src="Docs/RRHQD.png">
 </p>
 
 # RRHQD
