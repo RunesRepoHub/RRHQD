@@ -69,9 +69,9 @@ fi
 echo 
 echo
 echo
-echo "${Blue}-------------------------------------${NC}"
-echo "${Green}Setting up Linkwarden${NC}"
-echo "${Blue}-------------------------------------${NC}"
+echo -e "${Blue}-------------------------------------${NC}"
+echo -e "${Green}--------Setting up Linkwarden--------${NC}"
+echo -e "${Blue}-------------------------------------${NC}"
 
 # Configure Environment Variables interactively using dialog
 echo -e "${Yellow}Enter the NEXTAUTH_SECRET (it should look like ^7yTjn@G$j@KtLh9&@UdMpdfDZ):${NC}"
