@@ -98,6 +98,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 >- Daily midnight update (Debian Systems)
 >- Add a reboot cronjob for every Sunday at 00:00 am
 >- Cronjob Manager - Easy and quick custom cronjob
+>- Cronmointer - Easy WebGUI Interface to keep track of cronjobs
 
 ---------------------------------------------------------------------------------------------
 
@@ -146,7 +147,7 @@ RunesRepoHub Quick Deploy this script has been made to make it easy to deploy th
 >- Auto Update Youtube Channel Downloads - Check if there are new videos on the channel
 >- Download Youtube Playlist MP3 - Download a youtube playlist in mp3
 >- Stop all Youtube Downloads - Stop all youtube downloads
->- Scan all Youtube Downloads - Scan all youtube downloads every 4 hours 
+>- Scan all Youtube Downloads - Scan all youtube downloads every 20 min 
 
 ---------------------------------------------------------------------------------------------
 
