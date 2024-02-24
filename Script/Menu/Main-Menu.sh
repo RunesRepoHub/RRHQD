@@ -9,9 +9,9 @@ dialog --infobox "Pulling updates from repository..." 5 70
 git pull --progress > /tmp/git-pull-output.txt 2>&1
 EXIT_STATUS=$?
 if [ $EXIT_STATUS -eq 0 ]; then
-    dialog --textbox /tmp/git-pull-output.txt 20 80
+    dialog --textbox /tmp/git-pull-output.txt 15 60
 else
-    dialog --title "Error" --textbox /tmp/git-pull-output.txt 20 80
+    dialog --title "Error" --textbox /tmp/git-pull-output.txt 15 60
 fi
 
 script_name=$(basename "$0" .sh)
