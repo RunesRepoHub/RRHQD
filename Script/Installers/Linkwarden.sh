@@ -32,8 +32,10 @@ clear
 
 source ~/RRHQD/Core/Core.sh
 
-if [ ! -d "~/RRHQD-Dockers" ]; then
-    mkdir "~/RRHQD-Dockers"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/Linkwarden"
+
+if [ ! -d ~/RRHQD-Dockers ]; then
+    mkdir -p "$COMPOSE_SUBFOLDER"
 fi
 
 # Clone the Linkwarden repository
