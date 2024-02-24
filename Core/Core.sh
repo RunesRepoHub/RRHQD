@@ -48,6 +48,7 @@ LLAMA_GPT="Llama-GPT.sh"
 PORTAINER="Portainer.sh"
 DELUGE="Deluge.sh"
 GHOST="Ghost.sh"
+LINKWARDEN="Linkwarden.sh"
 
 ## Menu Scripts
 
@@ -76,6 +77,7 @@ REBOOT_EVERY_NIGHT="Reboot-every-night.sh"
 REBOOT_EVERY_SUNDAY="Reboot-every-sunday.sh"
 UPDATE_DAILY_MIDNIGHT="Update-daily-midnight.sh"
 CRONJOB_MANAGER="Cronjob-Manager.sh"
+ADD_CRONMOINTER="Add-Cronmointer.sh"
 
 ## Docker CnC Scripts
 

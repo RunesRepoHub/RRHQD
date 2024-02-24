@@ -26,7 +26,8 @@ function show_dialog_menu() {
            11 "Run Portainer Installer" \
            12 "Run Deluge Installer" \
            13 "Run Ghost Installer" \
-           14 "Back To Main Menu" 2>"${INPUT}"
+           14 "Run Linkwarden Installer" \
+           15 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -68,6 +69,9 @@ function show_dialog_menu() {
             ;;
         13)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$GHOST
+            ;;
+        14)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$LINKWARDEN
             ;;
         *)
             exit 0
