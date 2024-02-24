@@ -41,39 +41,34 @@ dialog --backtitle "Cloning Linkwarden Repository" --infobox "Cloning Linkwarden
 git clone https://github.com/linkwarden/linkwarden.git |& dialog --backtitle "Cloning Linkwarden Repository" --title "Git Clone Output" --textbox - 20 80
 cd linkwarden
 
-# Configure Environment Variables interactively using dialog with validation
-while true; do
-    dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the NEXTAUTH_SECRET (it should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'):" 8 60 2> temp_secret
-    NEXTAUTH_SECRET=$(<temp_secret)
-    if [[ -z $NEXTAUTH_SECRET ]]; then
-        dialog --backtitle "Environment Variables Configuration" --title "Error" --msgbox "NEXTAUTH_SECRET cannot be empty. Please enter a valid value." 6 60
-    else
-        break
-    fi
-done
+# Configure Environment Variables interactively using dialog
+dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the NEXTAUTH_SECRET (it should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'): " 8 60 2> temp_secret
+NEXTAUTH_SECRET=$(<temp_secret)
+# Check if the NEXTAUTH_SECRET is not empty
+if [ -z "$NEXTAUTH_SECRET" ]; then
+    dialog --title "Error" --msgbox "NEXTAUTH_SECRET is empty. Please enter a valid secret." 6 60
+    rm temp_secret
+    exit 1
+fi
 rm temp_secret
 
-while true; do
-    dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the NEXTAUTH_URL (it should look like 'http://localhost:3000/api/v1/auth'):" 8 60 2> temp_url
-    NEXTAUTH_URL=$(<temp_url)
-    if [[ -z $NEXTAUTH_URL ]]; then
-        dialog --backtitle "Environment Variables Configuration" --title "Error" --msgbox "NEXTAUTH_URL cannot be empty. Please enter a valid value." 6 60
-    else
-        break
-    fi
-done
-rm temp_url
+dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the NEXTAUTH_URL (it should look like 'http://localhost:3000/api/v1/auth'):" 8 60 2> temp_url
+NEXTAUTH_URL=$(<temp_url)
+# Check if the NEXTAUTH_URL is not empty
+if [ -z "$NEXTAUTH_URL" ]; then
+    dialog --title "Error" --msgbox "NEXTAUTH_URL is empty. Please enter a valid URL." 6 60
+    rm temp_url
+    exit 1
+fi
 
-while true; do
-    dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the POSTGRES_PASSWORD:" 8 60 2> temp_password
-    POSTGRES_PASSWORD=$(<temp_password)
-    if [[ -z $POSTGRES_PASSWORD ]]; then
-        dialog --backtitle "Environment Variables Configuration" --title "Error" --msgbox "POSTGRES_PASSWORD cannot be empty. Please enter a valid value." 6 60
-    else
-        break
-    fi
-done
-rm temp_password
+dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the POSTGRES_PASSWORD:" 8 60 2> temp_password
+POSTGRES_PASSWORD=$(<temp_password)
+# Check if the POSTGRES_PASSWORD is not empty
+if [ -z "$POSTGRES_PASSWORD" ]; then
+    dialog --title "Error" --msgbox "POSTGRES_PASSWORD is empty. Please enter a valid password." 6 60
+    rm temp_password
+    exit 1
+fi
 
 
 
