@@ -57,7 +57,7 @@ elif [ $response -eq 1 ]; then
 fi
 
 # Configure Environment Variables interactively using dialog
-dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the NEXTAUTH_SECRET (it should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'): " 8 60 --center 2> temp_secret
+dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the NEXTAUTH_SECRET (it should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'): " 8 60 2> temp_secret
 NEXTAUTH_SECRET=$(<temp_secret)
 # Check if the NEXTAUTH_SECRET is not empty
 if [ -z "$NEXTAUTH_SECRET" ]; then
@@ -67,7 +67,7 @@ if [ -z "$NEXTAUTH_SECRET" ]; then
 fi
 rm temp_secret
 
-dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the NEXTAUTH_URL (it should look like 'http://localhost:3000/api/v1/auth'):" 8 60 --center 2> temp_url
+dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the NEXTAUTH_URL (it should look like 'http://localhost:3000/api/v1/auth'):" 8 60 2> temp_url
 NEXTAUTH_URL=$(<temp_url)
 # Check if the NEXTAUTH_URL is not empty
 if [ -z "$NEXTAUTH_URL" ]; then
@@ -76,7 +76,7 @@ if [ -z "$NEXTAUTH_URL" ]; then
     exit 1
 fi
 
-dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the POSTGRES_PASSWORD:" 8 60 --center 2> temp_password
+dialog --backtitle "Environment Variables Configuration" --title "Configure .env File" --inputbox "Enter the POSTGRES_PASSWORD:" 8 60 2> temp_password
 POSTGRES_PASSWORD=$(<temp_password)
 # Check if the POSTGRES_PASSWORD is not empty
 if [ -z "$POSTGRES_PASSWORD" ]; then
