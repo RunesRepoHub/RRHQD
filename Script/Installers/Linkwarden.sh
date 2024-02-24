@@ -45,50 +45,59 @@ git clone https://github.com/linkwarden/linkwarden.git
 cd linkwarden
 
 
-echo "Do you want to learn more about how to set it up? (Y/N)"
+echo -e "${Yellow}Do you want to learn more about how to set it up? (Y/N)${NC}"
 read -p "Enter your choice: " decision
 
 if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
-    echo "Set up instructions:"
-    echo "Follow the setup instructions to configure the system."
+    echo -e "${Yellow}Set up instructions:${NC}"
+    echo -e "${Yellow}Follow the setup these instructions to configure the system.${NC}"
 
-    echo "Nextauth secret:"
-    echo "NEXTAUTH_SECRET should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'"
+    echo -e "${Yellow}Nextauth secret:${NC}"
+    echo -e "${Green}NEXTAUTH_SECRET should look like ^7yTjn@G$j@KtLh9&@UdMpdfDZ${NC}"
 
-    echo "Nextauth URL:"
-    echo "NEXTAUTH_URL should look like 'http://localhost:3000/api/v1/auth' this can also be a FQDN or IP if FQDN then https:// and no ports"
+    echo -e "${Yellow}Nextauth URL:${NC}"
+    echo -e "${Green}NEXTAUTH_URL should look like 'http://localhost:3000/api/v1/auth' this can also be a FQDN or IP if FQDN then https:// and no ports${NC}"
 
-    echo "Postgres password:"
-    echo "POSTGRES_PASSWORD should be set to a strong password"
+    echo -e "${Yellow}Postgres password:${NC}"
+    echo -e "${Green}POSTGRES_PASSWORD should be set to a strong password${NC}"
 elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
-    echo "Skipping setup instructions."
+    echo -e "${Green}Skipping setup instructions.${NC}"
 fi
 
+
+
+echo 
+echo
+echo
+echo "${Blue}-------------------------------------${NC}"
+echo "${Green}Setting up Linkwarden${NC}"
+echo "${Blue}-------------------------------------${NC}"
+
 # Configure Environment Variables interactively using dialog
-echo "Enter the NEXTAUTH_SECRET (it should look like '^7yTjn@G$j@KtLh9&@UdMpdfDZ'):"
+echo -e "${Yellow}Enter the NEXTAUTH_SECRET (it should look like ^7yTjn@G$j@KtLh9&@UdMpdfDZ):${NC}"
 read NEXTAUTH_SECRET
 
 # Check if the NEXTAUTH_SECRET is not empty
 if [ -z "$NEXTAUTH_SECRET" ]; then
-    echo "NEXTAUTH_SECRET is empty. Please enter a valid secret."
+    echo -e "${Red}NEXTAUTH_SECRET is empty. Please enter a valid secret.${NC}"
     exit 1
 fi
 
-echo "Enter the NEXTAUTH_URL (it should look like 'http://localhost:3000/api/v1/auth'):"
+echo -e "${Yellow}Enter the NEXTAUTH_URL (it should look like 'http://localhost:3000/api/v1/auth'):${NC}"
 read NEXTAUTH_URL
 
 # Check if the NEXTAUTH_URL is not empty
 if [ -z "$NEXTAUTH_URL" ]; then
-    echo "NEXTAUTH_URL is empty. Please enter a valid URL."
+    echo -e "${Red}NEXTAUTH_URL is empty. Please enter a valid URL.${NC}"
     exit 1
 fi
 
-echo "Enter the POSTGRES_PASSWORD:"
+echo -e "${Yellow}Enter the POSTGRES_PASSWORD:${NC}"
 read POSTGRES_PASSWORD
 
 # Check if the POSTGRES_PASSWORD is not empty
 if [ -z "$POSTGRES_PASSWORD" ]; then
-    echo "POSTGRES_PASSWORD is empty. Please enter a valid password."
+    echo -e "${Red}POSTGRES_PASSWORD is empty. Please enter a valid password.${NC}"
     exit 1
 fi
 
