@@ -53,24 +53,21 @@ if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
     echo -e "${Yellow}Follow the setup these instructions to configure the system.${NC}"
 
     echo -e "${Yellow}Nextauth secret:${NC}"
-    echo -e "${Green}NEXTAUTH_SECRET should look like ^7yTjn@G$j@KtLh9&@UdMpdfDZ${NC}"
+    echo -e "${Blue}NEXTAUTH_SECRET should look like ^7yTjn@G$j@KtLh9&@UdMpdfDZ${NC}"
 
     echo -e "${Yellow}Nextauth URL:${NC}"
-    echo -e "${Green}NEXTAUTH_URL should look like 'http://localhost:3000/api/v1/auth' this can also be a FQDN or IP if FQDN then https:// and no ports${NC}"
+    echo -e "${Blue}NEXTAUTH_URL should look like 'http://localhost:3000/api/v1/auth' this can also be a FQDN or IP if FQDN then https:// and no ports${NC}"
 
     echo -e "${Yellow}Postgres password:${NC}"
-    echo -e "${Green}POSTGRES_PASSWORD should be set to a strong password${NC}"
+    echo -e "${Blue}POSTGRES_PASSWORD should be set to a strong password${NC}"
 elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
-    echo -e "${Green}Skipping setup instructions.${NC}"
+    echo -e "${Blue}Skipping setup instructions.${NC}"
 fi
-
-
 
 echo 
 echo
-echo
 echo -e "${Blue}-------------------------------------${NC}"
-echo -e "${Green}--------Setting up Linkwarden--------${NC}"
+echo -e "${Blue}--------${NC}${Green}Setting up Linkwarden${NC}${Blue}--------${NC}"
 echo -e "${Blue}-------------------------------------${NC}"
 
 # Configure Environment Variables interactively using dialog
