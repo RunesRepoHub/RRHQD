@@ -797,22 +797,36 @@
 <h2 id="set-up-instructions">Set up instructions:<a class="headerlink" href="#set-up-instructions" title="Permanent link">&para;</a></h2>
 <p>Follow the setup these instructions to configure the system.</p>
 <h1 id="detecting-os-and-setting-sudo">Detecting OS and Setting Sudo:<a class="headerlink" href="#detecting-os-and-setting-sudo" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Detecting OS and Setting Sudo</p>
 <ul>
 <li>The script starts by determining the operating system to adjust command prefixes accordingly. If the OS is Ubuntu, Kali, Linux Mint, or Zorin, it sets USE_SUDO to "sudo".</li>
 </ul>
+</div>
 <h1 id="creating-appdata-directory-and-setting-permissions">Creating Appdata Directory and Setting Permissions:<a class="headerlink" href="#creating-appdata-directory-and-setting-permissions" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Creating Appdata Directory and Setting Permissions</p>
 <ul>
 <li>A directory, /mnt/user/appdata/cloudflared/, is created, and its permissions are set to 777. This directory seems to be a storage location for Cloudflared configurations.</li>
 </ul>
+</div>
 <h1 id="running-cloudflare-tunnel-login-command">Running Cloudflare Tunnel Login Command:<a class="headerlink" href="#running-cloudflare-tunnel-login-command" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Running Cloudflare Tunnel Login Command</p>
 <ul>
 <li>The script runs a Docker command to log in to the Cloudflare Tunnel, interacting with the /mnt/user/appdata/cloudflared/ directory.</li>
 </ul>
+</div>
 <h1 id="creating-a-cloudflare-tunnel">Creating a Cloudflare Tunnel:<a class="headerlink" href="#creating-a-cloudflare-tunnel" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Creating a Cloudflare Tunnel</p>
 <ul>
 <li>Another Docker command is used to create a Cloudflare tunnel. The configuration is stored in the same directory, and the tunnel is named based on user input.</li>
 </ul>
+</div>
 <h1 id="configuring-cloudflare-tunnel-for-websites">Configuring Cloudflare Tunnel for Website(s):<a class="headerlink" href="#configuring-cloudflare-tunnel-for-websites" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Configuring Cloudflare Tunnel for Website(s)</p>
 <ul>
 <li>
 <p>The script prompts the user for information about the website(s) they want to host via the Cloudflare Tunnel. It asks for the number of sites, tunnel UUID, protocol (http/https), reverse proxy IP, port, and domain.</p>
@@ -821,7 +835,10 @@
 <p>Based on the number of sites, it generates a configuration file (config.yml) in the /mnt/user/appdata/cloudflared/ directory.</p>
 </li>
 </ul>
+</div>
 <h1 id="starting-the-cloudflare-tunnel">Starting the Cloudflare Tunnel:<a class="headerlink" href="#starting-the-cloudflare-tunnel" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Starting the Cloudflare Tunnel</p>
 <ul>
 <li>
 <p>The script concludes by starting the Cloudflare tunnel in detached mode, utilizing the configuration provided by the user.</p>
@@ -830,6 +847,7 @@
 <p>Additionally, for cases where the user wants to host multiple sites, the script uses dialog to display a message box instructing them to manually configure the generated config.yml file for additional sites.</p>
 </li>
 </ul>
+</div>
 
 
   

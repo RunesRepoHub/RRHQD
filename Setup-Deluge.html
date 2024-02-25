@@ -799,41 +799,68 @@
 <h2 id="set-up-instructions">Set up instructions:<a class="headerlink" href="#set-up-instructions" title="Permanent link">&para;</a></h2>
 <p>Follow the setup these instructions to configure the system.</p>
 <h1 id="user-input-for-docker-image">User Input for Docker Image:<a class="headerlink" href="#user-input-for-docker-image" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Docker Image</p>
 <ul>
 <li>The script prompts the user to input the Docker image for Deluge. If no input is provided, it defaults to "lscr.io/linuxserver/deluge:latest".</li>
 </ul>
+</div>
 <h1 id="user-input-for-container-name">User Input for Container Name:<a class="headerlink" href="#user-input-for-container-name" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Container Name</p>
 <ul>
 <li>The user is asked to enter a name for the Docker container. If no input is given, it defaults to "deluge-container".</li>
 </ul>
+</div>
 <h1 id="user-input-for-deluge-root-folder-and-download-folder">User Input for Deluge Root Folder and Download Folder:<a class="headerlink" href="#user-input-for-deluge-root-folder-and-download-folder" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Folders</p>
 <ul>
 <li>The script requests the Deluge root folder and download folder. If skipped, default settings (./Data/config for Deluge root folder and ./Data/downloads for the download folder) are used.</li>
 </ul>
+</div>
 <h1 id="docker-compose-file-generation">Docker Compose File Generation:<a class="headerlink" href="#docker-compose-file-generation" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Docker Compose Generation</p>
 <ul>
 <li>It sets up a subfolder for Docker Compose files (./RRHQD-Dockers/Deluge) and creates a Docker Compose file (docker-compose-$CONTAINER_NAME.yml).</li>
 </ul>
+</div>
 <h1 id="docker-compose-file-content">Docker Compose File Content:<a class="headerlink" href="#docker-compose-file-content" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Docker Compose Content</p>
 <ul>
 <li>The content is generated dynamically using a heredoc. It includes specifications for the Docker Compose version, Deluge service settings (image, container name, network mode, environment variables, volume mappings, ports, and restart policy).</li>
 </ul>
+</div>
 <h1 id="folder-creation">Folder Creation:<a class="headerlink" href="#folder-creation" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Folder Creation</p>
 <ul>
 <li>The script ensures the existence of the subfolder for Docker Compose files, creating it if necessary.</li>
 </ul>
+</div>
 <h1 id="inform-user-and-start-container">Inform User and Start Container:<a class="headerlink" href="#inform-user-and-start-container" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Inform User and Start Container</p>
 <ul>
 <li>The user is informed that the Docker Compose file for Deluge has been created. The script attempts to start the Deluge container using docker compose -f $COMPOSE_FILE up -d.</li>
 </ul>
+</div>
 <h1 id="check-container-status">Check Container Status:<a class="headerlink" href="#check-container-status" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Check Container Status</p>
 <ul>
 <li>After the attempt to start the container, it checks if the Docker container has started successfully by querying Docker for the container's ID.</li>
 </ul>
+</div>
 <h1 id="user-notification">User Notification:<a class="headerlink" href="#user-notification" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">User Notification</p>
 <ul>
 <li>If the container started successfully, a success message is displayed using dialog. Otherwise, an error message is shown, and the script exits with an error code.</li>
 </ul>
+</div>
 
 
   
