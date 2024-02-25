@@ -7,7 +7,7 @@ use_directory_urls: false
 nav:
     - ACS Documentation:
       - Getting Started With ACSF:
-        - What is ACSF?: 'index.md'
+        - What is ACSF?: 'Docs/index.md'
     - RP-Helpdesk Docs: 'https://runesrepohub.github.io/RPH-Docs/index.html'
 theme:
   icon:
