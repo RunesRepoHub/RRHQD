@@ -2,7 +2,7 @@ site_name: RRHQD Wiki
 site_url: https://runesrepohub.github.io/RRHQD/
 repo_name: RRHQD
 repo_url: https://github.com/RunesRepoHub/RRHQD
-edit_uri: https://github.com/RunesRepoHub/RRHQD/edit/Dev/docs/
+edit_uri: https://github.com/RunesRepoHub/RRHQD/edit/Dev/Docs/
 use_directory_urls: false
 nav:
     - ACS Documentation:
