@@ -7,10 +7,10 @@ use_directory_urls: false
 nav:
     - RRHQD Documentation:
       - Getting Started With RRHQD:
-        - What is RRHQD?: 'Docs/index.md'
+        - What is RRHQD?: 'docs/index.md'
       - Configuration Guides:
         - Docker Guides:
-          - Setup a Linkwarden docker: 'Setup-Linkwarden.md'
+          - Setup a Linkwarden docker: 'docs/Setup-Linkwarden.md'
     - RP-Helpdesk Docs: 'https://runesrepohub.github.io/RPH-Docs/index.html'
 theme:
   icon:
