@@ -10,7 +10,8 @@ nav:
         - What is RRHQD?: 'index.md'
       - Configuration Guides:
         - Docker Configuration Guides:
-          - Setup a Linkwarden docker: 'Setup-Linkwarden.md'
+          - Setup a Linkwarden Docker: 'Setup-Linkwarden.md'
+          - Setup a Deluge Docker: 'Setup-Deluge.md'
     - RP-Helpdesk Docs: 'https://runesrepohub.github.io/RPH-Docs/index.html'
 theme:
   icon:
