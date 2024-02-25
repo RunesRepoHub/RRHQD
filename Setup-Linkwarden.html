@@ -541,6 +541,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -586,6 +590,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Setup a Linkwarden Docker
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="Setup-Linkwarden.html" class="md-nav__link md-nav__link--active">
         
   
@@ -595,6 +610,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-instructions" class="md-nav__link">
+    Set up instructions:
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up instructions:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nextauth-secret" class="md-nav__link">
+    Nextauth secret:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextauth-url" class="md-nav__link">
+    Nextauth URL:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgres-password" class="md-nav__link">
+    Postgres password:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -612,6 +680,46 @@
   
   <span class="md-ellipsis">
     Setup a Deluge Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Checkmk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Checkmk Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Cloudflare.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Cloudflare Tunnel Docker
   </span>
   
 
@@ -683,6 +791,48 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-instructions" class="md-nav__link">
+    Set up instructions:
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up instructions:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nextauth-secret" class="md-nav__link">
+    Nextauth secret:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextauth-url" class="md-nav__link">
+    Nextauth URL:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgres-password" class="md-nav__link">
+    Postgres password:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -700,6 +850,17 @@
 
 
 <h1 id="setup-a-linkwarden-docker">Setup a Linkwarden docker<a class="headerlink" href="#setup-a-linkwarden-docker" title="Permanent link">&para;</a></h1>
+<h2 id="set-up-instructions">Set up instructions:<a class="headerlink" href="#set-up-instructions" title="Permanent link">&para;</a></h2>
+<p>Follow the setup these instructions to configure the system.</p>
+<h3 id="nextauth-secret">Nextauth secret:<a class="headerlink" href="#nextauth-secret" title="Permanent link">&para;</a></h3>
+<p>NEXTAUTH_SECRET should look like <code>^7yTjn@G$j@KtLh9&amp;@UdMpdfDZ</code>and this step cannot be skipped.</p>
+<h3 id="nextauth-url">Nextauth URL:<a class="headerlink" href="#nextauth-url" title="Permanent link">&para;</a></h3>
+<p>NEXTAUTH_URL should look like <code>http://localhost:3000/api/v1/auth</code> 
+It can also be a FQDN or IP if FQDN then <code>https://yourdomain.com/api/v1/auth</code> and no ports. But still add <code>/api/v1/aut</code>
+This step cannot be skipped.</p>
+<h3 id="postgres-password">Postgres password:<a class="headerlink" href="#postgres-password" title="Permanent link">&para;</a></h3>
+<p>POSTGRES_PASSWORD should be set to a strong password
+This step cannot be skipped.</p>
 
 
   

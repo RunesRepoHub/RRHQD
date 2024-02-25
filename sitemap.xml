@@ -6,6 +6,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Setup-Checkmk.html</loc>
+         <lastmod>2024-02-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Setup-Cloudflare.html</loc>
+         <lastmod>2024-02-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://runesrepohub.github.io/RRHQD/Setup-Deluge.html</loc>
          <lastmod>2024-02-25</lastmod>
          <changefreq>daily</changefreq>
