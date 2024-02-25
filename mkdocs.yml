@@ -12,6 +12,8 @@ nav:
         - Docker Configuration Guides:
           - Setup a Linkwarden Docker: 'Setup-Linkwarden.md'
           - Setup a Deluge Docker: 'Setup-Deluge.md'
+          - Setup a Checkmk Docker: 'Setup-Checkmk.md'
+          - Setup a Cloudflare Tunnel Docker: 'Setup-Cloudflare.md'
     - RP-Helpdesk Docs: 'https://runesrepohub.github.io/RPH-Docs/index.html'
 theme:
   icon:
