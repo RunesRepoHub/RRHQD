@@ -5,7 +5,7 @@ Follow the setup these instructions to configure the system.
 
 
 ### Setting Environment Variables
-!!! important "Setting Environment Variables"
+!!! question "Setting Environment Variables"
 
     You'll be asked to provide three pieces of information:
 
