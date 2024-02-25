@@ -14,4 +14,4 @@
 
 !!! success "Download"
 
-    * Download the latest version of the software from [Github](https://github.com/RunesRepoHub/RRHQD/Prod)
+    * Download the latest version of the software from [Github](https://github.com/RunesRepoHub/RRHQD/tree/Prod)
