@@ -671,6 +671,75 @@
     Set up instructions:
   </a>
   
+    <nav class="md-nav" aria-label="Set up instructions:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-input-for-docker-image" class="md-nav__link">
+    User Input for Docker Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-input-for-container-name" class="md-nav__link">
+    User Input for Container Name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-input-for-exposed-port" class="md-nav__link">
+    User Input for Exposed Port
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-input-for-data-path" class="md-nav__link">
+    User Input for Data Path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-file-generation" class="md-nav__link">
+    Docker Compose File Generation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inform-user" class="md-nav__link">
+    Inform User
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-docker-status" class="md-nav__link">
+    Check Docker Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-docker-container" class="md-nav__link">
+    Start Docker Container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-container-start-status" class="md-nav__link">
+    Check Container Start Status
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -775,6 +844,75 @@
     Set up instructions:
   </a>
   
+    <nav class="md-nav" aria-label="Set up instructions:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-input-for-docker-image" class="md-nav__link">
+    User Input for Docker Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-input-for-container-name" class="md-nav__link">
+    User Input for Container Name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-input-for-exposed-port" class="md-nav__link">
+    User Input for Exposed Port
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-input-for-data-path" class="md-nav__link">
+    User Input for Data Path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-file-generation" class="md-nav__link">
+    Docker Compose File Generation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inform-user" class="md-nav__link">
+    Inform User
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-docker-status" class="md-nav__link">
+    Check Docker Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-docker-container" class="md-nav__link">
+    Start Docker Container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-container-start-status" class="md-nav__link">
+    Check Container Start Status
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -798,6 +936,74 @@
 <h1 id="setup-a-checkmk-docker">Setup a Checkmk docker<a class="headerlink" href="#setup-a-checkmk-docker" title="Permanent link">&para;</a></h1>
 <h2 id="set-up-instructions">Set up instructions:<a class="headerlink" href="#set-up-instructions" title="Permanent link">&para;</a></h2>
 <p>Follow the setup these instructions to configure the system.</p>
+<h3 id="user-input-for-docker-image">User Input for Docker Image<a class="headerlink" href="#user-input-for-docker-image" title="Permanent link">&para;</a></h3>
+<div class="admonition important">
+<p class="admonition-title">User Input for Docker Image</p>
+<ul>
+<li>Prompts the user to input the Docker image for CheckMK. If the user doesn't provide any input, it defaults to "checkmk/check-mk-raw:latest."</li>
+</ul>
+</div>
+<h3 id="user-input-for-container-name">User Input for Container Name<a class="headerlink" href="#user-input-for-container-name" title="Permanent link">&para;</a></h3>
+<div class="admonition important">
+<p class="admonition-title">User Input for Container Name</p>
+<ul>
+<li>Prompts the user to input the name for the CheckMK container. If no input is provided, it defaults to "checkmk-container."</li>
+</ul>
+</div>
+<h3 id="user-input-for-exposed-port">User Input for Exposed Port<a class="headerlink" href="#user-input-for-exposed-port" title="Permanent link">&para;</a></h3>
+<div class="admonition important">
+<p class="admonition-title">User Input for Exposed Port</p>
+<ul>
+<li>Prompts the user to input the port on which CheckMK should be exposed. Defaults to port 8080 if no input is provided.</li>
+</ul>
+</div>
+<h3 id="user-input-for-data-path">User Input for Data Path<a class="headerlink" href="#user-input-for-data-path" title="Permanent link">&para;</a></h3>
+<div class="admonition important">
+<p class="admonition-title">User Input for Data Path</p>
+<ul>
+<li>Prompts the user to input the path for CheckMK data. Defaults to "./Data/checkmk-data" if no input is provided.</li>
+</ul>
+</div>
+<h3 id="docker-compose-file-generation">Docker Compose File Generation<a class="headerlink" href="#docker-compose-file-generation" title="Permanent link">&para;</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Docker Compose File Generation</p>
+<ul>
+<li>
+<p>Defines a subfolder for Docker compose files and creates it if it doesn't exist.</p>
+</li>
+<li>
+<p>Generates a Docker compose file based on user inputs, specifying the CheckMK image, exposed port, and data volume.</p>
+</li>
+</ul>
+</div>
+<h3 id="inform-user">Inform User<a class="headerlink" href="#inform-user" title="Permanent link">&para;</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Inform User</p>
+<ul>
+<li>Informs the user about the location of the created Docker compose file.</li>
+</ul>
+</div>
+<h3 id="check-docker-status">Check Docker Status<a class="headerlink" href="#check-docker-status" title="Permanent link">&para;</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Check Docker Status</p>
+<ul>
+<li>Checks if Docker is running, and if not, prompts the user to start Docker and rerun the script. The method of checking depends on the Linux distribution.</li>
+</ul>
+</div>
+<h3 id="start-docker-container">Start Docker Container<a class="headerlink" href="#start-docker-container" title="Permanent link">&para;</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Start Docker Container</p>
+<ul>
+<li>Uses docker-compose to start the CheckMK container in detached mode (-d). It uses sudo if the OS is Ubuntu, Zorin, Linux Mint, or Kali.</li>
+</ul>
+</div>
+<h3 id="check-container-start-status">Check Container Start Status<a class="headerlink" href="#check-container-start-status" title="Permanent link">&para;</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Check Container Start Status</p>
+<ul>
+<li>Checks if the Docker container has started successfully. If successful, it displays a success message with the container's name and login details. If not, it shows an error message and exits with an error code.</li>
+</ul>
+</div>
 
 
   
