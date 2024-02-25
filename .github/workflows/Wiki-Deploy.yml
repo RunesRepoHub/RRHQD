@@ -1,7 +1,9 @@
 name: Wiki Auto Deploy 
 on:
   push:
-    branches: 
+    branches:
+      - Dev
+      - PoC 
       - Production
 permissions:
   contents: write
