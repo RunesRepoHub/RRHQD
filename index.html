@@ -126,7 +126,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#acs-automated-content-system" class="md-skip">
+        <a href="#rrhqd" class="md-skip">
           Skip to content
         </a>
       
@@ -162,7 +162,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ACS (Automated Content System)
+              RRHQD
             
           </span>
         </div>
@@ -550,54 +550,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#get-a-visual-breakdown-of-the-setup" class="md-nav__link">
-    Get a visual breakdown of the setup.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enjoy" class="md-nav__link">
-    Enjoy
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#warnings" class="md-nav__link">
-    Warnings
-  </a>
-  
-    <nav class="md-nav" aria-label="Warnings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#root-user-required" class="md-nav__link">
-    Root User Required
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#docker-is-required" class="md-nav__link">
-    Docker is required
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#youtube-dl-performence" class="md-nav__link">
-    Youtube-dl Performence
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -621,57 +573,14 @@
   
 
 
-<h1 id="acs-automated-content-system">ACS (Automated Content System)<a class="headerlink" href="#acs-automated-content-system" title="Permanent link">&para;</a></h1>
+<h1 id="rrhqd">RRHQD<a class="headerlink" href="#rrhqd" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <div class="admonition bug">
 <p class="admonition-title">Important</p>
 <h3 id="important">Important<a class="headerlink" href="#important" title="Permanent link">&para;</a></h3>
 <p>This software is still in development.</p>
-<p>Please report bugs to <a href="https://github.com/RunesRepoHub/ACS/issues">Github</a></p>
+<p>Please report bugs to <a href="https://github.com/RunesRepoHub/RRHQD/issues">Github</a></p>
 </div>
-<div class="admonition important">
-<p class="admonition-title">ACSF (Automated Content System Full)</p>
-<p>Redefining media server management, our user-friendly software combines a sleek interface with powerful automation. Ideal for users with robust servers, it effortlessly downloads movies, shows, and YouTube videos, while intuitively configuring and maintaining Plex, Ombi, Jackett, Sonarr, Radarr, Deluge, Tautulli, and Mikenye/YouTube-dl Docker containers. </p>
-<h3 id="get-a-visual-breakdown-of-the-setup">Get a visual breakdown of the setup.<a class="headerlink" href="#get-a-visual-breakdown-of-the-setup" title="Permanent link">&para;</a></h3>
-<p><img alt="Alt text" src="img/setup-breakdown.png" /></p>
-</div>
-<h2 id="enjoy">Enjoy<a class="headerlink" href="#enjoy" title="Permanent link">&para;</a></h2>
-<div class="admonition success">
-<p class="admonition-title">Enjoy the simplicity of organized folders and files, making setup and maintenance a breeze.</p>
-<p>Enjoy the simplicity of organized folders and files, making setup and maintenance a breeze. Elevate your media server experience with an innovative solution that seamlessly integrates ease of use with advanced capabilities.</p>
-</div>
-<h2 id="warnings">Warnings<a class="headerlink" href="#warnings" title="Permanent link">&para;</a></h2>
-<div class="admonition failure">
-<p class="admonition-title">Root User Required</p>
-<h3 id="root-user-required">Root User Required<a class="headerlink" href="#root-user-required" title="Permanent link">&para;</a></h3>
-<p>This software will only run as root. <strong><em>YOU CAN NOT RUN IT AS A NORMAL USER</em></strong>.</p>
-</div>
-<details class="danger">
-<summary>Docker is required</summary>
-<h3 id="docker-is-required">Docker is required<a class="headerlink" href="#docker-is-required" title="Permanent link">&para;</a></h3>
-<p>Docker is required to run this software</p>
-<p><a href="https://linuxiac.com/how-to-install-docker-on-debian-12-bookworm/">Get Docker on Debian 12</a></p>
-<p><a href="https://docs.docker.com/engine/install/debian/">Get Docker on Debian 11</a></p>
-<p><a href="https://docs.docker.com/engine/install/ubuntu/">Get Docker on Ubuntu 20.04</a></p>
-</details>
-<details class="danger">
-<summary>Performence</summary>
-<h3 id="youtube-dl-performence">Youtube-dl Performence<a class="headerlink" href="#youtube-dl-performence" title="Permanent link">&para;</a></h3>
-<p>The Youtube-dl has some issues when it comes to downloading.
-Mainly because of long playlists and/or multiple downloads running at ones.</p>
-<p>This will result in these errors. (And possible more)</p>
-<ul>
-<li>
-<p>Can cause a softlog error on proxmox when running it in an VM.</p>
-</li>
-<li>
-<p>The longer the playlists the longer the download. (At download item 86 of 156 it takes 30 mins of 400mb of data, THIS is NOT a networking limit)</p>
-</li>
-<li>
-<p>Can cause a bit of slow down on plex itself if configured to update library on every change dectected in the folder.</p>
-</li>
-</ul>
-</details>
 
 
   
