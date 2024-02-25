@@ -1,19 +1,13 @@
-site_name: ACS Wiki
-site_url: https://runesrepohub.github.io/ACS/
-repo_name: ACS
-repo_url: https://github.com/RunesRepoHub/ACS
-edit_uri: https://github.com/RunesRepoHub/ACS/edit/Dev/docs/
+site_name: RRHQD Wiki
+site_url: https://runesrepohub.github.io/RRHQD/
+repo_name: RRHQD
+repo_url: https://github.com/RunesRepoHub/RRHQD
+edit_uri: https://github.com/RunesRepoHub/RRHQD/edit/Dev/docs/
 use_directory_urls: false
 nav:
     - ACS Documentation:
       - Getting Started With ACSF:
         - What is ACSF?: 'index.md'
-        - Requirements ACSF: 'requirement.md'
-        - How to Install ACSF: 'install.md'
-        - Easy Commands: 'commands.md'
-      - Understand The Source Code:
-        - Description of Source Code ACSF: 'source.md'
-        - Error Codes: 'errorcode.md'
     - RP-Helpdesk Docs: 'https://runesrepohub.github.io/RPH-Docs/index.html'
 theme:
   icon:
