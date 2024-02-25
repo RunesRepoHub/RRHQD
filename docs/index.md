@@ -10,3 +10,8 @@
 
     Please report bugs to [Github](https://github.com/RunesRepoHub/RRHQD/issues)
 
+## Download RRHQD
+
+!!! success "Download"
+
+    * Download the latest version of the software from [Github](https://github.com/RunesRepoHub/RRHQD/Prod)
