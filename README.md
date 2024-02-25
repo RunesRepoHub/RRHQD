@@ -39,13 +39,13 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ### Main Menu:
 
-![Alt text](Docs/Main-Menu.png)
+![Alt text](docs/Main-Menu.png)
 
 ---------------------------------------------------------------------------------------------
 
 ### Docker Support:
 
-![Alt text](Docs/Docker-Images.png)
+![Alt text](docs/Docker-Images.png)
 
 **Every docker "Installer" has been tested and is working.**
 
@@ -78,7 +78,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ### RunesRepoHub Software Support:
 
-![Alt text](Docs/RRH.png)
+![Alt text](docs/RRH.png)
 
 > [!NOTE]
 >* ACS (Automated Content System) - [ACS Wiki](https://runesrepohub.github.io/ACS/)
@@ -89,7 +89,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ### Quick Installer Support:
 
-![Alt text](Docs/Quick-Installers.png)
+![Alt text](docs/Quick-Installers.png)
 
 > [!NOTE]
 >* Starship - A minimalistic, powerful, and extremely customizable prompt for any shell
@@ -102,7 +102,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ### Cronjobs
 
-![Alt text](Docs/Cronjobs.png)
+![Alt text](docs/Cronjobs.png)
 
 > [!NOTE]
 >- Add a nightly reboot at 4:45 am
@@ -115,7 +115,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ### Docker Command and Control
 
-![Alt text](Docs/Docker-CnC.png)
+![Alt text](docs/Docker-CnC.png)
 
 > [!NOTE]
 >- Docker - Cleanup (Clean all unused images, volumes and networks)
@@ -129,7 +129,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ### Quick Tools
 
-![Alt text](Docs/Quick-Tools.png)
+![Alt text](docs/Quick-Tools.png)
 
 (Early Access) Has not been full tested yet.
 > [!WARNING]
@@ -144,7 +144,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ### Youtube Scripts
 
-![Alt text](Docs/Youtube-Scripts.png)
+![Alt text](docs/Youtube-Scripts.png)
 
 > [!WARNING]
 >(These scripts are made to work with the ACS)
@@ -164,7 +164,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ### Update RRHQD
 
-![Alt text](Docs/Update-RRHQD.png)
+![Alt text](docs/Update-RRHQD.png)
 
 > [!NOTE]
 >This will do a git pull based on the selected branch on install. After the script will exit, this is done to make sure the script is up to date. Just run the script again.  
