@@ -37,6 +37,15 @@ source ~/RRHQD/Core/Core.sh
 
 echo -e "${Green}Setup a Docker container for Cloudflare Tunnel${NC}"
 
+echo -e "${Yellow}Do you want to learn more about how to set it up? (Y/N)${NC}"
+read -p "Enter your choice: " decision
+
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: https://runesrepohub.github.io/RRHQD/Setup-Cloudflare.html${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
+
 # Detect OS and set USE_SUDO accordingly
 OS_NAME=$(grep '^ID=' /etc/os-release | cut -d= -f2)
 USE_SUDO=""

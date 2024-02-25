@@ -49,6 +49,8 @@ PORTAINER="Portainer.sh"
 DELUGE="Deluge.sh"
 GHOST="Ghost.sh"
 LINKWARDEN="Linkwarden.sh"
+MEMOS="Memos.sh"
+IT_TOOLS="It-tools.sh"
 
 ## Menu Scripts
 

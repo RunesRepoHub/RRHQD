@@ -34,6 +34,15 @@ source ~/RRHQD/Core/Core.sh
 # Ask user for necessary environment variables
 echo -e "${Green}Setting up Deluge Docker container.${NC}"
 
+echo -e "${Yellow}Do you want to learn more about how to set it up? (Y/N)${NC}"
+read -p "Enter your choice: " decision
+
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: https://runesrepohub.github.io/RRHQD/Setup-Deluge.html${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
+
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 read -p "Enter Docker image for Deluge (e.g., lscr.io/linuxserver/deluge:latest): " IMAGE
 IMAGE=${IMAGE:-"lscr.io/linuxserver/deluge:latest"}

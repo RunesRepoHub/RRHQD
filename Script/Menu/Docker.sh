@@ -27,7 +27,9 @@ function show_dialog_menu() {
            12 "Run Deluge Installer" \
            13 "Run Ghost Installer" \
            14 "Run Linkwarden Installer" \
-           15 "Back To Main Menu" 2>"${INPUT}"
+           15 "Run Memos Installer" \
+           16 "Run It-tools Installer" \
+           17 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -72,6 +74,12 @@ function show_dialog_menu() {
             ;;
         14)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$LINKWARDEN
+            ;;
+        15)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$MEMOS
+            ;;
+        16)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$IT_TOOLS
             ;;
         *)
             exit 0
