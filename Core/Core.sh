@@ -72,6 +72,7 @@ TAILSCALE="Tailscale-Installer.sh"
 FILEZILLA="Filezilla-Installer.sh"
 FAIL2BAN="Fail2ban-Installer.sh"
 ANSIBLE="Ansible-Installer.sh"
+PYDIO="Pydio-Installer.sh"
 
 ## Cronjob Scripts
 
