@@ -32,6 +32,7 @@ DOCKER_CNC_FOLDER=Docker-CnC
 BACKGROUND=Background
 QUICK_TOOLS_DIR=Quick-Tools
 YOUTUBE_SCRIPTS_FOLDER=Youtube-Scripts
+PRE_MADE_VM_CONFIGS_DIR=Pre-Made-VM-Configs
 
 ## Installers Scripts
 
@@ -63,6 +64,7 @@ CRONJOB="Cronjob.sh"
 DOCKER_CNC="Docker-CnC.sh"
 QUICK_TOOLS="Quick-Tools.sh"
 YOUTUBE_SCRIPTS="Youtube-Script.sh"
+PRE_MADE_VM_CONFIGS="Pre-Made-VM-Configs.sh"
 
 
 ## Quick Installers Scripts
@@ -114,3 +116,7 @@ YOUTUBE_CHANNEL_AUTO="Youtube-Channel-Rescan.sh"
 YOUTUBE_AUDIO_PLAYLIST="Youtube-Audio-Playlist.sh"
 YOUTUBE_STOP_DOWNLOAD="Youtube-Stop-Download.sh"
 YOUTUBE_CRONJOB_DOWNLOAD="Youtube-Cronjob-Download.sh"
+
+## Pre-Made-VM-Configs
+
+PRE_MADE_VM="RP-Helpdesk-Standard-Config.sh"
