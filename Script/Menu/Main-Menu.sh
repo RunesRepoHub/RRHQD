@@ -52,10 +52,10 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_TOOLS
             ;;
         7)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$YOUTUBE_SCRIPTS
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$PRE_MADE_VM_CONFIGS
             ;;
         8)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$PRE_MADE_VM_CONFIGS
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$YOUTUBE_SCRIPTS
             ;;
         *)
             dialog --title "Exiting" --msgbox "Thank you for using RRHQD. Support me via github https://github.com/RunesRepoHub/" 6 52
