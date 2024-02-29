@@ -8,7 +8,7 @@ read -s -p "Enter the MySQL password: " PASSWORD
 
 # Install MariaDB Server
 echo -e "${Blue}Installing MariaDB Server${NC}"
-sudo apt install mariadb-server
+sudo apt install mariadb-server -y
 echo -e "${Green}MariaDB Server installed successfully${NC}"
 
 # Start MariaDB service
