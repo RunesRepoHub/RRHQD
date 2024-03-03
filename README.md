@@ -177,6 +177,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 > [!CAUTION]
 >***DO NOT CHANGE THE FILES IN THE RRHQD FOLDER***
+>
 >Doing so may break the script. You can modify the files in the RRHQD-Dockers folder.
 
 ---------------------------------------------------------------------------------------------
