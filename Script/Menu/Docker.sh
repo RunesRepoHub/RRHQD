@@ -29,7 +29,9 @@ function show_dialog_menu() {
            14 "Run Linkwarden Installer" \
            15 "Run Memos Installer" \
            16 "Run It-tools Installer" \
-           17 "Back To Main Menu" 2>"${INPUT}"
+           17 "Run Sonarr Installer" \
+           18 "Run Radarr Installer" \
+           19 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -80,6 +82,12 @@ function show_dialog_menu() {
             ;;
         16)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$IT_TOOLS
+            ;;
+        17)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$SONARR
+            ;;
+        18)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$RADARR
             ;;
         *)
             exit 0

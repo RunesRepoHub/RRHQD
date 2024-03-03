@@ -52,6 +52,8 @@ GHOST="Ghost.sh"
 LINKWARDEN="Linkwarden.sh"
 MEMOS="Memos.sh"
 IT_TOOLS="It-tools.sh"
+SONARR="Sonarr.sh"
+RADARR="Radarr.sh"
 
 ## Menu Scripts
 
