@@ -33,29 +33,22 @@ clear
 
 source ~/RRHQD/Core/Core.sh
 
-cd
 
-echo -e "${Green}Setup a Docker container for Uptime-Kuma${NC}"
-
-## Ask user for image
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-read -p "Enter the Docker image for Uptime-Kuma (e.g., louislam/uptime-kuma:1): " IMAGE
-IMAGE=${IMAGE:-"louislam/uptime-kuma:1"}
+read -p "Enter the container name: " CONTAINER_NAME
+CONTAINER_NAME=${CONTAINER_NAME:-"memos"}
 
-## Ask user for container name
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-read -p "Enter the name for the Uptime-Kuma container: " CONTAINER_NAME
-CONTAINER_NAME=${CONTAINER_NAME:-"uptime-kuma-container"}
+read -p "Enter the Docker image: " IMAGE
+IMAGE=${IMAGE:-"neosmemo/memos:stable"}
 
-## Ask user for port
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-read -p "Enter the port to expose Uptime-Kuma on (e.g., 3001): " PORT
-PORT=${PORT:-3001}
+read -p "Enter the volume path: " VOLUME
+VOLUME=${VOLUME:-"~/.memos/:/var/opt/memos"}
 
-## Ask user for data path
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-read -p "Enter the path for Uptime-Kuma data (e.g., /kuma-data/): " DATA_PATH
-DATA_PATH=${DATA_PATH:-./Data/kuma-data}
+read -p "Enter the port: " PORT
+PORT=${PORT:-"5230"}
 
 # Define the subfolder for the Docker compose files
 COMPOSE_SUBFOLDER="./RRHQD-Dockers/Uptime-Kuma"
@@ -66,47 +59,23 @@ mkdir -p "$COMPOSE_SUBFOLDER"
 
 # Create a Docker compose file with the user input inside the subfolder
 {
-  echo "version: '3'"
+  echo "version: '3.9'"
   echo "services:"
-  echo "  $CONTAINER_NAME:"
+  echo "  container_name: $CONTAINER_NAME"
   echo "    image: $IMAGE"
   echo "    ports:"
-  echo "      - \"$PORT:3001\""
+  echo "      - \"$PORT:5230\""
   echo "    volumes:"
-  echo "      - \"$DATA_PATH:/app/data\""
+  echo "      - \"$DATA_PATH:/var/opt/memos\""
 } > "$COMPOSE_FILE"
 
 # Inform the user where the Docker compose file has been created
 echo "Docker compose file created at: $COMPOSE_FILE"
 
-# Check if Docker is running and use sudo if the OS is ubuntu, zorin, linuxmint, or kali
-OS_DISTRO=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
-case $OS_DISTRO in
-  ubuntu|zorin|linuxmint|kali)
-    if ! sudo docker info >/dev/null 2>&1; then
-      echo "Docker does not seem to be running, start it first with sudo and then re-run this script."
-      exit 1
-    fi
-    ;;
-  *)
-    if ! docker info >/dev/null 2>&1; then
-      echo "Docker does not seem to be running, start it first and then re-run this script."
-      exit 1
-    fi
-    ;;
-esac
+# Start the Docker compose
+docker compose -f "$COMPOSE_FILE" up -d
 
-# Start the Docker container using docker-compose with or without sudo based on the OS
-case $OS_DISTRO in
-  ubuntu|zorin|linuxmint|kali)
-    sudo docker compose -f "$COMPOSE_FILE" up -d
-    ;;
-  *)
-    docker compose -f "$COMPOSE_FILE" up -d
-    ;;
-esac
-
-# Check if the Docker container(s) have started successfully
+# Check if the Docker container has started successfully
 if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
     dialog --title "Success" --msgbox "The Docker container $CONTAINER_NAME has started successfully." 6 60
 else

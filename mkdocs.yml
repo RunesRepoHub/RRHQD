@@ -1,0 +1,131 @@
+site_name: RRHQD Wiki
+site_url: https://runesrepohub.github.io/RRHQD/
+repo_name: RRHQD
+repo_url: https://github.com/RunesRepoHub/RRHQD
+edit_uri: https://github.com/RunesRepoHub/RRHQD/edit/Dev/Docs/
+use_directory_urls: false
+nav:
+    - RRHQD Documentation:
+      - Getting Started With RRHQD:
+        - What is RRHQD?: 'index.md'
+      - Configuration Guides:
+        - Docker Configuration Guides:
+          - Setup a Linkwarden Docker: 'Setup-Linkwarden.md'
+          - Setup a Deluge Docker: 'Setup-Deluge.md'
+          - Setup a Checkmk Docker: 'Setup-Checkmk.md'
+          - Setup a Cloudflare Tunnel Docker: 'Setup-Cloudflare.md'
+    - RP-Helpdesk Docs: 'https://runesrepohub.github.io/RPH-Docs/index.html'
+theme:
+  icon:
+      logo: fontawesome/brands/gitkraken
+      repo: fontawesome/brands/gitkraken
+      admonition:
+        note: material/notebook-edit
+        abstract: material/file-edit
+        info: material/notebook-check
+        tip: material/tooltip-check-outline
+        success: simple/riseup
+        question: octicons/question-16
+        warning: fontawesome/solid/person-military-pointing
+        failure: octicons/x-circle-16
+        danger: octicons/zap-16
+        bug: material/docker
+        example: material/monitor-edit
+        quote: octicons/quote-16
+  name: material
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+      primary: black
+      accent: indigo
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: black
+      accent: indigo
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+      primary: black
+      accent: indigo
+  features:
+    # - announce.dismiss
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    # - header.autohide
+    # - navigation.expand
+    - navigation.indexes
+    - navigation.instant
+    # - navigation.prune
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    # - toc.integrate
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+plugins:
+  - search
+copyright: Copyright &copy; 2023 RP-Helpdesk 
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - javascripts/extra.js
+extra:
+  analytics:
+    provider: google
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/christian-rune
+
+

@@ -28,7 +28,8 @@ function show_dialog_menu() {
            4 "Add Cronjobs Quickly" \
            5 "Docker-CnC Scripts" \
            6 "Quick Tools" \
-           7 "Youtube Scripts" 2>"${INPUT}"
+           7 "Pre-Made VM Configs" \
+           8 "Youtube Scripts" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -51,6 +52,9 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_TOOLS
             ;;
         7)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$PRE_MADE_VM_CONFIGS
+            ;;
+        8)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$YOUTUBE_SCRIPTS
             ;;
         *)

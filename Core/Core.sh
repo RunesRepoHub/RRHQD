@@ -32,6 +32,7 @@ DOCKER_CNC_FOLDER=Docker-CnC
 BACKGROUND=Background
 QUICK_TOOLS_DIR=Quick-Tools
 YOUTUBE_SCRIPTS_FOLDER=Youtube-Scripts
+PRE_MADE_VM_CONFIGS_DIR=Pre-Made-VM-Configs
 
 ## Installers Scripts
 
@@ -49,6 +50,11 @@ PORTAINER="Portainer.sh"
 DELUGE="Deluge.sh"
 GHOST="Ghost.sh"
 LINKWARDEN="Linkwarden.sh"
+MEMOS="Memos.sh"
+IT_TOOLS="It-tools.sh"
+SONARR="Sonarr.sh"
+RADARR="Radarr.sh"
+OMBI="Ombi.sh"
 
 ## Menu Scripts
 
@@ -61,6 +67,7 @@ CRONJOB="Cronjob.sh"
 DOCKER_CNC="Docker-CnC.sh"
 QUICK_TOOLS="Quick-Tools.sh"
 YOUTUBE_SCRIPTS="Youtube-Script.sh"
+PRE_MADE_VM_CONFIGS="Pre-Made-VM-Configs.sh"
 
 
 ## Quick Installers Scripts
@@ -70,6 +77,7 @@ TAILSCALE="Tailscale-Installer.sh"
 FILEZILLA="Filezilla-Installer.sh"
 FAIL2BAN="Fail2ban-Installer.sh"
 ANSIBLE="Ansible-Installer.sh"
+PYDIO="Pydio-Installer.sh"
 
 ## Cronjob Scripts
 
@@ -111,3 +119,7 @@ YOUTUBE_CHANNEL_AUTO="Youtube-Channel-Rescan.sh"
 YOUTUBE_AUDIO_PLAYLIST="Youtube-Audio-Playlist.sh"
 YOUTUBE_STOP_DOWNLOAD="Youtube-Stop-Download.sh"
 YOUTUBE_CRONJOB_DOWNLOAD="Youtube-Cronjob-Download.sh"
+
+## Pre-Made-VM-Configs
+
+PRE_MADE_VM="RP-Helpdesk-Standard-Config.sh"

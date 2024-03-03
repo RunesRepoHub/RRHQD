@@ -18,7 +18,8 @@ function show_dialog_menu() {
            3 "Run the Filezilla Installer" \
            4 "Run the Fail2Ban Installer" \
            5 "Run the Ansible Installer" \
-           6 "Back To Main Menu" 2>"${INPUT}"
+           6 "Run the Pydio Installer" \
+           7 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -38,6 +39,9 @@ function show_dialog_menu() {
             ;;
         5)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$ANSIBLE
+            ;;
+        6)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$PYDIO
             ;;
         *)
             exit 0

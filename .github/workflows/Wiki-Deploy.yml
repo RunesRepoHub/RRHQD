@@ -1,0 +1,56 @@
+name: Wiki Auto Deploy 
+on:
+  push:
+    branches:
+      - Dev
+      - PoC 
+      - Production
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      - uses: actions/cache@v3
+        with:
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+      - run: pip install mkdocs-material 
+      - run: mkdocs gh-deploy --force
+      
+      - name: ntfy-failed-notifications
+        uses: niniyas/ntfy-action@master
+        if: failure()
+        with:
+          url: '${{ secrets.NTFYURL }}'
+          topic: '${{ secrets.NTFYTOPIC }}'
+          priority: 5
+          tags: +1,partying_face,action,failed
+          details: Workflow has failed!
+
+      - name: ntfy-success-notifications
+        uses: niniyas/ntfy-action@master
+        if: success()
+        with:
+          url: '${{ secrets.NTFYURL }}'
+          topic: '${{ secrets.NTFYTOPIC }}'
+          priority: 3
+          tags: +1,partying_face,action,successfully,completed
+          details: Workflow has been successfully completed!
+
+      - name: ntfy-cancelled-notifications
+        uses: niniyas/ntfy-action@master
+        if: cancelled()
+        with:
+          url: '${{ secrets.NTFYURL }}'
+          topic: '${{ secrets.NTFYTOPIC }}'
+          priority: 3
+          tags: +1,partying_face,action,cancelled
+          details: Workflow has been cancelled!

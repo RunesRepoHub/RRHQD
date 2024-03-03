@@ -29,75 +29,55 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
+clear 
+
 source ~/RRHQD/Core/Core.sh
 
 cd
-# Script to configure and start a Docker container with MySQL
 
-echo -e "${Green}Starting MySQL Docker configuration script.${NC}"
+echo -e "${Green}Setup a Docker container for Radarr${NC}"
 
-# Prompt user for input with defaults
+## Ask user for image
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-read -p "Enter the Docker image for MySQL (e.g., mysql:5.7): " IMAGE
-IMAGE=${IMAGE:-"mysql:5.7"}
+read -p "Enter the Docker image for Radarr (e.g., linuxserver/radarr:latest): " IMAGE
+IMAGE=${IMAGE:-"linuxserver/radarr:latest"}
 
+## Ask user for container name
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-read -p "Enter the name for the MySQL container: " CONTAINER_NAME
-CONTAINER_NAME=${CONTAINER_NAME:-"mysql-container"}
+read -p "Enter the name for the Radarr container: " CONTAINER_NAME
+CONTAINER_NAME=${CONTAINER_NAME:-"radarr-container"}
 
+## Ask user for port
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
-read -p "Enter the port to expose MySQL on (e.g., 3306): " PORT
-PORT=${PORT:-3306}
+read -p "Enter the port to expose Radarr on (e.g., 7878): " PORT
+PORT=${PORT:-7878}
 
-echo -e "${Yellow}This step can't be skipped${NC}"
-read -p "Enter the database user: " DB_USER
-
-# Ensure the user inputs a username and it is not 'root'
-while [[ -z "$DB_USER" ]] || [[ "$DB_USER" == "root" ]]; do
-    if [[ "$DB_USER" == "root" ]]; then
-        echo -e "${Red}The database user cannot be 'root'.${NC}"
-    fi
-    read -p "Enter the database user (cannot be 'root'): " DB_USER
-done
-
-echo -e "${Yellow}This step can't be skipped${NC}"
-read -s -p "Enter the database password: " DB_PASS
-
-# Ensure the user inputs a password
-while [ -z "$DB_PASS" ]; do
-    echo -e "${Red}A database password is required.${NC}"
-    read -s -p "Enter the database password: " DB_PASS
-done
-
-echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (mydb)${NC}"
-read -p "Enter the default database name: " DB_NAME
-DB_NAME=${DB_NAME:-"mydb"}
+## Ask user for data path
+echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
+read -p "Enter the path for Radarr data (e.g., /radarr-data/): " DATA_PATH
+DATA_PATH=${DATA_PATH:-./Data/radarr-data}
 
 # Define the subfolder for the Docker compose files
-COMPOSE_SUBFOLDER="./RRHQD-Dockers/mysql-docker"
+COMPOSE_SUBFOLDER="./RRHQD-Dockers/Radarr"
 COMPOSE_FILE="$COMPOSE_SUBFOLDER/docker-compose-$CONTAINER_NAME.yml"
 
 # Create the subfolder if it does not exist
 mkdir -p "$COMPOSE_SUBFOLDER"
 
-# Create a Docker compose file with the user input
-cat > "$COMPOSE_FILE" <<EOF
-version: '3'
-services:
-  $CONTAINER_NAME:
-    image: $IMAGE
-    container_name: $CONTAINER_NAME
-    environment:
-      - MYSQL_DATABASE=$DB_NAME
-      - MYSQL_USER=$DB_USER
-      - MYSQL_PASSWORD=$DB_PASS
-      - MYSQL_ROOT_PASSWORD=$DB_PASS
-    volumes:
-      - ./mysql-data:/var/lib/mysql
-    ports:
-      - "$PORT:3306"
-    restart: always
-EOF
+# Create a Docker compose file with the user input inside the subfolder
+{
+  echo "version: '3'"
+  echo "services:"
+  echo "  $CONTAINER_NAME:"
+  echo "    image: $IMAGE"
+  echo "    ports:"
+  echo "      - \"$PORT:7878\""
+  echo "    volumes:"
+  echo "      - \"$DATA_PATH:/config\""
+} > "$COMPOSE_FILE"
+
+# Inform the user where the Docker compose file has been created
+echo "Docker compose file created at: $COMPOSE_FILE"
 
 # Inform the user where the Docker compose file has been created
 echo "Docker compose file created at: $COMPOSE_FILE"

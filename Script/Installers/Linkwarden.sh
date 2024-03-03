@@ -1,12 +1,14 @@
 #!/bin/bash
 
+SCRIPT_FILENAME=$(basename "$0")
+
 LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
-LOG_FILE="$LOG_DIR/linkwarden_install.log"  # Log file location
+LOG_FILE="$LOG_DIR/"$SCRIPT_FILENAME"_install.log"  # Log file location
 
 # Function to increment log file name
 increment_log_file_name() {
-  local log_file_base_name="linkwarden_install_run_"
+  local log_file_base_name=""$SCRIPT_FILENAME"_install_run_"
   local log_file_extension=".log"
   local log_file_counter=1
 
@@ -27,9 +29,8 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-clear 
-
 source ~/RRHQD/Core/Core.sh
+clear
 
 COMPOSE_SUBFOLDER=~/RRHQD-Dockers
 
@@ -64,17 +65,7 @@ echo -e "${Yellow}Do you want to learn more about how to set it up? (Y/N)${NC}"
 read -p "Enter your choice: " decision
 
 if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
-    echo -e "${Yellow}Set up instructions:${NC}"
-    echo -e "${Yellow}Follow the setup these instructions to configure the system.${NC}"
-
-    echo -e "${Yellow}Nextauth secret:${NC}"
-    echo -e "${Blue}NEXTAUTH_SECRET should look like ^7yTjn@G$j@KtLh9&@UdMpdfDZ${NC}"
-
-    echo -e "${Yellow}Nextauth URL:${NC}"
-    echo -e "${Blue}NEXTAUTH_URL should look like 'http://localhost:3000/api/v1/auth' this can also be a FQDN or IP if FQDN then https:// and no ports${NC}"
-
-    echo -e "${Yellow}Postgres password:${NC}"
-    echo -e "${Blue}POSTGRES_PASSWORD should be set to a strong password${NC}"
+    echo -e "${Yellow}Set up instructions: https://runesrepohub.github.io/RRHQD/Setup-Linkwarden.html${NC}"
 elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
     echo -e "${Blue}Skipping setup instructions.${NC}"
 fi
