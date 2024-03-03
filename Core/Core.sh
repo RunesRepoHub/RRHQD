@@ -54,6 +54,7 @@ MEMOS="Memos.sh"
 IT_TOOLS="It-tools.sh"
 SONARR="Sonarr.sh"
 RADARR="Radarr.sh"
+OMBI="Ombi.sh"
 
 ## Menu Scripts
 
