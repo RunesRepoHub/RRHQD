@@ -73,6 +73,13 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 >- Portainer - A web management interface for Docker
 >- Deluge - A lightweight torrent client
 >- Ghost - A simple, powerful, and open source content management system
+>- Radarr - A self-hosted media server download manager and torrent tracker for movies
+>- Sonarr - A self-hosted media server download manager and torrent tracker for shows
+>- Ombi - A self-hosted reqests and media management system
+>- It-tools - A collection of tools for IT professionals
+>- Linkwarden - A self-hosted url manager
+>- Memos - A self-hosted twitter-ish service
+
 
 ---------------------------------------------------------------------------------------------
 
@@ -97,6 +104,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 >* Filezilla - A free software, cross-platform FTP application that supports FTP, SFTP, and FTPS
 >* Fail2Ban - An intrusion prevention software framework that protects computer servers from brute-force attacks
 >* Ansible - A radically simple IT automation tool
+>* Pydio - An open source cloud collaboration tool
 
 ---------------------------------------------------------------------------------------------
 
@@ -164,10 +172,12 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ### Update RRHQD
 
-![Alt text](docs/Update-RRHQD.png)
-
 > [!NOTE]
->This will do a git pull based on the selected branch on install. After the script will exit, this is done to make sure the script is up to date. Just run the script again.  
+>The script will pull the latest version of the script. Every time you run it, it will update itself. Some updates may require you to restart the script to take effect. 
+
+> [!WARNING]
+>***DO NOT CHANGE THE FILES IN THE RRHQD FOLDER***
+>Doing so may break the script. You can modify the files in the RRHQD-Dockers folder.
 
 ---------------------------------------------------------------------------------------------
 
