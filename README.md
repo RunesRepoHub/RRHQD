@@ -12,7 +12,7 @@ The development of the script is based on managing different development stages 
 
 RRHQD provides a user-friendly and efficient solution for deploying and managing applications on Linux systems.
 
-## Requirements:
+# Requirements
 
 > [!WARNING]
 >- Sudo (is auto installed by setup)
@@ -21,7 +21,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 >- Curl (is auto installed by setup)
 >- Dialog (is auto installed by setup and has a theme override)
 
-## Operating Systems Supported:
+# Operating Systems Supported
 
 > [!TIP]
 >- Debian 10 - 11
@@ -30,20 +30,20 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 >- Kail Linux 2023.4 
 >- Zorin OS - 17 - Core
 
-### Current Versions:
+# Current Versions
 
 >[!CAUTION]
 >1. Dev = Development branch (Very unstable)
 >2. PoC = Proof of concept (Nightly Updates)
 >3. Prod = Production (Stable branch)
 
-### Main Menu:
+## Main Menu
 
 ![Alt text](docs/Main-Menu.png)
 
 ---------------------------------------------------------------------------------------------
 
-### Docker Support:
+## Docker Support
 
 ![Alt text](docs/Docker-Images.png)
 
@@ -57,7 +57,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 >- All dockers are made using docker compose files.
 >- All docker compose files are located in "RRHQD-Dockers"
 
-#### Docker images currently supported:
+### Docker images currently supported
 
 > [!NOTE]
 >- Uptime-Kuma - A fancy self-hosted monitoring tool
@@ -73,10 +73,17 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 >- Portainer - A web management interface for Docker
 >- Deluge - A lightweight torrent client
 >- Ghost - A simple, powerful, and open source content management system
+>- Radarr - A self-hosted media server download manager and torrent tracker for movies
+>- Sonarr - A self-hosted media server download manager and torrent tracker for shows
+>- Ombi - A self-hosted reqests and media management system
+>- It-tools - A collection of tools for IT professionals
+>- Linkwarden - A self-hosted url manager
+>- Memos - A self-hosted twitter-ish service
+
 
 ---------------------------------------------------------------------------------------------
 
-### RunesRepoHub Software Support:
+## RunesRepoHub Software Support
 
 ![Alt text](docs/RRH.png)
 
@@ -87,7 +94,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ---------------------------------------------------------------------------------------------
 
-### Quick Installer Support:
+## Quick Installer Support
 
 ![Alt text](docs/Quick-Installers.png)
 
@@ -97,10 +104,11 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 >* Filezilla - A free software, cross-platform FTP application that supports FTP, SFTP, and FTPS
 >* Fail2Ban - An intrusion prevention software framework that protects computer servers from brute-force attacks
 >* Ansible - A radically simple IT automation tool
+>* Pydio - An open source cloud collaboration tool
 
 ---------------------------------------------------------------------------------------------
 
-### Cronjobs
+## Cronjobs
 
 ![Alt text](docs/Cronjobs.png)
 
@@ -113,7 +121,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ---------------------------------------------------------------------------------------------
 
-### Docker Command and Control
+## Docker Command and Control
 
 ![Alt text](docs/Docker-CnC.png)
 
@@ -127,7 +135,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ---------------------------------------------------------------------------------------------
 
-### Quick Tools
+## Quick Tools
 
 ![Alt text](docs/Quick-Tools.png)
 
@@ -142,7 +150,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ---------------------------------------------------------------------------------------------
 
-### Youtube Scripts
+## Youtube Scripts
 
 ![Alt text](docs/Youtube-Scripts.png)
 
@@ -162,23 +170,26 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ---------------------------------------------------------------------------------------------
 
-### Update RRHQD
-
-![Alt text](docs/Update-RRHQD.png)
+## Update RRHQD
 
 > [!NOTE]
->This will do a git pull based on the selected branch on install. After the script will exit, this is done to make sure the script is up to date. Just run the script again.  
+>The script will pull the latest version of the script. Every time you run it, it will update itself. Some updates may require you to restart the script to take effect. 
+
+> [!CAUTION]
+>***DO NOT CHANGE THE FILES IN THE RRHQD FOLDER***
+>
+>Doing so may break the script. You can modify the files in the RRHQD-Dockers folder.
 
 ---------------------------------------------------------------------------------------------
 
-### Dependencies folders:
+## Dependencies folders
 > [!WARNING]
 >* RRHQD
 >* RRHQD-Dockers
 >
 > Note: The Docker compose files and the docker volumes are stored in the "RRHQD-Dockers" folder (SO DONT DELETE IT, unless you know what you are doing). The "RRHQD" folder is the main folder for the script.
 
-## How to use
+# How to use
 
 > [!TIP]
 >- Run the setup via the command below.
@@ -192,13 +203,13 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 > [!CAUTION]
 >***Don't use the Dev branch***
 
-### Setup Command
+## Setup Command
 
 ```
 bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Prod/Setup.sh)
 ```
 
-### Custom Commands 
+## Custom Commands 
 > [!NOTE]
 >To use custom commands you will have to run 
 

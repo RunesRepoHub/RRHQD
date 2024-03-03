@@ -55,6 +55,7 @@ IT_TOOLS="It-tools.sh"
 SONARR="Sonarr.sh"
 RADARR="Radarr.sh"
 OMBI="Ombi.sh"
+JACKETT="Jackett.sh"
 
 ## Menu Scripts
 

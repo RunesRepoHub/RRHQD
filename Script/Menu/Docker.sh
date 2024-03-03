@@ -32,7 +32,8 @@ function show_dialog_menu() {
            17 "Run Sonarr Installer" \
            18 "Run Radarr Installer" \
            19 "Run Ombi Installer" \
-           20 "Back To Main Menu" 2>"${INPUT}"
+           20 "Run Jackett Installer" \
+           21 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -92,6 +93,9 @@ function show_dialog_menu() {
             ;;
         19)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$OMBI
+            ;;
+        20)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$JACKETT
             ;;
         *)
             exit 0
