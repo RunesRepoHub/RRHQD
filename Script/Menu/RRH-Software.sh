@@ -21,7 +21,8 @@ function show_dialog_menu() {
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
         1)
-            bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/ACS/Production/setup.sh)
+            wget -qO ~/setup.sh https://raw.githubusercontent.com/RunesRepoHub/ACS/Production/setup.sh
+            bash ~/setup.sh
             ;;
         2)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/NRD/Production/Setup.sh)
