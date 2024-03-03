@@ -83,7 +83,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ---------------------------------------------------------------------------------------------
 
-## RunesRepoHub Software Support:
+## RunesRepoHub Software Support
 
 ![Alt text](docs/RRH.png)
 
@@ -94,7 +94,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ---------------------------------------------------------------------------------------------
 
-## Quick Installer Support:
+## Quick Installer Support
 
 ![Alt text](docs/Quick-Installers.png)
 
@@ -181,7 +181,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 
 ---------------------------------------------------------------------------------------------
 
-## Dependencies folders:
+## Dependencies folders
 > [!WARNING]
 >* RRHQD
 >* RRHQD-Dockers
