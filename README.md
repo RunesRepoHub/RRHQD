@@ -224,3 +224,5 @@ source ~/.zshrc
 ```
 qd
 ```
+
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=runesrepohub)](https://github.com/runesrepohub/github-readme-stats)
