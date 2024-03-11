@@ -18,7 +18,8 @@ function show_dialog_menu() {
            3 "Add a Reboot cron job for every Sunday at 00:00 am" \
            4 "Cronjob Manager" \
            5 "Add Cronmointer" \
-           6 "Back To Main Menu" 2>"${INPUT}"
+           6 "Add Webp Converter to run every 20 minutes" \
+           7 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -36,6 +37,9 @@ function show_dialog_menu() {
             ;;
         5)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$ADD_CRONMOINTER
+            ;;
+        6)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$ADD_WEBP_CONVERTER
             ;;
         *)
             exit 0
