@@ -1,19 +1,21 @@
 #!/bin/bash
 
-# Ask user to pick a folder/subfolders
-echo "Enter the path of the folder/subfolders you want to convert the webp files into jpeg:"
-read -r folderPath
+source ~/RRHQD/Core/Core.sh
 
-# Check if folderPath is a valid directory
-if [ ! -d "$folderPath" ]; then
-  echo "Invalid directory. Please try again."
-  exit
-fi
+# find all webp files in all subfolders
+find ~/plex/media/youtube -type f -name '*.webp' -print0 |
+    while IFS= read -r -d '' file; do
+        # get filename without extension
+        filename=$(basename "$file" .webp)
+        # convert webp to jpeg
+        cwebp -quiet "$file" -o "${file%.*}.jpeg"
+        # remove the original webp file
+        rm "$file"
+    done
 
-# Loop through all subfolders and files in the folder
-# We use find instead of a "for" loop because it can handle subfolders
-find "$folderPath" -type f -name "*.webp" -exec bash -c 'webp -q 80 -m -o "${0%.webp}.jpeg" "{}"' {} \;
-
-# Inform the user that the script is finished
-echo "Conversion finished."
+        if [ $? -eq 0 ]; then
+            dialog --title "Success" --msgbox "All webp images converted to jpeg successfully." 6 50
+        else
+            dialog --title "Failure" --msgbox "One or more webp images failed to convert to jpeg." 6 50
+        fi
 
