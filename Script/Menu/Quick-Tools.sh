@@ -10,7 +10,7 @@ script_name=$(basename "$0" .sh)
 # Use dialog to create a more user-friendly menu
 function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Quick-Tools" \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Quick-Tools Menu Running On $hostname ($ip)" \
            --title "Quick Tools Menu - $script_name" \
            --menu "Please select a tool to run:" 15 60 4 \
            1 "Disk Check" \

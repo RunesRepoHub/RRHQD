@@ -19,7 +19,7 @@ script_name=$(basename "$0" .sh)
 
 function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Main Menu" \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Main Menu Running On $hostname ($ip)" \
            --title "Main Menu - $script_name" \
            --menu "Please select an option:" 15 60 8 \
            1 "Find and install a Docker" \
