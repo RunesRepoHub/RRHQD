@@ -16,7 +16,8 @@ function show_dialog_menu() {
            4 "Download Playlist MP3" \
            5 "Stop all Youtube Downlaods" \
            6 "Rescan urls Every 20 mins" \
-           7 "Back To Main Menu" 2>"${INPUT}"
+           7 "Convert Webp to JPEG" \
+           8 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -37,6 +38,9 @@ function show_dialog_menu() {
             ;;
         6)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$YOUTUBE_CRONJOB_DOWNLOAD
+            ;;
+        7)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$WEBP_TO_JPEG
             ;;
         *)
             exit 0

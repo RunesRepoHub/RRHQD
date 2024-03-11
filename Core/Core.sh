@@ -120,6 +120,7 @@ YOUTUBE_CHANNEL_AUTO="Youtube-Channel-Rescan.sh"
 YOUTUBE_AUDIO_PLAYLIST="Youtube-Audio-Playlist.sh"
 YOUTUBE_STOP_DOWNLOAD="Youtube-Stop-Download.sh"
 YOUTUBE_CRONJOB_DOWNLOAD="Youtube-Cronjob-Download.sh"
+WEBP_TO_JPEG="Webp-to-JPEG.sh"
 
 ## Pre-Made-VM-Configs
 
