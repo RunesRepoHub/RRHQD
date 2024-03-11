@@ -3,11 +3,16 @@
 clear 
 source ~/RRHQD/Core/Core.sh
 
+
+hostname=$(hostname)
+ip=$(hostname -I | cut -d' ' -f1)
+
+
 script_name=$(basename "$0" .sh)
 
 function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Youtube-Scripts" \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Youtube-Scripts Menu Running On $hostname ($ip)" \
            --title "Quick Scripts Menu - $script_name" \
            --menu "Please select an option:" 15 60 4 \
            1 "Download YouTube Video" \

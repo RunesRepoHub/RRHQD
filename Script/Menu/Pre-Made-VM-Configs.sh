@@ -8,7 +8,7 @@ script_name=$(basename "$0" .sh)
 
 function show_dialog_menu() {
     dialog --clear
-    dialog --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Pre-Made-VM-Configs" \
+    dialog --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Pre-Made-VM-Configs Menu Running On $hostname ($ip)" \
            --title "Main Menu - $script_name" \
            --menu "Please select an option:" 15 60 8 \
            1 "Run the RP-Helpdesk Standard Config" \
