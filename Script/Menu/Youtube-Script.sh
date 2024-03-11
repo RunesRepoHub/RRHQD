@@ -6,8 +6,6 @@ source ~/RRHQD/Core/Core.sh
 
 hostname=$(hostname)
 ip=$(hostname -I | cut -d' ' -f1)
-
-
 script_name=$(basename "$0" .sh)
 
 function show_dialog_menu() {
