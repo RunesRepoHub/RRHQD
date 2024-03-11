@@ -28,7 +28,12 @@ find ~/plex/media/youtube -type f -name '*.webp' -print0 |
         filename=$(basename "$file" .webp)
         # convert webp to jpeg
         cwebp -quiet "$file" -o "${file%.*}.jpeg"
+        # remove webp files
+        rm "$file"
+        # decrement the number of files
         NUM_FILES=$((NUM_FILES - 1))
+        # display progress
+        dialog --title "Converting WebP images to JPEG" --infobox "Converting $NUM_FILES WebP images to JPEG..." 6 60
     done
 
 
