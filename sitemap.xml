@@ -1,27 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/index.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/index.html</loc>
          <lastmod>2024-03-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/Setup-Checkmk.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Checkmk.html</loc>
          <lastmod>2024-03-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/Setup-Cloudflare.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Cloudflare.html</loc>
          <lastmod>2024-03-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/Setup-Deluge.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Deluge.html</loc>
          <lastmod>2024-03-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/Setup-Linkwarden.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Linkwarden.html</loc>
+         <lastmod>2024-03-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Readme/Cronjobs.html</loc>
+         <lastmod>2024-03-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Readme/Docker-CnC.html</loc>
+         <lastmod>2024-03-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Readme/Docker-Support.html</loc>
+         <lastmod>2024-03-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Readme/Installation.html</loc>
+         <lastmod>2024-03-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Readme/Quick-Installer.html</loc>
+         <lastmod>2024-03-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Readme/Quick-Tools.html</loc>
+         <lastmod>2024-03-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Readme/RunesRepoHub.html</loc>
+         <lastmod>2024-03-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Readme/Youtube-Scripts.html</loc>
          <lastmod>2024-03-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
