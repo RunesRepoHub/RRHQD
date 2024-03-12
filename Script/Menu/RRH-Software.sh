@@ -4,12 +4,14 @@
 clear 
 source ~/RRHQD/Core/Core.sh
 
+hostname=$(hostname)
+ip=$(hostname -I | cut -d' ' -f1)
 script_name=$(basename "$0" .sh)
 
 # Use dialog to create a more user-friendly menu
 function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - RRH-Software" \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - RRH-Software Menu Running On $hostname ($ip)" \
            --title "Main Menu - $script_name" \
            --menu "Please select an option:" 15 60 6 \
            1 "Run the ACS Installer" \
@@ -21,7 +23,8 @@ function show_dialog_menu() {
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
         1)
-            bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/ACS/Production/setup.sh)
+            wget -qO ~/setup.sh https://raw.githubusercontent.com/RunesRepoHub/ACS/Production/setup.sh
+            bash ~/setup.sh
             ;;
         2)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/NRD/Production/Setup.sh)

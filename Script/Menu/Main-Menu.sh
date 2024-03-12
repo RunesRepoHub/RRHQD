@@ -1,25 +1,28 @@
 #!/bin/bash
 
+hostname=$(hostname)
+ip=$(hostname -I | cut -d' ' -f1)
 
 clear 
 source ~/RRHQD/Core/Core.sh
 
 cd $ROOT_FOLDER
-dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy)" --title "Update RRHQD Codebase" --infobox "Pulling updates from repository..." 5 60
+dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy) Running On $hostname ($ip)" --title "Update RRHQD Codebase" --infobox "Pulling updates from repository..." 5 60
 sleep 1
 git pull --progress > /tmp/git-pull-output.txt 2>&1
 EXIT_STATUS=$?
 if [ $EXIT_STATUS -eq 0 ]; then
-    dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy)" --title "Pulling Updates" --textbox /tmp/git-pull-output.txt 15 60
+    dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy) Running On $hostname ($ip)" --title "Pulling Updates" --textbox /tmp/git-pull-output.txt 15 60
 else
     dialog --title "Error" --textbox /tmp/git-pull-output.txt 15 60
 fi
+
 
 script_name=$(basename "$0" .sh)
 
 function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Main Menu" \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Main Menu Running On $hostname ($ip)" \
            --title "Main Menu - $script_name" \
            --menu "Please select an option:" 15 60 8 \
            1 "Find and install a Docker" \
@@ -28,7 +31,8 @@ function show_dialog_menu() {
            4 "Add Cronjobs Quickly" \
            5 "Docker-CnC Scripts" \
            6 "Quick Tools" \
-           7 "Youtube Scripts" 2>"${INPUT}"
+           7 "Pre-Made VM Configs" \
+           8 "Youtube Scripts" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -51,6 +55,9 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$QUICK_TOOLS
             ;;
         7)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$PRE_MADE_VM_CONFIGS
+            ;;
+        8)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$YOUTUBE_SCRIPTS
             ;;
         *)

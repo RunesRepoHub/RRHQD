@@ -3,11 +3,14 @@
 clear 
 source ~/RRHQD/Core/Core.sh
 
+
+hostname=$(hostname)
+ip=$(hostname -I | cut -d' ' -f1)
 script_name=$(basename "$0" .sh)
 
 function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Youtube-Scripts" \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Youtube-Scripts Menu Running On $hostname ($ip)" \
            --title "Quick Scripts Menu - $script_name" \
            --menu "Please select an option:" 15 60 4 \
            1 "Download YouTube Video" \
@@ -16,7 +19,8 @@ function show_dialog_menu() {
            4 "Download Playlist MP3" \
            5 "Stop all Youtube Downlaods" \
            6 "Rescan urls Every 20 mins" \
-           7 "Back To Main Menu" 2>"${INPUT}"
+           7 "Convert Webp to JPEG" \
+           8 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -37,6 +41,9 @@ function show_dialog_menu() {
             ;;
         6)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$YOUTUBE_CRONJOB_DOWNLOAD
+            ;;
+        7)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$WEBP_TO_JPEG_MANUEL
             ;;
         *)
             exit 0

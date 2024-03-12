@@ -5,12 +5,14 @@
 clear 
 source ~/RRHQD/Core/Core.sh
 
+hostname=$(hostname)
+ip=$(hostname -I | cut -d' ' -f1)
 script_name=$(basename "$0" .sh)
 
 # Use dialog to create a more user-friendly menu
 function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Dockers" \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Dockers Menu Running On $hostname ($ip)" \
            --title "Main Menu - $script_name" \
            --menu "Please select an option:" 15 60 12 \
            1 "Run Uptime-Kuma Installer" \
@@ -26,7 +28,14 @@ function show_dialog_menu() {
            11 "Run Portainer Installer" \
            12 "Run Deluge Installer" \
            13 "Run Ghost Installer" \
-           14 "Back To Main Menu" 2>"${INPUT}"
+           14 "Run Linkwarden Installer" \
+           15 "Run Memos Installer" \
+           16 "Run It-tools Installer" \
+           17 "Run Sonarr Installer" \
+           18 "Run Radarr Installer" \
+           19 "Run Ombi Installer" \
+           20 "Run Jackett Installer" \
+           21 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -68,6 +77,27 @@ function show_dialog_menu() {
             ;;
         13)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$GHOST
+            ;;
+        14)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$LINKWARDEN
+            ;;
+        15)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$MEMOS
+            ;;
+        16)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$IT_TOOLS
+            ;;
+        17)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$SONARR
+            ;;
+        18)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$RADARR
+            ;;
+        19)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$OMBI
+            ;;
+        20)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$INSTALLER_FOLDER/$JACKETT
             ;;
         *)
             exit 0

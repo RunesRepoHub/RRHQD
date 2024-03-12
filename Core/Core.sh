@@ -32,6 +32,7 @@ DOCKER_CNC_FOLDER=Docker-CnC
 BACKGROUND=Background
 QUICK_TOOLS_DIR=Quick-Tools
 YOUTUBE_SCRIPTS_FOLDER=Youtube-Scripts
+PRE_MADE_VM_CONFIGS_DIR=Pre-Made-VM-Configs
 
 ## Installers Scripts
 
@@ -48,6 +49,13 @@ LLAMA_GPT="Llama-GPT.sh"
 PORTAINER="Portainer.sh"
 DELUGE="Deluge.sh"
 GHOST="Ghost.sh"
+LINKWARDEN="Linkwarden.sh"
+MEMOS="Memos.sh"
+IT_TOOLS="It-tools.sh"
+SONARR="Sonarr.sh"
+RADARR="Radarr.sh"
+OMBI="Ombi.sh"
+JACKETT="Jackett.sh"
 
 ## Menu Scripts
 
@@ -60,6 +68,7 @@ CRONJOB="Cronjob.sh"
 DOCKER_CNC="Docker-CnC.sh"
 QUICK_TOOLS="Quick-Tools.sh"
 YOUTUBE_SCRIPTS="Youtube-Script.sh"
+PRE_MADE_VM_CONFIGS="Pre-Made-VM-Configs.sh"
 
 
 ## Quick Installers Scripts
@@ -69,6 +78,7 @@ TAILSCALE="Tailscale-Installer.sh"
 FILEZILLA="Filezilla-Installer.sh"
 FAIL2BAN="Fail2ban-Installer.sh"
 ANSIBLE="Ansible-Installer.sh"
+PYDIO="Pydio-Installer.sh"
 
 ## Cronjob Scripts
 
@@ -76,6 +86,9 @@ REBOOT_EVERY_NIGHT="Reboot-every-night.sh"
 REBOOT_EVERY_SUNDAY="Reboot-every-sunday.sh"
 UPDATE_DAILY_MIDNIGHT="Update-daily-midnight.sh"
 CRONJOB_MANAGER="Cronjob-Manager.sh"
+ADD_CRONMOINTER="Add-Cronmointer.sh"
+ADD_WEBP_CONVERTER="Add-Webp-Converter.sh"
+ADD_SHORT_CLEANUP="Add-Short-Cleanup.sh"
 
 ## Docker CnC Scripts
 
@@ -90,6 +103,8 @@ DOCKER_IMPORT="Docker-Import.sh"
 
 ## Background Jobs
 
+SHORT_CLEANUP="Short-Cleanup.sh"
+WEBP_TO_JPEG="Webp-to-JPEG.sh"
 
 ## Quick Tools Scripts
 
@@ -109,3 +124,8 @@ YOUTUBE_CHANNEL_AUTO="Youtube-Channel-Rescan.sh"
 YOUTUBE_AUDIO_PLAYLIST="Youtube-Audio-Playlist.sh"
 YOUTUBE_STOP_DOWNLOAD="Youtube-Stop-Download.sh"
 YOUTUBE_CRONJOB_DOWNLOAD="Youtube-Cronjob-Download.sh"
+WEBP_TO_JPEG_MANUEL="Webp-to-JPEG-Manual.sh"
+
+## Pre-Made-VM-Configs
+
+PRE_MADE_VM="RP-Helpdesk-Standard-Config.sh"

@@ -5,12 +5,14 @@
 clear 
 source ~/RRHQD/Core/Core.sh
 
+hostname=$(hostname)
+ip=$(hostname -I | cut -d' ' -f1)
 script_name=$(basename "$0" .sh)
 
 # Use dialog to create a more user-friendly menu
 function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Quick-Installers" \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - Quick-Installers Menu Running On $hostname ($ip)" \
            --title "Main Menu - $script_name" \
            --menu "Please select an option:" 15 60 6 \
            1 "Run the Tailscale Installer" \
@@ -18,7 +20,8 @@ function show_dialog_menu() {
            3 "Run the Filezilla Installer" \
            4 "Run the Fail2Ban Installer" \
            5 "Run the Ansible Installer" \
-           6 "Back To Main Menu" 2>"${INPUT}"
+           6 "Run the Pydio Installer" \
+           7 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -38,6 +41,9 @@ function show_dialog_menu() {
             ;;
         5)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$ANSIBLE
+            ;;
+        6)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$QUICK_INSTALLERS_DIR/$PYDIO
             ;;
         *)
             exit 0

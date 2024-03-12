@@ -1,12 +1,14 @@
 #!/bin/bash
 
+SCRIPT_FILENAME=$(basename "$0")
+
 LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
-LOG_FILE="$LOG_DIR/checkmk_install.log"  # Log file location
+LOG_FILE="$LOG_DIR/"$SCRIPT_FILENAME"_install.log"  # Log file location
 
 # Function to increment log file name
 increment_log_file_name() {
-  local log_file_base_name="checkmk_install_run_"
+  local log_file_base_name=""$SCRIPT_FILENAME"_install_run_"
   local log_file_extension=".log"
   local log_file_counter=1
 
@@ -35,6 +37,15 @@ source ~/RRHQD/Core/Core.sh
 # Script to configure and start a Docker container running CheckMK
 
 echo -e "${Green}Starting CheckMK Docker configuration script.${NC}"
+
+echo -e "${Yellow}Do you want to learn more about how to set it up? (Y/N)${NC}"
+read -p "Enter your choice: " decision
+
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: https://runesrepohub.github.io/RRHQD/Setup-Checkmk.html${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
 
 # Prompt user for input with defaults
 
