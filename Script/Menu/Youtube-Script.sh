@@ -43,7 +43,7 @@ function show_dialog_menu() {
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$YOUTUBE_CRONJOB_DOWNLOAD
             ;;
         7)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$WEBP_TO_JPEG
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$YOUTUBE_SCRIPTS_FOLDER/$WEBP_TO_JPEG_MANUEL
             ;;
         *)
             exit 0
