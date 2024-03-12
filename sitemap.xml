@@ -46,12 +46,22 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Readme/Main-Menu.html</loc>
+         <lastmod>2024-03-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://runesrepohub.github.io/RRHQD/Readme/Quick-Installer.html</loc>
          <lastmod>2024-03-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://runesrepohub.github.io/RRHQD/Readme/Quick-Tools.html</loc>
+         <lastmod>2024-03-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/Readme/Requirements.html</loc>
          <lastmod>2024-03-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
