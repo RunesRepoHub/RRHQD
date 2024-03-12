@@ -4,7 +4,7 @@ on:
     branches:
       - Dev
       - PoC 
-      - Production
+      - Prod
 permissions:
   contents: write
 jobs:
