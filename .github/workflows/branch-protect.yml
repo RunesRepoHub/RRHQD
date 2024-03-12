@@ -3,7 +3,6 @@ name: Set up protected branch on prod
 on:
   push:
     branches:
-      - Prod
       - Dev
 
 jobs:
@@ -18,7 +17,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          branch: prod
+          branch: Dev
           enforce_admins: true
           required_pull_request_reviews:
             dismiss_stale_reviews: true
