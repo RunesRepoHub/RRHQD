@@ -8,3 +8,5 @@
 >- Add a reboot cronjob for every Sunday at 00:00 am
 >- Cronjob Manager - Easy and quick custom cronjob
 >- Cronmointer - Easy WebGUI Interface to keep track of cronjobs
+>- Add Webp Converter to run every 20 minutes
+>- Add Youtube Short Cleanup to run every 20 minutes

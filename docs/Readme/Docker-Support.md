@@ -34,3 +34,4 @@
 >- It-tools - A collection of tools for IT professionals
 >- Linkwarden - A self-hosted url manager
 >- Memos - A self-hosted twitter-ish service
+>- Jackett - A self-hosted torrent tracker
