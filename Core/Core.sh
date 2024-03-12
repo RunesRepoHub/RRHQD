@@ -88,6 +88,7 @@ UPDATE_DAILY_MIDNIGHT="Update-daily-midnight.sh"
 CRONJOB_MANAGER="Cronjob-Manager.sh"
 ADD_CRONMOINTER="Add-Cronmointer.sh"
 ADD_WEBP_CONVERTER="Add-Webp-Converter.sh"
+ADD_SHORT_CLEANUP="Add-Short-Cleanup.sh"
 
 ## Docker CnC Scripts
 
@@ -102,6 +103,8 @@ DOCKER_IMPORT="Docker-Import.sh"
 
 ## Background Jobs
 
+SHORT_CLEANUP="Short-Cleanup.sh"
+WEBP_TO_JPEG="Webp-to-JPEG.sh"
 
 ## Quick Tools Scripts
 
@@ -121,7 +124,7 @@ YOUTUBE_CHANNEL_AUTO="Youtube-Channel-Rescan.sh"
 YOUTUBE_AUDIO_PLAYLIST="Youtube-Audio-Playlist.sh"
 YOUTUBE_STOP_DOWNLOAD="Youtube-Stop-Download.sh"
 YOUTUBE_CRONJOB_DOWNLOAD="Youtube-Cronjob-Download.sh"
-WEBP_TO_JPEG="Webp-to-JPEG.sh"
+WEBP_TO_JPEG="Webp-to-JPEG-Manual.sh"
 
 ## Pre-Made-VM-Configs
 

@@ -19,7 +19,8 @@ function show_dialog_menu() {
            4 "Cronjob Manager" \
            5 "Add Cronmointer" \
            6 "Add Webp Converter to run every 20 minutes" \
-           7 "Back To Main Menu" 2>"${INPUT}"
+           7 "Add Youtube Short Cleanup to run every 20 minutes" \
+           8 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -40,6 +41,9 @@ function show_dialog_menu() {
             ;;
         6)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$ADD_WEBP_CONVERTER
+            ;;
+        7)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$CRONJOB_FOLDER/$ADD_SHORT_CLEANUP
             ;;
         *)
             exit 0
