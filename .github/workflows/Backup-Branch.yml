@@ -17,7 +17,7 @@ jobs:
       - name: Create a new branch based on the Dev branch
         run: |
           git checkout Dev
-          git checkout -b "Backup-Dev-Branch-$(date --utc '+%F-%H-%M-%S')"
-          git push --set-upstream origin "Backup-Dev-Branch-$(date --utc '+%F-%H-%M-%S')}"
+          git checkout -b "Backup-Dev-Branch"
+          git push --set-upstream origin "Backup-Dev-Branch"
 
 
