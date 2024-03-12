@@ -1,6 +1,6 @@
 ## Cronjobs
 
-![Alt text](docs/Images/Cronjobs.png)
+![Alt text](Images/Cronjobs.png)
 
 > [!NOTE]
 >- Add a nightly reboot at 4:45 am

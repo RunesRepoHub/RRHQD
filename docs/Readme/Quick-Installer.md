@@ -1,6 +1,6 @@
 ## Quick Installer Support
 
-![Alt text](docs/Images/Quick-Installers.png)
+![Alt text](Images/Quick-Installers.png)
 
 > [!NOTE]
 >* Starship - A minimalistic, powerful, and extremely customizable prompt for any shell

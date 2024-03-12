@@ -1,6 +1,6 @@
 ## Docker Command and Control
 
-![Alt text](docs/Images/Docker-CnC.png)
+![Alt text](Images/Docker-CnC.png)
 
 > [!NOTE]
 >- Docker - Cleanup (Clean all unused images, volumes and networks)

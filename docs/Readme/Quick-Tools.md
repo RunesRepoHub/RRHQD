@@ -1,6 +1,6 @@
 ## Quick Tools
 
-![Alt text](docs/Images/Quick-Tools.png)
+![Alt text](Images/Quick-Tools.png)
 
 (Early Access) Has not been full tested yet.
 > [!WARNING]
