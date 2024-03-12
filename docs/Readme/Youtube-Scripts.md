@@ -6,7 +6,7 @@
 >(These scripts are made to work with the ACS)
 >
 >***IT WILL NOT WORK WITHOUT INSTALLING THE ACS First*** 
->[Install ACS](https://github.com/RunesRepoHub/RRHQD#runesrepohub-software-support)
+>[Install ACS](RunesRepoHub.md)
 
 > [!NOTE]
 >- Download Youtube Video - Download a youtube playlist
