@@ -1,13 +1,13 @@
-name: PR Branch Creation
+name: Backup Branch Creation
 
 on:
   push:
     branches:
-      - Dev
+      - PoC
 
 jobs:
   create-pr-branch:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     permissions:
       contents: write
     steps:
@@ -17,7 +17,7 @@ jobs:
       - name: Create a new branch based on the Dev branch
         run: |
           git checkout Dev
-          git checkout -b "PR-${GITHUB_RUN_NUMBER}"
-          git push --set-upstream origin "PR-${GITHUB_RUN_NUMBER}"
+          git checkout -b "Backup-Dev-Branch-$(date --utc '+%F-%H-%M-%S')"
+          git push --set-upstream origin "Backup-Dev-Branch-$(date --utc '+%F-%H-%M-%S')}"
 
 
