@@ -6,7 +6,7 @@ chmod +x $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$WEBP_TO_JPEG
 
 add_update_cronjob() {
     local update_command="$ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$WEBP_TO_JPEG"
-    local cronjob_entry="0 0 * * * root bash $update_command"
+    local cronjob_entry="*/20 * * * * root bash $update_command"
 
     # Check if the update cron job already exists in /etc/crontab
     if grep -qF -- "$update_command" /etc/crontab; then
