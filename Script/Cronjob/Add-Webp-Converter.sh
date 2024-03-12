@@ -4,26 +4,23 @@ source ~/RRHQD/Core/Core.sh
 
 chmod +x $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$WEBP_TO_JPEG
 
-(crontab -l ; echo ) | sort - | uniq - | sudo tee -a /etc/crontab >/dev/null
+add_update_cronjob() {
+    local update_command="$ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$WEBP_TO_JPEG"
+    local cronjob_entry="0 0 * * * root bash $update_command"
 
-cron_job_exists() {
-    local cron_command="$1"
-    grep -qF "$cron_command" /etc/crontab
+    # Check if the update cron job already exists in /etc/crontab
+    if grep -qF -- "$update_command" /etc/crontab; then
+        dialog --msgbox "Update cron job already exists in /etc/crontab. No changes made." 6 50
+    else
+        # Add the update cron job to /etc/crontab
+        if echo "$cronjob_entry" >> /etc/crontab; then
+            dialog --msgbox "Update cron job added to /etc/crontab successfully." 6 50
+        else
+            dialog --msgbox "Failed to add update cron job to /etc/crontab." 6 50
+            return 1
+        fi
+    fi
 }
 
-add_cron_job() {
-    local cron_command="$1"
-    echo "$cron_command" | sudo tee -a /etc/crontab >/dev/null
-    dialog --title "Cron Job Added" --msgbox "Cron job added: $cron_command" 6 50
-}
-
-reboot_job="*/20 * * * * root bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$WEBP_TO_JPEG"
-
-if cron_job_exists "$reboot_job"; then
-    dialog --msgbox "Reboot cron job already exists in /etc/crontab. Aborting script." 6 50
-    exit 1
-else
-    add_cron_job "$reboot_job"
-    dialog --msgbox "Reboot cron job added to /etc/crontab successfully." 6 50
-    exit 0
-fi
+# Call the function to add the cron job
+add_update_cronjob
