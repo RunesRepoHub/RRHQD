@@ -15,3 +15,4 @@
 >- Download Youtube Playlist MP3 - Download a youtube playlist in mp3
 >- Stop all Youtube Downloads - Stop all youtube downloads
 >- Scan all Youtube Downloads - Scan all youtube downloads every 20 min 
+>- Convert Webp to jpeg - For Plex Enabled Thumbnails
