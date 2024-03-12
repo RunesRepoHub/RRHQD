@@ -1,6 +1,6 @@
 ## Youtube Scripts
 
-![Alt text](Images/Youtube-Scripts.png)
+![Alt text](../Images/Youtube-Scripts.png)
 
 > [!WARNING]
 >(These scripts are made to work with the ACS)

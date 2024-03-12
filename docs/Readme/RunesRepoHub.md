@@ -1,6 +1,6 @@
 ## RunesRepoHub Software Support
 
-![Alt text](Images/RRH.png)
+![Alt text](../Images/RRH.png)
 
 > [!NOTE]
 >* ACS (Automated Content System) - [ACS Wiki](https://runesrepohub.github.io/ACS/)
