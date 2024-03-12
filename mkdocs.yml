@@ -7,13 +7,13 @@ use_directory_urls: false
 nav:
     - RRHQD Documentation:
       - Getting Started With RRHQD:
-        - What is RRHQD?: 'index.md'
+        - What is RRHQD?: 'MkDocs/index.md'
       - Configuration Guides:
         - Docker Configuration Guides:
-          - Setup a Linkwarden Docker: 'Setup-Linkwarden.md'
-          - Setup a Deluge Docker: 'Setup-Deluge.md'
-          - Setup a Checkmk Docker: 'Setup-Checkmk.md'
-          - Setup a Cloudflare Tunnel Docker: 'Setup-Cloudflare.md'
+          - Setup a Linkwarden Docker: 'MkDocs/Setup-Linkwarden.md'
+          - Setup a Deluge Docker: 'MkDocs/Setup-Deluge.md'
+          - Setup a Checkmk Docker: 'MkDocs/Setup-Checkmk.md'
+          - Setup a Cloudflare Tunnel Docker: 'MkDocs/Setup-Cloudflare.md'
     - RP-Helpdesk Docs: 'https://runesrepohub.github.io/RPH-Docs/index.html'
 theme:
   icon:
