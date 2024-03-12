@@ -9,7 +9,7 @@ if grep -q "$ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_WEBP_CONVERTER" /etc/cr
     exit 1
 fi
 
-(crontab -l ; echo "*/20 * * * * bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_WEBP_CONVERTER") | sort - | uniq - | sudo tee -a /etc/crontab >/dev/null
+(crontab -l ; echo "*/20 * * * * root bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_WEBP_CONVERTER") | sort - | uniq - | sudo tee -a /etc/crontab >/dev/null
 
 
 if grep -q "$ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_WEBP_CONVERTER" /etc/crontab; then
