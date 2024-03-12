@@ -2,13 +2,14 @@
 
 source ~/RRHQD/Core/Core.sh
 
+chmod +x $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_WEBP_CONVERTER
 
 if grep -q "$ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_WEBP_CONVERTER" /etc/crontab; then
     dialog --msgbox "Cronjob already exists in /etc/crontab. Aborting script." 6 50
     exit 1
 fi
 
-(crontab -l ; echo "*/20 * * * * $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_WEBP_CONVERTER") | sort - | uniq - | sudo tee -a /etc/crontab >/dev/null
+(crontab -l ; echo "*/20 * * * * bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_WEBP_CONVERTER") | sort - | uniq - | sudo tee -a /etc/crontab >/dev/null
 
 
 if grep -q "$ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_WEBP_CONVERTER" /etc/crontab; then
