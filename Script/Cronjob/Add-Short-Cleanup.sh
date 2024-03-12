@@ -4,17 +4,23 @@ source ~/RRHQD/Core/Core.sh
 
 chmod +x $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$SHORT_CLEANUP
 
-if grep -q "$ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$SHORT_CLEANUP" /etc/crontab; then
-    dialog --msgbox "Cronjob already exists in /etc/crontab. Aborting script." 6 50
-    exit 1
-fi
+add_update_cronjob() {
+    local update_command="$ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$SHORT_CLEANUP"
+    local cronjob_entry="*/20 * * * * root bash $update_command"
 
-(crontab -l ; echo "*/20 * * * * root bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$SHORT_CLEANUP") | sort - | uniq - | sudo tee -a /etc/crontab >/dev/null
+    # Check if the update cron job already exists in /etc/crontab
+    if grep -qF -- "$update_command" /etc/crontab; then
+        dialog --msgbox "Update cron job already exists in /etc/crontab. No changes made." 6 50
+    else
+        # Add the update cron job to /etc/crontab
+        if echo "$cronjob_entry" >> /etc/crontab; then
+            dialog --msgbox "Update cron job added to /etc/crontab successfully." 6 50
+        else
+            dialog --msgbox "Failed to add update cron job to /etc/crontab." 6 50
+            return 1
+        fi
+    fi
+}
 
-
-if grep -q "$ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$SHORT_CLEANUP" /etc/crontab; then
-    dialog --msgbox "Cronjob added to /etc/crontab successfully." 6 50
-else
-    dialog --msgbox "Failed to add cronjob to /etc/crontab." 6 50
-fi
-
+# Call the function to add the cron job
+add_update_cronjob
