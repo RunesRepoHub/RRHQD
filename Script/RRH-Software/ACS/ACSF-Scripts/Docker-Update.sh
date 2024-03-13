@@ -37,7 +37,7 @@ cd ~/RRHQD/Script/RRH-Software/ACS/Dockers
 
 
 # Inform the user that the script is running
-dialog --clear --title "Updating Docker containers" --infobox "Updating all docker containers\\n\\nPlease wait..." 6 40
+dialog --clear --title "Updating Docker containers" --msgbox "Updating all docker containers\\n\\nPlease wait..." 6 40
 
 # Loop over each docker-compose file
 for compose_file in ~/RRHQD/Script/RRH-Software/ACS/Dockers/*.yml; do
@@ -49,10 +49,6 @@ for compose_file in ~/RRHQD/Script/RRH-Software/ACS/Dockers/*.yml; do
 
     # Bring the containers back up
     sudo docker compose -f "$compose_file" up -d
-
-    # Inform the user that the script is running
-    dialog --clear --title "Updating Docker containers" --infobox "Updating $compose_file\\n\\nPlease wait..." 6 40
-    sleep 2
 done
 
 dialog --clear --title "Docker containers updated" --msgbox "All Docker containers have been updated." 6 40
