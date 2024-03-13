@@ -73,6 +73,7 @@ DOCKER_CNC="Docker-CnC.sh"
 QUICK_TOOLS="Quick-Tools.sh"
 YOUTUBE_SCRIPTS="Youtube-Script.sh"
 PRE_MADE_VM_CONFIGS="Pre-Made-VM-Configs.sh"
+ACS_MENU="ACS.sh"
 
 
 ## Quick Installers Scripts

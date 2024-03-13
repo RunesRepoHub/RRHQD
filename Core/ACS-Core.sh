@@ -1,9 +1,3 @@
-#############
-### TO-DO ###
-#############
-### Update all paths to new repo name
-### Check all variables for errors and fix as needed and check if there is 2 of them, if there is delete one of them. But update all 
-### scripts to the new variable.
 ##########################################################################
 #####  Set variables for YT-Plex  # Core.sh # Made for @runesrepohub #####
 ########################## Made for @rune004 #############################
@@ -47,9 +41,7 @@ STOP_REMOVE="stop-remove.sh"
 UNINSTALL="uninstall.sh"
 SETUP_PLEX="setup-plex.sh"
 START="start.sh"
-USAGE="usage.sh"
-CONVERT="converter.sh"
-ALIASES="Aliases.sh"
+USAGE="youtube-size.sh"
 #--------------------------------------------------------------------------
 # Make folders for ACS
 YOUTUBE=~/plex/media/youtube
@@ -73,13 +65,6 @@ CONTAINER_MAX_FILE=~/ACS-Dockers/.max_containers
 # Cronjob
 CRON_TIMER="*/20 * * * *"
 #--------------------------------------------------------------------------
-##########################################################################
-#####  Set variables  # For add-url-list.sh # Made for @runesrepohub #####
-##########################################################################
-# Folders and files
-MEDIA=~/plex/media
-URL_FILE="url_file.txt"
-ARCHIVE_URL_FILE="archive_url_file.txt"
 ##########################################################################
 ###### Set variables  # For setup-plex.sh # Made for @runesrepohub #######
 ##########################################################################
