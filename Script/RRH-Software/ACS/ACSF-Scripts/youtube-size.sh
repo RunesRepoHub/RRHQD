@@ -40,7 +40,7 @@ elif ! command -v cut &> /dev/null; then
     sudo apt-get install coreutils -y > /dev/null 2>&1
 else
     dialog --backtitle "RRH-Software" --title "Status" \
-           --msgbox "du and cut are already installed." 0 0
+           --msgbox "du and cut are already installed." 10 60
 fi
 
 SEARCH_PATH=~/plex/media/
@@ -50,5 +50,5 @@ total_usage=$(du -sh ~/plex/media/ | cut -f1)
 
 # Output the total storage usage using dialog
 dialog --backtitle "RRH-Software" --title "Storage Usage" \
-       --msgbox "Total storage usage of $SEARCH_PATH: $total_usage" 0 0
+       --msgbox "Total storage usage of $SEARCH_PATH: $total_usage" 10 60
 
