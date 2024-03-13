@@ -53,14 +53,11 @@ SEARCH_PATH=$(cat /tmp/youtube-size-path)
 
 
 # Check if the path is provided
-if [ -z "$1" ]; then
+if [ -z "$SEARCH_PATH" ]; then
     dialog --backtitle "RRH-Software" --title "Missing Argument" \
            --msgbox "Please provide a path to calculate storage usage." 0 0
     exit 1
 fi
-
-# Assign the path to a variable
-SEARCH_PATH="$1"
 
 # Calculate the total storage usage of the path
 total_usage=$(du -sh "$SEARCH_PATH" | cut -f1)
