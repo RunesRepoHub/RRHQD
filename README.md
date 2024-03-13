@@ -43,6 +43,8 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
     <a href="docs/Readme/Docker-CnC.md" class="button">Docker-CnC</a>
 </div>
 
+[<kbd> <br> Requirements <br> </kbd>][Link]
+[Link]: "docs/Readme/Requirements.md"
 ---------------------------------------------------------------------------------------------
 
 </div>
