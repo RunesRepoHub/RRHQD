@@ -43,24 +43,10 @@ else
            --msgbox "du and cut are already installed." 0 0
 fi
 
-
-# Ask user for path
-dialog --backtitle "RRH-Software" --title "Path" \
-       --inputbox "Enter the path you would like to calculate the storage usage of:" 0 0 2> /tmp/youtube-size-path
-
-# Get the path from the dialog input
-SEARCH_PATH=$(cat /tmp/youtube-size-path)
-
-
-# Check if the path is provided
-if [ -z "$SEARCH_PATH" ]; then
-    dialog --backtitle "RRH-Software" --title "Missing Argument" \
-           --msgbox "Please provide a path to calculate storage usage." 0 0
-    exit 1
-fi
+SEARCH_PATH=~/plex/media/
 
 # Calculate the total storage usage of the path
-total_usage=$(du -sh $SEARCH_PATH | cut -f1)
+total_usage=$(du -sh ~/plex/media/ | cut -f1)
 
 # Output the total storage usage using dialog
 dialog --backtitle "RRH-Software" --title "Storage Usage" \
