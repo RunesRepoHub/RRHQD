@@ -64,14 +64,11 @@ if [ "$OS_DISTRO" != "Kali GNU/Linux" ]; then
 fi
 
 
-### FIX This Section!
-
-
 # Check if the folder already exists
 set -e
 if [ -d ~/ACS ]; then
     echo -e "${Yellow}ACS folder already exists.${NC}"
-    
+    exit 0
 else
     echo "${Yellow}Folder does not exist. Continuing the script.${NC}"
 fi
@@ -79,11 +76,6 @@ fi
 
 chmod +x ~/RRHQD/Core/ACS-Core.sh
 source ~/RRHQD/Core/ACS-Core.sh
-
-cd ~/ACS
-
-
-cd ..
 
 # Start clean
 clear 
