@@ -19,51 +19,36 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 ## Help and Guidance
 
 
-* [Requirements](docs/Readme/Requirements.md)
-* [Installation](docs/Readme/Installation.md)
-* [Main Menu](docs/Readme/Main-Menu.md)
-* [Docker Support](docs/Readme/Docker-Support.md)
-* [RunesRepoHub Software](docs/Readme/RunesRepoHub.md)
-* [Cronjobs](docs/Readme/Cronjobs.md)
-* [Youtube Scripts](docs/Readme/Youtube-Scripts.md)
-* [Quick Installers](docs/Readme/Quick-Installer.md)
-* [Quick Tools](docs/Readme/Quick-Tools.md)
-* [Docker-CnC](docs/Readme/Docker-CnC.md)
+[<kbd> <br> Requirements <br> </kbd>][Link1]
 
-<div class="button-group">
-    <a href="docs/Readme/Requirements.md" class="button primary">Requirements</a>
-    <a href="docs/Readme/Installation.md" class="button">Installation</a>
-    <a href="docs/Readme/Main-Menu.md" class="button">Main Menu</a>
-    <a href="docs/Readme/Docker-Support.md" class="button">Docker Support</a>
-    <a href="docs/Readme/RunesRepoHub.md" class="button">RunesRepoHub Software</a>
-    <a href="docs/Readme/Cronjobs.md" class="button">Cronjobs</a>
-    <a href="docs/Readme/Youtube-Scripts.md" class="button">Youtube Scripts</a>
-    <a href="docs/Readme/Quick-Installer.md" class="button">Quick Installers</a>
-    <a href="docs/Readme/Quick-Tools.md" class="button">Quick Tools</a>
-    <a href="docs/Readme/Docker-CnC.md" class="button">Docker-CnC</a>
-</div>
+[<kbd> <br> Installation <br> </kbd>][Link2]
 
-[<kbd> <br> Requirements <br> </kbd>][Link]
-[<kbd> <br> Installation <br> </kbd>][Link]
-[<kbd> <br> Main Menu <br> </kbd>][Link]
-[<kbd> <br> Docker Support <br> </kbd>][Link]
-[<kbd> <br> RunesRepoHub Software <br> </kbd>][Link]
-[<kbd> <br> Cronjobs <br> </kbd>][Link]
-[<kbd> <br> Youtube Scripts <br> </kbd>][Link]
-[<kbd> <br> Quick Installers <br> </kbd>][Link]
-[<kbd> <br> Quick Tools <br> </kbd>][Link]
-[<kbd> <br> Docker-CnC <br> </kbd>][Link]
+[<kbd> <br> Main Menu <br> </kbd>][Link3]
+
+[<kbd> <br> Docker Support <br> </kbd>][Link4]
+
+[<kbd> <br> RunesRepoHub Software <br> </kbd>][Link5]
+
+[<kbd> <br> Cronjobs <br> </kbd>][Link6]
+
+[<kbd> <br> Youtube Scripts <br> </kbd>][Link7]
+
+[<kbd> <br> Quick Installers <br> </kbd>][Link8]
+
+[<kbd> <br> Quick Tools <br> </kbd>][Link9]
+
+[<kbd> <br> Docker-CnC <br> </kbd>][Link10]
 <!---------------------------------------------------------------------------->
-[Link]: docs/Readme/Requirements.md
-[Link]: docs/Readme/Installation.md
-[Link]: docs/Readme/Main-Menu.md
-[Link]: docs/Readme/Docker-Support.md
-[Link]: docs/Readme/RunesRepoHub.md
-[Link]: docs/Readme/Cronjobs.md
-[Link]: docs/Readme/Youtube-Scripts.md
-[Link]: docs/Readme/Quick-Installer.md
-[Link]: docs/Readme/Quick-Tools.md
-[Link]: docs/Readme/Docker-CnC.md
+[Link1]: docs/Readme/Requirements.md
+[Link2]: docs/Readme/Installation.md
+[Link3]: docs/Readme/Main-Menu.md
+[Link4]: docs/Readme/Docker-Support.md
+[Link5]: docs/Readme/RunesRepoHub.md
+[Link6]: docs/Readme/Cronjobs.md
+[Link7]: docs/Readme/Youtube-Scripts.md
+[Link8]: docs/Readme/Quick-Installer.md
+[Link9]: docs/Readme/Quick-Tools.md
+[Link10]: docs/Readme/Docker-CnC.md
 ---------------------------------------------------------------------------------------------
 
 </div>
