@@ -1,12 +1,14 @@
 #!/bin/bash
 
-LOG_DIR="$HOME/ACS/logs"
+SCRIPT_FILENAME=$(basename "$0")
+
+LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
-LOG_FILE="$LOG_DIR/docker_update.log"  # Log file location
+LOG_FILE="$LOG_DIR/"$SCRIPT_FILENAME"_install.log"  # Log file location
 
 # Function to increment log file name
 increment_log_file_name() {
-  local log_file_base_name="docker_update_run_"
+  local log_file_base_name=""$SCRIPT_FILENAME"_install_run_"
   local log_file_extension=".log"
   local log_file_counter=1
 
@@ -26,6 +28,9 @@ increment_log_file_name
 
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
+
+
+source ~/RRHQD/Core/ACS-Core.sh
 
 # Navigate to the Dockers directory
 cd ~/ACS/Dockers

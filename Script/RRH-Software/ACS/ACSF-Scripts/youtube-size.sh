@@ -1,12 +1,14 @@
 #!/bin/bash
 
-LOG_DIR="$HOME/ACSS/logs"
+SCRIPT_FILENAME=$(basename "$0")
+
+LOG_DIR="$HOME/RRHQD/logs"
 # Configuration
-LOG_FILE="$LOG_DIR/youtube_size.log"  # Log file location for youtube-size script
+LOG_FILE="$LOG_DIR/"$SCRIPT_FILENAME"_install.log"  # Log file location
 
 # Function to increment log file name
 increment_log_file_name() {
-  local log_file_base_name="youtube_size_run_"
+  local log_file_base_name=""$SCRIPT_FILENAME"_install_run_"
   local log_file_extension=".log"
   local log_file_counter=1
 
@@ -27,7 +29,8 @@ increment_log_file_name
 # Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-source ~/ACS/ACSF-Scripts/Core.sh
+
+source ~/RRHQD/Core/ACS-Core.sh
 
 # Usage: ./calculate_storage_usage.sh /path/to/directory
 

@@ -1,10 +1,14 @@
 #!/bin/bash
 
-LOG_DIR="$HOME/ACS/logs"
-LOG_FILE="$LOG_DIR/converter.log"  # Log file location
+SCRIPT_FILENAME=$(basename "$0")
 
+LOG_DIR="$HOME/RRHQD/logs"
+# Configuration
+LOG_FILE="$LOG_DIR/"$SCRIPT_FILENAME"_install.log"  # Log file location
+
+# Function to increment log file name
 increment_log_file_name() {
-  local log_file_base_name="converter_run_"
+  local log_file_base_name=""$SCRIPT_FILENAME"_install_run_"
   local log_file_extension=".log"
   local log_file_counter=1
 
@@ -16,11 +20,17 @@ increment_log_file_name() {
   echo "Log file will be saved as $LOG_FILE"
 }
 
+# Create log directory if it doesn't exist
 mkdir -p "$LOG_DIR"
+
+# Increment log file name for this run
 increment_log_file_name
+
+# Redirect all output to the log file
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-source ~/ACS/ACSF-Scripts/Core.sh
+
+source ~/RRHQD/Core/ACS-Core.sh
 
 # Usage: ./convert-webm-to-mp4.sh /path/to/directory
 
