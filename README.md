@@ -19,9 +19,9 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 ## Help and Guidance
 
 
-[![Button Icon]][Link1]
+[![Button Icon1]][Link1]
 
-[<kbd> <br> Installation <br> </kbd>][Link2]
+[![Button Icon2]][Link2]
 
 [<kbd> <br> Main Menu <br> </kbd>][Link3]
 
@@ -54,7 +54,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 [Link10]: docs/Readme/Docker-CnC.md
 
 <!---------------------------------[ Buttons ]--------------------------------->
-
-[Button Icon]: https://img.shields.io/badge/Installation-EF2D5E?style=for-the-badge&logoColor=white&logo=DocuSign
+[Button Icon1]: https://img.shields.io/badge/Installation-EF2D5E?style=for-the-badge&logoColor=white&logo=DocuSign
+[Button Icon2]: https://img.shields.io/badge/Installation-EF2D5E?style=for-the-badge&logoColor=white&logo=DocuSign
 
 </div>
