@@ -44,7 +44,8 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 </div>
 
 [<kbd> <br> Requirements <br> </kbd>][Link]
-[Link]: "docs/Readme/Requirements.md"
+<!---------------------------------------------------------------------------->
+[Link]: docs/Readme/Requirements.md
 ---------------------------------------------------------------------------------------------
 
 </div>
