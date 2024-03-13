@@ -1,10 +1,9 @@
 name: Feature Branch Creation
 
 on:
-  issue_labeled:
-    types: [labeled]
-    labels:
-      - Feature-Branch
+  issues:
+    types: 
+      - feature_branch
 
 jobs:
   create-pr-branch:
