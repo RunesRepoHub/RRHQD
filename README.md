@@ -54,7 +54,7 @@ RRHQD provides a user-friendly and efficient solution for deploying and managing
 [Link10]: docs/Readme/Docker-CnC.md
 
 <!---------------------------------[ Buttons ]--------------------------------->
-[Button Icon1]: https://img.shields.io/badge/requirements-page?style=social&logo=appveyor&logoColor=violet&cacheSeconds=3600
+[Button Icon1]: https://img.shields.io/badge/Requirements-page?style=for-the-badge&logoColor=orange&labelColor=white&color=blue
 [Button Icon2]: https://img.shields.io/badge/Installation-EF2D5E?style=for-the-badge&logoColor=white&logo=DocuSign
 
 </div>
