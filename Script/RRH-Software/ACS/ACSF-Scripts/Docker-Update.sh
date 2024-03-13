@@ -33,10 +33,14 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 source ~/RRHQD/Core/ACS-Core.sh
 
 # Navigate to the Dockers directory
-cd ~/ACS/Dockers
+cd ~/RRHQD/Script/RRH-Software/ACS/Dockers
+
+
+# Inform the user that the script is running
+dialog --clear --title "Updating Docker containers" --infobox "Updating all docker containers\\n\\nPlease wait..." 6 40
 
 # Loop over each docker-compose file
-for compose_file in *.yml; do
+for compose_file in ~/RRHQD/Script/RRH-Software/ACS/Dockers/*.yml; do
     # Bring the containers down
     sudo docker compose -f "$compose_file" down
 
@@ -45,6 +49,10 @@ for compose_file in *.yml; do
 
     # Bring the containers back up
     sudo docker compose -f "$compose_file" up -d
+
+    # Inform the user that the script is running
+    dialog --clear --title "Updating Docker containers" --infobox "Updating $compose_file\\n\\nPlease wait..." 6 40
+    sleep 2
 done
 
-echo "All Docker containers have been updated."
+dialog --clear --title "Docker containers updated" --msgbox "All Docker containers have been updated." 6 40
