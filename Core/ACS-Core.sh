@@ -42,6 +42,7 @@ UNINSTALL="uninstall.sh"
 SETUP_PLEX="setup-plex.sh"
 START="start.sh"
 USAGE="youtube-size.sh"
+DOCKER_UPDATE="Docker-Update.sh"
 #--------------------------------------------------------------------------
 # Make folders for ACS
 YOUTUBE=~/plex/media/youtube
