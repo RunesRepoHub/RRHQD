@@ -33,14 +33,22 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 source ~/RRHQD/Core/ACS-Core.sh
 
 # Stop and remove any docker with the image mikenye/youtube-dl
-echo -e "${Green}Stopping all mikenye/youtube-dl containers...${NC}"
+dialog --clear --title "Stopping mikenye/youtube-dl containers" --infobox "Stopping all mikenye/youtube-dl containers..." 6 40
 container_count=$(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}" | wc -l)
 for container_id in $(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}"); do
     sudo docker stop $container_id
-done
-dialog --clear --title "Stopping mikenye/youtube-dl containers" --infobox "This may take a while..." 6 40
+done && dialog --clear --title "Stopping mikenye/youtube-dl containers" --infobox "This may take a while..." 6 40
 
 # Stop and remove the dockers
 dialog --clear --title "Stopping plex, jackett, radarr, sonarr, tautulli, deluge and ombi" --msgbox "Stopping these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
 sudo docker stop plex jackett radarr sonarr tautulli deluge ombi
-dialog --clear --title "Stopped plex, jackett, radarr, sonarr, tautulli, deluge and ombi" --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
+
+
+for container_name in plex jackett radarr sonarr tautulli deluge ombi; do
+  if [[ $(docker inspect -f '{{.State.Running}}' $container_name) == "true" ]]; then
+    dialog --clear --title "Stopping $container_name" --msgbox "$container_name has not stopped.\\n\\nPlease try again later." 10 60
+    exit 1
+  fi
+done && dialog --clear --title "Stopped plex, jackett, radarr, sonarr, tautulli, deluge and ombi" --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
+
+
