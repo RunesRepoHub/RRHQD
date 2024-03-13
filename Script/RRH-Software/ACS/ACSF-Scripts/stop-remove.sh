@@ -33,22 +33,23 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 source ~/RRHQD/Core/ACS-Core.sh
 
 # Stop and remove any docker with the image mikenye/youtube-dl
-echo -e "${Red}Stopping any and all mikenye/youtube-dl dockers then delete them${NC}"
+dialog --clear --title "Stopping mikenye/youtube-dl containers" --msgbox "Stopping all mikenye/youtube-dl containers..." 6 40
 container_count=$(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}" | wc -l)
 for container_id in $(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}"); do
     sudo docker stop $container_id
 done
-echo -e "${Green}All mikenye/youtube-dl dockers have been stopped and removed${NC}"
+dialog --clear --title "Stopping mikenye/youtube-dl containers" --msgbox "This may take a while..." 6 40
 
 
 # Stop and remove the dockers
-echo -e "${Red}Stopping and removing plex, jackett, radarr, sonarr, tautulli, deluge and ombi${NC}"
+dialog --clear --title "Stop and remove the dockers " --msgbox "plex, jackett, radarr, sonarr, tautulli, deluge and ombi\\n\\nStopping and removing these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
+
 sudo docker stop plex jackett radarr sonarr tautulli deluge ombi
 sudo docker rm plex jackett radarr sonarr tautulli deluge ombi
-echo -e "${Green}All plex, jackett, radarr, sonarr, tautulli, deluge and ombi have been stopped and removed${NC}"
+dialog --clear --title "Stopped and removed the dockers " --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped and removed." 10 60
 
 
 # Remove the network
-echo -e "${Red}Removing the network my_plex_network${NC}"
+dialog --clear --title "Removing the network my_plex_network" --msgbox "Removing the network my_plex_network" 6 40
 sudo docker network rm my_plex_network
-echo -e "${Green}The network my_plex_network has been removed${NC}"
+dialog --clear --title "The network my_plex_network has been removed" --msgbox "The network my_plex_network has been removed" 6 40

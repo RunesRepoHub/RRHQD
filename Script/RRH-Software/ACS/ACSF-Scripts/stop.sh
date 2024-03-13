@@ -40,13 +40,13 @@ fi
 
 
 # Stop and remove any docker with the image mikenye/youtube-dl
-dialog --clear --title "Stopping mikenye/youtube-dl containers" --infobox "Stopping all mikenye/youtube-dl containers..." 6 40
+dialog --clear --title "Stopping mikenye/youtube-dl containers" --msgbox "Stopping all mikenye/youtube-dl containers..." 6 40
 container_count=$(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}" | wc -l)
 for container_id in $(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}"); do
     sudo docker stop $container_id
 done 
 
-dialog --clear --title "Stopping mikenye/youtube-dl containers" --infobox "This may take a while..." 6 40
+dialog --clear --title "Stopping mikenye/youtube-dl containers" --msgbox "This may take a while..." 6 40
 
 # Stop and remove the dockers
 dialog --clear --title "Stop the dockers " --msgbox "plex, jackett, radarr, sonarr, tautulli, deluge and ombi\\n\\nStopping these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
