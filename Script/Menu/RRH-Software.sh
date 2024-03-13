@@ -24,7 +24,7 @@ function show_dialog_menu() {
     case $menu_choice in
         1)
             chmod +x ~/RRHQD/Script/RRH-Software/ACS/setup.sh
-            bash  ~/RRHQD/Script/RRH-Software/ACS/setup.sh
+            bash ~/RRHQD/Script/RRH-Software/ACS/setup.sh
             ;;
         2)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/NRD/Production/Setup.sh)
