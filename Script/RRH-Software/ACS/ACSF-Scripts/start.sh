@@ -32,6 +32,12 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 source ~/RRHQD/Core/ACS-Core.sh
 
+containers_to_start=$(sudo docker ps -a -q --filter "status=exited" | wc -l)
+if [ $containers_to_start -eq 0 ]; then
+    dialog --clear --title "No containers to start" --msgbox "All docker containers are already running." 10 60
+    exit 0
+fi
+
 # Start the dockers
 dialog --clear --title "Starting dockers" --msgbox "plex, jackett, radarr, sonarr, tautulli, deluge and ombi\\n\\nStarting these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
 

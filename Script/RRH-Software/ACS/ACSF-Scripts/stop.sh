@@ -32,6 +32,13 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 source ~/RRHQD/Core/ACS-Core.sh
 
+running_containers=$(sudo docker ps -q | wc -l)
+if [ $running_containers -eq 0 ]; then
+    dialog --clear --title "No docker containers running" --msgbox "No docker containers are currently running." 10 60
+    exit 0
+fi
+
+
 # Stop and remove any docker with the image mikenye/youtube-dl
 dialog --clear --title "Stopping mikenye/youtube-dl containers" --infobox "Stopping all mikenye/youtube-dl containers..." 6 40
 container_count=$(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}" | wc -l)
