@@ -6,6 +6,36 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-commands.html</loc>
+         <lastmod>2024-03-13</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-errorcode.html</loc>
+         <lastmod>2024-03-13</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-index.html</loc>
+         <lastmod>2024-03-13</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-install.html</loc>
+         <lastmod>2024-03-13</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-requirement.html</loc>
+         <lastmod>2024-03-13</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-source.html</loc>
+         <lastmod>2024-03-13</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Checkmk.html</loc>
          <lastmod>2024-03-13</lastmod>
          <changefreq>daily</changefreq>
