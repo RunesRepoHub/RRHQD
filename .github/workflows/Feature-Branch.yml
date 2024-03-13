@@ -2,11 +2,9 @@ name: Feature Branch Creation
 
 on:
   pull_request:
-    branches:
-      - Dev
-      - PoC
     types:
-      - opened
+      - ready_for_feature
+
 
 jobs:
   create-pr-branch:
