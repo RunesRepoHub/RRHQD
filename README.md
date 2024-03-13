@@ -1,7 +1,10 @@
+<div style="center">
+  <img src="docs/Images/RRHQD.png">
+  
+  ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
+</div>
 
-<p align="center">
-  <img width="640" height="320" src="docs/Images/RRHQD.png">
-</p>
+![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 
 # RRHQD
 The "RRHQD" script is a comprehensive deployment tool designed to streamline the setup and management of diverse applications on Linux systems. Its primary goal—simplifying the deployment of Docker containers, software, and other tools.
