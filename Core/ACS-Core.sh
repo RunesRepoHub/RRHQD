@@ -30,7 +30,7 @@ NC='\e[0m'  # Reset to default
 ### Admin Stuff # Setup.sh ###
 #----------------------------#
 # Script folder path 
-ROOT_FOLDER=~/ACS/ACSF-Scripts
+ROOT_FOLDER=~/RRHQD/Script/RRH-Software/ACS/ACSF-Scripts
 #----------------------------#
 ##########################################################################
 #########  Set variables  # For setup.sh # Made for @runesrepohub ########
@@ -41,22 +41,15 @@ ROOT_FOLDER=~/ACS/ACSF-Scripts
 # Install
 #--------------------------------------------------------------------------
 # All script names + file format
-AUTOMATED_CHECK="Youtube-Channel-Rescan.sh"
-ADD_URL_LIST="Youtube-Channel-Download.sh"
 DOCKER_STOP="docker-stop.sh"
 STOP="stop.sh"
 STOP_REMOVE="stop-remove.sh"
 UNINSTALL="uninstall.sh"
-UPDATE="update.sh"
-UPDATE_DOWNLOAD="download-update.sh"
 SETUP_PLEX="setup-plex.sh"
-DOWNLOAD_AUDIO="Youtube-Audio-Playlist.sh"
 START="start.sh"
 USAGE="usage.sh"
 CONVERT="converter.sh"
-SINGLE_DOWNLOAD="Youtube-Download.sh"
 ALIASES="Aliases.sh"
-UPDATE_DOCKERS="Docker-Update.sh"
 #--------------------------------------------------------------------------
 # Make folders for ACS
 YOUTUBE=~/plex/media/youtube
@@ -75,10 +68,10 @@ OMBI=~/ACS-Dockers/ombi
 DOWNLOAD_COMPLETED=~/plex/media/download/completed
 #--------------------------------------------------------------------------
 # Container max
-CONTAINER_MAX_FILE=~/ACS/.max_containers
+CONTAINER_MAX_FILE=~/ACS-Dockers/.max_containers
 #--------------------------------------------------------------------------
 # Cronjob
-CRON_TIMER="0 0 30 * *"
+CRON_TIMER="*/20 * * * *"
 #--------------------------------------------------------------------------
 ##########################################################################
 #####  Set variables  # For add-url-list.sh # Made for @runesrepohub #####
@@ -90,7 +83,7 @@ ARCHIVE_URL_FILE="archive_url_file.txt"
 ##########################################################################
 ###### Set variables  # For setup-plex.sh # Made for @runesrepohub #######
 ##########################################################################
-DOCKER_ROOT_FOLDER=~/ACS
+DOCKER_ROOT_FOLDER=~/ACS-Dockers
 DOCKER_CONFIG_FOLDER="config"
 DOCKER_PLEX_LIBRARY_FOLDER=$LIBRARY
 DOCKER_TRANSCODE_FOLDER=~/plex/transcode/temp

@@ -150,7 +150,7 @@ case $deployment_choice in
     1)
         echo -e "${Purple}Setting up Plex only...${NC}"
         if ! sudo docker ps --filter "name=plex" --format '{{.Names}}' | grep -q "plex"; then
-            bash ~/ACS/ACSF-Scripts/setup-only-plex.sh
+            bash ~/RRHQD/RRH-Software/ACS/ACSF-Scripts/setup-only-plex.sh
             echo -e "${Green}Plex setup completed${NC}"
         else
             echo -e "${Green}Plex docker is already running${NC}"
@@ -160,7 +160,7 @@ case $deployment_choice in
     2)
         echo -e "${Purple}Setting up full system...${NC}"
         if ! sudo docker ps --filter "name=plex" --format '{{.Names}}' | grep -q "plex"; then
-            bash ~/ACS/ACSF-Scripts/setup-plex.sh
+            bash ~/RRHQD/RRH-Software/ACS/ACSF-Scripts/setup-plex.sh
             echo -e "${Green}Plex setup completed${NC}"
         else
             echo -e "${Green}Plex docker is already running${NC}"
