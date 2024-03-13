@@ -28,7 +28,7 @@ increment_log_file_name
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 
-source ~/RRHQD/Core/Core.sh
+source ~/RRHQD/Core/ACS-Core.sh
 
 # Set the IP address and time zone
 IP=$(hostname -I | awk '{print $1}')

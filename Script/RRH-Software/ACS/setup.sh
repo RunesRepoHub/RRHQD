@@ -64,16 +64,6 @@ if [ "$OS_DISTRO" != "Kali GNU/Linux" ]; then
 fi
 
 
-# Check if the folder already exists
-set -e
-if [ -d ~/ACS ]; then
-    echo -e "${Yellow}ACS folder already exists.${NC}"
-    exit 0
-else
-    echo "${Yellow}Folder does not exist. Continuing the script.${NC}"
-fi
-
-
 chmod +x ~/RRHQD/Core/ACS-Core.sh
 source ~/RRHQD/Core/ACS-Core.sh
 
@@ -168,8 +158,6 @@ esac
 # Add alias
 echo -e "${Purple}Setup cronjob and alias${NC}"
 # Add aliases to the shell configuration file
-
-bash $ROOT_FOLDER/$ALIASES
 
 # Add the cronjob
 cron_job_exists() {
