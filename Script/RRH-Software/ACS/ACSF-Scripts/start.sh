@@ -33,15 +33,15 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 source ~/RRHQD/Core/ACS-Core.sh
 
 # start any docker with the image mikenye/youtube-dl
-echo -e "${Purple}Starting any and all mikenye/youtube-dl dockers${NC}"
+dialog --clear --title "Starting mikenye/youtube-dl containers" --msgbox "Starting any and all mikenye/youtube-dl dockers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
 container_count=$(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}" | wc -l)
 for container_id in $(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}"); do
    sudo docker start $container_id
 done
-echo -e "${Green}This may take a while...${NC}"
-echo -e "${Green}All mikenye/youtube-dl dockers have been started${NC}"
+
+dialog --clear --title "Started mikenye/youtube-dl containers" --msgbox "All mikenye/youtube-dl dockers have been started." 10 60
 
 # Start the dockers
-echo -e "${Red}Starting plex, jackett, radarr, sonarr, tautulli, deluge and ombi${NC}"
+dialog --clear --title "Starting plex, jackett, radarr, sonarr, tautulli, deluge and ombi" --msgbox "Starting these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
 docker start plex jackett radarr sonarr tautulli deluge ombi
-echo -e "${Green}All plex, jackett, radarr, sonarr, tautulli, deluge and ombi have been started${NC}"
+dialog --clear --title "Started plex, jackett, radarr, sonarr, tautulli, deluge and ombi" --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi have been started." 10 60

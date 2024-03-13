@@ -38,10 +38,9 @@ container_count=$(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --for
 for container_id in $(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}"); do
     sudo docker stop $container_id
 done
-echo -e "${Green}This may take a while...${NC}"
-echo -e "${Green}Stopped all mikenye/youtube-dl containers${NC}"
+dialog --clear --title "Stopping mikenye/youtube-dl containers" --infobox "This may take a while..." 6 40
 
 # Stop and remove the dockers
-echo -e "${Red}Stopping plex, jackett, radarr, sonarr, tautulli, deluge and ombi${NC}"
+dialog --clear --title "Stopping plex, jackett, radarr, sonarr, tautulli, deluge and ombi" --msgbox "Stopping these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
 sudo docker stop plex jackett radarr sonarr tautulli deluge ombi
-echo -e "${Green}All plex, jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped${NC}"
+dialog --clear --title "Stopped plex, jackett, radarr, sonarr, tautulli, deluge and ombi" --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
