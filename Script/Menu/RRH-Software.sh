@@ -23,7 +23,7 @@ function show_dialog_menu() {
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
         1)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS/$ACS_SCRIPT_FOLDER/$ACS_SETUP
+            bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Dev-acs/Script/RRH-Software/ACS/setup.sh)
             ;;
         2)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/NRD/Production/Setup.sh)
