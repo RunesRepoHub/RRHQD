@@ -2,7 +2,7 @@
   <img src="docs/Images/RRHQD.png">
 
   ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
-</div>
+
 
 
 # RRHQD
@@ -15,6 +15,7 @@ The development of the script is based on managing different development stages 
 RRHQD provides a user-friendly and efficient solution for deploying and managing applications on Linux systems.
 
 ## Help and Guidance
+</div>
 
 * [Requirements](docs/Readme/Requirements.md)
 * [Installation](docs/Readme/Installation.md)
