@@ -3,7 +3,7 @@ name: Feature Branch Creation
 on:
   pull_request:
     types:
-      - ready_for_feature
+      - opened
 
 
 jobs:
