@@ -40,7 +40,7 @@ for container_id in $(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" -
 done && dialog --clear --title "Stopping mikenye/youtube-dl containers" --infobox "This may take a while..." 6 40
 
 # Stop and remove the dockers
-dialog --clear --title "Stopping plex, jackett, radarr, sonarr, tautulli, deluge and ombi" --msgbox "Stopping these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
+dialog --clear --title "Stop and remove the dockers " --msgbox "plex, jackett, radarr, sonarr, tautulli, deluge and ombi\\n\\Stopping these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
 sudo docker stop plex jackett radarr sonarr tautulli deluge ombi
 
 
@@ -49,6 +49,6 @@ for container_name in plex jackett radarr sonarr tautulli deluge ombi; do
     dialog --clear --title "Stopping $container_name" --msgbox "$container_name has not stopped.\\n\\nPlease try again later." 10 60
     exit 1
   fi
-done && dialog --clear --title "Stopped plex, jackett, radarr, sonarr, tautulli, deluge and ombi" --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
+done && dialog --clear --title "Stopped and removed the dockers " --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped and removed." 10 60
 
 
