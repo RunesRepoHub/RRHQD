@@ -33,7 +33,7 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 source ~/RRHQD/Core/ACS-Core.sh
 
 # Start the dockers
-dialog --clear --title "Starting dockers" --msgbox "plex, jackett, radarr, sonarr, tautulli, deluge and ombi\\n\\Starting these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
+dialog --clear --title "Starting dockers" --msgbox "plex, jackett, radarr, sonarr, tautulli, deluge and ombi\\n\\nStarting these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
 
 
 docker start plex jackett radarr sonarr tautulli deluge ombi
