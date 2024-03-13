@@ -106,6 +106,10 @@ DOCKER_IMPORT="Docker-Import.sh"
 SHORT_CLEANUP="Short-Cleanup.sh"
 WEBP_TO_JPEG="Webp-to-JPEG.sh"
 
+## RRH-Software
+
+ACS_SETUP="setup.sh"
+
 ## Quick Tools Scripts
 
 DISK_CHECK="Disk-Check.sh"
