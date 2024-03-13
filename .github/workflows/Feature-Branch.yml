@@ -1,0 +1,24 @@
+name: Feature Branch Creation
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  create-pr-branch:
+    runs-on: self-hosted
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get Issue Title
+        id: get_issue_title
+        run: echo "::set-output name=title::$(echo "### ${{ github.event.label.name }}" | sed 's/[^a-zA-Z0-9\/_-]/-/g')"
+
+      - name: Create a new branch based on the Dev branch
+        run: |
+          git checkout Dev
+          git checkout -b "Feature-Branch-${{ steps.get_issue_title.outputs.title }}"
+          git push --set-upstream origin "Feature-Branch-${{ steps.get_issue_title.outputs.title }}"
