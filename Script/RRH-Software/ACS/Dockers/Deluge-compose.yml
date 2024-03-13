@@ -1,0 +1,21 @@
+version: '3'
+services:
+  deluge:
+    image: lscr.io/linuxserver/deluge:latest
+    container_name: deluge
+    network_mode: my_plex_network
+    mem_limit: 2g
+    environment:
+      - PUID=222
+      - PGID=321
+      - UMASK=002
+      - TZ=${TZ}
+      - DELUGE_LOGLEVEL=error
+    volumes:
+      - ${DOCKER_ROOT_FOLDER}/${DOCKER_DELUGE_FOLDER}:/${DOCKER_CONFIG_FOLDER}
+      - ${DOCKER_DOWNLOAD_FOLDER}:/${DOCKER_MOUNT_DOWNLOAD_FOLDER}
+    ports:
+      - "8112:8112"
+      - "6881:6881"
+      - "6881:6881/udp"
+    restart: ${DOCKER_RESTART_ALWAYS}

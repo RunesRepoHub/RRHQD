@@ -1,0 +1,16 @@
+version: '3'
+services:
+  tautulli:
+    image: lscr.io/linuxserver/tautulli:latest
+    container_name: tautulli
+    network_mode: my_plex_network
+    mem_limit: 1g
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+    volumes:
+      - ${DOCKER_ROOT_FOLDER}/${DOCKER_TAUTULLI_FOLDER}:/${DOCKER_CONFIG_FOLDER}
+    ports:
+      - "8181:8181"
+    restart: ${DOCKER_RESTART_ALWAYS}

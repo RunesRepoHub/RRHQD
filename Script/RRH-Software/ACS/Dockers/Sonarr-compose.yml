@@ -1,0 +1,19 @@
+version: '3'
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    network_mode: my_plex_network
+    mem_limit: 2g
+    environment:
+      - PUID=222
+      - PGID=321
+      - UMASK=002
+      - TZ=${TZ}
+    volumes:
+      - ${DOCKER_ROOT_FOLDER}/${DOCKER_SONARR_FOLDER}:/${DOCKER_CONFIG_FOLDER}
+      - ${DOCKER_HOST_SHOWS_FOLDER}:/${DOCKER_SHOWS_FOLDER}
+      - ${DOCKER_DOWNLOAD_FOLDER}:/${DOCKER_MOUNT_DOWNLOAD_FOLDER}
+    ports:
+      - "8989:8989"
+    restart: ${DOCKER_RESTART_ALWAYS}
