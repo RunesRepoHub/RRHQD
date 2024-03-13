@@ -46,16 +46,16 @@
 ---------------------------------------------------------------------------------------------
 
 <!---------------------------------------------------------------------------->
-[Link1]: docs/Readme/Requirements.md
-[Link2]: docs/Readme/Installation.md
-[Link3]: docs/Readme/Main-Menu.md
-[Link4]: docs/Readme/Docker-Support.md
-[Link5]: docs/Readme/RunesRepoHub.md
-[Link6]: docs/Readme/Cronjobs.md
-[Link7]: docs/Readme/Youtube-Scripts.md
-[Link8]: docs/Readme/Quick-Installer.md
-[Link9]: docs/Readme/Quick-Tools.md
-[Link10]: docs/Readme/Docker-CnC.md
+[Link1]: Requirements.md
+[Link2]: Installation.md
+[Link3]: Main-Menu.md
+[Link4]: Docker-Support.md
+[Link5]: RunesRepoHub.md
+[Link6]: Cronjobs.md
+[Link7]: Youtube-Scripts.md
+[Link8]: Quick-Installer.md
+[Link9]: Quick-Tools.md
+[Link10]: Docker-CnC.md
 
 
 </div>
