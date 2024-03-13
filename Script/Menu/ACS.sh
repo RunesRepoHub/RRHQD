@@ -1,5 +1,6 @@
 clear
 source ~/RRHQD/Core/Core.sh
+source ~/RRHQD/Core/ACS-Core.sh
 
 hostname=$(hostname)
 ip=$(hostname -I | cut -d' ' -f1)
