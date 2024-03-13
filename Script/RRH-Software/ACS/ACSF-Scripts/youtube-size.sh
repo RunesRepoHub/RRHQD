@@ -60,7 +60,7 @@ if [ -z "$SEARCH_PATH" ]; then
 fi
 
 # Calculate the total storage usage of the path
-total_usage=$(du -sh "$SEARCH_PATH" | cut -f1)
+total_usage=$(du -sh $SEARCH_PATH | cut -f1)
 
 # Output the total storage usage using dialog
 dialog --backtitle "RRH-Software" --title "Storage Usage" \
