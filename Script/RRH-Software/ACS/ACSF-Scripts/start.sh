@@ -36,13 +36,15 @@ source ~/RRHQD/Core/ACS-Core.sh
 dialog --clear --title "Starting dockers" --msgbox "plex, jackett, radarr, sonarr, tautulli, deluge and ombi\\n\\nStarting these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
 
 
-docker start plex jackett radarr sonarr tautulli deluge ombi
+sudo docker start plex jackett radarr sonarr tautulli deluge ombi
 
 
 for container_name in plex jackett radarr sonarr tautulli deluge ombi; do
   if [[ $(docker inspect -f '{{.State.Running}}' $container_name) != "true" ]]; then
     dialog --clear --title "Starting $container_name" --msgbox "$container_name has not been started.\\n\\nPlease try again later." 10 60
     exit 1
+    else 
+    dialog --clear --title "Started dockers" --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi have been started." 10 60
   fi
-done && dialog --clear --title "Started dockers" --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi have been started." 10 60
+done 
 
