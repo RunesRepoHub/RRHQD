@@ -24,7 +24,7 @@ NC='\e[0m'  # Reset to default
 ### Admin Stuff # Setup.sh ###
 #----------------------------#
 # Script folder path 
-ROOT_FOLDER=~/RRHQD/Script/RRH-Software/ACS/ACSF-Scripts
+#ROOT_FOLDER=~/RRHQD/Script/RRH-Software/ACS/ACSF-Scripts
 #----------------------------#
 ##########################################################################
 #########  Set variables  # For setup.sh # Made for @runesrepohub ########
