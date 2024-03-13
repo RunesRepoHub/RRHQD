@@ -28,7 +28,7 @@ increment_log_file_name
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 
-source ~/ACS/ACSF-Scripts/Core.sh
+source ~/RRHQD/Core/Core.sh
 
 # Set the IP address and time zone
 IP=$(hostname -I | awk '{print $1}')
@@ -67,18 +67,18 @@ else
 fi
 
 
-# Append environment variables to the ~/ACS/Dockers/.env file
+# Append environment variables to the ~/RRHQD/Script/RRH-Software/ACS/Dockers/.env file
 {
     echo "IP=$IP"
     echo "TZ=$TZ"
     echo "PLEX_CLAIM=$PLEX_CLAIM"
     echo "PLEX_HOST=$PLEX_HOST"
-} >> ~/ACS/Dockers/.env
+} >> ~/RRHQD/Script/RRH-Software/ACS/Dockers/.env
 
 
 # Start all docker containers defined in the docker-compose files within the Dockers folder
 # and remove any orphan containers that are no longer defined in the docker-compose files
-for compose_file in ~/ACS/Dockers/*.yml; do
+for compose_file in ~/RRHQD/Script/RRH-Software/ACS/Dockers/*.yml; do
     sudo docker compose -f "$compose_file" up -d
 done
 

@@ -28,7 +28,7 @@ increment_log_file_name
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 
-source ~/ACS/ACSF-Scripts/Core.sh
+source ~/RRHQD/Core/Core.sh
 
 # Set the IP address and time zone
 IP=$(hostname -I | awk '{print $1}')
@@ -67,17 +67,17 @@ else
 fi
 
 
-# Append environment variables to the ~/ACS/Dockers/.env file
+# Append environment variables to the ~/RRHQD/Script/RRH-Software/ACS/Dockers/.env file
 {
     echo "IP=$IP"
     echo "TZ=$TZ"
     echo "PLEX_CLAIM=$PLEX_CLAIM"
     echo "PLEX_HOST=$PLEX_HOST"
-} >> ~/ACS/Dockers/.env
+} >> ~/RRHQD/Script/RRH-Software/ACS/Dockers/.env
 
 
 # Start only the Plex docker container defined in the docker-compose file within the Dockers folder
-PLEX_COMPOSE_FILE=~/ACS/Dockers/Plex-compose.yml
+PLEX_COMPOSE_FILE=~/RRHQD/Script/RRH-Software/ACS/Dockers/Plex-compose.yml
 if [ -f "$PLEX_COMPOSE_FILE" ]; then
     sudo docker compose -f "$PLEX_COMPOSE_FILE" up -d
 else
