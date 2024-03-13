@@ -23,6 +23,8 @@ function show_dialog_menu() {
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
         1)
+            chmod +x ~/RRHQD/Core/ACS-Core.sh
+            chmod +x $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS/$ACS_SCRIPT_FOLDER/$ACS_SETUP
             bash  $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS/$ACS_SCRIPT_FOLDER/$ACS_SETUP
             ;;
         2)

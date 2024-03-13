@@ -77,7 +77,7 @@ else
 fi
 
 
-chmod +x ~/ACS/ACSF-Scripts/Core.sh
+chmod +x ~/RRHQD/Core/ACS-Core.sh
 source ~/RRHQD/Core/ACS-Core.sh
 
 cd ~/ACS
