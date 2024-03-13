@@ -1,0 +1,25 @@
+name: Feature Branch Creation
+
+on:
+  pull_request:
+    branches:
+      - Dev
+      - PoC
+    types:
+      - opened
+
+jobs:
+  create-pr-branch:
+    runs-on: self-hosted
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create a new branch based on the request
+        run: |
+          git checkout Dev
+          pr_title=$(echo $GITHUB_EVENT_PULL_REQUEST_TITLE | sed -e 's/[^a-zA-Z0-9]/-/g')
+          git checkout -b "$pr_title"
+          git push --set-upstream origin "$pr_title"
