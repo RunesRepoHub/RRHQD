@@ -20,6 +20,5 @@ jobs:
       - name: Create a new branch based on the request
         run: |
           git checkout Dev
-          pr_title=$(echo $GITHUB_EVENT_PULL_REQUEST_TITLE | sed -e 's/[^a-zA-Z0-9]/-/g')
-          git checkout -b "$pr_title"
-          git push --set-upstream origin "$pr_title"
+          git checkout -b "feature_branch"
+          git push --set-upstream origin "feature_branch"
