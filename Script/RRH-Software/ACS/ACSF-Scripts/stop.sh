@@ -49,6 +49,6 @@ for container_name in plex jackett radarr sonarr tautulli deluge ombi; do
     dialog --clear --title "Stopping $container_name" --msgbox "$container_name has not stopped.\\n\\nPlease try again later." 10 60
     exit 1
   fi
-done && dialog --clear --title "Stopped the dockers " --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped and removed." 10 60
+done && dialog --clear --title "Stopped the dockers " --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped." 10 60
 
 
