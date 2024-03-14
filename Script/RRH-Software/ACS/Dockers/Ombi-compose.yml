@@ -1,0 +1,15 @@
+version: '3'
+services:
+  ombi:
+    image: lscr.io/linuxserver/ombi:latest
+    container_name: ombi
+    network_mode: my_plex_network
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+    volumes:
+      - ${DOCKER_ROOT_FOLDER}/${DOCKER_OMBI_FOLDER}:/${DOCKER_CONFIG_FOLDER}
+    ports:
+      - "3579:3579"
+    restart: ${DOCKER_RESTART_ALWAYS}

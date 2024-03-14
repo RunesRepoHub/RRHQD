@@ -1,12 +1,12 @@
 name: Backup Branch Creation
 
 on:
-  push:
-    branches:
-      - PoC
+  pull_request:
+    types: [ labeled ]
 
 jobs:
-  create-pr-branch:
+  create-backup-branch:
+    if: contains(github.event.pull_request.labels.*.name, 'bug')
     runs-on: self-hosted
     permissions:
       contents: write
