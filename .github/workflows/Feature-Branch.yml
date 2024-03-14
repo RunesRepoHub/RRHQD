@@ -2,12 +2,13 @@ name: Feature Branch Creation
 
 on:
   pull_request:
-    types:
-      - opened
+    types: [ labeled ]
+
 
 
 jobs:
-  create-pr-branch:
+  create-feature-branch:
+    if: ${{ github.event.label.name == 'feature' }}
     runs-on: self-hosted
     permissions:
       contents: write
