@@ -32,7 +32,8 @@ function show_dialog_menu() {
            5 "Docker-CnC Scripts" \
            6 "Quick Tools" \
            7 "Pre-Made VM Configs" \
-           8 "Youtube Scripts" 2>"${INPUT}"
+           8 "Youtube Scripts" \
+           9 "ACS Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
@@ -59,6 +60,9 @@ function show_dialog_menu() {
             ;;
         8)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$YOUTUBE_SCRIPTS
+            ;;
+        9)
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$ACS_MENU
             ;;
         *)
             dialog --title "Exiting" --msgbox "Thank you for using RRHQD. Support me via github https://github.com/RunesRepoHub/" 6 52

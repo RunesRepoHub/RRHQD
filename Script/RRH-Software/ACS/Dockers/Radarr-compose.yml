@@ -1,0 +1,19 @@
+version: '3'
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    network_mode: my_plex_network
+    mem_limit: 2g
+    environment:
+      - PUID=222
+      - PGID=321
+      - UMASK=002
+      - TZ=${TZ}
+    volumes:
+      - ${DOCKER_ROOT_FOLDER}/${DOCKER_RADARR_FOLDER}:/${DOCKER_CONFIG_FOLDER}
+      - ${DOCKER_HOST_MOVIES_FOLDER}:/${DOCKER_MOVIES_FOLDER}
+      - ${DOCKER_DOWNLOAD_FOLDER}:/${DOCKER_MOUNT_DOWNLOAD_FOLDER}
+    ports:
+      - "7878:7878"
+    restart: ${DOCKER_RESTART_ALWAYS}

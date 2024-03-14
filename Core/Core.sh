@@ -33,6 +33,10 @@ BACKGROUND=Background
 QUICK_TOOLS_DIR=Quick-Tools
 YOUTUBE_SCRIPTS_FOLDER=Youtube-Scripts
 PRE_MADE_VM_CONFIGS_DIR=Pre-Made-VM-Configs
+RRH_SOFTWARE_FOLDER=RRH-Software
+ACS_FOLDER=ACS
+ACS_SCRIPT_FOLDER=ACSF-Scripts
+ACS_DOCKERS=Dockers
 
 ## Installers Scripts
 
@@ -69,6 +73,7 @@ DOCKER_CNC="Docker-CnC.sh"
 QUICK_TOOLS="Quick-Tools.sh"
 YOUTUBE_SCRIPTS="Youtube-Script.sh"
 PRE_MADE_VM_CONFIGS="Pre-Made-VM-Configs.sh"
+ACS_MENU="ACS.sh"
 
 
 ## Quick Installers Scripts
@@ -105,6 +110,10 @@ DOCKER_IMPORT="Docker-Import.sh"
 
 SHORT_CLEANUP="Short-Cleanup.sh"
 WEBP_TO_JPEG="Webp-to-JPEG.sh"
+
+## RRH-Software
+
+ACS_SETUP="setup.sh"
 
 ## Quick Tools Scripts
 
