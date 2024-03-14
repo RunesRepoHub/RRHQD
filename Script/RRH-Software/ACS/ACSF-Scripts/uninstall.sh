@@ -33,7 +33,7 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 source ~/RRHQD/Core/ACS-Core.sh
 
 
-answer=$(dialog --backtitle "ACS-Scripts" --title "Plex Media Folder" --yesno "Do you want to save all the files in the plex media folder or delete them?" 0 0 --yes-label "Keep plex media folder" --no-label "Delete plex media folder" 3>&1 1>&2 2>&3)
+answer=$(dialog --clear --backtitle "ACS-Scripts" --title "Plex Media Folder" --yesno "Do you want to save all the files in the plex media folder or delete them?" 0 0 --yes-label "Save plex media folder" --no-label "Delete plex media folder" 3>&1 1>&2 2>&3)
 
 # Check the user's response
 if [[ $answer == "yes" ]]; then
