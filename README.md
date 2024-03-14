@@ -3,30 +3,11 @@
 
   ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Prod&style=for-the-badge) ![GitHub last commit](https://img.shields.io/github/last-commit/RunesRepoHub/RRHQD?style=for-the-badge) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Prod&style=for-the-badge) ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/RunesRepoHub/RRHQD?style=for-the-badge)
   
-  ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/RunesRepoHub/RRHQD?style=for-the-badge) ![Github Created At](https://img.shields.io/github/created-at/RunesRepoHub/RRHQD?style=for-the-badge) 
+  ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/RunesRepoHub/RRHQD?style=for-the-badge) ![Github Created At](https://img.shields.io/github/created-at/RunesRepoHub/RRHQD?style=for-the-badge) ![GitHub commits difference between two branches/tags/commits](https://img.shields.io/github/commits-difference/RunesRepoHub/RRHQD?base=Dev&head=Prod&style=for-the-badge) ![GitHub number of milestones](https://img.shields.io/github/milestones/open/RunesRepoHub/RRHQD?style=for-the-badge) 
   
-  ![GitHub commits difference between two branches/tags/commits](https://img.shields.io/github/commits-difference/RunesRepoHub/RRHQD?base=Dev&head=Prod&style=for-the-badge) 
-  
-   
-  
-   
-  
-  ![GitHub number of milestones](https://img.shields.io/github/milestones/open/RunesRepoHub/RRHQD?style=for-the-badge) 
-  
-  ![GitHub License](https://img.shields.io/github/license/RunesRepoHub/RRHQD?style=for-the-badge) 
-  
-  ![Website](https://img.shields.io/website?url=https%3A%2F%2Frunesrepohub.github.io%2FRRHQD%2F&style=for-the-badge&label=Github%20Pages)
-
-
+  ![GitHub License](https://img.shields.io/github/license/RunesRepoHub/RRHQD?style=for-the-badge) ![Website](https://img.shields.io/website?url=https%3A%2F%2Frunesrepohub.github.io%2FRRHQD%2F&style=for-the-badge&label=Github%20Pages)
 
   ![GitHub repo size](https://img.shields.io/github/repo-size/RunesRepoHub/RRHQD?style=for-the-badge) ![GitHub Repo stars](https://img.shields.io/github/stars/RunesRepoHub/RRHQD?style=for-the-badge) ![GitHub milestone details](https://img.shields.io/github/milestones/progress-percent/RunesRepoHub/RRHQD/1?style=for-the-badge) ![GitHub top language](https://img.shields.io/github/languages/top/RunesRepoHub/RRHQD?style=for-the-badge)
-
-
-
-
-  ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
-
-
 
 
 ---------------------------------------------------------------------------------------------
