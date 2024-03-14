@@ -1,11 +1,10 @@
 <div align="center">
   <img src="docs/Images/RRHQD.png">
 
-  [![Wiki Auto Deploy](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml/badge.svg?branch=Dev)](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml)
+  [![Wiki Auto Deploy](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml/badge.svg?branch=Dev)](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml) ![GitHub last commit](https://img.shields.io/github/last-commit/RunesRepoHub/RRHQD) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml) ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/RunesRepoHub/RRHQD)
 
   ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 
-  https://uptime.rp-helpdesk.com/status/all
 
 
 
