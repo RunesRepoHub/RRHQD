@@ -33,39 +33,36 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 source ~/RRHQD/Core/ACS-Core.sh
 
 
-echo -e "${Purple}Do you want to save all the files in the plex media folder or delete them?${NC}"
-echo -e "${Green}y = Keep plex media folder${NC}"
-echo -e "${Red}n = Delete plex media folder${NC}"
-
-# Prompt the user for a yes/no answer
-read -p "Are you sure? (y/n): " answer
+answer=$(dialog --backtitle "ACS-Scripts" --title "Plex Media Folder" --yesno "Do you want to save all the files in the plex media folder or delete them?" 0 0 --yes-label "Keep plex media folder" --no-label "Delete plex media folder" 3>&1 1>&2 2>&3)
 
 # Check the user's response
 if [[ $answer == "y" ]]; then
     # User answered "yes"
     
     # Stop and remove any docker with the image mikenye/youtube-dl
-    echo -e "${Red}Stopping any and all mikenye/youtube-dl dockers then delete them${NC}"
+    dialog --clear --title "Stopping and removeing mikenye/youtube-dl containers" --msgbox "Stopping and removeing all mikenye/youtube-dl containers..." 6 40
     container_count=$(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}" | wc -l)
     for container_id in $(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}"); do
         sudo docker stop $container_id
     done
-    echo -e "${Green}All mikenye/youtube-dl dockers have been stopped and removed${NC}"
+    dialog --clear --title "Stopping and removed mikenye/youtube-dl containers" --msgbox "All mikenye/youtube-dl dockers have been stopped and removed." 6 40
     
+    dialog --clear --title "Stop and remove the dockers " --msgbox "plex, jackett, radarr, sonarr, tautulli, deluge and ombi\\n\\nStopping and removing these containers may take a while.\\n\\nThe process may appear to hang, but it is not.\\n\\nPlease be patient." 10 60
+
     # Stop and remove the dockers
-    echo -e "${Red}Stopping jackett, radarr, sonarr, tautulli, deluge and ombi${NC}"
     sudo docker stop jackett radarr sonarr tautulli deluge ombi 
     sudo docker rm jackett radarr sonarr tautulli deluge ombi
-    echo -e "${Green}All jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped${NC}"
 
-        # Remove the network
-    echo -e "${Red}Removing the network my_plex_network${NC}"
+    dialog --clear --title "Stopped and removed the dockers " --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped and removed." 10 60
+
+    # Remove the network
+    dialog --clear --title "Removing the network my_plex_network" --msgbox "Removing the network my_plex_network..." 6 40
     sudo docker network rm my_plex_network
-    echo -e "${Green}The network my_plex_network has been removed${NC}"
+    dialog --clear --title "Removed the network my_plex_network" --msgbox "The network my_plex_network has been removed." 6 40
 
     # remove all folders and files
-    rm -rf ~/ACS 
-    echo -e "${Green}All folders and files has been removed except the plex media folder, all dockers has been stopped${NC}"
+    rm -rf ~/ACS-Dockers
+    dialog --clear --title "Removed all folders and files" --msgbox "All folders and files has been removed except the plex media folder, all dockers has been stopped." 6 40
 
     # Remove the line from the crontab file
     sudo sed -i '/ACS\/ACSF-Scripts\/automated-check.sh/d' /etc/crontab
@@ -74,28 +71,28 @@ elif [[ $answer == "n" ]]; then
     # User answered "no"
     
     # Stop and remove any docker with the image mikenye/youtube-dl
-    echo -e "${Red}Stopping any and all mikenye/youtube-dl dockers then delete them${NC}"
+    dialog --clear --title "Stopping and removeing mikenye/youtube-dl containers" --msgbox "Stopping and removeing all mikenye/youtube-dl containers..." 6 40
     container_count=$(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}" | wc -l)
     for container_id in $(sudo docker ps -a --filter="ancestor=mikenye/youtube-dl" --format "{{.ID}}"); do
         sudo docker stop $container_id
     done
-    echo -e "${Green}All mikenye/youtube-dl dockers have been stopped and removed${NC}"
+    dialog --clear --title "Stopping and removed mikenye/youtube-dl containers" --msgbox "All mikenye/youtube-dl dockers have been stopped and removed." 6 40
     
     # Stop and remove the dockers
-    echo -e "${Red}Stopping and removing plex, jackett, radarr, sonarr, tautulli, deluge and ombi${NC}"
+    dialog --clear --title "Stopping and removing dockers" --msgbox "Stopping and removing plex, jackett, radarr, sonarr, tautulli, deluge and ombi." 6 40
     sudo docker stop plex jackett radarr sonarr tautulli deluge ombi 
     sudo docker rm plex jackett radarr sonarr tautulli deluge ombi
-    echo -e "${Green}All plex, jackett, radarr, sonarr, tautulli, deluge and ombi have been stopped and removed${NC}"
+    dialog --clear --title "Stopped and removed dockers" --msgbox "All plex, jackett, radarr, sonarr, tautulli, deluge and ombi dockers have been stopped and removed." 6 40
     
     # Remove the network
-    echo -e "${Red}Removing the network my_plex_network${NC}"
+    dialog --clear --title "Removing the network my_plex_network" --msgbox "Removing the network my_plex_network..." 6 40
     sudo docker network rm my_plex_network
-    echo -e "${Green}The network my_plex_network has been removed${NC}"
-
+    dialog --clear --title "Removed the network my_plex_network" --msgbox "The network my_plex_network has been removed." 6 40
+    
     # remove all folders and files
-    echo -e "${Purple}Cleanup all folders and files...${NC}"
-    rm -rf ~/ACS  ~/plex
-    echo -e "${Green}All folders and files has been removed except the plex media folder, all dockers has been stopped${NC}"
+    dialog --clear --title "Removed all folders and files" --msgbox "Cleanup all folders and files..." 6 40
+    rm -rf ~/ACS-Dockers  ~/plex
+    dialog --clear --title "Removed all folders and files" --msgbox "All folders and files has been removed, all Dockers has been stopped and removed." 6 40
 
     # Remove the line from the crontab file
     sudo sed -i '/ACS\/ACSF-Scripts\/automated-check.sh/d' /etc/crontab
