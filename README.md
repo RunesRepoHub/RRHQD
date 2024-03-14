@@ -1,13 +1,7 @@
 <div align="center">
   <img src="docs/Images/RRHQD.png">
 
-  # Prod
-
-  [![Wiki Auto Deploy](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml/badge.svg?branch=Prod)](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml) 
-
-  # PoC 
-
-  [![Wiki Auto Deploy](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml/badge.svg?branch=PoC)](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml)
+  [![Wiki Auto Deploy(Branch Prod)](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml/badge.svg?branch=Prod)](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml) [![Wiki Auto Deploy (Branch PoC)](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml/badge.svg?branch=PoC)](https://github.com/RunesRepoHub/RRHQD/actions/workflows/Wiki-Deploy.yml)
 
   ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 
