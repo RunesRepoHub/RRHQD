@@ -8,7 +8,7 @@ on:
 
 jobs:
   create-feature-branch:
-    if: ${{ github.event.label.name == 'feature' }}
+    if: contains(github.event.pull_request.labels.*.name, 'feature')
     runs-on: self-hosted
     permissions:
       contents: write
