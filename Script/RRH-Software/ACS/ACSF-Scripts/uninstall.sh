@@ -36,7 +36,7 @@ source ~/RRHQD/Core/ACS-Core.sh
 answer=$(dialog --backtitle "ACS-Scripts" --title "Plex Media Folder" --yesno "Do you want to save all the files in the plex media folder or delete them?" 0 0 --yes-label "Keep plex media folder" --no-label "Delete plex media folder" 3>&1 1>&2 2>&3)
 
 # Check the user's response
-if [[ $answer == "y" ]]; then
+if [[ $answer == "yes" ]]; then
     # User answered "yes"
     
     # Stop and remove any docker with the image mikenye/youtube-dl
@@ -67,7 +67,7 @@ if [[ $answer == "y" ]]; then
     # Remove the line from the crontab file
     sudo sed -i '/ACS\/ACSF-Scripts\/automated-check.sh/d' /etc/crontab
     
-elif [[ $answer == "n" ]]; then
+elif [[ $answer == "no" ]]; then
     # User answered "no"
     
     # Stop and remove any docker with the image mikenye/youtube-dl
