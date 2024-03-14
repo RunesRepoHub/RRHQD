@@ -1,0 +1,18 @@
+version: '3'
+services:
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    network_mode: my_plex_network
+    mem_limit: 2g
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+      - AUTO_UPDATE=true
+    volumes:
+      - ${DOCKER_ROOT_FOLDER}/${DOCKER_JACKETT_FOLDER}:/${DOCKER_CONFIG_FOLDER}
+      - ${DOCKER_DOWNLOAD_FOLDER}:/${DOCKER_MOUNT_DOWNLOAD_FOLDER}
+    ports:
+      - "9117:9117"
+    restart: ${DOCKER_RESTART_ALWAYS}

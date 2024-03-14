@@ -1,0 +1,23 @@
+name: Backup Branch Creation
+
+on:
+  pull_request:
+    types: [ labeled ]
+
+jobs:
+  create-backup-branch:
+    if: contains(github.event.pull_request.labels.*.name, 'bug')
+    runs-on: self-hosted
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create a new branch based on the Dev branch
+        run: |
+          git checkout Dev
+          git checkout -b "Backup-Dev-Branch-${GITHUB_RUN_NUMBER}"
+          git push --set-upstream origin "Backup-Dev-Branch-${GITHUB_RUN_NUMBER}"
+
+

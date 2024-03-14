@@ -1,0 +1,23 @@
+name: Feature Branch Creation
+
+on:
+  pull_request:
+    types: [ labeled ]
+
+
+
+jobs:
+  create-feature-branch:
+    if: contains(github.event.pull_request.labels.*.name, 'feature')
+    runs-on: self-hosted
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create a new branch based on the request
+        run: |
+          git checkout Dev
+          git checkout -b "feature_branch"
+          git push --set-upstream origin "feature_branch"
