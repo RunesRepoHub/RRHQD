@@ -1,0 +1,20 @@
+name: Explain PR Changes
+
+on:
+  pull_request:
+    branches: [Dev-acs, Dev, PoC, Prod]
+
+jobs:
+  explain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codebase
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install -g explain-pull-request
+
+      - name: Explain changes
+        run: explain-pull-request -p
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
