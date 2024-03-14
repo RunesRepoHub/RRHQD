@@ -5,6 +5,12 @@
 
   ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 
+  ![GitHub Pages](https://uptime.rp-helpdesk.com/api/badge/16/avg-response?labelPrefix=Github+Pages+)
+  ![GitHub](https://uptime.rp-helpdesk.com/api/badge/16/uptime?labelPrefix=Github+Pages+)
+  ![GitHub](https://uptime.rp-helpdesk.com/api/badge/16/ping?labelPrefix=Github+Pages+)
+  ![Githu](https://uptime.rp-helpdesk.com/api/badge/16/response?labelPrefix=Github+Pages+)
+
+
 ---------------------------------------------------------------------------------------------
 
 # RRHQD
