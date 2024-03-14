@@ -15,6 +15,7 @@ if [ $(df --output=avail -BG / | sed '1d;s/G//') -ge 50 ]; then
     dialog --title "Storage Status" --msgbox "There is at least 50GB of free storage available." 6 50
     else 
     dialog --title "Storage Error" --msgbox "There is less than 50GB of free storage available. Aborting." 6 50
+    exit 0
 fi
 
 # Define output path and media directory
