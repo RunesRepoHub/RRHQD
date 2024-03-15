@@ -13,7 +13,7 @@ nav:
         - Main Menu RRHQD: 'MkDocs/RRHQD/Readme/Main-Menu.md'
         - Docker Support RRHQD: 'MkDocs/RRHQD/Readme/Docker-Support.md'
         - Install Other RRH Software: 'MkDocs/RRHQD/Readme/RunesRepoHub.md'
-        - Cronjobs: 'MkDocs/RRHQD/Readme/Cronjobs.md'
+        - Cronjobs: 'MkDocs/RRHQD/Readme/Cronjob.md'
         - Youtube Scripts: 'MkDocs/RRHQD/Readme/Youtube-Scripts.md'
         - Quick Installers: 'MkDocs/RRHQD/Readme/Quick-Installer.md'
         - Quick Tools: 'MkDocs/RRHQD/Readme/Quick-Tools.md'
