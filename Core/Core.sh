@@ -143,4 +143,9 @@ PRE_MADE_VM="RP-Helpdesk-Standard-Config.sh"
 ## Docker Installer Help Links
 
 GHOST_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Ghost.html"
-CLOUDFLARE_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Cloudflare.html"
+CLOUDFLARE_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Cloudflare.html"
+CHECKMK_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Checkmk.html"
+DELUGE_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Deluge.html"
+LINKWARDEN_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Linkwarden.html"
+IT_TOOLS_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-It-tools.html"
+JACKETT_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Jackett.html"

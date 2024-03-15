@@ -33,6 +33,17 @@ clear
 
 source ~/RRHQD/Core/Core.sh
 
+echo -e "${Green}Setup a Docker container for It-tools${NC}"
+
+echo -e "${Yellow}Do you want to learn more about how to set it up? (Y/N)${NC}"
+read -p "Enter your choice: " decision
+
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: $IT_TOOLS_HELPLINK${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
+
 # Prompt user for container name
 read -p "Enter the name for the container (default: it-tools): " CONTAINER_NAME
 CONTAINER_NAME=${CONTAINER_NAME:-"it-tools"}
