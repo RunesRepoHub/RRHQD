@@ -3,7 +3,10 @@ name: Backup Branch Creation
 on:
   pull_request:
     types: [ labeled ]
-
+  push:
+    branches:
+      - Dev
+      
 jobs:
   create-backup-branch:
     if: contains(github.event.pull_request.labels.*.name, 'bug')
