@@ -5,10 +5,17 @@
 
 <br>
 
+<a href="https://github.com/RunesRepoHub/RRHQD/actions?query=branch%3AProd++">
 <img src="https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Prod&style=for-the-badge&label=Prod%20Branch">
+</a>
+<a href="https://github.com/RunesRepoHub/RRHQD/actions?query=branch%3ADev++">
 <img src="https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Dev&style=for-the-badge&label=Dev%20Branch">
+</a>
+<a href="https://github.com/RunesRepoHub/RRHQD/commits/Dev/">
 <img src="https://img.shields.io/github/last-commit/RunesRepoHub/RRHQD?style=for-the-badge">
+<a href="https://github.com/RunesRepoHub/RRHQD/pulls">
 <img src="https://img.shields.io/github/issues-pr/RunesRepoHub/RRHQD?style=for-the-badge">
+</a>
 
 <br>
 
@@ -39,8 +46,12 @@
 <br>
 
 <img src="https://img.shields.io/github/repo-size/RunesRepoHub/RRHQD?style=for-the-badge">
+<a href="https://github.com/RunesRepoHub/RRHQD/stargazers">
 <img src="https://img.shields.io/github/stars/RunesRepoHub/RRHQD?style=for-the-badge">
+</a>
+<a href="https://github.com/RunesRepoHub/RRHQD/milestone/1">
 <img src="https://img.shields.io/github/milestones/progress-percent/RunesRepoHub/RRHQD/1?style=for-the-badge">
+</a>
 <img src="https://img.shields.io/github/languages/top/RunesRepoHub/RRHQD?style=for-the-badge">
 
 <br><br>
