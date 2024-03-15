@@ -2,7 +2,7 @@
 
 <h2> RunesRepoHub Software Support </h2>
 
-<img src="../../../Images/RunesRepoHub.png">
+<img src="../../../Images/RRH.png">
 
 </div>
 

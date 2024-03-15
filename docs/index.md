@@ -10,19 +10,19 @@
 <img src="https://img.shields.io/github/last-commit/RunesRepoHub/RRHQD?style=for-the-badge">
 <img src="https://img.shields.io/github/issues-pr/RunesRepoHub/RRHQD?style=for-the-badge">
 
-<br><br>
+<br>
 
 <img src="https://img.shields.io/github/issues/RunesRepoHub/RRHQD?style=for-the-badge">
 <img src="https://img.shields.io/github/created-at/RunesRepoHub/RRHQD?style=for-the-badge">
 <img src="https://img.shields.io/github/commits-difference/RunesRepoHub/RRHQD?base=Dev&head=Prod&style=for-the-badge">
 <img src="https://img.shields.io/github/milestones/open/RunesRepoHub/RRHQD?style=for-the-badge">
 
-<br><br>
+<br>
 
 <img src="https://img.shields.io/github/license/RunesRepoHub/RRHQD?style=for-the-badge">
 <img src="https://img.shields.io/website?url=https%3A%2F%2Frunesrepohub.github.io%2FRRHQD%2F&style=for-the-badge&label=Github%20Pages">
 
-<br><br>
+<br>
 
 <img src="https://img.shields.io/github/repo-size/RunesRepoHub/RRHQD?style=for-the-badge">
 <img src="https://img.shields.io/github/stars/RunesRepoHub/RRHQD?style=for-the-badge">
