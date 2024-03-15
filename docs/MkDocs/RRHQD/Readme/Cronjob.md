@@ -6,7 +6,7 @@
 
 </div>
 
-!!! Important "**Cronjobs**"
+!!! success "**Cronjobs**"
 
     - Add a nightly reboot at 4:45 am
     - Daily midnight update (Debian Systems)

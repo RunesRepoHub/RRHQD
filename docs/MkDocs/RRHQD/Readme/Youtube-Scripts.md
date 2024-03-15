@@ -6,14 +6,14 @@
 
 </div>
 
-!!! important "**Youtube Scripts**"
+!!! danger "**Youtube Scripts**"
 
     (These scripts are made to work with the ACS)
 
     ***IT WILL NOT WORK WITHOUT INSTALLING THE ACS First*** 
     [Install ACS](RunesRepoHub.md)
 
-!!! warning "**Youtube Scripts Features**"
+!!! success "**Youtube Scripts Features**"
 
     - Download Youtube Video - Download a youtube playlist
     - Download Full Youtube Channel - Add a youtube channel to download

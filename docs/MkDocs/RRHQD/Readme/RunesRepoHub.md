@@ -6,7 +6,7 @@
 
 </div>
 
-!!! important "**RunesRepoHub Software Support**"
+!!! success "**RunesRepoHub Software Support**"
 
     * ACS (Automated Content System) - [ACS Wiki](https://runesrepohub.github.io/ACS/)
     * News Report Docker (Automated News Reporting System) - [NRD Readme](https://github.com/RunesRepoHub/NRD)

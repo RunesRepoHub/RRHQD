@@ -4,7 +4,7 @@
 
 </div>
 
-!!! important "**Requirements**"
+!!! warning "**Requirements**"
 
     - Sudo (is auto installed by setup)
     - Docker (is auto installed by setup)
@@ -18,7 +18,7 @@
 
 </div>
 
-!!! important "**Operating Systems**"
+!!! tip "**Operating Systems**"
 
     - Debian 10 - 11
     - Ubuntu 20.04 - 22.04
@@ -32,7 +32,7 @@
 
 </div>
 
-!!! important "**Current Versions**"
+!!! danger "**Current Versions**"
 
     1. Dev = Development branch (Very unstable)
     2. PoC = Proof of concept (Nightly Updates)

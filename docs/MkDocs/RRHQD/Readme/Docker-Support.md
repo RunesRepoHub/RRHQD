@@ -8,7 +8,7 @@
 
 </div>
 
-!!! info "RRHQD-Dockers"
+!!! warning "RRHQD-Dockers"
 
      Pay attention to:
 
@@ -23,7 +23,7 @@
 
 </div>
 
-!!! important "Docker images supported"
+!!! success "Docker images supported"
 
     - Uptime-Kuma - A fancy self-hosted monitoring tool
     - Vaultwarden - An unofficial Bitwarden compatible server

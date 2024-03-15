@@ -6,7 +6,7 @@
 
 </div>
 
-!!! important "**Quick Installers**"
+!!! success "**Quick Installers**"
     
     * Starship - A minimalistic, powerful, and extremely customizable prompt for any shell
     * Tailscale VPN - A private network that makes securing your online activity and managing your devices easy

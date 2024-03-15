@@ -9,7 +9,7 @@
 
 </div>
 
-!!! important "**Quick Tools**"
+!!! success "**Quick Tools**"
     
     - Disk Space - Check disk space
     - Security - Check security

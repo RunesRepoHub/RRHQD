@@ -7,7 +7,7 @@
 
 </div>
 
-!!! Important "**Docker Command and Control**"
+!!! success "**Docker Command and Control**"
 
     - Docker - Cleanup (Clean all unused images, volumes and networks)
     - Docker - Remove (Stop and Delete a Docker)

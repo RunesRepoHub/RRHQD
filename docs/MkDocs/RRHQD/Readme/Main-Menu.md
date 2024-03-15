@@ -8,11 +8,11 @@
 
 </div>
 
-!!! important "**Update RRHQD**"
+!!! success "**Update RRHQD**"
 
     The script will pull the latest version of the script. Every time you run it, it will update itself. Some updates may require you to restart the script to take effect. 
 
-!!! warning "**Changing the files in RRHQD**"
+!!! danger "**Changing the files in RRHQD**"
 
     ***DO NOT CHANGE THE FILES IN THE RRHQD FOLDER***
 
