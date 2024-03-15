@@ -1,9 +1,11 @@
 # Setup a Cloudflare Tunnel Docker
 
+<div align="center">
+
 ## Set up instructions
 Follow the setup these instructions to configure the system.
 
-<div align="center">
+
 <iframe width="560" height="315" src="https://media.rp-helpdesk.com/embed?m=OSZ7f1wQr" frameborder="0" allowfullscreen></iframe>
 </div>
 
