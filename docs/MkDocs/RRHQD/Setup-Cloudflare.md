@@ -32,7 +32,7 @@
     8. Copy and input your cloudflare tunnel id
         - Both in the cli and in the cloudflare dns dashboard
 
-![alt text](../Images/cloudflare-dns-dashboard.png)
+![alt text](../../Images/cloudflare-dns-dashboard.png)
 !!! tip
 
     9. Pick if the services are http or https (What ever protocol you use when accessing the website on LAN)

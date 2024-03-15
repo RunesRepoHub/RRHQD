@@ -1,6 +1,6 @@
 # Setup a Checkmk docker
 
-## Set up instructions:
+## Set up instructions
 Follow the setup these instructions to configure the system.
 
 !!! question "User Input for Docker Image"
