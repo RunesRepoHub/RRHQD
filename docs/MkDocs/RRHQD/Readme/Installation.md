@@ -8,10 +8,10 @@
 
 !!! warning "WARNING: DO NOT DELETE THE FOLDERS!"
 
-    >* RRHQD
-    >* RRHQD-Dockers
-    >
-    > Note: The Docker compose files and the docker volumes are stored in the "RRHQD-Dockers" folder (SO DONT DELETE IT, unless you know what you are doing). The "RRHQD" folder is the main folder for the script.
+    * RRHQD
+    * RRHQD-Dockers
+    
+    Note: The Docker compose files and the docker volumes are stored in the "RRHQD-Dockers" folder (SO DONT DELETE IT, unless you know what you are doing). The "RRHQD" folder is the main folder for the script.
 
 !!! info "Getting Started"
 
