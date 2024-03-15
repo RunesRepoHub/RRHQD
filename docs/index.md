@@ -5,10 +5,8 @@
 
 <br>
 
-<img src="https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Prod&style=for-the-badge&label=Prod%20Branch
-">
-<img src="https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Dev&style=for-the-badge&label=Dev%20Branch
-">
+<img src="https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Prod&style=for-the-badge&label=Prod%20Branch">
+<img src="https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Dev&style=for-the-badge&label=Dev%20Branch">
 <img src="https://img.shields.io/github/last-commit/RunesRepoHub/RRHQD?style=for-the-badge">
 <img src="https://img.shields.io/github/issues-pr/RunesRepoHub/RRHQD?style=for-the-badge">
 
@@ -34,22 +32,15 @@
 <br><br>
 
 <h2> Download the latest version of the software </h2>
-<a href="https://github.com/RunesRepoHub/RRHQD">>
+<a href="https://github.com/RunesRepoHub/RRHQD/tree/Prod">
 <img src="https://github-readme-stats.vercel.app/api/pin/?username=RunesRepoHub&repo=RRHQD&theme=transparent">
 </a>
 
+
+<h2> This software is still in development. </h2>
+<a href="https://github.com/RunesRepoHub/RRHQD/issues">
+<img src="https://img.shields.io/badge/Issue-Report?style=for-the-badge&label=Report&labelColor=red&color=grey">
+</a>
+
+
 </div>
-
-## Introduction
-
-!!! bug "Important"
-
-    This software is still in development.
-
-    Please report bugs to [Github](https://github.com/RunesRepoHub/RRHQD/issues)
-
-## Download RRHQD
-
-!!! success "Download"
-
-    * Download the latest version of the software from [Github](https://github.com/RunesRepoHub/RRHQD/tree/Prod)
