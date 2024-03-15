@@ -1,7 +1,7 @@
 <div align="center">
   <img src="docs/Images/RRHQD.png">
 
-  ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Prod&style=for-the-badge&label=Prod%20Branch) ![GitHub last commit](https://img.shields.io/github/last-commit/RunesRepoHub/RRHQD?style=for-the-badge) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Dev&style=for-the-badge&label=Dev%20Branch) ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/RunesRepoHub/RRHQD?style=for-the-badge)
+  ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Prod&style=for-the-badge&label=Prod%20Branch) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/RunesRepoHub/RRHQD/Wiki-Deploy.yml?branch=Dev&style=for-the-badge&label=Dev%20Branch) ![GitHub last commit](https://img.shields.io/github/last-commit/RunesRepoHub/RRHQD?style=for-the-badge) ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/RunesRepoHub/RRHQD?style=for-the-badge)
   
   ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/RunesRepoHub/RRHQD?style=for-the-badge) ![Github Created At](https://img.shields.io/github/created-at/RunesRepoHub/RRHQD?style=for-the-badge) ![GitHub number of milestones](https://img.shields.io/github/milestones/open/RunesRepoHub/RRHQD?style=for-the-badge) 
   
