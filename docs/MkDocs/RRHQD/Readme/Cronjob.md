@@ -1,6 +1,6 @@
 <div align="center">
 
-## Cronjobs
+<h2> Cronjobs </h2>
 
 ![Alt text](../../../Images/Cronjobs.png)
 
