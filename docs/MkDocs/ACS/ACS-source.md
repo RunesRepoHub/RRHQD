@@ -2,7 +2,7 @@
 
 Get a better understanding of the source code by reading below.
 
-![Alt text](../Images/folder-structure.png)
+![Alt text](../../Images/folder-structure.png)
 
 ## System.
 
