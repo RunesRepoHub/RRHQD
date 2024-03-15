@@ -14,7 +14,7 @@
 
 <img src="https://img.shields.io/github/issues/RunesRepoHub/RRHQD?style=for-the-badge">
 <img src="https://img.shields.io/github/created-at/RunesRepoHub/RRHQD?style=for-the-badge">
-<img src="https://img.shields.io/github/commits-difference/RunesRepoHub/RRHQD?base=Dev&head=Prod&style=for-the-badge">
+<img src="https://img.shields.io/github/commits-difference/RunesRepoHub/RRHQD?base=Prod&head=Dev&style=for-the-badge">
 <img src="https://img.shields.io/github/milestones/open/RunesRepoHub/RRHQD?style=for-the-badge">
 
 <br>
