@@ -15,17 +15,17 @@
 
 !!! info "Getting Started"
 
-    >- Run the setup via the command below.
-    >
-    >- Follow the setup "guide" after.
-    >
-    >- When asked what branch do you want to use, select the branch you want to use. If you want to use a stable branch, select "Prod".
-    >
-    >- If you want to the nightly updated code base, then use the "PoC" branch.
+    - Run the setup via the command below.
+    
+    - Follow the setup "guide" after.
+    
+    - When asked what branch do you want to use, select the branch you want to use. If you want to use a stable branch, select "Prod".
+    
+    - If you want to the nightly updated code base, then use the "PoC" branch.
 
 !!! danger "Branches"
     
-    >***Don't use the Dev branch***
+    ***Don't use the Dev branch***
 
 <div align="center">
 
@@ -45,11 +45,11 @@ bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Prod/Setup
 
 !!! important "Use Custom Commands"
 
-    >To use custom commands you will have to run 
+    To use custom commands you will have to run 
 
 !!! warning "Load Custom Commands"
 
-    >***This is for Ubuntu, Debian, Zorin OS and Linux Mint.***
+    ***This is for Ubuntu, Debian, Zorin OS and Linux Mint.***
 
 ```
 source ~/.bashrc
@@ -57,7 +57,7 @@ source ~/.bashrc
 
 !!! warning "Load Custom Commands"
     
-    >***This is for Kali Linux***
+    ***This is for Kali Linux***
 
 ```
 source ~/.zshrc
@@ -67,7 +67,7 @@ source ~/.zshrc
 
 !!! info 
 
-    >If you want to access the script again after exiting it use the command below.
+    If you want to access the script again after exiting it use the command below.
 
 ```
 qd
