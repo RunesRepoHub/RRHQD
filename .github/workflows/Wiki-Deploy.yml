@@ -41,7 +41,7 @@ jobs:
         with:
           url: '${{ secrets.NTFYURL }}'
           topic: '${{ secrets.NTFYTOPIC }}'
-          priority: 3
+          priority: 2
           tags: +1,partying_face,action,successfully,completed
           details: Workflow has been successfully completed!
 
