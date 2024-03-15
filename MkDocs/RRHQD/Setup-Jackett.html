@@ -129,6 +129,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#setup-a-jackett-docker" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -763,6 +768,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Setup a Jackett Docker
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="Setup-Jackett.html" class="md-nav__link md-nav__link--active">
         
@@ -773,6 +791,32 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-instructions" class="md-nav__link">
+    Set up instructions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1380,6 +1424,23 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-instructions" class="md-nav__link">
+    Set up instructions
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1397,9 +1458,26 @@
   
 
 
-  <h1>Setup a Jackett Docker</h1>
-
-
+<h1 id="setup-a-jackett-docker">Setup a Jackett Docker<a class="headerlink" href="#setup-a-jackett-docker" title="Permanent link">&para;</a></h1>
+<h2 id="set-up-instructions">Set up instructions<a class="headerlink" href="#set-up-instructions" title="Permanent link">&para;</a></h2>
+<p>Follow the setup these instructions to configure the system.</p>
+<div class="admonition question">
+<p class="admonition-title">User Input for Docker Image</p>
+<ul>
+<li>
+<p>Prompts the user to input the Docker image for Jackett. If the user doesn't provide any input, it defaults to "linuxserver/jackett:latest".</p>
+</li>
+<li>
+<p>Prompts the user to input the name for the Jackett container. If no input is provided, it defaults to "jackett-container".</p>
+</li>
+<li>
+<p>Prompts the user to input the port on which Jackett should be exposed. Defaults to port 9117 if no input is provided.</p>
+</li>
+<li>
+<p>Prompts the user to input the path for Jackett data. Defaults to "./Data/jackett-data" if no input is provided.</p>
+</li>
+</ul>
+</div>
 
 
   
