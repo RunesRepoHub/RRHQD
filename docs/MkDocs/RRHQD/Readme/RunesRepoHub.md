@@ -1,12 +1,13 @@
 <div align="center">
 
-## RunesRepoHub Software Support
+<h2> RunesRepoHub Software Support </h2>
 
-![Alt text](../../../Images/RRH.png)
+<img src="../../../Images/RunesRepoHub.png">
 
 </div>
 
-> [!NOTE]
->* ACS (Automated Content System) - [ACS Wiki](https://runesrepohub.github.io/ACS/)
->* News Report Docker (Automated News Reporting System) - [NRD Readme](https://github.com/RunesRepoHub/NRD)
->* EWD (Easy Web Development) - [EWD Repo](https://github.com/RunesRepoHub/EWD)
+!!! important "**RunesRepoHub Software Support**"
+
+    * ACS (Automated Content System) - [ACS Wiki](https://runesrepohub.github.io/ACS/)
+    * News Report Docker (Automated News Reporting System) - [NRD Readme](https://github.com/RunesRepoHub/NRD)
+    * EWD (Easy Web Development) - [EWD Repo](https://github.com/RunesRepoHub/EWD)

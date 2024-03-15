@@ -15,7 +15,7 @@ nav:
         - Install Other RRH Software: 'MkDocs/RRHQD/Readme/RunesRepoHub.md'
         - Cronjobs: 'MkDocs/RRHQD/Readme/Cronjobs.md'
         - Youtube Scripts: 'MkDocs/RRHQD/Readme/Youtube-Scripts.md'
-        - Quick Installers: 'MkDocs/RRHQD/Readme/Quick-Installers.md'
+        - Quick Installers: 'MkDocs/RRHQD/Readme/Quick-Installer.md'
         - Quick Tools: 'MkDocs/RRHQD/Readme/Quick-Tools.md'
         - Docker CnC: 'MkDocs/RRHQD/Readme/Docker-CnC.md'
       - Configuration Guides:

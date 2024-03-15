@@ -2,7 +2,7 @@
 
 <h2> Docker Support </h2>
 
-![Alt text](../../../Images/Docker-Images.png)
+<img src="../../../Images/Docker-Images.png">
 
 **Every docker "Installer" has been tested and is working.**
 

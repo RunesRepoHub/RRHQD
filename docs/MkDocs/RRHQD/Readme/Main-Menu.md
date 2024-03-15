@@ -1,17 +1,19 @@
 <div align="center">
 
-## Main Menu
+<h2> Main Menu </h2>
 
-![Alt text](../../../Images/Main-Menu.png)
+<img src="../../../Images/Main-Menu.png">
 
-## Update RRHQD
+<h2> Update RRHQD </h2>
 
 </div>
 
-> [!NOTE]
->The script will pull the latest version of the script. Every time you run it, it will update itself. Some updates may require you to restart the script to take effect. 
+!!! important "**Update RRHQD**"
 
-> [!CAUTION]
->***DO NOT CHANGE THE FILES IN THE RRHQD FOLDER***
->
->Doing so may break the script. You can modify the files in the RRHQD-Dockers folder.
+    The script will pull the latest version of the script. Every time you run it, it will update itself. Some updates may require you to restart the script to take effect. 
+
+!!! warning "**Changing the files in RRHQD**"
+
+    ***DO NOT CHANGE THE FILES IN THE RRHQD FOLDER***
+
+    Doing so may break the script. You can modify the files in the RRHQD-Dockers folder.
