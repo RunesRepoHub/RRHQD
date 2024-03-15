@@ -724,43 +724,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#detecting-os-and-setting-sudo" class="md-nav__link">
-    Detecting OS and Setting Sudo
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#creating-appdata-directory-and-setting-permissions" class="md-nav__link">
-    Creating Appdata Directory and Setting Permissions
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#running-cloudflare-tunnel-login-command" class="md-nav__link">
-    Running Cloudflare Tunnel Login Command
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#creating-a-cloudflare-tunnel" class="md-nav__link">
-    Creating a Cloudflare Tunnel
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuring-cloudflare-tunnel-for-websites" class="md-nav__link">
-    Configuring Cloudflare Tunnel for Website(s)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#starting-the-cloudflare-tunnel" class="md-nav__link">
-    Starting the Cloudflare Tunnel
+  <a href="#instructions" class="md-nav__link">
+    Instructions
   </a>
   
 </li>
@@ -1138,43 +1103,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#detecting-os-and-setting-sudo" class="md-nav__link">
-    Detecting OS and Setting Sudo
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#creating-appdata-directory-and-setting-permissions" class="md-nav__link">
-    Creating Appdata Directory and Setting Permissions
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#running-cloudflare-tunnel-login-command" class="md-nav__link">
-    Running Cloudflare Tunnel Login Command
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#creating-a-cloudflare-tunnel" class="md-nav__link">
-    Creating a Cloudflare Tunnel
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuring-cloudflare-tunnel-for-websites" class="md-nav__link">
-    Configuring Cloudflare Tunnel for Website(s)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#starting-the-cloudflare-tunnel" class="md-nav__link">
-    Starting the Cloudflare Tunnel
+  <a href="#instructions" class="md-nav__link">
+    Instructions
   </a>
   
 </li>
@@ -1205,35 +1135,88 @@
 <h1 id="setup-a-cloudflare-tunnel-docker">Setup a Cloudflare Tunnel Docker<a class="headerlink" href="#setup-a-cloudflare-tunnel-docker" title="Permanent link">&para;</a></h1>
 <h2 id="set-up-instructions">Set up instructions<a class="headerlink" href="#set-up-instructions" title="Permanent link">&para;</a></h2>
 <p>Follow the setup these instructions to configure the system.</p>
-<h3 id="detecting-os-and-setting-sudo">Detecting OS and Setting Sudo<a class="headerlink" href="#detecting-os-and-setting-sudo" title="Permanent link">&para;</a></h3>
+<h3 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Pick branch to install from. = Prod</p>
+</li>
+<li>
+<p>Go to the menu "Find and install a docker"</p>
+</li>
+<li>
+<p>Find the cloudflare tunnel docker</p>
+<ul>
+<li>You can get more help if you need.</li>
+<li>Let the cloudflare docker download (This can take a few minutes).</li>
+</ul>
+</li>
+<li>
+<p>When the cloudflare docker is up and running, you will have to login to cloudflare to download certificates.</p>
+</li>
+<li>
+<p>When you have logged in, you can Authorize the cloudflare tunnel.</p>
+</li>
+<li>
+<p>Give your cloudflare tunnel a name</p>
+<ul>
+<li>This will gernerate a id for the tunnel</li>
+</ul>
+</li>
+<li>
+<p>Pick if you are going to use the cloudflare tunnel for one or more websites</p>
+</li>
+<li>
+<p>Copy and input your cloudflare tunnel id</p>
+<ul>
+<li>Both in the cli and in the cloudflare dns dashboard</li>
+</ul>
+</li>
+</ol>
+<p><img alt="alt text" src="Images/cloudflare-dns-dashboard.png" /></p>
+<ol>
+<li>
+<p>Pick if the services are http or https (What ever protocol you use when accessing the website on LAN)</p>
+</li>
+<li>
+<p>Input your reverse proxy IP (What ever IP you use when accessing the website on LAN)</p>
+</li>
+<li>
+<p>Input your port (What ever port you use when accessing the website on LAN)</p>
+</li>
+<li>
+<p>Input your domain name (What ever domain you want use when accessing the website on WAN)</p>
+</li>
+</ol>
+<h1 id="behind-the-gui">Behind the GUI<a class="headerlink" href="#behind-the-gui" title="Permanent link">&para;</a></h1>
+<h2 id="detecting-os-and-setting-sudo">Detecting OS and Setting Sudo<a class="headerlink" href="#detecting-os-and-setting-sudo" title="Permanent link">&para;</a></h2>
 <div class="admonition important">
 <p class="admonition-title">Detecting OS and Setting Sudo</p>
 <ul>
 <li>The script starts by determining the operating system to adjust command prefixes accordingly. If the OS is Ubuntu, Kali, Linux Mint, or Zorin, it sets USE_SUDO to "sudo".</li>
 </ul>
 </div>
-<h3 id="creating-appdata-directory-and-setting-permissions">Creating Appdata Directory and Setting Permissions<a class="headerlink" href="#creating-appdata-directory-and-setting-permissions" title="Permanent link">&para;</a></h3>
+<h2 id="creating-appdata-directory-and-setting-permissions">Creating Appdata Directory and Setting Permissions<a class="headerlink" href="#creating-appdata-directory-and-setting-permissions" title="Permanent link">&para;</a></h2>
 <div class="admonition important">
 <p class="admonition-title">Creating Appdata Directory and Setting Permissions</p>
 <ul>
 <li>A directory, /mnt/user/appdata/cloudflared/, is created, and its permissions are set to 777. This directory seems to be a storage location for Cloudflared configurations.</li>
 </ul>
 </div>
-<h3 id="running-cloudflare-tunnel-login-command">Running Cloudflare Tunnel Login Command<a class="headerlink" href="#running-cloudflare-tunnel-login-command" title="Permanent link">&para;</a></h3>
+<h2 id="running-cloudflare-tunnel-login-command">Running Cloudflare Tunnel Login Command<a class="headerlink" href="#running-cloudflare-tunnel-login-command" title="Permanent link">&para;</a></h2>
 <div class="admonition important">
 <p class="admonition-title">Running Cloudflare Tunnel Login Command</p>
 <ul>
 <li>The script runs a Docker command to log in to the Cloudflare Tunnel, interacting with the /mnt/user/appdata/cloudflared/ directory.</li>
 </ul>
 </div>
-<h3 id="creating-a-cloudflare-tunnel">Creating a Cloudflare Tunnel<a class="headerlink" href="#creating-a-cloudflare-tunnel" title="Permanent link">&para;</a></h3>
+<h2 id="creating-a-cloudflare-tunnel">Creating a Cloudflare Tunnel<a class="headerlink" href="#creating-a-cloudflare-tunnel" title="Permanent link">&para;</a></h2>
 <div class="admonition important">
 <p class="admonition-title">Creating a Cloudflare Tunnel</p>
 <ul>
 <li>Another Docker command is used to create a Cloudflare tunnel. The configuration is stored in the same directory, and the tunnel is named based on user input.</li>
 </ul>
 </div>
-<h3 id="configuring-cloudflare-tunnel-for-websites">Configuring Cloudflare Tunnel for Website(s)<a class="headerlink" href="#configuring-cloudflare-tunnel-for-websites" title="Permanent link">&para;</a></h3>
+<h2 id="configuring-cloudflare-tunnel-for-websites">Configuring Cloudflare Tunnel for Website(s)<a class="headerlink" href="#configuring-cloudflare-tunnel-for-websites" title="Permanent link">&para;</a></h2>
 <div class="admonition important">
 <p class="admonition-title">Configuring Cloudflare Tunnel for Website(s)</p>
 <ul>
@@ -1245,7 +1228,7 @@
 </li>
 </ul>
 </div>
-<h3 id="starting-the-cloudflare-tunnel">Starting the Cloudflare Tunnel<a class="headerlink" href="#starting-the-cloudflare-tunnel" title="Permanent link">&para;</a></h3>
+<h2 id="starting-the-cloudflare-tunnel">Starting the Cloudflare Tunnel<a class="headerlink" href="#starting-the-cloudflare-tunnel" title="Permanent link">&para;</a></h2>
 <div class="admonition important">
 <p class="admonition-title">Starting the Cloudflare Tunnel</p>
 <ul>
