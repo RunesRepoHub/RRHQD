@@ -31,6 +31,10 @@
 <img src="https://img.shields.io/github/milestones/progress-percent/RunesRepoHub/RRHQD/1?style=for-the-badge">
 <img src="https://img.shields.io/github/languages/top/RunesRepoHub/RRHQD?style=for-the-badge">
 
+<br><br>
+
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=RunesRepoHub&repo=RRHQD&theme=transparent">
+
 </div>
 
 ## Introduction
