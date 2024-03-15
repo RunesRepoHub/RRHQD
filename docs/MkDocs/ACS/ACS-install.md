@@ -1,6 +1,6 @@
-# ACSF Installation
+# ACS Installation
 
-***Automated Content System Full***
+***Automated Content System***
 
 ## Important Information
 
@@ -49,16 +49,16 @@
     * Can cause a bit of slow down on plex itself if configured to update library on every change dectected in the folder.
 
 
-!!! success "Install ACSF"
+!!! success "Install ACS"
 
-    ### Install ACSF
+    ### Install ACS
 
     [See the requirements](https://runesrepohub.github.io/ACS/requirement.html)
 
     Use this command
 
     ```
-    bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/ACS/Production/setup.sh)
+    bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/RRHQD/Prod/Setup.sh)
     ```
     
     After the install has finished you can use these commands for quick access and control
