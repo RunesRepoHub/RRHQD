@@ -7,7 +7,7 @@ on:
 
 jobs:
   create-feature-branch:
-    if: contains(github.event.pull_request.labels.*.name, 'feature')
+    if: contains(github.event.issue.labels.*.name, 'feature')
     runs-on: self-hosted
     permissions:
       contents: write
