@@ -129,6 +129,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#setup-a-ghost-docker" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -723,6 +728,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Setup a Ghost Docker
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="Setup-Ghost.html" class="md-nav__link md-nav__link--active">
         
@@ -733,6 +751,45 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-instructions" class="md-nav__link">
+    Set up instructions
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-environment-variables" class="md-nav__link">
+    Setting Environment Variables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1380,6 +1437,36 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-instructions" class="md-nav__link">
+    Set up instructions
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-environment-variables" class="md-nav__link">
+    Setting Environment Variables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1397,9 +1484,39 @@
   
 
 
-  <h1>Setup a Ghost Docker</h1>
-
-
+<h1 id="setup-a-ghost-docker">Setup a Ghost docker<a class="headerlink" href="#setup-a-ghost-docker" title="Permanent link">&para;</a></h1>
+<h2 id="set-up-instructions">Set up instructions<a class="headerlink" href="#set-up-instructions" title="Permanent link">&para;</a></h2>
+<p>Follow the setup these instructions to configure the system.</p>
+<h3 id="setting-environment-variables">Setting Environment Variables<a class="headerlink" href="#setting-environment-variables" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Setting Environment Variables</p>
+<ul>
+<li>
+<p>Prompts the user to input the Docker image for Ghost. If the user doesn't provide any input, it defaults to "ghost:latest".</p>
+</li>
+<li>
+<p>Prompts the user to input the name for the Ghost container. If no input is provided, it defaults to "ghost_blog".</p>
+</li>
+<li>
+<p>Prompts the user to input the url for Ghost. Cannot be skipped.</p>
+</li>
+<li>
+<p>Prompts the user to input the port on which Ghost should be exposed. Defaults to port 2368 if no input is provided.</p>
+</li>
+<li>
+<p>Prompts the user to input the path for Ghost data. Defaults to "./ghost/content" if no input is provided.</p>
+</li>
+<li>
+<p>Prompts the user to input the MySQL password. </p>
+</li>
+<li>
+<p>Prompts the user to input the MySQL root password.</p>
+</li>
+<li>
+<p>Prompts the user to input the path for MySQL data. Defaults to "./ghost/mysql" if no input is provided. </p>
+</li>
+</ul>
+</div>
 
 
   

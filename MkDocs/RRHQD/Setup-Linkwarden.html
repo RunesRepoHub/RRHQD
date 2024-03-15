@@ -702,34 +702,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
-    Validation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#write-to-env-file" class="md-nav__link">
-    Write to .env File
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-docker-compose" class="md-nav__link">
-    Run Docker Compose
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-container-status" class="md-nav__link">
-    Check Container Status
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1489,34 +1461,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
-    Validation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#write-to-env-file" class="md-nav__link">
-    Write to .env File
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-docker-compose" class="md-nav__link">
-    Run Docker Compose
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-container-status" class="md-nav__link">
-    Check Container Status
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1561,51 +1505,6 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Enter the NEXTAUTH_SECRET (it should look like ^7yTjn@G$j@KtLh9&amp;@UdMpdfDZ):
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Enter the NEXTAUTH_URL (it should look like &#39;http://localhost:3000/api/v1/auth&#39;):
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Enter the POSTGRES_PASSWORD:
-</code></pre></div>
-</div>
-<h3 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h3>
-<div class="admonition important">
-<p class="admonition-title">Validation</p>
-<ul>
-<li>Make sure not to leave any field empty; otherwise, an error will be displayed.</li>
-</ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>NEXTAUTH_SECRET is empty. Please enter a valid secret.
-</code></pre></div>
-</div>
-<h3 id="write-to-env-file">Write to .env File<a class="headerlink" href="#write-to-env-file" title="Permanent link">&para;</a></h3>
-<div class="admonition important">
-<p class="admonition-title">Write to .env File</p>
-<ul>
-<li>If all values are provided, they will be stored in a .env file.</li>
-</ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>NEXTAUTH_SECRET=&lt;your_secret&gt;
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>NEXTAUTH_URL=&lt;your_url&gt;
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>POSTGRES_PASSWORD=&lt;your_password&gt;
-</code></pre></div>
-</div>
-<h3 id="run-docker-compose">Run Docker Compose<a class="headerlink" href="#run-docker-compose" title="Permanent link">&para;</a></h3>
-<div class="admonition important">
-<p class="admonition-title">Run Docker Compose</p>
-<ul>
-<li>The setup initiates Docker Compose to start the container in the background.</li>
-</ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker compose up -d
-</code></pre></div>
-</div>
-<h3 id="check-container-status">Check Container Status<a class="headerlink" href="#check-container-status" title="Permanent link">&para;</a></h3>
-<div class="admonition important">
-<p class="admonition-title">Check Container Status</p>
-<ul>
-<li>After starting, it checks if the Docker container is running successfully.
-bash</li>
-</ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>The Docker container ghcr.io/linkwarden/linkwarden:latest has started successfully.
-</code></pre></div>
-<ul>
-<li>If there's an issue, an error message will advise you to check the logs for more details.
-sql</li>
-</ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Failed to start the Docker container ghcr.io/linkwarden/linkwarden:latest. Please check the logs for details.
 </code></pre></div>
 </div>
 
