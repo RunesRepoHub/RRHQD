@@ -129,6 +129,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#setup-a-mysql-docker" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -843,6 +848,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Setup a MySQL Docker
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="Setup-MySQL.html" class="md-nav__link md-nav__link--active">
         
@@ -853,6 +871,32 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-instructions" class="md-nav__link">
+    Set up instructions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1380,6 +1424,23 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-instructions" class="md-nav__link">
+    Set up instructions
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1397,9 +1458,45 @@
   
 
 
-  <h1>Setup a MySQL Docker</h1>
-
-
+<h1 id="setup-a-mysql-docker">Setup a MySQL Docker<a class="headerlink" href="#setup-a-mysql-docker" title="Permanent link">&para;</a></h1>
+<h2 id="set-up-instructions">Set up instructions<a class="headerlink" href="#set-up-instructions" title="Permanent link">&para;</a></h2>
+<p>Follow the setup these instructions to configure the system.</p>
+<div class="admonition question">
+<p class="admonition-title">User Input for Docker Image</p>
+<ul>
+<li>Prompts the user to input the Docker image for MySQL. If the user doesn't provide any input, it defaults to "mysql:5.7".</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">User Input for Container Name</p>
+<ul>
+<li>Prompts the user to input the name for the MySQL container. If no input is provided, it defaults to "mysql-container".</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">User Input for Exposed Port</p>
+<ul>
+<li>Prompts the user to input the port on which MySQL should be exposed. Defaults to port 3306 if no input is provided.</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">User Input for Database Username</p>
+<ul>
+<li>Prompts the user to input the database username for MySQL. (CANNOT BE ROOT)</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">User Input for Password</p>
+<ul>
+<li>Prompts the user to input the database password for MySQL.</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">User Input for Database Name</p>
+<ul>
+<li>Prompts the user to input the database name for MySQL.</li>
+</ul>
+</div>
 
 
   

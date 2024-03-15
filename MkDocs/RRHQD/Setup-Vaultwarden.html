@@ -129,6 +129,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#setup-a-vaultwarden-docker" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1023,6 +1028,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Setup a Vaultwarden Docker
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="Setup-Vaultwarden.html" class="md-nav__link md-nav__link--active">
         
@@ -1033,6 +1051,32 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-instructions" class="md-nav__link">
+    Set up instructions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1380,6 +1424,23 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-instructions" class="md-nav__link">
+    Set up instructions
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1397,9 +1458,51 @@
   
 
 
-  <h1>Setup a Vaultwarden Docker</h1>
-
-
+<h1 id="setup-a-vaultwarden-docker">Setup a Vaultwarden docker<a class="headerlink" href="#setup-a-vaultwarden-docker" title="Permanent link">&para;</a></h1>
+<h2 id="set-up-instructions">Set up instructions<a class="headerlink" href="#set-up-instructions" title="Permanent link">&para;</a></h2>
+<p>Follow the setup these instructions to configure the system.</p>
+<div class="admonition question">
+<p class="admonition-title">User Input for Docker Image</p>
+<ul>
+<li>Prompts the user to input the Docker image for Vaultwarden. If the user doesn't provide any input, it defaults to "vaultwarden/server:latest."</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">User Input for Container Name</p>
+<ul>
+<li>Prompts the user to input the name for the Vaultwarden container. If no input is provided, it defaults to "vaultwarden."</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">User Input for Exposed Port</p>
+<ul>
+<li>Prompts the user to input the port on which Vaultwarden should be exposed. Defaults to port 80 if no input is provided.</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">User Input for Data Path</p>
+<ul>
+<li>Prompts the user to input the path for Vaultwarden data. Defaults to "./Data/vw-data" if no input is provided.</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">User Input for Admin Token</p>
+<ul>
+<li>Prompts the user to input the admin token for Vaultwarden. (CANNOT BE SKIPPED)</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">User Input for Allowed Signups</p>
+<ul>
+<li>Prompts the user to pick if signups should be allowed. (CANNOT BE SKIPPED)</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">User Input for Enabled or Disabled WEBSOCKETS</p>
+<ul>
+<li>Prompts the user to pick if websockets should be enabled. (CANNOT BE SKIPPED)</li>
+</ul>
+</div>
 
 
   
