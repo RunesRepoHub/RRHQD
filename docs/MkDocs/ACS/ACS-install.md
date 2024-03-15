@@ -72,7 +72,7 @@
     * Go to your http://your-server-ip:9117
     * Click on add indexer
 
-    ![Alt text](../Images/jackett2.png)
+    ![Alt text](../../Images/jackett2.png)
 
     * You'll then need to open your browser's development toolbar (in Chrome just hit F12) 
     * Go to the JavaScript Console and enter the following:
@@ -215,13 +215,13 @@
     * Set download to /downloads
     * Set download completed to /downloads/completed
     
-    ![Alt text](../Images/deluge.png)
+    ![Alt text](../../Images/deluge.png)
 
     * Go to plugins
     * Enable Label
     * Press apply
 
-    ![Alt text](../Images/deluge2.png)
+    ![Alt text](../../Images/deluge2.png)
 
 ## Configure Sonarr and Radarr
 
@@ -237,12 +237,12 @@
     * Go to settings 
     * Indexers
 
-    ![Alt text](../Images/image.png)
-    ![Alt text](../Images/radarr2.png)
+    ![Alt text](../../Images/image.png)
+    ![Alt text](../../Images/radarr2.png)
 
     **All indexers is just another name of jackett**
 
-    ![Alt text](../Images/jackett.png)
+    ![Alt text](../../Images/jackett.png)
 
     *Access your jackett docker container and find your own information*
 
@@ -257,8 +257,8 @@
     * Fill in the url of the indexer
     * Fill in the api key of the indexer
 
-    ![Alt text](../Images/image-1.png)
-    ![Alt text](../Images/radarr3.png)
+    ![Alt text](../../Images/image-1.png)
+    ![Alt text](../../Images/radarr3.png)
 
     *I recommend that you use advanced settings while setting up the indexers.*
 
@@ -273,20 +273,20 @@
 
     * Then click the plus to add a new one
     
-    ![Alt text](../Images/image-2.png)
-    ![Alt text](../Images/radarr7.png)
+    ![Alt text](../../Images/image-2.png)
+    ![Alt text](../../Images/radarr7.png)
 
     * Fill in the name of the client (Deluge)
     * Fill in the ip of the client
     * Fill in the port of the client (Default: 8112)
     * Fill in the password of the client (Deluge)
 
-    ![Alt text](../Images/image-3.png)
-    ![Alt text](../Images/radarr4.png)
+    ![Alt text](../../Images/image-3.png)
+    ![Alt text](../../Images/radarr4.png)
 
     **This might be need on radarr**
 
-    ![Alt text](../Images/radarr5.png)
+    ![Alt text](../../Images/radarr5.png)
 
 ??? example "Episode Naming"
 
@@ -297,8 +297,8 @@
     * Then click the add root folder button
     * Find the respective folder and click on it (Sonarr = shows, Radarr = movies)
 
-    ![Alt text](../Images/image-4.png)
-    ![Alt text](../Images/radarr.png)
+    ![Alt text](../../Images/image-4.png)
+    ![Alt text](../../Images/radarr.png)
 
     * You can change the name convention of the episode here (Optional)
 
@@ -316,8 +316,8 @@
     
     **You should make one for each**
 
-    ![Alt text](../Images/image-5.png)
-    ![Alt text](../Images/radarr6.png)
+    ![Alt text](../../Images/image-5.png)
+    ![Alt text](../../Images/radarr6.png)
 
 ## Configure Ombi
 
@@ -333,7 +333,7 @@
     * Load your servers
     * And then submit/save
 
-    ![Alt text](../Images/ombi.png)
+    ![Alt text](../../Images/ombi.png)
 
     #### Load Radarr Server
 
@@ -359,9 +359,9 @@
 
     **Then Save/Submit**
 
-    ![Alt text](../Images/radarr-api.png)
+    ![Alt text](../../Images/radarr-api.png)
 
-    ![Alt text](../Images/ombi2.png)
+    ![Alt text](../../Images/ombi2.png)
 
     #### Load Sonarr Server
 
@@ -386,9 +386,9 @@
     
     **Then Save/Submit**
 
-    ![Alt text](../Images/sonarr-api.png)
+    ![Alt text](../../Images/sonarr-api.png)
 
-    ![Alt text](../Images/ombi3.png)
+    ![Alt text](../../Images/ombi3.png)
 
 ## Configure Tautulli 
 
@@ -397,26 +397,26 @@
     ### Tautulli setup
 
     * Go to the http://your-server-ip:8181
-    ![Alt text](../Images/tautulli.png)
+    ![Alt text](../../Images/tautulli.png)
     * Click on "Next"
     * Sign in with plex
-    ![Alt text](../Images/tautulli2.png)
-    ![Alt text](../Images/tautulli3.png)
-    ![Alt text](../Images/tautulli4.png)
+    ![Alt text](../../Images/tautulli2.png)
+    ![Alt text](../../Images/tautulli3.png)
+    ![Alt text](../../Images/tautulli4.png)
     * Click on "Next"
     * Pick the plex server you want to use
     * Input the plex port
-    ![Alt text](../Images/tautulli5.png)
+    ![Alt text](../../Images/tautulli5.png)
     * Click on "Next"
     * **Activity Logging**
-    ![Alt text](../Images/tautulli6.png)
+    ![Alt text](../../Images/tautulli6.png)
     * Just set the "ignore interval" to 120
     * Click on "Next"
     * **Notifications**
-    ![Alt text](../Images/tautulli7.png)
+    ![Alt text](../../Images/tautulli7.png)
     * Click on "Next"
     * **Database import**
-    ![Alt text](../Images/tautulli8.png)
+    ![Alt text](../../Images/tautulli8.png)
     * Click on "Finish"
-    ![Alt text](../Images/tautulli9.png)
-    ![Alt text](../Images/tautulli10.png)
+    ![Alt text](../../Images/tautulli9.png)
+    ![Alt text](../../Images/tautulli10.png)

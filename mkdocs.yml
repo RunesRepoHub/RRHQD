@@ -45,10 +45,8 @@ nav:
         - What is ACS?: 'MkDocs/ACS/ACS-index.md'
         - Requirements ACS: 'MkDocs/ACS/ACS-requirement.md'
         - How to Install ACS: 'MkDocs/ACS/ACS-install.md'
-        - Easy Commands: 'MkDocs/ACS/ACS-commands.md'
       - Understand The Source Code:
         - Description of Source Code ACS: 'MkDocs/ACS/ACS-source.md'
-        - Error Codes: 'MkDocs/ACS/ACS-errorcode.md'
     - RP-Helpdesk Docs: 'https://runesrepohub.github.io/RPH-Docs/index.html'
 theme:
   icon:

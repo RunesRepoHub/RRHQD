@@ -16,7 +16,7 @@
 
     ### Get a visual breakdown of the setup.
 
-    ![Alt text](../Images/setup-breakdown.png)
+    ![Alt text](../../Images/setup-breakdown.png)
 
 ## Enjoy
 
