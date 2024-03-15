@@ -2,8 +2,8 @@
 
 <div align="center">
 
-## Set up instructions
-Follow the setup these instructions to configure the system.
+<h1> Set up instructions </h1>
+<h4>Follow the setup these instructions to configure the system.</h4>
 
 
 <iframe width="560" height="315" src="https://media.rp-helpdesk.com/embed?m=OSZ7f1wQr" frameborder="0" allowfullscreen></iframe>
