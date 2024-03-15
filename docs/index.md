@@ -14,7 +14,9 @@
 
 <img src="https://img.shields.io/github/issues/RunesRepoHub/RRHQD?style=for-the-badge">
 <img src="https://img.shields.io/github/created-at/RunesRepoHub/RRHQD?style=for-the-badge">
+<a href="https://github.com/RunesRepoHub/RRHQD/milestone/1">
 <img src="https://img.shields.io/github/milestones/open/RunesRepoHub/RRHQD?style=for-the-badge">
+</a>
 
 <br>
 

@@ -9,7 +9,7 @@
 
   ![GitHub License](https://img.shields.io/github/license/RunesRepoHub/RRHQD?style=for-the-badge) ![Website](https://img.shields.io/website?url=https%3A%2F%2Frunesrepohub.github.io%2FRRHQD%2F&style=for-the-badge&label=Github%20Pages)
 
-  ![GitHub repo size](https://img.shields.io/github/repo-size/RunesRepoHub/RRHQD?style=for-the-badge) ![GitHub Repo stars](https://img.shields.io/github/stars/RunesRepoHub/RRHQD?style=for-the-badge) ![GitHub milestone details](https://img.shields.io/github/milestones/progress-percent/RunesRepoHub/RRHQD/1?style=for-the-badge) ![GitHub top language](https://img.shields.io/github/languages/top/RunesRepoHub/RRHQD?style=for-the-badge)
+  ![GitHub repo size](https://img.shields.io/github/repo-size/RunesRepoHub/RRHQD?style=for-the-badge) ![GitHub Repo stars](https://img.shields.io/github/stars/RunesRepoHub/RRHQD?style=for-the-badge) [![GitHub milestone details](https://img.shields.io/github/milestones/progress-percent/RunesRepoHub/RRHQD/1?style=for-the-badge)](https://github.com/RunesRepoHub/RRHQD/milestone/1) ![GitHub top language](https://img.shields.io/github/languages/top/RunesRepoHub/RRHQD?style=for-the-badge)
 
 
 ---------------------------------------------------------------------------------------------
