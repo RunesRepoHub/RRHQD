@@ -86,32 +86,6 @@ Get a better understanding of the source code by reading below.
 
     This modular and responsive design ensures that the script caters to user preferences while maintaining clarity and control over the automated cleanup process.
 
-??? note "Update.sh"
-
-    ### Update.sh
-
-    This script enhances maintainability and functionality through the following steps:
-
-    1. Environment Configuration:
-
-        * Sets the "Dev" variable to "Production" and exports it as an environment variable.
-
-    2. Updating "download-update.sh" Script:
-
-        * Removes the existing "download-update.sh" file.
-
-        * Downloads the latest version from a GitHub repository, dynamically selecting the version based on the value of the "Dev" variable.
-
-    3. User Notification:
-
-        * Displays a message notifying the user that the "download-update.sh" script has been updated.
-
-    4. Executing Updated Script:
-
-        * Runs the updated "download-update.sh" script using the "bash" command.
-
-    This sequence of actions ensures that the script is always utilizing the latest version of the "download-update.sh" script from the specified GitHub repository, enhancing efficiency and adaptability in response to potential updates or changes.
-
 ??? success "Add-url-list.sh"
 
     ### Add-url-list.sh
