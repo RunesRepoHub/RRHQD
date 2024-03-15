@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://runesrepohub.github.io/RRHQD/MkDocs/ACS-index.html">
+        <link rel="canonical" href="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-MySQL.html">
       
       
-        <link rel="prev" href="Setup-Cloudflare.html">
+        <link rel="prev" href="Setup-Memos.html">
       
       
-        <link rel="next" href="ACS-requirement.html">
+        <link rel="next" href="Setup-N8N.html">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
     
     
       
-        <title>What is ACS? - RRHQD Wiki</title>
+        <title>Setup a MySQL Docker - RRHQD Wiki</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35e1ed30.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
       
       
   
@@ -89,9 +89,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -129,11 +129,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#acs-automated-content-system" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -146,7 +141,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="RRHQD Wiki" class="md-header__button md-logo" aria-label="RRHQD Wiki" data-md-component="logo">
+    <a href="../.." title="RRHQD Wiki" class="md-header__button md-logo" aria-label="RRHQD Wiki" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 592 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"/></svg>
@@ -166,7 +161,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              What is ACS?
+              Setup a MySQL Docker
             
           </span>
         </div>
@@ -279,17 +274,21 @@
         
   
   
+    
+  
   
     
     
       
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../index.html" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../index.html" class="md-tabs__link">
           
   
     
@@ -308,21 +307,17 @@
         
   
   
-    
-  
   
     
     
       
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="ACS-index.html" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../ACS/ACS-index.html" class="md-tabs__link">
           
   
     
@@ -383,7 +378,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="RRHQD Wiki" class="md-nav__button md-logo" aria-label="RRHQD Wiki" data-md-component="logo">
+    <a href="../.." title="RRHQD Wiki" class="md-nav__button md-logo" aria-label="RRHQD Wiki" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 592 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"/></svg>
@@ -410,6 +405,8 @@
       
   
   
+    
+  
   
     
     
@@ -425,12 +422,12 @@
       
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
         
           
           <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
@@ -444,7 +441,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             RRHQD Documentation
@@ -480,7 +477,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../index.html" class="md-nav__link ">
+            <a href="../../index.html" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -513,6 +510,8 @@
                 
   
   
+    
+  
   
     
     
@@ -526,12 +525,12 @@
       
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" checked>
         
           
           <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="">
@@ -545,7 +544,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_2">
             <span class="md-nav__icon md-icon"></span>
             Configuration Guides
@@ -556,6 +555,8 @@
                 
   
   
+    
+  
   
     
     
@@ -568,16 +569,48 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2_1" checked>
         
           
           <label class="md-nav__link" for="__nav_1_2_1" id="__nav_1_2_1_label" tabindex="0">
@@ -591,7 +624,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_2_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_2_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_2_1">
             <span class="md-nav__icon md-icon"></span>
             Docker Configuration Guides
@@ -678,126 +711,125 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
               
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+                
   
   
-    
   
-  
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="Setup-Ghost.html" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
-            
   
   <span class="md-ellipsis">
-    ACS Documentation
+    Setup a Ghost Docker
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            ACS Documentation
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+      </a>
+    </li>
+  
+
+              
             
               
                 
   
   
-    
   
-  
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="Setup-It-tools.html" class="md-nav__link">
         
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
-            
   
   <span class="md-ellipsis">
-    Getting Started With ACS
+    Setup a It-tools Docker
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Jackett.html" class="md-nav__link">
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_1">
-            <span class="md-nav__icon md-icon"></span>
-            Getting Started With ACS
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+  
+  <span class="md-ellipsis">
+    Setup a Jackett Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Llama-GPT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Llama-GPT Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-MediaCMS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a MediaCMS Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Memos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Memos Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -811,116 +843,16 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
       
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    What is ACS?
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="ACS-index.html" class="md-nav__link md-nav__link--active">
+      <a href="Setup-MySQL.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    What is ACS?
+    Setup a MySQL Docker
   </span>
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
-  </a>
-  
-    <nav class="md-nav" aria-label="Introduction">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#important" class="md-nav__link">
-    Important
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-a-visual-breakdown-of-the-setup" class="md-nav__link">
-    Get a visual breakdown of the setup.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enjoy" class="md-nav__link">
-    Enjoy
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#warnings" class="md-nav__link">
-    Warnings
-  </a>
-  
-    <nav class="md-nav" aria-label="Warnings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#root-user-required" class="md-nav__link">
-    Root User Required
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#docker-is-required" class="md-nav__link">
-    Docker is required
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#youtube-dl-performence" class="md-nav__link">
-    Youtube-dl Performence
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -933,7 +865,324 @@
   
   
     <li class="md-nav__item">
-      <a href="ACS-requirement.html" class="md-nav__link">
+      <a href="Setup-N8N.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a N8N Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-NTFY.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a NTFY Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Ombi.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Ombi Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Portainer.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Portainer Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Postgres.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Postgres Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Radarr.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Radarr Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Sonarr.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Sonarr Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Uptime-Kuma.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Uptime-Kuma Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Vaultwarden.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Vaultwarden Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    ACS Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ACS Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started With ACS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started With ACS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ACS/ACS-index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is ACS?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ACS/ACS-requirement.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -953,7 +1202,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ACS-install.html" class="md-nav__link">
+      <a href="../ACS/ACS-install.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -973,7 +1222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ACS-commands.html" class="md-nav__link">
+      <a href="../ACS/ACS-commands.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1046,7 +1295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ACS-source.html" class="md-nav__link">
+      <a href="../ACS/ACS-source.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1066,7 +1315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ACS-errorcode.html" class="md-nav__link">
+      <a href="../ACS/ACS-errorcode.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1131,84 +1380,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
-  </a>
-  
-    <nav class="md-nav" aria-label="Introduction">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#important" class="md-nav__link">
-    Important
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-a-visual-breakdown-of-the-setup" class="md-nav__link">
-    Get a visual breakdown of the setup.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enjoy" class="md-nav__link">
-    Enjoy
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#warnings" class="md-nav__link">
-    Warnings
-  </a>
-  
-    <nav class="md-nav" aria-label="Warnings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#root-user-required" class="md-nav__link">
-    Root User Required
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#docker-is-required" class="md-nav__link">
-    Docker is required
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#youtube-dl-performence" class="md-nav__link">
-    Youtube-dl Performence
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1226,57 +1397,9 @@
   
 
 
-<h1 id="acs-automated-content-system">ACS (Automated Content System)<a class="headerlink" href="#acs-automated-content-system" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<div class="admonition bug">
-<p class="admonition-title">Important</p>
-<h3 id="important">Important<a class="headerlink" href="#important" title="Permanent link">&para;</a></h3>
-<p>This software is still in development.</p>
-<p>Please report bugs to <a href="https://github.com/RunesRepoHub/ACS/issues">Github</a></p>
-</div>
-<div class="admonition important">
-<p class="admonition-title">ACSF (Automated Content System Full)</p>
-<p>Redefining media server management, our user-friendly software combines a sleek interface with powerful automation. Ideal for users with robust servers, it effortlessly downloads movies, shows, and YouTube videos, while intuitively configuring and maintaining Plex, Ombi, Jackett, Sonarr, Radarr, Deluge, Tautulli, and Mikenye/YouTube-dl Docker containers. </p>
-<h3 id="get-a-visual-breakdown-of-the-setup">Get a visual breakdown of the setup.<a class="headerlink" href="#get-a-visual-breakdown-of-the-setup" title="Permanent link">&para;</a></h3>
-<p><img alt="Alt text" src="../Images/setup-breakdown.png" /></p>
-</div>
-<h2 id="enjoy">Enjoy<a class="headerlink" href="#enjoy" title="Permanent link">&para;</a></h2>
-<div class="admonition success">
-<p class="admonition-title">Enjoy the simplicity of organized folders and files, making setup and maintenance a breeze.</p>
-<p>Enjoy the simplicity of organized folders and files, making setup and maintenance a breeze. Elevate your media server experience with an innovative solution that seamlessly integrates ease of use with advanced capabilities.</p>
-</div>
-<h2 id="warnings">Warnings<a class="headerlink" href="#warnings" title="Permanent link">&para;</a></h2>
-<div class="admonition failure">
-<p class="admonition-title">Root User Required</p>
-<h3 id="root-user-required">Root User Required<a class="headerlink" href="#root-user-required" title="Permanent link">&para;</a></h3>
-<p>This software will only run as root. <strong><em>YOU CAN NOT RUN IT AS A NORMAL USER</em></strong>.</p>
-</div>
-<details class="danger">
-<summary>Docker is required</summary>
-<h3 id="docker-is-required">Docker is required<a class="headerlink" href="#docker-is-required" title="Permanent link">&para;</a></h3>
-<p>Docker is required to run this software</p>
-<p><a href="https://linuxiac.com/how-to-install-docker-on-debian-12-bookworm/">Get Docker on Debian 12</a></p>
-<p><a href="https://docs.docker.com/engine/install/debian/">Get Docker on Debian 11</a></p>
-<p><a href="https://docs.docker.com/engine/install/ubuntu/">Get Docker on Ubuntu 20.04</a></p>
-</details>
-<details class="danger">
-<summary>Performence</summary>
-<h3 id="youtube-dl-performence">Youtube-dl Performence<a class="headerlink" href="#youtube-dl-performence" title="Permanent link">&para;</a></h3>
-<p>The Youtube-dl has some issues when it comes to downloading.
-Mainly because of long playlists and/or multiple downloads running at ones.</p>
-<p>This will result in these errors. (And possible more)</p>
-<ul>
-<li>
-<p>Can cause a softlog error on proxmox when running it in an VM.</p>
-</li>
-<li>
-<p>The longer the playlists the longer the download. (At download item 86 of 156 it takes 30 mins of 400mb of data, THIS is NOT a networking limit)</p>
-</li>
-<li>
-<p>Can cause a bit of slow down on plex itself if configured to update library on every change dectected in the folder.</p>
-</li>
-</ul>
-</details>
+  <h1>Setup a MySQL Docker</h1>
+
+
 
 
   
@@ -1339,12 +1462,12 @@ Mainly because of long playlists and/or multiple downloads running at ones.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.tabs.link", "content.tooltips", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.tabs.link", "content.tooltips", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
       
-        <script src="../javascripts/extra.js"></script>
+        <script src="../../javascripts/extra.js"></script>
       
     
   </body>

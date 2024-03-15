@@ -1,0 +1,2347 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://runesrepohub.github.io/RRHQD/MkDocs/ACS/ACS-install.html">
+      
+      
+        <link rel="prev" href="ACS-requirement.html">
+      
+      
+        <link rel="next" href="ACS-commands.html">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+    
+    
+      
+        <title>How to Install ACS - RRHQD Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35e1ed30.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.04 13.13c.14 0 .27.06.38.17l1.28 1.28c.22.21.22.56 0 .77l-1 1-2.05-2.05 1-1c.11-.11.25-.17.39-.17m-1.97 1.75 2.05 2.05L15.06 23H13v-2.06l6.07-6.06M3 7V5h2V4a2 2 0 0 1 2-2h6v7l2.5-1.5L18 9V2h1c1.05 0 2 .95 2 2v6L11 20v2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2 0h2V5H5v2m0 4v2h2v-2H5m0 6v2h2v-2H5Z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m16.75 22.16-2.75-3L15.16 18l1.59 1.59L20.34 16l1.16 1.41-4.75 4.75M3 7V5h2V4a2 2 0 0 1 2-2h6v7l2.5-1.5L18 9V2h1c1.05 0 2 .95 2 2v9.8a6.005 6.005 0 0 0-8.2 8.2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v12a2 2 0 0 0 2 2h4l4 4 4-4h4c1.11 0 2-.89 2-2V4a2 2 0 0 0-2-2m0 14h-4.83L12 19.17 8.83 16H4V4h16v12m-9.25-2.29-3.5-3.5 1.41-1.42 2.09 2.09 4.59-4.58 1.41 1.41-6 6Z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m10.5 24-1.485-9.007-8.961-1.738L8.16 9.06 7.045 0l6.495 6.414 8.271-3.861-4.093 8.16 6.228 6.673-9.024-1.372z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M246.9 14.1C234 15.2 224 26 224 39c0 13.8 11.2 25 25 25h151c8.8 0 16-7.2 16-16V17.4c0-9.4-8-16.7-17.3-16L246.9 14.1zM240 112c0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16H241.6c-1 5.2-1.6 10.5-1.6 16zM72 224c-22.1 0-40 17.9-40 40s17.9 40 40 40h152v89.4l162.8-162.9c-13.3-4.3-27.3-6.5-41.6-6.5H72zm345.7 20.9L246.6 416H416v-46.3l53.6 90.6c11.2 19 35.8 25.3 54.8 14.1s25.3-35.8 14.1-54.8l-76.2-128.8c-11.2-18.9-26.6-34.5-44.6-45.9zM224 448v32c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32v-32H224z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343h-.001a8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746Zm1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275ZM6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L6.94 8 4.97 6.03a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.81 10.25c-.06-.04-.56-.43-1.64-.43-.28 0-.56.03-.84.08-.21-1.4-1.38-2.11-1.43-2.14l-.29-.17-.18.27c-.24.36-.43.77-.51 1.19-.2.8-.08 1.56.33 2.21-.49.28-1.29.35-1.46.35H2.62c-.34 0-.62.28-.62.63 0 1.15.18 2.3.58 3.38.45 1.19 1.13 2.07 2 2.61.98.6 2.59.94 4.42.94.79 0 1.61-.07 2.42-.22 1.12-.2 2.2-.59 3.19-1.16A8.3 8.3 0 0 0 16.78 16c1.05-1.17 1.67-2.5 2.12-3.65h.19c1.14 0 1.85-.46 2.24-.85.26-.24.45-.53.59-.87l.08-.24-.19-.14m-17.96.99h1.76c.08 0 .16-.07.16-.16V9.5c0-.08-.07-.16-.16-.16H3.85c-.09 0-.16.07-.16.16v1.58c.01.09.07.16.16.16m2.43 0h1.76c.08 0 .16-.07.16-.16V9.5c0-.08-.07-.16-.16-.16H6.28c-.09 0-.16.07-.16.16v1.58c.01.09.07.16.16.16m2.47 0h1.75c.1 0 .17-.07.17-.16V9.5c0-.08-.06-.16-.17-.16H8.75c-.08 0-.15.07-.15.16v1.58c0 .09.06.16.15.16m2.44 0h1.77c.08 0 .15-.07.15-.16V9.5c0-.08-.06-.16-.15-.16h-1.77c-.08 0-.15.07-.15.16v1.58c0 .09.07.16.15.16M6.28 9h1.76c.08 0 .16-.09.16-.18V7.25c0-.09-.07-.16-.16-.16H6.28c-.09 0-.16.06-.16.16v1.57c.01.09.07.18.16.18m2.47 0h1.75c.1 0 .17-.09.17-.18V7.25c0-.09-.06-.16-.17-.16H8.75c-.08 0-.15.06-.15.16v1.57c0 .09.06.18.15.18m2.44 0h1.77c.08 0 .15-.09.15-.18V7.25c0-.09-.07-.16-.15-.16h-1.77c-.08 0-.15.06-.15.16v1.57c0 .09.07.18.15.18m0-2.28h1.77c.08 0 .15-.07.15-.16V5c0-.1-.07-.17-.15-.17h-1.77c-.08 0-.15.06-.15.17v1.56c0 .08.07.16.15.16m2.46 4.52h1.76c.09 0 .16-.07.16-.16V9.5c0-.08-.07-.16-.16-.16h-1.76c-.08 0-.15.07-.15.16v1.58c0 .09.07.16.15.16"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v12a2 2 0 0 0 2 2h7v2H8v2h8v-2h-2v-2h7c1.11 0 2-.89 2-2V4a2 2 0 0 0-2-2m0 14H3V4h18v12m-5.16-7.8-1.01 1.01-2.07-2.03 1.01-1.02c.2-.21.54-.22.78 0l1.29 1.25c.21.21.22.55 0 .79M8 11.91l4.17-4.19 2.07 2.08-4.16 4.2H8v-2.09Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Zm4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5ZM2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0Z"/></svg>');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config",""),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#acsf-installation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="RRHQD Wiki" class="md-header__button md-logo" aria-label="RRHQD Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 592 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RRHQD Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How to Install ACS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/RunesRepoHub/RRHQD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 592 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RRHQD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../index.html" class="md-tabs__link">
+          
+  
+    
+  
+  RRHQD Documentation
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="ACS-index.html" class="md-tabs__link">
+          
+  
+    
+  
+  ACS Documentation
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://runesrepohub.github.io/RPH-Docs/index.html" class="md-tabs__link">
+        
+  
+    
+  
+  RP-Helpdesk Docs
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="RRHQD Wiki" class="md-nav__button md-logo" aria-label="RRHQD Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 592 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"/></svg>
+
+    </a>
+    RRHQD Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/RunesRepoHub/RRHQD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 592 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RRHQD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    RRHQD Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            RRHQD Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting Started With RRHQD
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started With RRHQD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Configuration Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2_1" id="__nav_1_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker Configuration Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Docker Configuration Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Linkwarden.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Linkwarden Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Deluge.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Deluge Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Checkmk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Checkmk Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Cloudflare.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Cloudflare Tunnel Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Ghost.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Ghost Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-It-tools.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a It-tools Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Jackett.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Jackett Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Llama-GPT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Llama-GPT Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-MediaCMS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a MediaCMS Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Memos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Memos Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-MySQL.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a MySQL Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-N8N.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a N8N Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-NTFY.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a NTFY Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Ombi.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Ombi Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Portainer.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Portainer Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Postgres.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Postgres Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Radarr.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Radarr Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Sonarr.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Sonarr Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Uptime-Kuma.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Uptime-Kuma Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RRHQD/Setup-Vaultwarden.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Vaultwarden Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    ACS Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ACS Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started With ACS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started With ACS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ACS-index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is ACS?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ACS-requirement.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requirements ACS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    How to Install ACS
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ACS-install.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    How to Install ACS
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#important-information" class="md-nav__link">
+    Important Information
+  </a>
+  
+    <nav class="md-nav" aria-label="Important Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#root-user-required" class="md-nav__link">
+    Root User Required
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important" class="md-nav__link">
+    Important
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-is-required" class="md-nav__link">
+    Docker is required
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-command" class="md-nav__link">
+    Install command
+  </a>
+  
+    <nav class="md-nav" aria-label="Install command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#youtube-dl-performence" class="md-nav__link">
+    Youtube-dl Performence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-acsf" class="md-nav__link">
+    Install ACSF
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jackett-indexers-script" class="md-nav__link">
+    Jackett Indexers Script
+  </a>
+  
+    <nav class="md-nav" aria-label="Jackett Indexers Script">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-jackett-indexers" class="md-nav__link">
+    Setup jackett indexers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-deluge" class="md-nav__link">
+    Configure Deluge
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Deluge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-deluge" class="md-nav__link">
+    Setting up deluge
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-sonarr-and-radarr" class="md-nav__link">
+    Configure Sonarr and Radarr
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Sonarr and Radarr">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-indexers-on-sonarr-and-radarr" class="md-nav__link">
+    Setting up indexers on sonarr and radarr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-the-deluge-download-client" class="md-nav__link">
+    Adding the deluge download client.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#episode-naming" class="md-nav__link">
+    Episode Naming
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-profile" class="md-nav__link">
+    Download profile
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-ombi" class="md-nav__link">
+    Configure Ombi
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Ombi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ombi-setup" class="md-nav__link">
+    Ombi setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Ombi setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-plex-server" class="md-nav__link">
+    Load Plex Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-radarr-server" class="md-nav__link">
+    Load Radarr Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-your-radarr-api-key" class="md-nav__link">
+    Get your Radarr api key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-sonarr-server" class="md-nav__link">
+    Load Sonarr Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-your-sonarr-api-key" class="md-nav__link">
+    Get your Sonarr api key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-tautulli" class="md-nav__link">
+    Configure Tautulli
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Tautulli">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tautulli-setup" class="md-nav__link">
+    Tautulli setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ACS-commands.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Easy Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Understand The Source Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Understand The Source Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ACS-source.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Description of Source Code ACS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ACS-errorcode.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Error Codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://runesrepohub.github.io/RPH-Docs/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RP-Helpdesk Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#important-information" class="md-nav__link">
+    Important Information
+  </a>
+  
+    <nav class="md-nav" aria-label="Important Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#root-user-required" class="md-nav__link">
+    Root User Required
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important" class="md-nav__link">
+    Important
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-is-required" class="md-nav__link">
+    Docker is required
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-command" class="md-nav__link">
+    Install command
+  </a>
+  
+    <nav class="md-nav" aria-label="Install command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#youtube-dl-performence" class="md-nav__link">
+    Youtube-dl Performence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-acsf" class="md-nav__link">
+    Install ACSF
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jackett-indexers-script" class="md-nav__link">
+    Jackett Indexers Script
+  </a>
+  
+    <nav class="md-nav" aria-label="Jackett Indexers Script">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-jackett-indexers" class="md-nav__link">
+    Setup jackett indexers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-deluge" class="md-nav__link">
+    Configure Deluge
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Deluge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-deluge" class="md-nav__link">
+    Setting up deluge
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-sonarr-and-radarr" class="md-nav__link">
+    Configure Sonarr and Radarr
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Sonarr and Radarr">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-indexers-on-sonarr-and-radarr" class="md-nav__link">
+    Setting up indexers on sonarr and radarr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-the-deluge-download-client" class="md-nav__link">
+    Adding the deluge download client.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#episode-naming" class="md-nav__link">
+    Episode Naming
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-profile" class="md-nav__link">
+    Download profile
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-ombi" class="md-nav__link">
+    Configure Ombi
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Ombi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ombi-setup" class="md-nav__link">
+    Ombi setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Ombi setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-plex-server" class="md-nav__link">
+    Load Plex Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-radarr-server" class="md-nav__link">
+    Load Radarr Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-your-radarr-api-key" class="md-nav__link">
+    Get your Radarr api key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-sonarr-server" class="md-nav__link">
+    Load Sonarr Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-your-sonarr-api-key" class="md-nav__link">
+    Get your Sonarr api key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-tautulli" class="md-nav__link">
+    Configure Tautulli
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Tautulli">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tautulli-setup" class="md-nav__link">
+    Tautulli setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="acsf-installation">ACSF Installation<a class="headerlink" href="#acsf-installation" title="Permanent link">&para;</a></h1>
+<p><strong><em>Automated Content System Full</em></strong></p>
+<h2 id="important-information">Important Information<a class="headerlink" href="#important-information" title="Permanent link">&para;</a></h2>
+<div class="admonition failure">
+<p class="admonition-title">Root User Required</p>
+<h3 id="root-user-required">Root User Required<a class="headerlink" href="#root-user-required" title="Permanent link">&para;</a></h3>
+<p>This software will only run as root. <strong><em>YOU CAN NOT RUN IT AS A NORMAL USER</em></strong>.</p>
+</div>
+<details class="bug">
+<summary>Important</summary>
+<h3 id="important">Important<a class="headerlink" href="#important" title="Permanent link">&para;</a></h3>
+<p>This software is still in development.</p>
+<p>Please report bugs to <a href="https://github.com/RunesRepoHub/ACS/issues">Github</a></p>
+</details>
+<details class="danger">
+<summary>Docker is required</summary>
+<h3 id="docker-is-required">Docker is required<a class="headerlink" href="#docker-is-required" title="Permanent link">&para;</a></h3>
+<p>Docker is required to run this software</p>
+<p><a href="https://linuxiac.com/how-to-install-docker-on-debian-12-bookworm/">Get Docker on Debian 12</a></p>
+<p><a href="https://docs.docker.com/engine/install/debian/">Get Docker on Debian 11</a></p>
+<p><a href="https://docs.docker.com/engine/install/ubuntu/">Get Docker on Ubuntu 20.04</a></p>
+</details>
+<h2 id="install-command">Install command<a class="headerlink" href="#install-command" title="Permanent link">&para;</a></h2>
+<details class="danger">
+<summary>Performence</summary>
+<h3 id="youtube-dl-performence">Youtube-dl Performence<a class="headerlink" href="#youtube-dl-performence" title="Permanent link">&para;</a></h3>
+<p>The Youtube-dl has some issues when it comes to downloading.
+Mainly because of long playlists and/or multiple downloads running at ones.</p>
+<p>This will result in these errors. (And possible more)</p>
+<ul>
+<li>
+<p>Can cause a softlog error on proxmox when running it in an VM.</p>
+</li>
+<li>
+<p>The longer the playlists the longer the download. (At download item 86 of 156 it takes 30 mins of 400mb of data, THIS is NOT a networking limit)</p>
+</li>
+<li>
+<p>Can cause a bit of slow down on plex itself if configured to update library on every change dectected in the folder.</p>
+</li>
+</ul>
+</details>
+<div class="admonition success">
+<p class="admonition-title">Install ACSF</p>
+<h3 id="install-acsf">Install ACSF<a class="headerlink" href="#install-acsf" title="Permanent link">&para;</a></h3>
+<p><a href="https://runesrepohub.github.io/ACS/requirement.html">See the requirements</a></p>
+<p>Use this command</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bash &lt;(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/ACS/Production/setup.sh)
+</code></pre></div>
+<p>After the install has finished you can use these commands for quick access and control</p>
+</div>
+<h2 id="jackett-indexers-script">Jackett Indexers Script<a class="headerlink" href="#jackett-indexers-script" title="Permanent link">&para;</a></h2>
+<details class="tip">
+<summary>From the Jackett page, click the "add indexer" button so that the pop up window with the full list of indexers appears.</summary>
+<h3 id="setup-jackett-indexers">Setup jackett indexers<a class="headerlink" href="#setup-jackett-indexers" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Go to your <a href="http://your-server-ip:9117">http://your-server-ip:9117</a></li>
+<li>Click on add indexer</li>
+</ul>
+<p><img alt="Alt text" src="../Images/jackett2.png" /></p>
+<ul>
+<li>You'll then need to open your browser's development toolbar (in Chrome just hit F12) </li>
+<li>Go to the JavaScript Console and enter the following:</li>
+<li>And click "CTRL+Enter" to run the JavaScript</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>////hack to add all free indexers in Jackett
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>$(document).ready(function () {
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    EnableAllUnconfiguredIndexersList();
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>});
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>function EnableAllUnconfiguredIndexersList() {
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    var UnconfiguredIndexersDialog = $($(&quot;#select-indexer&quot;).html());
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    var indexersTemplate = Handlebars.compile($(&quot;#unconfigured-indexer-table&quot;).html());
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    var indexersTable = $(indexersTemplate({ indexers: unconfiguredIndexers, total_unconfigured_indexers: unconfiguredIndexers.length  }));
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    indexersTable.find(&#39;.indexer-setup&#39;).each(function (i, btn) {
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        var indexer = unconfiguredIndexers[i];
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        $(btn).click(function () {
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>            $(&#39;#select-indexer-modal&#39;).modal(&#39;hide&#39;).on(&#39;hidden.bs.modal&#39;, function (e) {
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>                displayIndexerSetup(indexer.id, indexer.name, indexer.caps, indexer.link, indexer.alternativesitelinks, indexer.description);
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>            });
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        });
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    });
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    indexersTable.find(&#39;.indexer-add&#39;).each(function (i, btn) {
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>            $(&#39;#select-indexer-modal&#39;).modal(&#39;hide&#39;).on(&#39;hidden.bs.modal&#39;, function (e) {
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>                var indexerId = $(btn).attr(&quot;data-id&quot;);
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>                api.getIndexerConfig(indexerId, function (data) {
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>                    if (data.result !== undefined &amp;&amp; data.result == &quot;error&quot;) {
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>                        doNotify(&quot;Error: &quot; + data.error, &quot;danger&quot;, &quot;glyphicon glyphicon-alert&quot;);
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>                        return;
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>                    }
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>                    api.updateIndexerConfig(indexerId, data, function (data) {
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>                        if (data == undefined) {
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>                            reloadIndexers();
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>                            doNotify(&quot;Successfully configured &quot; + name, &quot;success&quot;, &quot;glyphicon glyphicon-ok&quot;);
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>                        } else if (data.result == &quot;error&quot;) {
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>                            if (data.config) {
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>                                populateConfigItems(configForm, data.config);
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>                            }
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>                            doNotify(&quot;Configuration failed: &quot; + data.error, &quot;danger&quot;, &quot;glyphicon glyphicon-alert&quot;);
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>                        }
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>                    }).fail(function (data) {
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>                        if(data.responseJSON.error !== undefined) {
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>                doNotify(&quot;An error occured while configuring this indexer&lt;br /&gt;&lt;b&gt;&quot; + data.responseJSON.error + &quot;&lt;/b&gt;&lt;br /&gt;&lt;i&gt;&lt;a href=\&quot;https://github.com/Jackett/Jackett/issues/new?title=[&quot; + indexerId + &quot;] &quot; + data.responseJSON.error + &quot; (Config)\&quot; target=\&quot;_blank\&quot;&gt;Click here to open an issue on GitHub for this indexer.&lt;/a&gt;&lt;i&gt;&quot;, &quot;danger&quot;, &quot;glyphicon glyphicon-alert&quot;, false);
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>            } else {
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>                doNotify(&quot;An error occured while configuring this indexer, is Jackett server running ?&quot;, &quot;danger&quot;, &quot;glyphicon glyphicon-alert&quot;);
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>            }
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>                    });
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>                });
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>            });
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    });
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    indexersTable.find(&quot;table&quot;).DataTable(
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>        {
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>            &quot;stateSave&quot;: true,
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>            &quot;fnStateSaveParams&quot;: function (oSettings, sValue) {
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>                sValue.search.search = &quot;&quot;; // don&#39;t save the search filter content
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>                return sValue;
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>            },
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>            &quot;bAutoWidth&quot;: false,
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>            &quot;pageLength&quot;: -1,
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>            &quot;lengthMenu&quot;: [[10, 20, 50, 100, 250, 500, -1], [10, 20, 50, 100, 250, 500, &quot;All&quot;]],
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>            &quot;order&quot;: [[0, &quot;asc&quot;]],
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>            &quot;columnDefs&quot;: [
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>                {
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>                    &quot;name&quot;: &quot;name&quot;,
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>                    &quot;targets&quot;: 0,
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>                    &quot;visible&quot;: true,
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>                    &quot;searchable&quot;: true,
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>                    &quot;orderable&quot;: true
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>                },
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>                {
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>                    &quot;name&quot;: &quot;description&quot;,
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>                    &quot;targets&quot;: 1,
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>                    &quot;visible&quot;: true,
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>                    &quot;searchable&quot;: true,
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>                    &quot;orderable&quot;: true
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>                },
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>                {
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>                    &quot;name&quot;: &quot;type&quot;,
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>                    &quot;targets&quot;: 2,
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>                    &quot;visible&quot;: true,
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>                    &quot;searchable&quot;: true,
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>                    &quot;orderable&quot;: true
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>                },
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>                {
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>                    &quot;name&quot;: &quot;type_string&quot;,
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>                    &quot;targets&quot;: 3,
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>                    &quot;visible&quot;: false,
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>                    &quot;searchable&quot;: true,
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>                    &quot;orderable&quot;: true,
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>                },
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>                {
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>                    &quot;name&quot;: &quot;language&quot;,
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>                    &quot;targets&quot;: 4,
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>                    &quot;visible&quot;: true,
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>                    &quot;searchable&quot;: true,
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>                    &quot;orderable&quot;: true
+<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>                },
+<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>                {
+<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>                    &quot;name&quot;: &quot;buttons&quot;,
+<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>                    &quot;targets&quot;: 5,
+<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>                    &quot;visible&quot;: true,
+<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>                    &quot;searchable&quot; : false,
+<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>                    &quot;orderable&quot;: false
+<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>                }
+<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>            ]
+<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>        });
+<a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>
+<a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>    var undefindexers = UnconfiguredIndexersDialog.find(&#39;#unconfigured-indexers&#39;);
+<a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a>    undefindexers.append(indexersTable);
+<a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>
+<a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>    UnconfiguredIndexersDialog.on(&#39;shown.bs.modal&#39;, function() {
+<a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>        $(this).find(&#39;div.dataTables_filter input&#39;).focusWithoutScrolling();
+<a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>    });
+<a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>
+<a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a>    UnconfiguredIndexersDialog.on(&#39;hidden.bs.modal&#39;, function (e) {
+<a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a>        $(&#39;#indexers div.dataTables_filter input&#39;).focusWithoutScrolling();
+<a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a>    });
+<a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a>
+<a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>    $(&quot;#modals&quot;).append(UnconfiguredIndexersDialog);
+<a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a>
+<a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a>    UnconfiguredIndexersDialog.modal(&quot;show&quot;);
+<a id="__codelineno-1-122" name="__codelineno-1-122" href="#__codelineno-1-122"></a>}
+</code></pre></div>
+</details>
+<h2 id="configure-deluge">Configure Deluge<a class="headerlink" href="#configure-deluge" title="Permanent link">&para;</a></h2>
+<details class="example">
+<summary>Deluge</summary>
+<h3 id="setting-up-deluge">Setting up deluge<a class="headerlink" href="#setting-up-deluge" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Go to your <a href="http://your-server-ip:8112">http://your-server-ip:8112</a></li>
+<li>Go to preferences </li>
+<li>Downloads tab</li>
+<li>Set download to /downloads</li>
+<li>Set download completed to /downloads/completed</li>
+</ul>
+<p><img alt="Alt text" src="../Images/deluge.png" /></p>
+<ul>
+<li>Go to plugins</li>
+<li>Enable Label</li>
+<li>Press apply</li>
+</ul>
+<p><img alt="Alt text" src="../Images/deluge2.png" /></p>
+</details>
+<h2 id="configure-sonarr-and-radarr">Configure Sonarr and Radarr<a class="headerlink" href="#configure-sonarr-and-radarr" title="Permanent link">&para;</a></h2>
+<details class="example">
+<summary>Indexers</summary>
+<h3 id="setting-up-indexers-on-sonarr-and-radarr">Setting up indexers on sonarr and radarr<a class="headerlink" href="#setting-up-indexers-on-sonarr-and-radarr" title="Permanent link">&para;</a></h3>
+<p><strong>Port 8989 for sonarr</strong></p>
+<p><strong>Port 7878 for radarr</strong></p>
+<ul>
+<li>Go to your <a href="http://your-server-ip:8989">http://your-server-ip:8989</a></li>
+<li>Go to settings </li>
+<li>Indexers</li>
+</ul>
+<p><img alt="Alt text" src="../Images/image.png" />
+<img alt="Alt text" src="../Images/radarr2.png" /></p>
+<p><strong>All indexers is just another name of jackett</strong></p>
+<p><img alt="Alt text" src="../Images/jackett.png" /></p>
+<p><em>Access your jackett docker container and find your own information</em></p>
+<ul>
+<li>Go to your <a href="http://your-server-ip:9117">http://your-server-ip:9117</a></li>
+<li>Get the api key </li>
+<li>Then copy the "Torznab Feed" from the torrent indexer you want to use.</li>
+</ul>
+<p><strong>Follow the steps below</strong></p>
+<ul>
+<li>Then click the plus to add a new one</li>
+<li>Fill in the name of the indexer</li>
+<li>Fill in the url of the indexer</li>
+<li>Fill in the api key of the indexer</li>
+</ul>
+<p><img alt="Alt text" src="../Images/image-1.png" />
+<img alt="Alt text" src="../Images/radarr3.png" /></p>
+<p><em>I recommend that you use advanced settings while setting up the indexers.</em></p>
+<ul>
+<li>Because all the yellow fields are "advanced settings"</li>
+<li>And one of them allow your to setup minimal amount of seeds before downloading</li>
+</ul>
+<p><strong>I used 10 seeds for sonarr and 15 seeds for radarr</strong></p>
+</details>
+<details class="example">
+<summary>Download Client</summary>
+<h3 id="adding-the-deluge-download-client">Adding the deluge download client.<a class="headerlink" href="#adding-the-deluge-download-client" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Then click the plus to add a new one</li>
+</ul>
+<p><img alt="Alt text" src="../Images/image-2.png" />
+<img alt="Alt text" src="../Images/radarr7.png" /></p>
+<ul>
+<li>Fill in the name of the client (Deluge)</li>
+<li>Fill in the ip of the client</li>
+<li>Fill in the port of the client (Default: 8112)</li>
+<li>Fill in the password of the client (Deluge)</li>
+</ul>
+<p><img alt="Alt text" src="../Images/image-3.png" />
+<img alt="Alt text" src="../Images/radarr4.png" /></p>
+<p><strong>This might be need on radarr</strong></p>
+<p><img alt="Alt text" src="../Images/radarr5.png" /></p>
+</details>
+<details class="example">
+<summary>Episode Naming</summary>
+<h3 id="episode-naming">Episode Naming<a class="headerlink" href="#episode-naming" title="Permanent link">&para;</a></h3>
+<p>Enable renaming of the episode.</p>
+<ul>
+<li>Then click the add root folder button</li>
+<li>Find the respective folder and click on it (Sonarr = shows, Radarr = movies)</li>
+</ul>
+<p><img alt="Alt text" src="../Images/image-4.png" />
+<img alt="Alt text" src="../Images/radarr.png" /></p>
+<ul>
+<li>You can change the name convention of the episode here (Optional)</li>
+</ul>
+</details>
+<details class="example">
+<summary>Download profile</summary>
+<h3 id="download-profile">Download profile<a class="headerlink" href="#download-profile" title="Permanent link">&para;</a></h3>
+<p>I like to make my own download profiles.</p>
+<ul>
+<li>Remove all default</li>
+<li>Add a standard profile for 720p</li>
+<li>Add a standard profile for 1080p</li>
+</ul>
+<p><strong>I have added both to one to show which I would "mark"</strong></p>
+<p><strong>You should make one for each</strong></p>
+<p><img alt="Alt text" src="../Images/image-5.png" />
+<img alt="Alt text" src="../Images/radarr6.png" /></p>
+</details>
+<h2 id="configure-ombi">Configure Ombi<a class="headerlink" href="#configure-ombi" title="Permanent link">&para;</a></h2>
+<details class="example">
+<summary>Ombi setup</summary>
+<h3 id="ombi-setup">Ombi setup<a class="headerlink" href="#ombi-setup" title="Permanent link">&para;</a></h3>
+<h4 id="load-plex-server">Load Plex Server<a class="headerlink" href="#load-plex-server" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Go to settings </li>
+<li>Media Server</li>
+<li>Login into plex</li>
+<li>Load your servers</li>
+<li>And then submit/save</li>
+</ul>
+<p><img alt="Alt text" src="../Images/ombi.png" /></p>
+<h4 id="load-radarr-server">Load Radarr Server<a class="headerlink" href="#load-radarr-server" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Go to the <a href="http://your-server-ip:3579">http://your-server-ip:3579</a></li>
+<li>Go to settings </li>
+<li>Movies</li>
+<li>Enable it at the top </li>
+<li>Enable "Scan for Availability"</li>
+<li>Enable "Add the user as a tag"</li>
+<li>Add the ip of the server</li>
+<li>Add the port of the server. (default: 7878)</li>
+<li>Load and set quality profiles</li>
+<li>Load and set the default root folder</li>
+<li>Load language profiles</li>
+<li>Load Default minimum availability (Physical/Web)</li>
+</ul>
+<h4 id="get-your-radarr-api-key">Get your Radarr api key<a class="headerlink" href="#get-your-radarr-api-key" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Go to settings</li>
+<li>General</li>
+<li>Under security</li>
+<li>Find your api key </li>
+</ul>
+<p><strong>Then Save/Submit</strong></p>
+<p><img alt="Alt text" src="../Images/radarr-api.png" /></p>
+<p><img alt="Alt text" src="../Images/ombi2.png" /></p>
+<h4 id="load-sonarr-server">Load Sonarr Server<a class="headerlink" href="#load-sonarr-server" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Go to the <a href="http://your-server-ip:3579">http://your-server-ip:3579</a></li>
+<li>Go to settings </li>
+<li>TV</li>
+<li>Enable it at the top </li>
+<li>Enable "Scan for Availability"</li>
+<li>Enable "Add the user as a tag"</li>
+<li>Add the ip of the server</li>
+<li>Add the port of the server. (default: 8989)</li>
+<li>Load and set quality profiles</li>
+<li>Load and set the default root folder</li>
+<li>Load language profiles</li>
+</ul>
+<h4 id="get-your-sonarr-api-key">Get your Sonarr api key<a class="headerlink" href="#get-your-sonarr-api-key" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Go to settings</li>
+<li>General</li>
+<li>Under security</li>
+<li>Find your api key</li>
+</ul>
+<p><strong>Then Save/Submit</strong></p>
+<p><img alt="Alt text" src="../Images/sonarr-api.png" /></p>
+<p><img alt="Alt text" src="../Images/ombi3.png" /></p>
+</details>
+<h2 id="configure-tautulli">Configure Tautulli<a class="headerlink" href="#configure-tautulli" title="Permanent link">&para;</a></h2>
+<details class="example">
+<summary>Tautulli setup</summary>
+<h3 id="tautulli-setup">Tautulli setup<a class="headerlink" href="#tautulli-setup" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Go to the <a href="http://your-server-ip:8181">http://your-server-ip:8181</a>
+<img alt="Alt text" src="../Images/tautulli.png" /></li>
+<li>Click on "Next"</li>
+<li>Sign in with plex
+<img alt="Alt text" src="../Images/tautulli2.png" />
+<img alt="Alt text" src="../Images/tautulli3.png" />
+<img alt="Alt text" src="../Images/tautulli4.png" /></li>
+<li>Click on "Next"</li>
+<li>Pick the plex server you want to use</li>
+<li>Input the plex port
+<img alt="Alt text" src="../Images/tautulli5.png" /></li>
+<li>Click on "Next"</li>
+<li><strong>Activity Logging</strong>
+<img alt="Alt text" src="../Images/tautulli6.png" /></li>
+<li>Just set the "ignore interval" to 120</li>
+<li>Click on "Next"</li>
+<li><strong>Notifications</strong>
+<img alt="Alt text" src="../Images/tautulli7.png" /></li>
+<li>Click on "Next"</li>
+<li><strong>Database import</strong>
+<img alt="Alt text" src="../Images/tautulli8.png" /></li>
+<li>Click on "Finish"
+<img alt="Alt text" src="../Images/tautulli9.png" />
+<img alt="Alt text" src="../Images/tautulli10.png" /></li>
+</ul>
+</details>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 RP-Helpdesk
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/christian-rune" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.tabs.link", "content.tooltips", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

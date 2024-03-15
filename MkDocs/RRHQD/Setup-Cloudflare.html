@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Deluge.html">
+        <link rel="canonical" href="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Cloudflare.html">
       
       
-        <link rel="prev" href="Setup-Linkwarden.html">
+        <link rel="prev" href="Setup-Checkmk.html">
       
       
-        <link rel="next" href="Setup-Checkmk.html">
+        <link rel="next" href="Setup-Ghost.html">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
     
     
       
-        <title>Setup a Deluge Docker - RRHQD Wiki</title>
+        <title>Setup a Cloudflare Tunnel Docker - RRHQD Wiki</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35e1ed30.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
       
       
   
@@ -89,9 +89,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -130,7 +130,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#setup-a-deluge-docker" class="md-skip">
+        <a href="#setup-a-cloudflare-tunnel-docker" class="md-skip">
           Skip to content
         </a>
       
@@ -146,7 +146,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="RRHQD Wiki" class="md-header__button md-logo" aria-label="RRHQD Wiki" data-md-component="logo">
+    <a href="../.." title="RRHQD Wiki" class="md-header__button md-logo" aria-label="RRHQD Wiki" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 592 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"/></svg>
@@ -166,7 +166,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Setup a Deluge Docker
+              Setup a Cloudflare Tunnel Docker
             
           </span>
         </div>
@@ -293,7 +293,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../index.html" class="md-tabs__link">
+        <a href="../../index.html" class="md-tabs__link">
           
   
     
@@ -322,7 +322,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="ACS-index.html" class="md-tabs__link">
+        <a href="../ACS/ACS-index.html" class="md-tabs__link">
           
   
     
@@ -383,7 +383,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="RRHQD Wiki" class="md-nav__button md-logo" aria-label="RRHQD Wiki" data-md-component="logo">
+    <a href="../.." title="RRHQD Wiki" class="md-nav__button md-logo" aria-label="RRHQD Wiki" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 592 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"/></svg>
@@ -482,7 +482,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../index.html" class="md-nav__link ">
+            <a href="../../index.html" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -574,6 +574,38 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -628,29 +660,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Setup a Deluge Docker
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="Setup-Deluge.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="Setup-Deluge.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -659,81 +671,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#set-up-instructions" class="md-nav__link">
-    Set up instructions
-  </a>
-  
-    <nav class="md-nav" aria-label="Set up instructions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-compose-file-generation" class="md-nav__link">
-    Docker Compose File Generation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#docker-compose-file-content" class="md-nav__link">
-    Docker Compose File Content
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#folder-creation" class="md-nav__link">
-    Folder Creation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#inform-user-and-start-container" class="md-nav__link">
-    Inform User and Start Container
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-container-status" class="md-nav__link">
-    Check Container Status
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#user-notification" class="md-nav__link">
-    User Notification
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -763,13 +700,380 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="Setup-Cloudflare.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Setup a Cloudflare Tunnel Docker
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Setup-Cloudflare.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
     Setup a Cloudflare Tunnel Docker
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#instructions" class="md-nav__link">
+    Instructions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Ghost.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Ghost Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-It-tools.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a It-tools Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Jackett.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Jackett Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Llama-GPT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Llama-GPT Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-MediaCMS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a MediaCMS Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Memos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Memos Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-MySQL.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a MySQL Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-N8N.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a N8N Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-NTFY.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a NTFY Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Ombi.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Ombi Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Portainer.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Portainer Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Postgres.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Postgres Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Radarr.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Radarr Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Sonarr.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Sonarr Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Uptime-Kuma.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Uptime-Kuma Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Setup-Vaultwarden.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup a Vaultwarden Docker
   </span>
   
 
@@ -902,7 +1206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ACS-index.html" class="md-nav__link">
+      <a href="../ACS/ACS-index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -922,7 +1226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ACS-requirement.html" class="md-nav__link">
+      <a href="../ACS/ACS-requirement.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -942,7 +1246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ACS-install.html" class="md-nav__link">
+      <a href="../ACS/ACS-install.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -962,7 +1266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ACS-commands.html" class="md-nav__link">
+      <a href="../ACS/ACS-commands.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1035,7 +1339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ACS-source.html" class="md-nav__link">
+      <a href="../ACS/ACS-source.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1055,7 +1359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ACS-errorcode.html" class="md-nav__link">
+      <a href="../ACS/ACS-errorcode.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1130,57 +1434,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#set-up-instructions" class="md-nav__link">
-    Set up instructions
+  <a href="#instructions" class="md-nav__link">
+    Instructions
   </a>
-  
-    <nav class="md-nav" aria-label="Set up instructions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-compose-file-generation" class="md-nav__link">
-    Docker Compose File Generation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#docker-compose-file-content" class="md-nav__link">
-    Docker Compose File Content
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#folder-creation" class="md-nav__link">
-    Folder Creation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#inform-user-and-start-container" class="md-nav__link">
-    Inform User and Start Container
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-container-status" class="md-nav__link">
-    Check Container Status
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#user-notification" class="md-nav__link">
-    User Notification
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1202,68 +1458,73 @@
   
 
 
-<h1 id="setup-a-deluge-docker">Setup a Deluge Docker<a class="headerlink" href="#setup-a-deluge-docker" title="Permanent link">&para;</a></h1>
-<h2 id="set-up-instructions">Set up instructions<a class="headerlink" href="#set-up-instructions" title="Permanent link">&para;</a></h2>
-<p>Follow the setup these instructions to configure the system.</p>
-<div class="admonition question">
-<p class="admonition-title">Docker Image</p>
-<ul>
-<li>The script prompts the user to input the Docker image for Deluge. If no input is provided, it defaults to "lscr.io/linuxserver/deluge:latest".</li>
-</ul>
+<h1 id="setup-a-cloudflare-tunnel-docker">Setup a Cloudflare Tunnel Docker<a class="headerlink" href="#setup-a-cloudflare-tunnel-docker" title="Permanent link">&para;</a></h1>
+<div align="center">
+
+<h1> Set up instructions </h1>
+<h4>Follow the setup these instructions to configure the system.</h4>
+
+
+<iframe width="560" height="315" src="https://media.rp-helpdesk.com/embed?m=OSZ7f1wQr" frameborder="0" allowfullscreen></iframe>
 </div>
-<div class="admonition question">
-<p class="admonition-title">Container Name</p>
+
+<h3 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ol>
+<li>
+<p>Pick branch to install from. = Prod</p>
+</li>
+<li>
+<p>Go to the menu "Find and install a docker"</p>
+</li>
+<li>
+<p>Find the cloudflare tunnel docker</p>
 <ul>
-<li>The user is asked to enter a name for the Docker container. If no input is given, it defaults to "deluge-container".</li>
+<li>You can get more help if you need.</li>
+<li>Let the cloudflare docker download (This can take a few minutes).</li>
 </ul>
+</li>
+<li>
+<p>When the cloudflare docker is up and running, you will have to login to cloudflare to download certificates.</p>
+</li>
+<li>
+<p>When you have logged in, you can Authorize the cloudflare tunnel.</p>
+</li>
+<li>
+<p>Give your cloudflare tunnel a name</p>
+<ul>
+<li>This will gernerate a id for the tunnel</li>
+</ul>
+</li>
+<li>
+<p>Pick if you are going to use the cloudflare tunnel for one or more websites</p>
+</li>
+<li>
+<p>Copy and input your cloudflare tunnel id</p>
+<ul>
+<li>Both in the cli and in the cloudflare dns dashboard</li>
+</ul>
+</li>
+</ol>
 </div>
-<div class="admonition question">
-<p class="admonition-title">Folders</p>
-<ul>
-<li>The script requests the Deluge root folder and download folder. If skipped, default settings (./Data/config for Deluge root folder and ./Data/downloads for the download folder) are used.</li>
-</ul>
-</div>
-<h3 id="docker-compose-file-generation">Docker Compose File Generation<a class="headerlink" href="#docker-compose-file-generation" title="Permanent link">&para;</a></h3>
-<div class="admonition important">
-<p class="admonition-title">Docker Compose Generation</p>
-<ul>
-<li>It sets up a subfolder for Docker Compose files (./RRHQD-Dockers/Deluge) and creates a Docker Compose file (docker-compose-$CONTAINER_NAME.yml).</li>
-</ul>
-</div>
-<h3 id="docker-compose-file-content">Docker Compose File Content<a class="headerlink" href="#docker-compose-file-content" title="Permanent link">&para;</a></h3>
-<div class="admonition important">
-<p class="admonition-title">Docker Compose Content</p>
-<ul>
-<li>The content is generated dynamically using a heredoc. It includes specifications for the Docker Compose version, Deluge service settings (image, container name, network mode, environment variables, volume mappings, ports, and restart policy).</li>
-</ul>
-</div>
-<h3 id="folder-creation">Folder Creation<a class="headerlink" href="#folder-creation" title="Permanent link">&para;</a></h3>
-<div class="admonition important">
-<p class="admonition-title">Folder Creation</p>
-<ul>
-<li>The script ensures the existence of the subfolder for Docker Compose files, creating it if necessary.</li>
-</ul>
-</div>
-<h3 id="inform-user-and-start-container">Inform User and Start Container<a class="headerlink" href="#inform-user-and-start-container" title="Permanent link">&para;</a></h3>
-<div class="admonition important">
-<p class="admonition-title">Inform User and Start Container</p>
-<ul>
-<li>The user is informed that the Docker Compose file for Deluge has been created. The script attempts to start the Deluge container using docker compose -f $COMPOSE_FILE up -d.</li>
-</ul>
-</div>
-<h3 id="check-container-status">Check Container Status<a class="headerlink" href="#check-container-status" title="Permanent link">&para;</a></h3>
-<div class="admonition important">
-<p class="admonition-title">Check Container Status</p>
-<ul>
-<li>After the attempt to start the container, it checks if the Docker container has started successfully by querying Docker for the container's ID.</li>
-</ul>
-</div>
-<h3 id="user-notification">User Notification<a class="headerlink" href="#user-notification" title="Permanent link">&para;</a></h3>
-<div class="admonition important">
-<p class="admonition-title">User Notification</p>
-<ul>
-<li>If the container started successfully, a success message is displayed using dialog. Otherwise, an error message is shown, and the script exits with an error code.</li>
-</ul>
+<p><img alt="alt text" src="../Images/cloudflare-dns-dashboard.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ol>
+<li>
+<p>Pick if the services are http or https (What ever protocol you use when accessing the website on LAN)</p>
+</li>
+<li>
+<p>Input your reverse proxy IP (What ever IP you use when accessing the website on LAN)</p>
+</li>
+<li>
+<p>Input your port (What ever port you use when accessing the website on LAN)</p>
+</li>
+<li>
+<p>Input your domain name (What ever domain you want use when accessing the website on WAN)</p>
+</li>
+</ol>
 </div>
 
 
@@ -1327,12 +1588,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.tabs.link", "content.tooltips", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.tabs.link", "content.tooltips", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
       
-        <script src="../javascripts/extra.js"></script>
+        <script src="../../javascripts/extra.js"></script>
       
     
   </body>

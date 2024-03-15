@@ -6,52 +6,132 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-commands.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS/ACS-commands.html</loc>
          <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-errorcode.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS/ACS-errorcode.html</loc>
          <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-index.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS/ACS-index.html</loc>
          <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-install.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS/ACS-install.html</loc>
          <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-requirement.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS/ACS-requirement.html</loc>
          <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS-source.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/ACS/ACS-source.html</loc>
          <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Checkmk.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Checkmk.html</loc>
          <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Cloudflare.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Cloudflare.html</loc>
          <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Deluge.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Deluge.html</loc>
          <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Linkwarden.html</loc>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Ghost.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-It-tools.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Jackett.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Linkwarden.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Llama-GPT.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-MediaCMS.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Memos.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-MySQL.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-N8N.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-NTFY.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Ombi.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Portainer.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Postgres.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Radarr.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Sonarr.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Uptime-Kuma.html</loc>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Vaultwarden.html</loc>
          <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
