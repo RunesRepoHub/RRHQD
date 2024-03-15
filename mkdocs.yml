@@ -8,6 +8,16 @@ nav:
     - RRHQD Documentation:
       - Getting Started With RRHQD:
         - What is RRHQD?: 'index.md'
+        - Requirements RRHQD: 'MkDocs/RRHQD/Readme/Requirements.md'
+        - How to Install RRHQD: 'MkDocs/RRHQD/Readme/Installation.md'
+        - Main Menu RRHQD: 'MkDocs/RRHQD/Readme/Main-Menu.md'
+        - Docker Support RRHQD: 'MkDocs/RRHQD/Readme/Docker-Support.md'
+        - Install Other RRH Software: 'MkDocs/RRHQD/Readme/RunesRepoHub.md'
+        - Cronjobs: 'MkDocs/RRHQD/Readme/Cronjobs.md'
+        - Youtube Scripts: 'MkDocs/RRHQD/Readme/Youtube-Scripts.md'
+        - Quick Installers: 'MkDocs/RRHQD/Readme/Quick-Installers.md'
+        - Quick Tools: 'MkDocs/RRHQD/Readme/Quick-Tools.md'
+        - Docker CnC: 'MkDocs/RRHQD/Readme/Docker-CnC.md'
       - Configuration Guides:
         - Docker Configuration Guides:
           - Setup a Linkwarden Docker: 'MkDocs/RRHQD/Setup-Linkwarden.md'

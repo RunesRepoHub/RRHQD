@@ -2,7 +2,7 @@
 
 ## Docker Command and Control
 
-![Alt text](../Images/Docker-CnC.png)
+![Alt text](../../../Images/Docker-CnC.png)
 
 </div>
 
