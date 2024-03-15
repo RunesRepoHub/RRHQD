@@ -3,6 +3,8 @@
 ## Set up instructions
 Follow the setup these instructions to configure the system.
 
+<iframe width="560" height="315" src="https://media.rp-helpdesk.com/embed?m=OSZ7f1wQr" frameborder="0" allowfullscreen></iframe>
+
 ### Instructions
 !!! tip
 
@@ -30,11 +32,11 @@ Follow the setup these instructions to configure the system.
 !!! tip
 
     9. Pick if the services are http or https (What ever protocol you use when accessing the website on LAN)
-    
+
     10. Input your reverse proxy IP (What ever IP you use when accessing the website on LAN)
-    
+
     11. Input your port (What ever port you use when accessing the website on LAN)
-    
+
     12. Input your domain name (What ever domain you want use when accessing the website on WAN)
 
 
