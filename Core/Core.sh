@@ -138,3 +138,9 @@ WEBP_TO_JPEG_MANUEL="Webp-to-JPEG-Manual.sh"
 ## Pre-Made-VM-Configs
 
 PRE_MADE_VM="RP-Helpdesk-Standard-Config.sh"
+
+
+## Docker Installer Help Links
+
+GHOST_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Ghost.html"
+CLOUDFLARE_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/Setup-Cloudflare.html"
