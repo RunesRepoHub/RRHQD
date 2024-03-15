@@ -34,7 +34,9 @@
 <br><br>
 
 <h2> Download the latest version of the software </h2>
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=RunesRepoHub&repo=RRHQD&theme=transparent" alt="https://github.com/RunesRepoHub/RRHQD">
+<a href="https://github.com/RunesRepoHub/RRHQD">>
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=RunesRepoHub&repo=RRHQD&theme=transparent">
+</a>
 
 </div>
 
