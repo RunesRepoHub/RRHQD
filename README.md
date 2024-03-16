@@ -7,7 +7,8 @@
   
 [![GitHub commits difference between two branches/tags/commits](https://img.shields.io/github/commits-difference/RunesRepoHub/RRHQD?base=Prod&head=Dev&style=for-the-badge&logo=git&label=How%20Many%20Commits%20Dev%20Branch%20Is%20Ahead%20)](https://github.com/RunesRepoHub/RRHQD/compare/Prod...Dev)
 
-  [![GitHub License](https://img.shields.io/github/license/RunesRepoHub/RRHQD?style=for-the-badge)](https://github.com/RunesRepoHub/RRHQD/blob/Prod/LICENSE) [![Website](https://img.shields.io/website?url=https%3A%2F%2Frunesrepohub.github.io%2FRRHQD%2F&style=for-the-badge&label=Github%20Pages)](https://runesrepohub.github.io/RRHQD/index.html)
+  [![GitHub License](https://img.shields.io/github/license/RunesRepoHub/RRHQD?style=for-the-badge)](https://github.com/RunesRepoHub/RRHQD/blob/Prod/LICENSE) [![Website](https://img.shields.io/website?url=https%3A%2F%2Frunesrepohub.github.io%2FRRHQD%2F&style=for-the-badge&label=Github%20Pages)](https://runesrepohub.github.io/RRHQD/index.html) [![GitHub Release](https://img.shields.io/github/v/release/RunesRepoHub/RRHQD?style=for-the-badge)](https://github.com/RunesRepoHub/RRHQD/releases)
+
 
   ![GitHub repo size](https://img.shields.io/github/repo-size/RunesRepoHub/RRHQD?style=for-the-badge) [![GitHub Repo stars](https://img.shields.io/github/stars/RunesRepoHub/RRHQD?style=for-the-badge)](https://github.com/RunesRepoHub/RRHQD/stargazers) [![GitHub milestone details](https://img.shields.io/github/milestones/progress-percent/RunesRepoHub/RRHQD/1?style=for-the-badge)](https://github.com/RunesRepoHub/RRHQD/milestone/1) ![GitHub top language](https://img.shields.io/github/languages/top/RunesRepoHub/RRHQD?style=for-the-badge)
 
