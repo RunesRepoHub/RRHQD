@@ -1,12 +1,12 @@
 name: Bug Branch Creation
 
 on:
-  pull_request:
+  issues:
     types: [ labeled ]
 
 jobs:
   create-backup-branch:
-    if: contains(github.event.pull_request.labels.*.name, 'bug')
+    if: contains(github.event.issue.labels.*.name, 'bug')
     runs-on: self-hosted
     permissions:
       contents: write
@@ -19,5 +19,4 @@ jobs:
           git checkout Dev
           git checkout -b "Bug-Branch-${GITHUB_RUN_NUMBER}"
           git push --set-upstream origin "Bug-Branch-${GITHUB_RUN_NUMBER}"
-
 

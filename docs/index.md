@@ -43,6 +43,10 @@
 <img src="https://img.shields.io/website?url=https%3A%2F%2Frunesrepohub.github.io%2FRRHQD%2F&style=for-the-badge&label=Github%20Pages">
 </a>
 
+<a href="https://github.com/RunesRepoHub/RRHQD/releases">
+<img src="https://img.shields.io/github/v/release/RunesRepoHub/RRHQD?display_name=release&style=for-the-badge">
+</a>
+
 <br>
 
 <img src="https://img.shields.io/github/repo-size/RunesRepoHub/RRHQD?style=for-the-badge">
