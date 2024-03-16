@@ -26,3 +26,9 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             Automated Bug Branch: https://github.com/RunesRepoHub/RRHQD/tree/Bug-Branch-${{ github.run_number }}
+
+      - name: Link the new branch to the issue
+        uses: cpina/github-action-link-issue-to-branch@v1
+        with:
+          issue: ${{ github.event.issue.number }}
+          branch: Bug-Branch-${{ github.run_number }}
