@@ -31,4 +31,4 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Automated Bug Branch: https://github.com/RunesRepoHub/RRHQD/tree/Bug-Branch-${{ github.run_number }}
+            Automated Bug Branch: https://github.com/RunesRepoHub/RRHQD/tree/feature_branch-${{ github.run_number }}
