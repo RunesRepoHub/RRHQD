@@ -1,4 +1,4 @@
-name: Backup Branch Creation
+name: Bug Branch Creation
 
 on:
   pull_request:
@@ -17,7 +17,7 @@ jobs:
       - name: Create a new branch based on the Dev branch
         run: |
           git checkout Dev
-          git checkout -b "Backup-Dev-Branch-${GITHUB_RUN_NUMBER}"
-          git push --set-upstream origin "Backup-Dev-Branch-${GITHUB_RUN_NUMBER}"
+          git checkout -b "Bug-Branch-${GITHUB_RUN_NUMBER}"
+          git push --set-upstream origin "Bug-Branch-${GITHUB_RUN_NUMBER}"
 
 
