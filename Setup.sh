@@ -72,23 +72,43 @@ execute curl -fsSL -o "$ROOT_FOLDER/dialog.txt" "https://raw.githubusercontent.c
 # Create or overwrite the .dialogrc configuration file in the user's home directory
 execute cp "$ROOT_FOLDER/dialog.txt" "${HOME}/.dialogrc"
 
-# Define the GitHub repository URL
-GITHUB_REPO_URL="https://github.com/RunesRepoHub/RRHQD.git"
 
-# Ask the user for the branch they want to download
-read -p "Enter the branch you want to clone or pull: " branch
+# Check if there is an existing RRHQD-*.zip folder on the system
+if [ -d "RRHQD-*.zip" ]; then
+    SETUP_INSTALLER=0
+fi
 
-# Check if the repository directory already exists
-REPO_DIR=$(basename "$GITHUB_REPO_URL" .git)
-if [ -d "$REPO_DIR" ]; then
-    echo "Directory $REPO_DIR already exists. Attempting to pull the specified branch."
-    cd "$REPO_DIR"
-    git fetch
-    git checkout "$branch"
-    git pull origin "$branch"
-else
-    echo "Cloning the specified branch from the GitHub repository."
-    git clone --branch "$branch" "$GITHUB_REPO_URL"
+if [ ! -d "RRHQD-*.zip" ]; then
+    SETUP_INSTALLER=1
+fi
+
+if [ "$SETUP_INSTALLER" = 1 ]; then
+    # Define the GitHub repository URL
+    GITHUB_REPO_URL="https://github.com/RunesRepoHub/RRHQD.git"
+
+    # Ask the user for the branch they want to download
+    read -p "Enter the branch you want to clone or pull: " branch
+
+    # Check if the repository directory already exists
+    REPO_DIR=$(basename "$GITHUB_REPO_URL" .git)
+    if [ -d "$REPO_DIR" ]; then
+        echo "Directory $REPO_DIR already exists. Attempting to pull the specified branch."
+        cd "$REPO_DIR"
+        git fetch
+        git checkout "$branch"
+        git pull origin "$branch"
+    else
+        echo "Cloning the specified branch from the GitHub repository."
+        git clone --branch "$branch" "$GITHUB_REPO_URL"
+    fi
+fi
+
+if [ "$SETUP_INSTALLER" = 0 ]; then
+    # Get the path of the zip file
+    ZIP_PATH=$(ls RRHQD-*.zip | head -n 1)
+
+    # Unzip the archive to the user's home directory
+    execute unzip -o "$ZIP_PATH" -d ~/
 fi
 
 cd ~/RRHQD
