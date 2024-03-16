@@ -2,6 +2,8 @@
 name: Docker Container Support Request
 about: Request support for a new Docker container
 title: "[Docker Support Request] "
+labels: feature
+assignees: rune004
 
 ---
 
