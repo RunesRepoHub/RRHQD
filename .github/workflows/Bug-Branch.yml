@@ -20,3 +20,9 @@ jobs:
           git checkout -b "Bug-Branch-${GITHUB_RUN_NUMBER}"
           git push --set-upstream origin "Bug-Branch-${GITHUB_RUN_NUMBER}"
 
+      - name: Update the GitHub issue
+        uses: peter-evans/update-issue-action@v3
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Automated Bug Branch: https://github.com/RunesRepoHub/RRHQD/tree/Bug-Branch-${{ github.run_number }}
