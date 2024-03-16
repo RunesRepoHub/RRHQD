@@ -2,6 +2,8 @@
 name: New Integration Request
 about: Request the addition of a new integration
 title: "[Integration Request] "
+labels: feature
+assignees: rune004
 
 ---
 
