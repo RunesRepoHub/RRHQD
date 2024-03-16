@@ -33,34 +33,34 @@ jobs:
           body: |
             Automated Bug Branch: https://github.com/RunesRepoHub/RRHQD/tree/Bug-Branch-${{ github.run_number }}
 
-  create-pr:
+
+  make-pr:
     if: contains(github.event.issue.labels.*.name, 'bug')
     runs-on: self-hosted
-    needs: [create-backup-branch]
     permissions:
-      contents: write
+      pull-requests: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v6
+      - name: Make PR
+        id: pr
+        uses: peter-evans/create-pull-request@v3
         with:
-          title: "Bug Fix for Issue #${{ github.event.issue.number }}"
-          body: "This branch fixes Issue #${{ github.event.issue.number }}"
+          commit-message: Creating bug branch for issue #${{ github.event.issue.number }}
           branch: Bug-Branch-${{ github.run_number }}
+          title: Bug Branch for issue #${{ github.event.issue.number }}
+          body: |
+            Automated Bug Branch for issue #${{ github.event.issue.number }}
+
           base: Dev
 
-  link-pr:
-    if: contains(github.event.issue.labels.*.name, 'bug')
-    runs-on: self-hosted
-    needs: [create-pr]
-    permissions:
-      issues: write
-    steps:
-      - name: Link PR on issue
+      - name: Update the GitHub issue
+        if: ${{ steps.pr.outputs.pull-request-url != '' }}
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: "Automated Bug Branch: https://github.com/RunesRepoHub/RRHQD/pull/${{ github.event.number }}"
+          body: |
+            Automated Bug Branch PR: ${{ steps.pr.outputs.pull-request-url }}
+
 
