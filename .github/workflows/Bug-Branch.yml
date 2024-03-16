@@ -5,14 +5,14 @@ on:
     types: [ labeled ]
 
 jobs:
-  create-backup-branch:
+  create-bug-branch:
     if: contains(github.event.issue.labels.*.name, 'bug')
     runs-on: self-hosted
     permissions:
       contents: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Create a new branch based on the Dev branch
         run: |
