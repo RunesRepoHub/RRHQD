@@ -6,21 +6,15 @@ ip=$(hostname -I | cut -d' ' -f1)
 clear 
 source ~/RRHQD/Core/Core.sh
 
-if [ ! -d "RRHQD-*.zip" ]; then
-    UPDATE_INSTALLER=1
-fi
-
-if [ "$UPDATE_INSTALLER" = 1 ]; then
-    cd $ROOT_FOLDER
-    dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy) Running On $hostname ($ip)" --title "Update RRHQD Codebase" --infobox "Pulling updates from repository..." 5 60
-    sleep 1
-    git pull --progress > /tmp/git-pull-output.txt 2>&1
-    EXIT_STATUS=$?
-    if [ $EXIT_STATUS -eq 0 ]; then
-        dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy) Running On $hostname ($ip)" --title "Pulling Updates" --textbox /tmp/git-pull-output.txt 15 60
-    else
-        dialog --title "Error" --textbox /tmp/git-pull-output.txt 15 60
-    fi
+cd $ROOT_FOLDER
+dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy) Running On $hostname ($ip)" --title "Update RRHQD Codebase" --infobox "Pulling updates from repository..." 5 60
+sleep 1
+git pull --progress > /tmp/git-pull-output.txt 2>&1
+EXIT_STATUS=$?
+if [ $EXIT_STATUS -eq 0 ]; then
+    dialog --backtitle "Update RRHQD (RunesRepoHub Quick Deploy) Running On $hostname ($ip)" --title "Pulling Updates" --textbox /tmp/git-pull-output.txt 15 60
+else
+    dialog --title "Error" --textbox /tmp/git-pull-output.txt 15 60
 fi
 
 
