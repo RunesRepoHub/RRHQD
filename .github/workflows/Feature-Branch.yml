@@ -21,7 +21,7 @@ jobs:
           git push --set-upstream origin "feature_branch-${GITHUB_RUN_NUMBER}"
 
   update-issue:
-    if: contains(github.event.issue.labels.*.name, 'bug')
+    if: contains(github.event.issue.labels.*.name, 'feature')
     runs-on: self-hosted
     permissions:
       issues: write
