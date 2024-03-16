@@ -72,32 +72,6 @@ execute curl -fsSL -o "$ROOT_FOLDER/dialog.txt" "https://raw.githubusercontent.c
 # Create or overwrite the .dialogrc configuration file in the user's home directory
 execute cp "$ROOT_FOLDER/dialog.txt" "${HOME}/.dialogrc"
 
-# Define the GitHub repository URL
-GITHUB_REPO_URL="https://github.com/RunesRepoHub/RRHQD.git"
-
-# Ask the user for the branch they want to download
-read -p "Enter the branch you want to clone or pull: " branch
-
-# Check if the repository directory already exists
-REPO_DIR=$(basename "$GITHUB_REPO_URL" .git)
-if [ -d "$REPO_DIR" ]; then
-    echo "Directory $REPO_DIR already exists. Attempting to pull the specified branch."
-    cd "$REPO_DIR"
-    git fetch
-    git checkout "$branch"
-    git pull origin "$branch"
-else
-    echo "Cloning the specified branch from the GitHub repository."
-    git clone --branch "$branch" "$GITHUB_REPO_URL"
-fi
-
-cd ~/RRHQD
-
-# Configure git to only allow fast-forward pulls
-git config --global pull.ff only
-
-cd ..
-
 # Detect the distribution name from /etc/os-release
 OS_DISTRO=$(grep '^NAME=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
 
