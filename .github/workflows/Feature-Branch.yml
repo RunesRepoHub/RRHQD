@@ -18,5 +18,5 @@ jobs:
       - name: Create a new branch based on the request
         run: |
           git checkout Dev
-          git checkout -b "feature_branch"
-          git push --set-upstream origin "feature_branch"
+          git checkout -b "feature_branch-${GITHUB_RUN_NUMBER}"
+          git push --set-upstream origin "feature_branch-${GITHUB_RUN_NUMBER}"
