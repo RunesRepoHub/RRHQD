@@ -2,6 +2,8 @@
 name: Incorrect or Missing Documentation
 about: Request support for an incorrect or missing documentation
 title: "[Missing Documentation] "
+labels: documentation
+assignees: rune004
 
 ---
 
