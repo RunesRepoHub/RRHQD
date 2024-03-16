@@ -34,33 +34,3 @@ jobs:
             Automated Bug Branch: https://github.com/RunesRepoHub/RRHQD/tree/Bug-Branch-${{ github.run_number }}
 
 
-  make-pr:
-    if: contains(github.event.issue.labels.*.name, 'bug')
-    runs-on: self-hosted
-    permissions:
-      pull-requests: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Make PR
-        id: pr
-        uses: peter-evans/create-pull-request@v3
-        with:
-          commit-message: Creating bug branch for issue #${{ github.event.issue.number }}
-          branch: Bug-Branch-${{ github.run_number }}
-          title: Bug Branch for issue #${{ github.event.issue.number }}
-          body: |
-            Automated Bug Branch for issue #${{ github.event.issue.number }}
-
-          base: Dev
-
-      - name: Update the GitHub issue
-        if: ${{ steps.pr.outputs.pull-request-url != '' }}
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          issue-number: ${{ github.event.issue.number }}
-          body: |
-            Automated Bug Branch PR: ${{ steps.pr.outputs.pull-request-url }}
-
-
