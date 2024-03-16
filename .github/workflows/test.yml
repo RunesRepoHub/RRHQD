@@ -1,0 +1,46 @@
+name: Merge Branch When Issue Closed
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  merge-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get Issue Body
+        id: issue_body
+        run: |
+          echo "::set-output name=body::$(cat ./Issue-${{ github.event.issue.number }}.md)"
+
+      - name: Find Branch Link
+        id: branch_link
+        run: |
+          echo "::set-output name=link::$(grep -oP 'https://github.com/RunesRepoHub/RRHQD/tree/[^ ]+' <<< ${{ steps.issue_body.outputs.body }})"
+
+      - name: Get Branch Name
+        id: branch_name
+        run: |
+          echo "::set-output name=name::$(grep -oP '/[^/]*$' <<< ${{ steps.branch_link.outputs.link }})"
+
+      - name: Checkout Dev
+        run: git checkout Dev
+
+      - name: Fetch Branch
+        run: |
+          git fetch origin ${{ steps.branch_name.outputs.name }}
+
+      - name: Merge Branch
+        run: |
+          git merge --no-edit origin/${{ steps.branch_name.outputs.name }}
+
+      - name: Push to origin
+        run: |
+          git push origin Dev
+
+      - name: Delete Branch
+        run: |
+          git push origin --delete ${{ steps.branch_name.outputs.name }}
