@@ -32,3 +32,28 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             Automated Bug Branch: https://github.com/RunesRepoHub/RRHQD/tree/Bug-Branch-${{ github.run_number }}
+
+      - name: Get Milestone
+        uses: actions/github-script@0.7.0
+        with:
+          script: |
+            const repo = context.repo
+            const issueNumber = context.issue.number
+            const milestoneNumber = context.payload.repository.milestones.find(milestone => milestone.title === "Next").number
+            return github.issues.update({
+              ...repo,
+              issue_number: issueNumber,
+              milestone: milestoneNumber
+            })
+      - name: Add Comment
+        uses: actions/github-script@0.7.0
+        with:
+          script: |
+            const repo = context.repo
+            const issueNumber = context.issue.number
+            const body = "Thank you for submitting this issue. We'll get back to you soon."
+            github.issues.createComment({
+              ...repo,
+              issue_number: issueNumber,
+              body
+            })
