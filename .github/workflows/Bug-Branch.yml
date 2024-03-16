@@ -21,7 +21,7 @@ jobs:
           git push --set-upstream origin "Bug-Branch-${GITHUB_RUN_NUMBER}"
 
       - name: Update the GitHub issue
-        uses: peter-evans/update-issue-action@v3
+        uses: peter-evans/update-issue-action@v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
