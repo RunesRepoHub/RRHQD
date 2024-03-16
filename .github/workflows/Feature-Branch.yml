@@ -14,10 +14,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Create a new branch based on the request
+      - name: Create a new branch based on the Dev branch
         run: |
-            ISSUE_ID=$(echo $GITHUB_EVENT_NAME | cut -d'/' -f 4)
-            BRANCH_NAME="feature_branch_$ISSUE_ID"
-            git checkout Dev
-            git checkout -b "$BRANCH_NAME"
-            git push --set-upstream origin "$BRANCH_NAME"
+          git checkout Dev
+          git checkout -b "feature_branch-${GITHUB_RUN_NUMBER}"
+          git push --set-upstream origin "feature_branch-${GITHUB_RUN_NUMBER}"
