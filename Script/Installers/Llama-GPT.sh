@@ -41,6 +41,13 @@ cd
 
 source ~/RRHQD/Core/Core.sh
 
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: $LLAMA_GPT_HELPLINK${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
+
+
 echo -e "${Green}When the script is done, and you see the access via localhost:port, you can just press ctrl+c to exit back to Main Menu${NC}"
 
 cd $ROOT_FOLDER

@@ -138,3 +138,26 @@ WEBP_TO_JPEG_MANUEL="Webp-to-JPEG-Manual.sh"
 ## Pre-Made-VM-Configs
 
 PRE_MADE_VM="RP-Helpdesk-Standard-Config.sh"
+
+
+## Docker Installer Help Links
+
+GHOST_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Ghost.html"
+CLOUDFLARE_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Cloudflare.html"
+CHECKMK_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Checkmk.html"
+DELUGE_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Deluge.html"
+LINKWARDEN_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Linkwarden.html"
+IT_TOOLS_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-It-tools.html"
+JACKETT_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Jackett.html"
+LLAMA_GPT_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Llama-GPT.html"
+MEMOS_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Memos.html"
+MYSQL_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-MySQL.html"
+N8N_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-N8N.html"
+NTFY_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-NTFY.html"
+OMBI_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Ombi.html"
+PORTAINER_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Portainer.html"
+POSTGRES_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Postgres.html"
+RADARR_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Radarr.html"
+SONARR_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Sonarr.html"
+UPTIME_KUMA_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Uptime-Kuma.html"
+VAULTWARDEN_HELPLINK="https://runesrepohub.github.io/RRHQD/MkDocs/RRHQD/Setup-Vaultwarden.html"

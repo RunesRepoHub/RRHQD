@@ -37,6 +37,12 @@ cd
 
 echo -e "${Green}Setup a Docker container for Radarr${NC}"
 
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: $RADARR_HELPLINK${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
+
 ## Ask user for image
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 read -p "Enter the Docker image for Radarr (e.g., linuxserver/radarr:latest): " IMAGE

@@ -36,6 +36,12 @@ cd
 
 echo -e "${Green}Starting PostgreSQL Docker configuration script.${NC}"
 
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: $POSTGRES_HELPLINK${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
+
 # Prompt user for input with defaults
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 read -p "Enter the Docker image for PostgreSQL (e.g., postgres:latest): " IMAGE
@@ -61,7 +67,6 @@ while [ -z "$DB_PASS" ]; do
     echo -e "${Red}A database password is required.${NC}"
     read -s -p "Enter the database password: " DB_PASS
 done
-
 
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings (postgres)${NC}"
 read -p "Enter the default database name: " DB_NAME

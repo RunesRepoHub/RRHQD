@@ -37,6 +37,12 @@ cd
 
 echo -e "${Green}Setup a Docker container for Jackett${NC}"
 
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: $JACKETT_HELPLINK${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
+
 ## Ask user for image
 read -p "Enter the Docker image for Jackett (e.g., linuxserver/jackett:latest): " IMAGE
 IMAGE=${IMAGE:-"linuxserver/jackett:latest"}

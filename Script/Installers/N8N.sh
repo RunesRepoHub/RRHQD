@@ -34,6 +34,14 @@ source ~/RRHQD/Core/Core.sh
 cd
 # Script to setup and configure a n8n Docker container and start it
 
+echo -e "${Green}Starting n8n Docker configuration script.${NC}"
+
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: $N8N_HELPLINK${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
+
 # Prompt user for input with defaults
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 read -p "Enter the Docker image for n8n (e.g., n8nio/n8n:latest): " IMAGE

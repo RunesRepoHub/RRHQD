@@ -34,7 +34,13 @@ source ~/RRHQD/Core/Core.sh
 cd
 # Script to configure and start a Docker container running NTFY
 
-echo "Starting NTFY Docker configuration script."
+echo -e "${Green}Starting NTFY Docker configuration script.${NC}"
+
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: $NTFY_HELPLINK${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
 
 # Prompt user for input with defaults
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
