@@ -37,6 +37,12 @@ cd
 
 echo -e "${Green}Setup a Docker container for Uptime-Kuma${NC}"
 
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: $UPTIME_KUMA_HELPLINK${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
+
 ## Ask user for image
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 read -p "Enter the Docker image for Uptime-Kuma (e.g., louislam/uptime-kuma:1): " IMAGE

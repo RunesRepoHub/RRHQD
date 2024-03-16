@@ -36,6 +36,12 @@ cd
 
 echo -e "${Green}Starting MySQL Docker configuration script.${NC}"
 
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: $MYSQL_HELPLINK${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
+
 # Prompt user for input with defaults
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 read -p "Enter the Docker image for MySQL (e.g., mysql:5.7): " IMAGE

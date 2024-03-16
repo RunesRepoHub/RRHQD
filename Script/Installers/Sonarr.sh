@@ -37,6 +37,12 @@ cd
 
 echo -e "${Green}Setup a Docker container for Sonarr${NC}"
 
+if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
+    echo -e "${Yellow}Set up instructions: $SONARR_HELPLINK${NC}"
+elif [ "$decision" == "N" ] || [ "$decision" == "n" ]; then
+    echo -e "${Blue}Skipping setup instructions.${NC}"
+fi
+
 ## Ask user for image
 echo -e "${Green}This step can be skipped if you don't want any changes to the default settings${NC}"
 read -p "Enter the Docker image for Sonarr (e.g., linuxserver/sonarr:latest): " IMAGE
