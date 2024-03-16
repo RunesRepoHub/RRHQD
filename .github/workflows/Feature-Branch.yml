@@ -20,15 +20,9 @@ jobs:
           git checkout -b "feature_branch-${GITHUB_RUN_NUMBER}"
           git push --set-upstream origin "feature_branch-${GITHUB_RUN_NUMBER}"
 
-  update-issue:
-    if: contains(github.event.issue.labels.*.name, 'feature')
-    runs-on: self-hosted
-    permissions:
-      issues: write
-    steps:
       - name: Update the GitHub issue
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Automated Bug Branch: https://github.com/RunesRepoHub/RRHQD/tree/Bug-Branch-${{ github.run_number }}
+            Automated feature Branch: https://github.com/RunesRepoHub/RRHQD/tree/feature-Branch-${{ github.run_number }}
