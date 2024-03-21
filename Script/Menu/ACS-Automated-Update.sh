@@ -11,7 +11,7 @@ function show_dialog_menu() {
     dialog --clear \
            --backtitle "RRHQD (RunesRepoHub Quick Deploy) - ACS Menu Running On $hostname ($ip)" \
            --title "ACS Menu - $script_name" \
-           --menu "Pick what you want to do:" 15 70 4 \
+           --menu "Pick what you want to do:" 15 80 4 \
            1 "Setup Automated Update of All ACS Dockers With Cronjobs" \
            2 "Setup Automated Update of Frontend ACS Dockers With Cronjobs" \
            3 "Setup Automated Update of Only Movie Node ACS Dockers With Cronjobs" \
