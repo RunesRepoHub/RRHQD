@@ -35,6 +35,7 @@ source ~/RRHQD/Core/ACS-Core.sh
 # Set the IP address and time zone
 IP=$(hostname -I | awk '{print $1}')
 TZ=$(timedatectl show --property=Timezone --value)
+PLEX_HOST=$(hostname)
 
 # Check if the network already exists
 if sudo docker network inspect my_plex_network >/dev/null 2>&1; then
@@ -61,11 +62,6 @@ else
         echo -e "${Yellow}Error code: 1 (Invalid arguments)${NC}"
         exit 1
     fi
-
-
-    echo -e "${Green}Enter the hostname that you want for the plex server in the plex settings${NC}"    
-    # Prompt the user for the hostname
-    read -p "Hostname for Plex-Server: " PLEX_HOST
 fi
 
 
