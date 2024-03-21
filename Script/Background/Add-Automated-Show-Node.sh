@@ -3,7 +3,7 @@
 source ~/RRHQD/Core/Core.sh
 
 CRONTAB_FILE="/etc/crontab"
-command="bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND_FOLDER/$ADD_AUTOMATED_SHOW_NODE"
+command="bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_AUTOMATED_SHOW_NODE"
 
 # Function to ask the user for the command to be run every 20 minutes
 add_cronjob() {
