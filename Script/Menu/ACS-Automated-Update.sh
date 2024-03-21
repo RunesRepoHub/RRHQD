@@ -11,7 +11,7 @@ function show_dialog_menu() {
     dialog --clear \
            --backtitle "RRHQD (RunesRepoHub Quick Deploy) - ACS Menu Running On $hostname ($ip)" \
            --title "ACS Menu - $script_name" \
-           --menu "Pick what you want to do:" 15 60 4 \
+           --menu "Pick what you want to do:" 15 70 4 \
            1 "Setup Automated Update of All ACS Dockers With Cronjobs" \
            2 "Setup Automated Update of Frontend ACS Dockers With Cronjobs" \
            3 "Setup Automated Update of Only Movie Node ACS Dockers With Cronjobs" \
@@ -22,19 +22,19 @@ function show_dialog_menu() {
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
         1)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND_FOLDER/$ADD_AUTOMATED_DOCKER_UPDATE
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_AUTOMATED_DOCKER_UPDATE
             ;;
         2)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND_FOLDER/$ADD_AUTOMATED_FRONTEND_UPDATE
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_AUTOMATED_FRONTEND_UPDATE
             ;;
         3)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND_FOLDER/$ADD_AUTOMATED_MOVIE_NODE
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_AUTOMATED_MOVIE_NODE
             ;;
         4)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND_FOLDER/$ADD_AUTOMATED_SHOW_NODE
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_AUTOMATED_SHOW_NODE
             ;;
         5)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND_FOLDER/$ADD_AUTOMATED_PLEX_UPDATE
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$BACKGROUND/$ADD_AUTOMATED_PLEX_UPDATE
             ;;
         *)
             exit 0
