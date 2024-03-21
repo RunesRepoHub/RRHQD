@@ -74,6 +74,8 @@ QUICK_TOOLS="Quick-Tools.sh"
 YOUTUBE_SCRIPTS="Youtube-Script.sh"
 PRE_MADE_VM_CONFIGS="Pre-Made-VM-Configs.sh"
 ACS_MENU="ACS.sh"
+ACS_UPDATE_MENU="ACS-Update-Menu.sh"
+ACS_AUTOMATED_UPDATE_MENU="ACS-Automated-Update.sh"
 
 
 ## Quick Installers Scripts
@@ -110,6 +112,11 @@ DOCKER_IMPORT="Docker-Import.sh"
 
 SHORT_CLEANUP="Short-Cleanup.sh"
 WEBP_TO_JPEG="Webp-to-JPEG.sh"
+ADD_AUTOMATED_DOCKER_UPDATE="Add-Automated-Docker-Update.sh"
+ADD_AUTOMATED_FRONTEND_UPDATE="Add-Automated-Frontend-Update.sh"
+ADD_AUTOMATED_MOVIE_NODE="Add-Automated-Movie-Node.sh"
+ADD_AUTOMATED_SHOW_NODE="Add-Automated-Show-Node.sh"
+ADD_AUTOMATED_PLEX_UPDATE="Add-Automated-Plex-Update.sh"
 
 ## RRH-Software
 

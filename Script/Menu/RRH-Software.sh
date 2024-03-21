@@ -14,25 +14,20 @@ function show_dialog_menu() {
            --backtitle "RRHQD (RunesRepoHub Quick Deploy) - RRH-Software Menu Running On $hostname ($ip)" \
            --title "Main Menu - $script_name" \
            --menu "Please select an option:" 15 60 6 \
-           1 "Run the ACS Installer" \
-           2 "News Report Docker Installer" \
-           3 "Coming Soon" \
-           4 "Run the EWD Installer" \
-           5 "Back To Main Menu" 2>"${INPUT}"
+           1 "News Report Docker Installer" \
+           2 "Coming Soon" \
+           3 "Run the EWD Installer" \
+           4 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
         1)
-            chmod +x ~/RRHQD/Script/RRH-Software/ACS/setup.sh
-            bash ~/RRHQD/Script/RRH-Software/ACS/setup.sh
-            ;;
-        2)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/NRD/Production/Setup.sh)
             ;;
-        3)
+        2)
             
             ;;
-        4)
+        3)
             bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/EWD/Production/Setup.sh)
             ;;
         *)

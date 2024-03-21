@@ -3,8 +3,8 @@
 source ~/RRHQD/Core/Core.sh
 
 # Source Core.sh script if it exists, otherwise exit the script
-if [ -f ~/ACS/ACSF-Scripts/Core.sh ]; then
-  source ~/ACS/ACSF-Scripts/Core.sh
+if [ -f ~/RRHQD/Core/ACS-Core.sh ]; then
+  source ~/RRHQD/Core/ACS-Core.sh
 else
   dialog --title "Error" --msgbox "ACS Core.sh script not found. Exiting." 6 50
   exit 0

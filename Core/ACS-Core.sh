@@ -41,6 +41,10 @@ SETUP_PLEX="setup-plex.sh"
 START="start.sh"
 USAGE="youtube-size.sh"
 DOCKER_UPDATE="Docker-Update.sh"
+DOCKER_UPDATE_FRONTEND="Docker-Update-Frontend.sh"
+DOCKER_UPDATE_MOVIE="Docker-Update-Movie-Node.sh"
+DOCKER_UPDATE_SHOW="Docker-Update-Show-Node.sh"
+DOCKER_UPDATE_PLEX_ONLY="Docker-Update-Only-Plex.sh"
 #--------------------------------------------------------------------------
 # Make folders for ACS
 YOUTUBE=~/plex/media/youtube
