@@ -54,7 +54,6 @@ function show_dialog_menu() {
         8)
             bash $ROOT_FOLDER/$SCRIPT_FOLDER/$MENU_FOLDER/$ACS_AUTOMATED_UPDATE_MENU
             ;;
-        9)
         *)
             exit 0
             ;;
