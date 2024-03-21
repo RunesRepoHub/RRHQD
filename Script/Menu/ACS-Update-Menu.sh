@@ -12,33 +12,29 @@ function show_dialog_menu() {
            --backtitle "RRHQD (RunesRepoHub Quick Deploy) - ACS Menu Running On $hostname ($ip)" \
            --title "ACS Menu - $script_name" \
            --menu "Pick what you want to do:" 15 60 4 \
-           1 "Start All ACS Dockers" \
-           2 "Stop All ACS Dockers" \
-           3 "Stop and Remove All ACS Dockers" \
-           4 "Uninstall All ACS" \
-           5 "Usage" \
-           6 "Update All ACS Dockers" \
+           1 "Update All ACS Dockers" \
+           2 "Update Frontend ACS Dockers" \
+           3 "Update Only Movie Node ACS Dockers" \
+           4 "Update Only Show Node ACS Dockers" \
+           5 "Update Only Plex ACS Dockers" \
            7 "Back To Main Menu" 2>"${INPUT}"
 
     menu_choice=$(<"${INPUT}")
     case $menu_choice in
         1)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS_FOLDER/$ACS_SCRIPT_FOLDER/$START
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS_FOLDER/$ACS_SCRIPT_FOLDER/$DOCKER_UPDATE
             ;;
         2)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS_FOLDER/$ACS_SCRIPT_FOLDER/$STOP
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS_FOLDER/$ACS_SCRIPT_FOLDER/$DOCKER_UPDATE_FRONTEND
             ;;
         3)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS_FOLDER/$ACS_SCRIPT_FOLDER/$STOP_REMOVE
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS_FOLDER/$ACS_SCRIPT_FOLDER/$DOCKER_UPDATE_MOVIE
             ;;
         4)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS_FOLDER/$ACS_SCRIPT_FOLDER/$UNINSTALL
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS_FOLDER/$ACS_SCRIPT_FOLDER/$DOCKER_UPDATE_SHOW
             ;;
         5)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS_FOLDER/$ACS_SCRIPT_FOLDER/$USAGE
-            ;;
-        6)
-            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS_FOLDER/$ACS_SCRIPT_FOLDER/$ACS_UPDATE_MENU
+            bash $ROOT_FOLDER/$SCRIPT_FOLDER/$RRH_SOFTWARE_FOLDER/$ACS_FOLDER/$ACS_SCRIPT_FOLDER/$DOCKER_UPDATE_PLEX_ONLY
             ;;
         *)
             exit 0

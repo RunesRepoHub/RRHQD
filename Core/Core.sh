@@ -74,6 +74,7 @@ QUICK_TOOLS="Quick-Tools.sh"
 YOUTUBE_SCRIPTS="Youtube-Script.sh"
 PRE_MADE_VM_CONFIGS="Pre-Made-VM-Configs.sh"
 ACS_MENU="ACS.sh"
+ACS_UPDATE_MENU="ACS-Update-Menu.sh"
 
 
 ## Quick Installers Scripts
