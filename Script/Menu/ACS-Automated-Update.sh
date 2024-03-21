@@ -9,8 +9,8 @@ script_name=$(basename "$0" .sh)
 # Use dialog to create a more user-friendly menu
 function show_dialog_menu() {
     dialog --clear \
-           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - ACS Menu Running On $hostname ($ip)" \
-           --title "ACS Menu - $script_name" \
+           --backtitle "RRHQD (RunesRepoHub Quick Deploy) - ACS Automated Update Menu Running On $hostname ($ip)" \
+           --title "ACS Automated Update Menu - $script_name" \
            --menu "Pick what you want to do:" 15 80 4 \
            1 "Setup Automated Update of All ACS Dockers With Cronjobs" \
            2 "Setup Automated Update of Frontend ACS Dockers With Cronjobs" \
