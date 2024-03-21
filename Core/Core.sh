@@ -111,6 +111,11 @@ DOCKER_IMPORT="Docker-Import.sh"
 
 SHORT_CLEANUP="Short-Cleanup.sh"
 WEBP_TO_JPEG="Webp-to-JPEG.sh"
+ADD_AUTOMATED_DOCKER_UPDATE="Add-Automated-Docker-Update.sh"
+ADD_AUTOMATED_FRONTEND_UPDATE="Add-Automated-Frontend-Update.sh"
+ADD_AUTOMATED_MOVIE_NODE="Add-Automated-Movie-Node.sh"
+ADD_AUTOMATED_SHOW_NODE="Add-Automated-Show-Node.sh"
+ADD_AUTOMATED_PLEX_UPDATE="Add-Automated-Plex-Update.sh"
 
 ## RRH-Software
 
