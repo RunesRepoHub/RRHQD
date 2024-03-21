@@ -64,6 +64,8 @@ else
     fi
 fi
 
+# Copy the Template ENV file to a new .env file
+cp ~/RRHQD/Script/RRH-Software/ACS/Dockers/.env_Template ~/RRHQD/Script/RRH-Software/ACS/Dockers/.env
 
 # Append environment variables to the ~/RRHQD/Script/RRH-Software/ACS/Dockers/.env file
 {
